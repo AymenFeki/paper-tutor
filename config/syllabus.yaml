@@ -10,7 +10,7 @@ settings:
   require_abstract: true
   exclude_retracted: true
   venue_lists: [cwts-core]       # peer-reviewed papers must come from a listed journal
-  preprints_skip_venue_check: true
+  venue_exempt_types: [preprint, conference-paper]   # no journal-list requirement for these types
   recent_years: 2                # newer papers are labelled "recent" instead of ranked by citations
 
 areas:
@@ -111,7 +111,7 @@ areas:
         queries: [machine learning finance, financial sentiment analysis]
 
   agents:
-    active: false                # collected via seed papers, not topics (for later exploration)
+    active: false                # collected via seed papers, not topics (see notes.md)
     topics: []
     seeds:                       # landmark papers; we collect the papers that cite them
       - "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"

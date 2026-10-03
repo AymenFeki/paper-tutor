@@ -16,7 +16,7 @@ settings:
 areas:
   statistics:
     active: true
-    topics: [T10243, T10136, T12056, T11901, T10845, T11303, T10064]
+    topics: [T10243, T10136, T11871, T12056, T11901, T12814, T10845, T11303, T10064, T12205, T10968]
     learn:
       - name: Regression and generalised linear models
         queries: [generalized linear model, logistic regression, poisson regression]
@@ -56,7 +56,7 @@ areas:
 
   machine_learning:
     active: true
-    topics: [T12535, T12026, T10220]
+    topics: [T12026, T10220, T11652]
     learn:
       - name: Tree ensembles and boosting
         queries: [gradient boosting, random forest, xgboost]
@@ -71,7 +71,7 @@ areas:
 
   deep_learning:
     active: true
-    topics: [T10320, T11612, T10036, T11307, T11714]
+    topics: [T10320, T11612, T10036, T11307, T11714, T11689, T11273]
     learn:
       - name: Neural network foundations
         queries: [deep neural networks, backpropagation, stochastic gradient descent]
@@ -84,7 +84,7 @@ areas:
 
   economics:
     active: true
-    topics: [T10007, T14166]
+    topics: [T10007, T14166, T10503, T11742]
     learn:
       - name: Monetary policy and central banks
         queries: [monetary policy, central bank, inflation targeting]
@@ -95,7 +95,7 @@ areas:
 
   finance:
     active: true
-    topics: [T10127, T11059]
+    topics: [T10127, T11059, T11413, T10067, T10282, T10047, T11496, T11653]
     learn:
       - name: Portfolio optimisation and risk
         queries: [portfolio optimization, covariance matrix estimation, shrinkage estimator]
@@ -111,9 +111,9 @@ areas:
         queries: [machine learning finance, financial sentiment analysis]
 
   agents:
-    active: false                # collected via seed papers, not topics(for later)
+    active: false                # collected via seed papers, not topics (for later exploration)
     topics: []
-    seeds:
+    seeds:                       # landmark papers; we collect the papers that cite them
       - "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
       - "ReAct: Synergizing Reasoning and Acting in Language Models"
       - "Toolformer: Language Models Can Teach Themselves to Use Tools"
@@ -126,4 +126,18 @@ areas:
         queries: [retrieval augmented generation, dense retrieval]
       - name: LLM agents and tool use
         queries: [llm agents, tool use language models, multi-agent systems]
-        
+      - name: Evaluating LLM systems
+        queries: [llm evaluation, hallucination detection]
+
+  cloud_infrastructure:
+    active: true
+    topics: [T10101, T10715, T10772, T12127]
+    learn:
+      - name: Cloud computing fundamentals
+        queries: [cloud computing, serverless computing]
+      - name: Containers and orchestration
+        queries: [docker containers, kubernetes]
+      - name: Data pipelines and MLOps
+        queries: [mlops, machine learning deployment, data pipeline]
+      - name: Distributed systems
+        queries: [distributed systems, microservices]

@@ -1,0 +1,129 @@
+# Paper-tutor corpus configuration
+# areas:    your own grouping; each area lists OpenAlex topics (what gets downloaded)
+#           and learn items (what you want to study)
+# settings: credibility rules applied to every paper
+
+settings:
+  papers_per_topic: 200          # cap per OpenAlex topic while exploring
+  language: en
+  keep_types: [article, review, preprint, conference-paper]
+  require_abstract: true
+  exclude_retracted: true
+  venue_lists: [cwts-core]       # peer-reviewed papers must come from a listed journal
+  preprints_skip_venue_check: true
+  recent_years: 2                # newer papers are labelled "recent" instead of ranked by citations
+
+areas:
+  statistics:
+    active: true
+    topics: [T10243, T10136, T12056, T11901, T10845, T11303, T10064]
+    learn:
+      - name: Regression and generalised linear models
+        queries: [generalized linear model, logistic regression, poisson regression]
+      - name: Mixed and multilevel models
+        queries: [mixed effects model, multilevel model, longitudinal data analysis]
+      - name: Additive models and splines
+        queries: [generalized additive model, penalized splines]
+      - name: Regularisation and variable selection
+        queries: [lasso, ridge regression, variable selection]
+      - name: Bayesian inference
+        queries: [bayesian inference, prior distribution, bayesian hierarchical model]
+      - name: MCMC and computational methods
+        queries: [markov chain monte carlo, gibbs sampling, hamiltonian monte carlo]
+      - name: Causal inference
+        queries: [causal inference, propensity score, structural causal model]
+      - name: Time series analysis
+        queries: [time series analysis, arima, state space model]
+      - name: Resampling and uncertainty
+        queries: [bootstrap, conformal prediction]
+      - name: Network analysis
+        queries: [network analysis, stochastic block model, exponential random graph model]
+
+  econometrics:
+    active: true
+    topics: [T11911]
+    learn:
+      - name: Panel data methods
+        queries: [panel data econometrics, fixed effects model, dynamic panel data]
+      - name: Instrumental variables and identification
+        queries: [instrumental variables, weak instruments, two stage least squares]
+      - name: Difference in differences and event studies
+        queries: [difference in differences, event study design, synthetic control method]
+      - name: Regression discontinuity
+        queries: [regression discontinuity design]
+      - name: Time series econometrics
+        queries: [vector autoregression, cointegration, unit root test]
+
+  machine_learning:
+    active: true
+    topics: [T12535, T12026, T10220]
+    learn:
+      - name: Tree ensembles and boosting
+        queries: [gradient boosting, random forest, xgboost]
+      - name: Model evaluation and validation
+        queries: [cross-validation, model selection, overfitting]
+      - name: Interpretability
+        queries: [shap, explainable machine learning, feature importance]
+      - name: Uncertainty quantification
+        queries: [conformal prediction, prediction intervals, probability calibration]
+      - name: Predictive maintenance
+        queries: [remaining useful life, predictive maintenance]
+
+  deep_learning:
+    active: true
+    topics: [T10320, T11612, T10036, T11307, T11714]
+    learn:
+      - name: Neural network foundations
+        queries: [deep neural networks, backpropagation, stochastic gradient descent]
+      - name: Sequence models
+        queries: [lstm, recurrent neural network, temporal convolutional network]
+      - name: Transformers and attention
+        queries: [transformer neural network, attention mechanism]
+      - name: Embeddings and representation learning
+        queries: [word embeddings, sentence embeddings, representation learning]
+
+  economics:
+    active: true
+    topics: [T10007, T14166]
+    learn:
+      - name: Monetary policy and central banks
+        queries: [monetary policy, central bank, inflation targeting]
+      - name: Exchange rates and currencies
+        queries: [exchange rate, currency crisis]
+      - name: Inflation and business cycles
+        queries: [inflation dynamics, business cycle]
+
+  finance:
+    active: true
+    topics: [T10127, T11059]
+    learn:
+      - name: Portfolio optimisation and risk
+        queries: [portfolio optimization, covariance matrix estimation, shrinkage estimator]
+      - name: Option pricing and derivatives
+        queries: [option pricing, black scholes, monte carlo option pricing]
+      - name: Volatility modelling
+        queries: [stock market volatility, garch, realized volatility]
+      - name: Asset pricing
+        queries: [asset pricing, factor models]
+      - name: Banking and credit
+        queries: [bank lending, credit risk]
+      - name: Machine learning in finance
+        queries: [machine learning finance, financial sentiment analysis]
+
+  agents:
+    active: false                # collected via seed papers, not topics(for later)
+    topics: []
+    seeds:
+      - "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+      - "ReAct: Synergizing Reasoning and Acting in Language Models"
+      - "Toolformer: Language Models Can Teach Themselves to Use Tools"
+      - "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"
+      - "Language Models are Few-Shot Learners"
+    learn:
+      - name: Large language models
+        queries: [large language model, instruction tuning]
+      - name: Retrieval-augmented generation
+        queries: [retrieval augmented generation, dense retrieval]
+      - name: LLM agents and tool use
+        queries: [llm agents, tool use language models, multi-agent systems]
+      -

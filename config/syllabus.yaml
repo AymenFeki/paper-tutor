@@ -153,3 +153,9 @@ embeddings:
       name: Qwen/Qwen3-Embedding-0.6B
       query_prompt_name: query
       max_seq_length: 512        # same truncation as bge-small; longer inputs run out of memory on MPS
+
+llm:
+  model: qwen3:8b
+  temperature: 0        # 0 = always pick the most likely word
+  reasoning: false
+  top_k: 5

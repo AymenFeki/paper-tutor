@@ -1,0 +1,2057 @@
+{
+  "model": "bge-small",
+  "model_name": "BAAI/bge-small-en-v1.5",
+  "top_k": 10,
+  "overall": {
+    "hit@1": 0.32142857142857145,
+    "hit@5": 0.4642857142857143,
+    "hit@10": 0.6428571428571429,
+    "mrr": 0.4016298185941043,
+    "n": 28
+  },
+  "hit@5_wilson_95": [
+    0.2953,
+    0.6419
+  ],
+  "per_area": {
+    "statistics": {
+      "hit@1": 0.25,
+      "hit@5": 0.5,
+      "hit@10": 0.5,
+      "mrr": 0.375,
+      "n": 4
+    },
+    "econometrics": {
+      "hit@1": 0.25,
+      "hit@5": 0.5,
+      "hit@10": 0.75,
+      "mrr": 0.4166666666666667,
+      "n": 4
+    },
+    "machine_learning": {
+      "hit@1": 0.25,
+      "hit@5": 0.5,
+      "hit@10": 0.75,
+      "mrr": 0.3416666666666667,
+      "n": 4
+    },
+    "deep_learning": {
+      "hit@1": 0.0,
+      "hit@5": 0.0,
+      "hit@10": 0.25,
+      "mrr": 0.03125,
+      "n": 4
+    },
+    "economics": {
+      "hit@1": 0.75,
+      "hit@5": 0.75,
+      "hit@10": 0.75,
+      "mrr": 0.75,
+      "n": 4
+    },
+    "finance": {
+      "hit@1": 0.25,
+      "hit@5": 0.5,
+      "hit@10": 0.5,
+      "mrr": 0.3333333333333333,
+      "n": 4
+    },
+    "cloud_infrastructure": {
+      "hit@1": 0.5,
+      "hit@5": 0.5,
+      "hit@10": 1.0,
+      "mrr": 0.5634920634920635,
+      "n": 4
+    }
+  },
+  "questions": [
+    {
+      "question": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
+      "area": "statistics",
+      "relevant": [
+        "W2225156818"
+      ],
+      "paper_title": "Variational Inference: A Review for Statisticians",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2067392831",
+          "title": "Adaptive approximate Bayesian computation",
+          "area": "statistics",
+          "similarity": 0.7928
+        },
+        {
+          "id": "W2775216473",
+          "title": "On the Asymptotic Efficiency of Approximate Bayesian Computation Estimators",
+          "area": "statistics",
+          "similarity": 0.781
+        },
+        {
+          "id": "W3019869015",
+          "title": "Scalable Optimization-Based Sampling on Function Space",
+          "area": "statistics",
+          "similarity": 0.7754
+        },
+        {
+          "id": "W4295120361",
+          "title": "Lazy ABC",
+          "area": "statistics",
+          "similarity": 0.7753
+        },
+        {
+          "id": "W4367694390",
+          "title": "A Wall-time Minimizing Parallelization Strategy for Approximate Bayesian Computation",
+          "area": "statistics",
+          "similarity": 0.7748
+        },
+        {
+          "id": "W2131241448",
+          "title": "Practical Bayesian Optimization of Machine Learning Algorithms",
+          "area": "statistics",
+          "similarity": 0.7698
+        },
+        {
+          "id": "W2027255954",
+          "title": "Computing Bayes Factors by Combining Simulation and Asymptotic Approximations",
+          "area": "statistics",
+          "similarity": 0.7672
+        },
+        {
+          "id": "W2146620998",
+          "title": "Lack of confidence in approximate Bayesian computation model choice",
+          "area": "statistics",
+          "similarity": 0.7646
+        },
+        {
+          "id": "W4400542370",
+          "title": "Computational Methods for Fast Bayesian Model Assessment via Calibrated Posterior p -values",
+          "area": "statistics",
+          "similarity": 0.7639
+        },
+        {
+          "id": "W2109606780",
+          "title": "Efficient Approximate Bayesian Computation Coupled With Markov Chain Monte Carlo Without Likelihood",
+          "area": "statistics",
+          "similarity": 0.7636
+        }
+      ]
+    },
+    {
+      "question": "A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?",
+      "area": "statistics",
+      "relevant": [
+        "W2416547532"
+      ],
+      "paper_title": "Interrupted time series regression for the evaluation of public health interventions: a tutorial",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2416547532",
+          "title": "Interrupted time series regression for the evaluation of public health interventions: a tutorial",
+          "area": "statistics",
+          "similarity": 0.7189
+        },
+        {
+          "id": "W2101603115",
+          "title": "Estimating The Variance of Estimated Trends in Proportions When There is No Unique Subject Identifier",
+          "area": "statistics",
+          "similarity": 0.7037
+        },
+        {
+          "id": "W2077618811",
+          "title": "Permutation tests for joinpoint regression with applications to cancer rates",
+          "area": "statistics",
+          "similarity": 0.6819
+        },
+        {
+          "id": "W1966714873",
+          "title": "Proportional hazards tests and diagnostics based on weighted residuals",
+          "area": "statistics",
+          "similarity": 0.6798
+        },
+        {
+          "id": "W2950397612",
+          "title": "Modeling operational risk data reported above a time-varying threshold",
+          "area": "finance",
+          "similarity": 0.6761
+        },
+        {
+          "id": "W2160579250",
+          "title": "A linear regression model for the analysis of life times",
+          "area": "statistics",
+          "similarity": 0.6747
+        },
+        {
+          "id": "W2144168223",
+          "title": "The use of propensity score methods with survival or time‐to‐event outcomes: reporting measures of effect similar to those used in randomized experiments",
+          "area": "statistics",
+          "similarity": 0.6743
+        },
+        {
+          "id": "W1967862917",
+          "title": "High-dimensional Propensity Score Adjustment in Studies of Treatment Effects Using Health Care Claims Data",
+          "area": "statistics",
+          "similarity": 0.6731
+        },
+        {
+          "id": "W2039493274",
+          "title": "Dose-Response and Trend Analysis in Epidemiology",
+          "area": "statistics",
+          "similarity": 0.6691
+        },
+        {
+          "id": "W4378803918",
+          "title": "Variance estimation of the risk difference when using propensity‐score matching and weighting with time‐to‐event outcomes",
+          "area": "statistics",
+          "similarity": 0.669
+        }
+      ]
+    },
+    {
+      "question": "If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?",
+      "area": "statistics",
+      "relevant": [
+        "W2264767503"
+      ],
+      "paper_title": "Introduction to the Analysis of Survival Data in the Presence of Competing Risks",
+      "rank": 2,
+      "retrieved": [
+        {
+          "id": "W2115108310",
+          "title": "Survival Analysis Part I: Basic concepts and first analyses",
+          "area": "statistics",
+          "similarity": 0.7498
+        },
+        {
+          "id": "W2264767503",
+          "title": "Introduction to the Analysis of Survival Data in the Presence of Competing Risks",
+          "area": "statistics",
+          "similarity": 0.7443
+        },
+        {
+          "id": "W4293241248",
+          "title": "Nonparametric Estimation from Incomplete Observations",
+          "area": "statistics",
+          "similarity": 0.742
+        },
+        {
+          "id": "W2127008730",
+          "title": "Estimation and extrapolation of optimal treatment and testing strategies",
+          "area": "statistics",
+          "similarity": 0.7207
+        },
+        {
+          "id": "W1977426244",
+          "title": "A Comparative Study of Approaches for Predicting Prostate Cancer from Longitudinal Data",
+          "area": "statistics",
+          "similarity": 0.7177
+        },
+        {
+          "id": "W2157355630",
+          "title": "Generalized additive models for medical research",
+          "area": "statistics",
+          "similarity": 0.7139
+        },
+        {
+          "id": "W2160571019",
+          "title": "Modelling for Survival Data in Medical Research",
+          "area": "statistics",
+          "similarity": 0.7058
+        },
+        {
+          "id": "W1986705681",
+          "title": "Cox's Regression Model for Counting Processes: A Large Sample Study",
+          "area": "statistics",
+          "similarity": 0.7057
+        },
+        {
+          "id": "W2092648747",
+          "title": "Regression Analysis of Multivariate Incomplete Failure Time Data by Modeling Marginal Distributions",
+          "area": "statistics",
+          "similarity": 0.7022
+        },
+        {
+          "id": "W2946783408",
+          "title": "Detecting Individual Level `Always Survivor' Causal Effects Under `Truncation by Death' and Censoring Through Time",
+          "area": "statistics",
+          "similarity": 0.7019
+        }
+      ]
+    },
+    {
+      "question": "I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?",
+      "area": "statistics",
+      "relevant": [
+        "W2782176193"
+      ],
+      "paper_title": "Variable selection – A review and recommendations for the practicing statistician",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2074703669",
+          "title": "Regression modelling strategies for improved prognostic prediction",
+          "area": "statistics",
+          "similarity": 0.7297
+        },
+        {
+          "id": "W2336254838",
+          "title": "Modeling Predictors of Latent Classes in Regression Mixture Models",
+          "area": "statistics",
+          "similarity": 0.7018
+        },
+        {
+          "id": "W2130373985",
+          "title": "Relaxing the Rule of Ten Events per Variable in Logistic and Cox Regression",
+          "area": "statistics",
+          "similarity": 0.7017
+        },
+        {
+          "id": "W2157355630",
+          "title": "Generalized additive models for medical research",
+          "area": "statistics",
+          "similarity": 0.7008
+        },
+        {
+          "id": "W2007069447",
+          "title": "Variable Selection via Gibbs Sampling",
+          "area": "statistics",
+          "similarity": 0.6969
+        },
+        {
+          "id": "W1723129825",
+          "title": "Logistic Regression: A Brief Primer",
+          "area": "statistics",
+          "similarity": 0.6903
+        },
+        {
+          "id": "W2075072883",
+          "title": "How Many Subjects Does It Take To Do A Regression Analysis",
+          "area": "statistics",
+          "similarity": 0.6867
+        },
+        {
+          "id": "W2332603912",
+          "title": "Regression Modelling of Diagnostic Likelihood Ratios for the Evaluation of Medical Diagnostic Tests",
+          "area": "statistics",
+          "similarity": 0.6865
+        },
+        {
+          "id": "W4281717669",
+          "title": "The harm of class imbalance corrections for risk prediction models: illustration and simulation using logistic regression",
+          "area": "machine_learning",
+          "similarity": 0.6838
+        },
+        {
+          "id": "W2135760566",
+          "title": "The number of subjects per variable required in linear regression analyses",
+          "area": "statistics",
+          "similarity": 0.6834
+        }
+      ]
+    },
+    {
+      "question": "How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?",
+      "area": "econometrics",
+      "relevant": [
+        "W3123200913"
+      ],
+      "paper_title": "How to do Xtabond2: An Introduction to Difference and System GMM in Stata",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W4232505725",
+          "title": "Plausibly Exogenous",
+          "area": "statistics",
+          "similarity": 0.754
+        },
+        {
+          "id": "W2127882594",
+          "title": "INSTRUMENTAL VARIABLE ESTIMATION OF A THRESHOLD MODEL",
+          "area": "econometrics",
+          "similarity": 0.7473
+        },
+        {
+          "id": "W1988201884",
+          "title": "Handling Endogenous Regressors by Joint Estimation Using Copulas",
+          "area": "statistics",
+          "similarity": 0.747
+        },
+        {
+          "id": "W2094514178",
+          "title": "An Efficient Method of Estimating Seemingly Unrelated Regressions and Tests for Aggregation Bias",
+          "area": "statistics",
+          "similarity": 0.7433
+        },
+        {
+          "id": "W1989773174",
+          "title": "Using Heteroscedasticity to Identify and Estimate Mismeasured and Endogenous Regressor Models",
+          "area": "statistics",
+          "similarity": 0.7418
+        },
+        {
+          "id": "W2047905873",
+          "title": "Econometric models based on count data. Comparisons and applications of some estimators and tests",
+          "area": "econometrics",
+          "similarity": 0.7393
+        },
+        {
+          "id": "W2085240067",
+          "title": "A Computationally Practical Simulation Estimator for Panel Data",
+          "area": "econometrics",
+          "similarity": 0.7356
+        },
+        {
+          "id": "W2083126399",
+          "title": "Pseudo Maximum Likelihood Methods: Applications to Poisson Models",
+          "area": "econometrics",
+          "similarity": 0.7313
+        },
+        {
+          "id": "W2171177579",
+          "title": "Panel Data Discrete Choice Models with Lagged Dependent Variables",
+          "area": "econometrics",
+          "similarity": 0.7311
+        },
+        {
+          "id": "W2025161033",
+          "title": "Statistical Inference in Instrumental Variables Regression with I(1) Processes",
+          "area": "statistics",
+          "similarity": 0.7309
+        }
+      ]
+    },
+    {
+      "question": "When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?",
+      "area": "econometrics",
+      "relevant": [
+        "W2096684396"
+      ],
+      "paper_title": "How Much Should We Trust Differences-In-Differences Estimates?",
+      "rank": 2,
+      "retrieved": [
+        {
+          "id": "W2040503026",
+          "title": "Comparing Predictive Accuracy",
+          "area": "economics",
+          "similarity": 0.6807
+        },
+        {
+          "id": "W2096684396",
+          "title": "How Much Should We Trust Differences-In-Differences Estimates?",
+          "area": "econometrics",
+          "similarity": 0.6786
+        },
+        {
+          "id": "W2171642892",
+          "title": "How to develop a more accurate risk prediction model when there are few events",
+          "area": "statistics",
+          "similarity": 0.6644
+        },
+        {
+          "id": "W7165787828",
+          "title": "Using a Special Regressor to Identify Type I and Type II Error Probabilities, With an Illustrative Application to Miscarriages of Justice",
+          "area": "statistics",
+          "similarity": 0.6617
+        },
+        {
+          "id": "W4283387379",
+          "title": "How much should we trust staggered difference-in-differences estimates?",
+          "area": "statistics",
+          "similarity": 0.6591
+        },
+        {
+          "id": "W4233861332",
+          "title": "AMENDMENTS AND CORRECTIONS",
+          "area": "statistics",
+          "similarity": 0.6559
+        },
+        {
+          "id": "W2972531842",
+          "title": "Correlates of Representation Errors in Internet Data Sources for Real Estate Market",
+          "area": "econometrics",
+          "similarity": 0.6553
+        },
+        {
+          "id": "W2128017766",
+          "title": "Natural and Quasi-Experiments in Economics",
+          "area": "statistics",
+          "similarity": 0.6538
+        },
+        {
+          "id": "W3125057276",
+          "title": "Synthetic Control Methods for Comparative Case Studies: Estimating the Effect of California’s Tobacco Control Program",
+          "area": "statistics",
+          "similarity": 0.6489
+        },
+        {
+          "id": "W2486925429",
+          "title": "Bond Rating Discrepancies and the Effect on Municipal Bond Yields",
+          "area": "finance",
+          "similarity": 0.6461
+        }
+      ]
+    },
+    {
+      "question": "My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?",
+      "area": "econometrics",
+      "relevant": [
+        "W2138432709"
+      ],
+      "paper_title": "Should I Use Fixed or Random Effects?",
+      "rank": 6,
+      "retrieved": [
+        {
+          "id": "W4316469706",
+          "title": "A Comparison of Undersampling, Oversampling, and SMOTE Methods for Dealing with Imbalanced Classification in Educational Data Mining",
+          "area": "machine_learning",
+          "similarity": 0.7266
+        },
+        {
+          "id": "W1974268958",
+          "title": "Multilevel modeling of complex survey data",
+          "area": "statistics",
+          "similarity": 0.7237
+        },
+        {
+          "id": "W2114968414",
+          "title": "Learning When Training Data are Costly: The Effect of Class Distribution on Tree Induction",
+          "area": "machine_learning",
+          "similarity": 0.7167
+        },
+        {
+          "id": "W1990662707",
+          "title": "A comparison of chi-squared statistics for testing homogeneity of survey data:High School and Beyond survey",
+          "area": "statistics",
+          "similarity": 0.7145
+        },
+        {
+          "id": "W2035971761",
+          "title": "A Class of Bivariate Distributions",
+          "area": "statistics",
+          "similarity": 0.7111
+        },
+        {
+          "id": "W2138432709",
+          "title": "Should I Use Fixed or Random Effects?",
+          "area": "econometrics",
+          "similarity": 0.696
+        },
+        {
+          "id": "W2128088446",
+          "title": "Learning Bayesian Networks with the bnlearn R Package",
+          "area": "statistics",
+          "similarity": 0.6926
+        },
+        {
+          "id": "W2170210994",
+          "title": "Using SAS PROC MIXED to Fit Multilevel Models, Hierarchical Models, and Individual Growth Models",
+          "area": "statistics",
+          "similarity": 0.6925
+        },
+        {
+          "id": "W2317709830",
+          "title": "Comparing Regression Coefficients Between Same-sample Nested Models Using Logit and Probit",
+          "area": "econometrics",
+          "similarity": 0.6889
+        },
+        {
+          "id": "W2090330784",
+          "title": "Deciding on the Number of Classes in Latent Class Analysis and Growth Mixture Modeling: A Monte Carlo Simulation Study",
+          "area": "statistics",
+          "similarity": 0.6877
+        }
+      ]
+    },
+    {
+      "question": "My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?",
+      "area": "econometrics",
+      "relevant": [
+        "W1977414200"
+      ],
+      "paper_title": "An Introduction to Spatial Econometrics",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W1977414200",
+          "title": "An Introduction to Spatial Econometrics",
+          "area": "econometrics",
+          "similarity": 0.7386
+        },
+        {
+          "id": "W2148169128",
+          "title": "Geographically Weighted Regression: A Natural Evolution of the Expansion Method for Spatial Data Analysis",
+          "area": "econometrics",
+          "similarity": 0.7379
+        },
+        {
+          "id": "W2047120335",
+          "title": "Geographically Weighted Regression: A Method for Exploring Spatial Nonstationarity",
+          "area": "econometrics",
+          "similarity": 0.7297
+        },
+        {
+          "id": "W2145147745",
+          "title": "Residuals and Influence in Regression",
+          "area": "statistics",
+          "similarity": 0.7262
+        },
+        {
+          "id": "W2042812801",
+          "title": "DO SPATIAL EFFECFS REALLY MATTER IN REGRESSION ANALYSIS?",
+          "area": "econometrics",
+          "similarity": 0.7234
+        },
+        {
+          "id": "W2322183461",
+          "title": "Regression in Space and Time: A Statistical Essay",
+          "area": "econometrics",
+          "similarity": 0.7226
+        },
+        {
+          "id": "W2121433202",
+          "title": "Spatial Correlation in Ecological Analysis",
+          "area": "econometrics",
+          "similarity": 0.72
+        },
+        {
+          "id": "W2045066934",
+          "title": "Geographically Weighted Regression",
+          "area": "econometrics",
+          "similarity": 0.7165
+        },
+        {
+          "id": "W2048577762",
+          "title": "Spatial Variations in the Determinants and Effects of Firm Births and Deaths",
+          "area": "econometrics",
+          "similarity": 0.7145
+        },
+        {
+          "id": "W4327666662",
+          "title": "Spatial causal inference in the presence of unmeasured confounding and interference",
+          "area": "econometrics",
+          "similarity": 0.714
+        }
+      ]
+    },
+    {
+      "question": "How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?",
+      "area": "machine_learning",
+      "relevant": [
+        "W4403845965"
+      ],
+      "paper_title": "Practical guide to SHAP analysis: Explaining supervised machine learning model predictions in drug development",
+      "rank": 6,
+      "retrieved": [
+        {
+          "id": "W2606462007",
+          "title": "Interpretable Explanations of Black Boxes by Meaningful Perturbation",
+          "area": "machine_learning",
+          "similarity": 0.7376
+        },
+        {
+          "id": "W2346578521",
+          "title": "Not Just a Black Box: Learning Important Features Through Propagating Activation Differences",
+          "area": "machine_learning",
+          "similarity": 0.7313
+        },
+        {
+          "id": "W3201437744",
+          "title": "Opening the Black Box: The Promise and Limitations of Explainable Machine Learning in Cardiology",
+          "area": "machine_learning",
+          "similarity": 0.7274
+        },
+        {
+          "id": "W3126673261",
+          "title": "Comparison of feature importance measures as explanations for classification models",
+          "area": "machine_learning",
+          "similarity": 0.7241
+        },
+        {
+          "id": "W4226170891",
+          "title": "Feature visualization for convolutional neural network models trained on neuroimaging data",
+          "area": "machine_learning",
+          "similarity": 0.7204
+        },
+        {
+          "id": "W4403845965",
+          "title": "Practical guide to SHAP analysis: Explaining supervised machine learning model predictions in drug development",
+          "area": "machine_learning",
+          "similarity": 0.7194
+        },
+        {
+          "id": "W2605409611",
+          "title": "Learning Important Features Through Propagating Activation Differences",
+          "area": "machine_learning",
+          "similarity": 0.7187
+        },
+        {
+          "id": "W2590082389",
+          "title": "Visualizing Deep Neural Network Decisions: Prediction Difference Analysis",
+          "area": "machine_learning",
+          "similarity": 0.7176
+        },
+        {
+          "id": "W2597603852",
+          "title": "Understanding Black-box Predictions via Influence Functions",
+          "area": "deep_learning",
+          "similarity": 0.7107
+        },
+        {
+          "id": "W1966716734",
+          "title": "The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets",
+          "area": "machine_learning",
+          "similarity": 0.7068
+        }
+      ]
+    },
+    {
+      "question": "My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?",
+      "area": "machine_learning",
+      "relevant": [
+        "W2099454382"
+      ],
+      "paper_title": "A Review on Ensembles for the Class Imbalance Problem: Bagging-, Boosting-, and Hybrid-Based Approaches",
+      "rank": 5,
+      "retrieved": [
+        {
+          "id": "W2012942264",
+          "title": "Transforming classifier scores into accurate multiclass probability estimates",
+          "area": "machine_learning",
+          "similarity": 0.7634
+        },
+        {
+          "id": "W2158275940",
+          "title": "On combining classifiers",
+          "area": "deep_learning",
+          "similarity": 0.7536
+        },
+        {
+          "id": "W1965895350",
+          "title": "Mining with rarity",
+          "area": "machine_learning",
+          "similarity": 0.7465
+        },
+        {
+          "id": "W2149308034",
+          "title": "On the Class Imbalance Problem",
+          "area": "machine_learning",
+          "similarity": 0.7423
+        },
+        {
+          "id": "W2099454382",
+          "title": "A Review on Ensembles for the Class Imbalance Problem: Bagging-, Boosting-, and Hybrid-Based Approaches",
+          "area": "machine_learning",
+          "similarity": 0.7416
+        },
+        {
+          "id": "W2136256517",
+          "title": "Diversity analysis on imbalanced data sets by using ensemble models",
+          "area": "machine_learning",
+          "similarity": 0.7369
+        },
+        {
+          "id": "W2024223694",
+          "title": "Multiclass Imbalance Problems: Analysis and Potential Solutions",
+          "area": "machine_learning",
+          "similarity": 0.7331
+        },
+        {
+          "id": "W2102734279",
+          "title": "Decision combination in multiple classifier systems",
+          "area": "machine_learning",
+          "similarity": 0.7305
+        },
+        {
+          "id": "W2148143831",
+          "title": "SMOTE: Synthetic Minority Over-sampling Technique",
+          "area": "machine_learning",
+          "similarity": 0.7249
+        },
+        {
+          "id": "W2114968414",
+          "title": "Learning When Training Data are Costly: The Effect of Class Distribution on Tree Induction",
+          "area": "machine_learning",
+          "similarity": 0.7243
+        }
+      ]
+    },
+    {
+      "question": "Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?",
+      "area": "machine_learning",
+      "relevant": [
+        "W3202428668"
+      ],
+      "paper_title": "Deep Neural Networks and Tabular Data: A Survey",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2084341220",
+          "title": "Statistical Modeling: The Two Cultures (with comments and a rejoinder by the author)",
+          "area": "statistics",
+          "similarity": 0.6982
+        },
+        {
+          "id": "W2138432709",
+          "title": "Should I Use Fixed or Random Effects?",
+          "area": "econometrics",
+          "similarity": 0.6871
+        },
+        {
+          "id": "W2087028773",
+          "title": "Using the general linear mixed model to analyse unbalanced repeated measures and longitudinal data",
+          "area": "statistics",
+          "similarity": 0.6805
+        },
+        {
+          "id": "W2514173981",
+          "title": "Analysis of k-Fold Cross-Validation over Hold-Out Validation on Colossal Datasets for Quality Classification",
+          "area": "machine_learning",
+          "similarity": 0.6793
+        },
+        {
+          "id": "W1991135683",
+          "title": "Bayesian estimation methods for categorical data with misclassifications",
+          "area": "statistics",
+          "similarity": 0.6784
+        },
+        {
+          "id": "W4281640725",
+          "title": "Evaluating the FixMatch Semi-Supervised Algorithm for Unbalanced Image Data",
+          "area": "machine_learning",
+          "similarity": 0.6774
+        },
+        {
+          "id": "W2981836045",
+          "title": "Black-Box vs. White-Box: Understanding Their Advantages and Weaknesses From a Practical Point of View",
+          "area": "machine_learning",
+          "similarity": 0.6753
+        },
+        {
+          "id": "W2952602694",
+          "title": "High-dimensional Mixed Graphical Models",
+          "area": "statistics",
+          "similarity": 0.6743
+        },
+        {
+          "id": "W4290876805",
+          "title": "SOS",
+          "area": "machine_learning",
+          "similarity": 0.6738
+        },
+        {
+          "id": "W2114909733",
+          "title": "Local solutions in the estimation of growth mixture models.",
+          "area": "statistics",
+          "similarity": 0.6734
+        }
+      ]
+    },
+    {
+      "question": "How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?",
+      "area": "machine_learning",
+      "relevant": [
+        "W2944364052"
+      ],
+      "paper_title": "Data-Driven Methods for Predictive Maintenance of Industrial Equipment: A Survey",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2944364052",
+          "title": "Data-Driven Methods for Predictive Maintenance of Industrial Equipment: A Survey",
+          "area": "machine_learning",
+          "similarity": 0.736
+        },
+        {
+          "id": "W2962862931",
+          "title": "On a Method to Measure Supervised Multiclass Model’s Interpretability: Application to Degradation Diagnosis (Short Paper)",
+          "area": "machine_learning",
+          "similarity": 0.7359
+        },
+        {
+          "id": "W2946111806",
+          "title": "Experimental condition monitoring for the detection of misaligned and cracked shafts by order analysis",
+          "area": "machine_learning",
+          "similarity": 0.7236
+        },
+        {
+          "id": "W2171542081",
+          "title": "Sensor recovery for robust multivariate condition monitoring",
+          "area": "machine_learning",
+          "similarity": 0.7201
+        },
+        {
+          "id": "W3022604663",
+          "title": "Bearing Fault Detection and Diagnosis Using Case Western Reserve University Dataset With Deep Learning Approaches: A Review",
+          "area": "machine_learning",
+          "similarity": 0.7136
+        },
+        {
+          "id": "W3088006442",
+          "title": "False Alarms Analysis of Wind Turbine Bearing System",
+          "area": "machine_learning",
+          "similarity": 0.7113
+        },
+        {
+          "id": "W2046657367",
+          "title": "Current sensor fault diagnosis in the stationary frame for PMSM drive in automotive systems",
+          "area": "machine_learning",
+          "similarity": 0.7095
+        },
+        {
+          "id": "W4308536716",
+          "title": "SafeEngine: Fault Detection with Severity Prediction for Diesel Engine",
+          "area": "machine_learning",
+          "similarity": 0.7094
+        },
+        {
+          "id": "W2962986775",
+          "title": "Advanced analytics for detection and diagnosis of false alarms and faults: A real case study",
+          "area": "machine_learning",
+          "similarity": 0.7054
+        },
+        {
+          "id": "W4404031085",
+          "title": "Audio Based Machine Fault Diagnosis using Hybrid Feature Extraction and Ensemble Learning",
+          "area": "machine_learning",
+          "similarity": 0.702
+        }
+      ]
+    },
+    {
+      "question": "I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?",
+      "area": "deep_learning",
+      "relevant": [
+        "W2954996726"
+      ],
+      "paper_title": "A survey on Image Data Augmentation for Deep Learning",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2787035179",
+          "title": "Meta-Learning for Semi-Supervised Few-Shot Classification",
+          "area": "deep_learning",
+          "similarity": 0.7509
+        },
+        {
+          "id": "W2163605009",
+          "title": "ImageNet classification with deep convolutional neural networks",
+          "area": "deep_learning",
+          "similarity": 0.721
+        },
+        {
+          "id": "W1821462560",
+          "title": "Distilling the Knowledge in a Neural Network",
+          "area": "deep_learning",
+          "similarity": 0.7161
+        },
+        {
+          "id": "W2601450892",
+          "title": "Prototypical Networks for Few-shot Learning",
+          "area": "deep_learning",
+          "similarity": 0.7085
+        },
+        {
+          "id": "W3035743198",
+          "title": "Adversarial Examples Improve Image Recognition",
+          "area": "deep_learning",
+          "similarity": 0.7053
+        },
+        {
+          "id": "W2114968414",
+          "title": "Learning When Training Data are Costly: The Effect of Class Distribution on Tree Induction",
+          "area": "machine_learning",
+          "similarity": 0.7038
+        },
+        {
+          "id": "W2948734064",
+          "title": "Learning a Unified Classifier Incrementally via Rebalancing",
+          "area": "deep_learning",
+          "similarity": 0.7033
+        },
+        {
+          "id": "W2954929116",
+          "title": "Large Scale Incremental Learning",
+          "area": "deep_learning",
+          "similarity": 0.7033
+        },
+        {
+          "id": "W4402387055",
+          "title": "PRECISe : Prototype-Reservation for Explainable Classification under Imbalanced and Scarce-Data Settings",
+          "area": "machine_learning",
+          "similarity": 0.6995
+        },
+        {
+          "id": "W2963845150",
+          "title": "Low-Shot Learning from Imaginary Data",
+          "area": "deep_learning",
+          "similarity": 0.6992
+        }
+      ]
+    },
+    {
+      "question": "Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?",
+      "area": "deep_learning",
+      "relevant": [
+        "W2788388592"
+      ],
+      "paper_title": "Continual lifelong learning with neural networks: A review",
+      "rank": 8,
+      "retrieved": [
+        {
+          "id": "W2560647685",
+          "title": "Overcoming catastrophic forgetting in neural networks",
+          "area": "deep_learning",
+          "similarity": 0.7749
+        },
+        {
+          "id": "W2113839990",
+          "title": "An Empirical Investigation of Catastrophic Forgetting in Gradient-Based Neural Networks",
+          "area": "deep_learning",
+          "similarity": 0.7715
+        },
+        {
+          "id": "W2116522068",
+          "title": "Catastrophic Forgetting, Rehearsal and Pseudorehearsal",
+          "area": "deep_learning",
+          "similarity": 0.7715
+        },
+        {
+          "id": "W2473930607",
+          "title": "Learning without Forgetting",
+          "area": "deep_learning",
+          "similarity": 0.7645
+        },
+        {
+          "id": "W3000074789",
+          "title": "Frosting Weights for Better Continual Training",
+          "area": "deep_learning",
+          "similarity": 0.7463
+        },
+        {
+          "id": "W3030364939",
+          "title": "A continual learning survey: Defying forgetting in classification tasks",
+          "area": "deep_learning",
+          "similarity": 0.7456
+        },
+        {
+          "id": "W2136848157",
+          "title": "Learning to Forget: Continual Prediction with LSTM",
+          "area": "deep_learning",
+          "similarity": 0.7441
+        },
+        {
+          "id": "W2788388592",
+          "title": "Continual lifelong learning with neural networks: A review",
+          "area": "deep_learning",
+          "similarity": 0.735
+        },
+        {
+          "id": "W4287613252",
+          "title": "Modular-Relatedness for Continual Learning",
+          "area": "deep_learning",
+          "similarity": 0.734
+        },
+        {
+          "id": "W4392173735",
+          "title": "A Comprehensive Survey of Continual Learning: Theory, Method and Application",
+          "area": "deep_learning",
+          "similarity": 0.7272
+        }
+      ]
+    },
+    {
+      "question": "How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?",
+      "area": "deep_learning",
+      "relevant": [
+        "W2962700793"
+      ],
+      "paper_title": "Threat of Adversarial Attacks on Deep Learning in Computer Vision: A Survey",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2765384636",
+          "title": "Countering Adversarial Images using Input Transformations",
+          "area": "deep_learning",
+          "similarity": 0.7267
+        },
+        {
+          "id": "W1932198206",
+          "title": "Deep neural networks are easily fooled: High confidence predictions for unrecognizable images",
+          "area": "deep_learning",
+          "similarity": 0.7246
+        },
+        {
+          "id": "W2011376672",
+          "title": "Class imbalances versus small disjuncts",
+          "area": "machine_learning",
+          "similarity": 0.7235
+        },
+        {
+          "id": "W2606462007",
+          "title": "Interpretable Explanations of Black Boxes by Meaningful Perturbation",
+          "area": "machine_learning",
+          "similarity": 0.7229
+        },
+        {
+          "id": "W1787224781",
+          "title": "On Pixel-Wise Explanations for Non-Linear Classifier Decisions by Layer-Wise Relevance Propagation",
+          "area": "deep_learning",
+          "similarity": 0.7124
+        },
+        {
+          "id": "W2543927648",
+          "title": "Universal Adversarial Perturbations",
+          "area": "deep_learning",
+          "similarity": 0.7089
+        },
+        {
+          "id": "W4417302300",
+          "title": "Uniformity First: Uniformity-aware Test-time Adaptation of Vision-language Models against Image Corruption",
+          "area": "deep_learning",
+          "similarity": 0.7071
+        },
+        {
+          "id": "W3005086430",
+          "title": "Fooling LIME and SHAP",
+          "area": "machine_learning",
+          "similarity": 0.7009
+        },
+        {
+          "id": "W2962843949",
+          "title": "Interpretation of Neural Networks Is Fragile",
+          "area": "deep_learning",
+          "similarity": 0.6953
+        },
+        {
+          "id": "W2938470389",
+          "title": "Fooling Automated Surveillance Cameras: Adversarial Patches to Attack Person Detection",
+          "area": "deep_learning",
+          "similarity": 0.6944
+        }
+      ]
+    },
+    {
+      "question": "How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?",
+      "area": "deep_learning",
+      "relevant": [
+        "W3183048323"
+      ],
+      "paper_title": "A survey of uncertainty in deep neural networks",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2516809705",
+          "title": "“Why Should I Trust You?”: Explaining the Predictions of Any Classifier",
+          "area": "machine_learning",
+          "similarity": 0.7296
+        },
+        {
+          "id": "W2101807845",
+          "title": "The Balanced Accuracy and Its Posterior Distribution",
+          "area": "machine_learning",
+          "similarity": 0.7277
+        },
+        {
+          "id": "W2806471870",
+          "title": "Evidential Deep Learning to Quantify Classification Uncertainty",
+          "area": "deep_learning",
+          "similarity": 0.7256
+        },
+        {
+          "id": "W2012942264",
+          "title": "Transforming classifier scores into accurate multiclass probability estimates",
+          "area": "machine_learning",
+          "similarity": 0.7187
+        },
+        {
+          "id": "W2098021754",
+          "title": "Bayes Error Rate Estimation Using Classifier Ensembles",
+          "area": "deep_learning",
+          "similarity": 0.7142
+        },
+        {
+          "id": "W2282821441",
+          "title": "\"Why Should I Trust You?\"",
+          "area": "machine_learning",
+          "similarity": 0.7057
+        },
+        {
+          "id": "W2948194985",
+          "title": "Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift",
+          "area": "deep_learning",
+          "similarity": 0.7049
+        },
+        {
+          "id": "W2096451472",
+          "title": "Using AUC and accuracy in evaluating learning algorithms",
+          "area": "machine_learning",
+          "similarity": 0.7048
+        },
+        {
+          "id": "W2888728157",
+          "title": "Classification assessment methods",
+          "area": "machine_learning",
+          "similarity": 0.7018
+        },
+        {
+          "id": "W2116666691",
+          "title": "Building Classifiers with Independency Constraints",
+          "area": "machine_learning",
+          "similarity": 0.6994
+        }
+      ]
+    },
+    {
+      "question": "Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?",
+      "area": "economics",
+      "relevant": [
+        "W2098317876"
+      ],
+      "paper_title": "Central Bank Communication and Monetary Policy: A Survey of Theory and Evidence",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2098317876",
+          "title": "Central Bank Communication and Monetary Policy: A Survey of Theory and Evidence",
+          "area": "economics",
+          "similarity": 0.6845
+        },
+        {
+          "id": "W2138293190",
+          "title": "The Efficient Market Hypothesis and Its Critics",
+          "area": "finance",
+          "similarity": 0.6813
+        },
+        {
+          "id": "W1663622626",
+          "title": "The Response of Interest Rates to US and UK Quantitative Easing",
+          "area": "finance",
+          "similarity": 0.6807
+        },
+        {
+          "id": "W3125252370",
+          "title": "Policy Regime Change Against Chronic Deflation? Policy Option Under a Long-term Liquidity Trap",
+          "area": "economics",
+          "similarity": 0.6763
+        },
+        {
+          "id": "W3123195209",
+          "title": "Overconfidence and Speculative Bubbles",
+          "area": "finance",
+          "similarity": 0.675
+        },
+        {
+          "id": "W3124955107",
+          "title": "The federal funds rate and the channels of monetary transmission",
+          "area": "economics",
+          "similarity": 0.6721
+        },
+        {
+          "id": "W2003451358",
+          "title": "A Theory of Ambiguity, Credibility, and Inflation under Discretion and Asymmetric Information",
+          "area": "economics",
+          "similarity": 0.6686
+        },
+        {
+          "id": "W2067094520",
+          "title": "Monetary Policy Surprises, Credit Costs, and Economic Activity",
+          "area": "economics",
+          "similarity": 0.6681
+        },
+        {
+          "id": "W3125882657",
+          "title": "Bond Rating Agencies and Stock Analysts: Who Knows What When?",
+          "area": "finance",
+          "similarity": 0.6654
+        },
+        {
+          "id": "W3123647737",
+          "title": "Micro Effects of Macro Announcements: Real-Time Price Discovery in Foreign Exchange",
+          "area": "economics",
+          "similarity": 0.6636
+        }
+      ]
+    },
+    {
+      "question": "How does a crash in one country's markets spread to other countries?",
+      "area": "economics",
+      "relevant": [
+        "W1974486301"
+      ],
+      "paper_title": "A Primer on Financial Contagion",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W1974486301",
+          "title": "A Primer on Financial Contagion",
+          "area": "economics",
+          "similarity": 0.7608
+        },
+        {
+          "id": "W2128180562",
+          "title": "CAPITAL FLOWS AND CAPITAL-MARKET CRISES: The Simple Economics of Sudden Stops",
+          "area": "economics",
+          "similarity": 0.736
+        },
+        {
+          "id": "W2149908462",
+          "title": "Transmission of Volatility between Stock Markets",
+          "area": "finance",
+          "similarity": 0.7314
+        },
+        {
+          "id": "W2149785293",
+          "title": "A spillover analysis of shocks from US, UK and China on African financial markets",
+          "area": "finance",
+          "similarity": 0.7282
+        },
+        {
+          "id": "W3023758731",
+          "title": "Market Integration and Contagion",
+          "area": "finance",
+          "similarity": 0.7276
+        },
+        {
+          "id": "W2123888799",
+          "title": "Carry Trades and Currency Crashes",
+          "area": "economics",
+          "similarity": 0.726
+        },
+        {
+          "id": "W2889666266",
+          "title": "The Global Crisis and Equity Market Contagion",
+          "area": "economics",
+          "similarity": 0.7233
+        },
+        {
+          "id": "W2139400178",
+          "title": "Contagion: Understanding How It Spreads",
+          "area": "economics",
+          "similarity": 0.7225
+        },
+        {
+          "id": "W2020046435",
+          "title": "Exchange Market Mayhem: The Antecedents and Aftermath of Speculative Attacks",
+          "area": "economics",
+          "similarity": 0.7141
+        },
+        {
+          "id": "W3123425418",
+          "title": "Dating the timeline of financial bubbles during the subprime crisis",
+          "area": "finance",
+          "similarity": 0.714
+        }
+      ]
+    },
+    {
+      "question": "Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?",
+      "area": "economics",
+      "relevant": [
+        "W2112559425"
+      ],
+      "paper_title": "The Twin Crises: The Causes of Banking and Balance-of-Payments Problems",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2112559425",
+          "title": "The Twin Crises: The Causes of Banking and Balance-of-Payments Problems",
+          "area": "economics",
+          "similarity": 0.7761
+        },
+        {
+          "id": "W1549561640",
+          "title": "The Twin Crises: The Causes of Banking and Balance-of-Payments Problems",
+          "area": "economics",
+          "similarity": 0.7582
+        },
+        {
+          "id": "W1523084741",
+          "title": "The German Twin Crisis of 1931",
+          "area": "economics",
+          "similarity": 0.754
+        },
+        {
+          "id": "W2046004231",
+          "title": "The European Sovereign Debt Crisis",
+          "area": "economics",
+          "similarity": 0.7367
+        },
+        {
+          "id": "W2081308040",
+          "title": "Sudden Stops in the Euro Area",
+          "area": "economics",
+          "similarity": 0.7325
+        },
+        {
+          "id": "W2128180562",
+          "title": "CAPITAL FLOWS AND CAPITAL-MARKET CRISES: The Simple Economics of Sudden Stops",
+          "area": "economics",
+          "similarity": 0.7294
+        },
+        {
+          "id": "W2169478177",
+          "title": "From Financial Crash to Debt Crisis",
+          "area": "economics",
+          "similarity": 0.7227
+        },
+        {
+          "id": "W1559496943",
+          "title": "Systemic Risk, Interbank Relations, and Liquidity Provision by the Central Bank",
+          "area": "finance",
+          "similarity": 0.7098
+        },
+        {
+          "id": "W3124057053",
+          "title": "A Pyrrhic Victory? Bank Bailouts and Sovereign Credit Risk",
+          "area": "finance",
+          "similarity": 0.7072
+        },
+        {
+          "id": "W2104456410",
+          "title": "Is the crisis problem growing more severe?",
+          "area": "economics",
+          "similarity": 0.7019
+        }
+      ]
+    },
+    {
+      "question": "Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?",
+      "area": "economics",
+      "relevant": [
+        "W2104165247"
+      ],
+      "paper_title": "When Is the Government Spending Multiplier Large?",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W3121786260",
+          "title": "Measuring the Output Responses to Fiscal Policy",
+          "area": "economics",
+          "similarity": 0.6885
+        },
+        {
+          "id": "W2168008582",
+          "title": "The Relative Price of Services",
+          "area": "economics",
+          "similarity": 0.6844
+        },
+        {
+          "id": "W3121962419",
+          "title": "What are the effects of fiscal policy shocks?",
+          "area": "economics",
+          "similarity": 0.6794
+        },
+        {
+          "id": "W2152110580",
+          "title": "The Effects of Quantitative Easing on Interest Rates: Channels and Implications for Policy",
+          "area": "finance",
+          "similarity": 0.6711
+        },
+        {
+          "id": "W2125534266",
+          "title": "Some International Evidence on Output-Inflation Tradeoffs.",
+          "area": "economics",
+          "similarity": 0.6698
+        },
+        {
+          "id": "W1587744912",
+          "title": "Interpreting the macroeconomic time series facts",
+          "area": "economics",
+          "similarity": 0.6696
+        },
+        {
+          "id": "W2768223287",
+          "title": "Revisiting the Dynamics Effects of Oil Price Shocks on Small Developing Economies",
+          "area": "finance",
+          "similarity": 0.6684
+        },
+        {
+          "id": "W1905678139",
+          "title": "Government Spending Multipliers in Good Times and in Bad: Evidence from US Historical Data",
+          "area": "economics",
+          "similarity": 0.6671
+        },
+        {
+          "id": "W2126438535",
+          "title": "Oil Shocks and Aggregate Macroeconomic Behavior: The Role of Monetary Policy: A Comment",
+          "area": "finance",
+          "similarity": 0.6657
+        },
+        {
+          "id": "W1994121926",
+          "title": "Monetary Theory and Policy",
+          "area": "economics",
+          "similarity": 0.6657
+        }
+      ]
+    },
+    {
+      "question": "What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?",
+      "area": "finance",
+      "relevant": [
+        "W2118854883"
+      ],
+      "paper_title": "Forecasting Volatility in Financial Markets: A Review",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2570784181",
+          "title": "Optimal Hedging with Options and Futures against Price Risk and Background Risk",
+          "area": "finance",
+          "similarity": 0.7195
+        },
+        {
+          "id": "W2166536772",
+          "title": "Do Stock Prices and Volatility Jump? Reconciling Evidence from Spot and Option Prices",
+          "area": "finance",
+          "similarity": 0.717
+        },
+        {
+          "id": "W2602224136",
+          "title": "Commodity Futures Prices: Some Evidence on Forecast Power, Premiums, and the Theory of Storage",
+          "area": "finance",
+          "similarity": 0.7152
+        },
+        {
+          "id": "W2157858527",
+          "title": "Option Pricing when the Variance Changes Randomly: Theory, Estimation, and an Application",
+          "area": "finance",
+          "similarity": 0.7115
+        },
+        {
+          "id": "W3137152181",
+          "title": "Decision making in intraday index options trading: A parametric approach",
+          "area": "finance",
+          "similarity": 0.711
+        },
+        {
+          "id": "W2084931349",
+          "title": "Option Prices, Implied Price Processes, and Stochastic Volatility",
+          "area": "finance",
+          "similarity": 0.7025
+        },
+        {
+          "id": "W2158580072",
+          "title": "The Crash of ʼ87: Was It Expected? The Evidence from Options Markets",
+          "area": "finance",
+          "similarity": 0.7014
+        },
+        {
+          "id": "W2068928693",
+          "title": "Options, Futures, and Other Derivative Securities.",
+          "area": "finance",
+          "similarity": 0.7012
+        },
+        {
+          "id": "W3011845355",
+          "title": "Price risk management by using dynamic hedging based on advanced Black–Scholes model",
+          "area": "finance",
+          "similarity": 0.7002
+        },
+        {
+          "id": "W4408267500",
+          "title": "Do changes in the implied volatility of stock options predict future changes in CDS spreads?",
+          "area": "finance",
+          "similarity": 0.6985
+        }
+      ]
+    },
+    {
+      "question": "How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?",
+      "area": "finance",
+      "relevant": [
+        "W2001249527"
+      ],
+      "paper_title": "Copula Modeling: An Introduction for Practitioners",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2035971761",
+          "title": "A Class of Bivariate Distributions",
+          "area": "statistics",
+          "similarity": 0.7372
+        },
+        {
+          "id": "W2078565364",
+          "title": "Inference in Linear Time Series Models with some Unit Roots",
+          "area": "economics",
+          "similarity": 0.7299
+        },
+        {
+          "id": "W2976185742",
+          "title": "The Dynamical Gaussian Process Latent Variable Model in the Longitudinal Scenario",
+          "area": "statistics",
+          "similarity": 0.7279
+        },
+        {
+          "id": "W3165188543",
+          "title": "A general stochastic model for bivariate episodes driven by a gamma sequence",
+          "area": "statistics",
+          "similarity": 0.7272
+        },
+        {
+          "id": "W2128981260",
+          "title": "Gibbs Sampling for Bayesian Non-Conjugate and Hierarchical Models by Using Auxiliary Variables",
+          "area": "statistics",
+          "similarity": 0.7269
+        },
+        {
+          "id": "W1994403842",
+          "title": "Vines--a new graphical model for dependent random variables",
+          "area": "statistics",
+          "similarity": 0.726
+        },
+        {
+          "id": "W1512984504",
+          "title": "Estimating Ratios of Normalizing Constants Using Linked Importance Sampling",
+          "area": "statistics",
+          "similarity": 0.7241
+        },
+        {
+          "id": "W2124609748",
+          "title": "Gaussian Process Dynamical Models for Human Motion",
+          "area": "statistics",
+          "similarity": 0.7231
+        },
+        {
+          "id": "W2905157140",
+          "title": "The Use of a Generalized Multinomial Distribution in the Estimation of Correlation in Discrete Data",
+          "area": "statistics",
+          "similarity": 0.7226
+        },
+        {
+          "id": "W2048580686",
+          "title": "On Nonparametric Measures of Dependence for Random Variables",
+          "area": "finance",
+          "similarity": 0.7221
+        }
+      ]
+    },
+    {
+      "question": "How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?",
+      "area": "finance",
+      "relevant": [
+        "W2168123127"
+      ],
+      "paper_title": "Statistical Classification Methods in Consumer Credit Scoring: A Review",
+      "rank": 3,
+      "retrieved": [
+        {
+          "id": "W1562925244",
+          "title": "Developing Credit Scoring Models When Small Sample Sizes Are Available",
+          "area": "finance",
+          "similarity": 0.7707
+        },
+        {
+          "id": "W2129843476",
+          "title": "Comparisons of the Performance of Computational Intelligence Methods for Loan Granting Decisions",
+          "area": "finance",
+          "similarity": 0.7443
+        },
+        {
+          "id": "W2168123127",
+          "title": "Statistical Classification Methods in Consumer Credit Scoring: A Review",
+          "area": "finance",
+          "similarity": 0.7417
+        },
+        {
+          "id": "W1989908534",
+          "title": "Credit-scoring models for the evaluation of small-business loan applications",
+          "area": "finance",
+          "similarity": 0.7383
+        },
+        {
+          "id": "W2118889105",
+          "title": "Monitoring and Reputation: The Choice between Bank Loans and Directly Placed Debt",
+          "area": "finance",
+          "similarity": 0.7227
+        },
+        {
+          "id": "W2809488497",
+          "title": "Prediction of loan status in commercial bank using machine learning classifier",
+          "area": "finance",
+          "similarity": 0.7219
+        },
+        {
+          "id": "W2891340972",
+          "title": "Actionable Recourse in Linear Classification",
+          "area": "machine_learning",
+          "similarity": 0.7195
+        },
+        {
+          "id": "W2117352691",
+          "title": "Quantitative Methods in Credit Management: A Survey",
+          "area": "finance",
+          "similarity": 0.7165
+        },
+        {
+          "id": "W4406778225",
+          "title": "A novel augmentation strategy for credit scoring modeling",
+          "area": "finance",
+          "similarity": 0.7148
+        },
+        {
+          "id": "W2948225451",
+          "title": "The credit risk evaluation models: an application of data mining techniques",
+          "area": "finance",
+          "similarity": 0.7132
+        }
+      ]
+    },
+    {
+      "question": "How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?",
+      "area": "finance",
+      "relevant": [
+        "W2014933671"
+      ],
+      "paper_title": "The Dynamics of Commodity Spot and Futures Markets: A Primer",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2014933671",
+          "title": "The Dynamics of Commodity Spot and Futures Markets: A Primer",
+          "area": "finance",
+          "similarity": 0.708
+        },
+        {
+          "id": "W2026564718",
+          "title": "Understanding Crude Oil Prices",
+          "area": "finance",
+          "similarity": 0.7
+        },
+        {
+          "id": "W2139116473",
+          "title": "What do we learn from the price of crude oil futures?",
+          "area": "finance",
+          "similarity": 0.6969
+        },
+        {
+          "id": "W2089240053",
+          "title": "Stochastic Convenience Yield and the Pricing of Oil Contingent Claims",
+          "area": "finance",
+          "similarity": 0.6887
+        },
+        {
+          "id": "W2602224136",
+          "title": "Commodity Futures Prices: Some Evidence on Forecast Power, Premiums, and the Theory of Storage",
+          "area": "finance",
+          "similarity": 0.6859
+        },
+        {
+          "id": "W2145224101",
+          "title": "Short-Term Variations and Long-Term Dynamics in Commodity Prices",
+          "area": "finance",
+          "similarity": 0.6767
+        },
+        {
+          "id": "W2039709163",
+          "title": "Oil Price Uncertainty",
+          "area": "finance",
+          "similarity": 0.6734
+        },
+        {
+          "id": "W3124797040",
+          "title": "Forty Years of Oil Price Fluctuations: Why the Price of Oil May Still Surprise Us",
+          "area": "finance",
+          "similarity": 0.6708
+        },
+        {
+          "id": "W2113983529",
+          "title": "THE ROLE OF INVENTORIES AND SPECULATIVE TRADING IN THE GLOBAL MARKET FOR CRUDE OIL",
+          "area": "finance",
+          "similarity": 0.6697
+        },
+        {
+          "id": "W4391693545",
+          "title": "Does Crude Oil Production Respond Differently to Oil Supply and Demand Shocks? Evidence from Alaska",
+          "area": "finance",
+          "similarity": 0.6584
+        }
+      ]
+    },
+    {
+      "question": "Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?",
+      "area": "cloud_infrastructure",
+      "relevant": [
+        "W4360995249"
+      ],
+      "paper_title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture",
+      "rank": 9,
+      "retrieved": [
+        {
+          "id": "W4413948191",
+          "title": "Rocket assembly line testbed as a service (TaaS): a comparison of data acquisition strategies",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6986
+        },
+        {
+          "id": "W2944264045",
+          "title": "A Taxonomy of Software Engineering Challenges for Machine Learning Systems: An Empirical Investigation",
+          "area": "cloud_infrastructure",
+          "similarity": 0.695
+        },
+        {
+          "id": "W2973193541",
+          "title": "Explainable machine learning in deployment",
+          "area": "machine_learning",
+          "similarity": 0.6904
+        },
+        {
+          "id": "W2565167788",
+          "title": "The Synthetic Data Vault",
+          "area": "statistics",
+          "similarity": 0.6749
+        },
+        {
+          "id": "W4402592902",
+          "title": "MLOps as Enabler of Trustworthy AI",
+          "area": "machine_learning",
+          "similarity": 0.6703
+        },
+        {
+          "id": "W7215936561",
+          "title": "Generative AI-Driven Legacy System Modernization: Transforming Enterprise Infrastructure Through Automated Code Translation and Refactoring",
+          "area": "cloud_infrastructure",
+          "similarity": 0.67
+        },
+        {
+          "id": "W2084341220",
+          "title": "Statistical Modeling: The Two Cultures (with comments and a rejoinder by the author)",
+          "area": "statistics",
+          "similarity": 0.6677
+        },
+        {
+          "id": "W4241872969",
+          "title": "Cover 4",
+          "area": "machine_learning",
+          "similarity": 0.6618
+        },
+        {
+          "id": "W4360995249",
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6606
+        },
+        {
+          "id": "W4380685454",
+          "title": "Re-Thinking Data Strategy and Integration for Artificial Intelligence: Concepts, Opportunities, and Challenges",
+          "area": "machine_learning",
+          "similarity": 0.656
+        }
+      ]
+    },
+    {
+      "question": "Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?",
+      "area": "cloud_infrastructure",
+      "relevant": [
+        "W2075174112"
+      ],
+      "paper_title": "An updated performance comparison of virtual machines and Linux containers",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2075174112",
+          "title": "An updated performance comparison of virtual machines and Linux containers",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7826
+        },
+        {
+          "id": "W2140953464",
+          "title": "Container-based operating system virtualization",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7565
+        },
+        {
+          "id": "W1971739358",
+          "title": "virtio",
+          "area": "cloud_infrastructure",
+          "similarity": 0.728
+        },
+        {
+          "id": "W2158459299",
+          "title": "VirtualPower",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6963
+        },
+        {
+          "id": "W2117648703",
+          "title": "A comparison of software and hardware techniques for x86 virtualization",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6954
+        },
+        {
+          "id": "W4243947286",
+          "title": "Xen and the art of virtualization",
+          "area": "cloud_infrastructure",
+          "similarity": 0.692
+        },
+        {
+          "id": "W2117898742",
+          "title": "Diagnosing performance overheads in the xen virtual machine environment",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6913
+        },
+        {
+          "id": "W2109546606",
+          "title": "Virtual machine power metering and provisioning",
+          "area": "cloud_infrastructure",
+          "similarity": 0.69
+        },
+        {
+          "id": "W2160756722",
+          "title": "Dynamic Placement of Virtual Machines for Managing SLA Violations",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6854
+        },
+        {
+          "id": "W2101538572",
+          "title": "A hybrid local storage transfer scheme for live migration of I/O intensive workloads",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6817
+        }
+      ]
+    },
+    {
+      "question": "If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?",
+      "area": "cloud_infrastructure",
+      "relevant": [
+        "W2100970777"
+      ],
+      "paper_title": "A survey of rollback-recovery protocols in message-passing systems",
+      "rank": 7,
+      "retrieved": [
+        {
+          "id": "W1993143336",
+          "title": "Checkpointing and Rollback-Recovery for Distributed Systems",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7915
+        },
+        {
+          "id": "W2098480851",
+          "title": "Improving Fault Tolerance through Crash Recovery",
+          "area": "cloud_infrastructure",
+          "similarity": 0.776
+        },
+        {
+          "id": "W1855233090",
+          "title": "Implementing halt on failure processors",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7674
+        },
+        {
+          "id": "W2078349455",
+          "title": "AI-Ckpt",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7639
+        },
+        {
+          "id": "W2087127367",
+          "title": "Supporting amnesia in log-based recovery protocols",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7524
+        },
+        {
+          "id": "W1787375890",
+          "title": "A non-blocking recovery algorithm for causal message logging",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7508
+        },
+        {
+          "id": "W2100970777",
+          "title": "A survey of rollback-recovery protocols in message-passing systems",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7463
+        },
+        {
+          "id": "W2033223918",
+          "title": "An algorithm for concurrency control and recovery in replicated distributed databases",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7417
+        },
+        {
+          "id": "W1984564341",
+          "title": "Design, Modeling, and Evaluation of a Scalable Multi-level Checkpointing System",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7384
+        },
+        {
+          "id": "W2131053137",
+          "title": "Distributed snapshots",
+          "area": "cloud_infrastructure",
+          "similarity": 0.733
+        }
+      ]
+    },
+    {
+      "question": "Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?",
+      "area": "cloud_infrastructure",
+      "relevant": [
+        "W2026205964"
+      ],
+      "paper_title": "Survey on NoSQL database",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2026205964",
+          "title": "Survey on NoSQL database",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7634
+        },
+        {
+          "id": "W1500693574",
+          "title": "CRITICAL QUESTIONS FOR BIG DATA",
+          "area": "statistics",
+          "similarity": 0.7391
+        },
+        {
+          "id": "W3186860860",
+          "title": "Data Warehouse Based on NoSQL: a literature mapping",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7257
+        },
+        {
+          "id": "W4232243154",
+          "title": "Security Analysis of MongoDB",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7164
+        },
+        {
+          "id": "W2046006386",
+          "title": "Will NoSQL Databases Live Up to Their Promise?",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7158
+        },
+        {
+          "id": "W2340865919",
+          "title": "The role of administrative data in the big data revolution in social science research",
+          "area": "econometrics",
+          "similarity": 0.7103
+        },
+        {
+          "id": "W2565167788",
+          "title": "The Synthetic Data Vault",
+          "area": "statistics",
+          "similarity": 0.7082
+        },
+        {
+          "id": "W1529533208",
+          "title": "A Review of Relational Machine Learning for Knowledge Graphs",
+          "area": "deep_learning",
+          "similarity": 0.7046
+        },
+        {
+          "id": "W1993892970",
+          "title": "Hive - a petabyte scale data warehouse using Hadoop",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7005
+        },
+        {
+          "id": "W131619556",
+          "title": "KONECT",
+          "area": "statistics",
+          "similarity": 0.6987
+        }
+      ]
+    }
+  ]
+}

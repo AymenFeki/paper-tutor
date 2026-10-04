@@ -1,12 +1,12 @@
 from pgvector.psycopg import register_vector
-from sentence_transformers import SentenceTransformer
 
 from paper_tutor.corpus import load_config
 from paper_tutor.db import connect
+from paper_tutor.embed import load_model
 
 config = load_config()
 model_key = config["embeddings"]["active"]
-model_name = config["embeddings"]["models"][model_key]["name"]
+model_cfg = config["embeddings"]["models"][model_key]
 
 FIND_MISSING = """
     SELECT p.id, p.title, p.abstract
@@ -37,7 +37,7 @@ with connect() as conn:
 
         texts = [document_text(title, abstract) for _, title, abstract in rows]
 
-        model = SentenceTransformer(model_name)
+        model = load_model(model_cfg)
         vectors = model.encode(texts, normalize_embeddings=True, batch_size=32, show_progress_bar=True)
 
         params = [

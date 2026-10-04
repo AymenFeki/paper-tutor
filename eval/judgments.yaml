@@ -1,0 +1,964 @@
+# Pooled relevance judgments for eval/questions.yaml.
+# Pool per question: top-5 of bge-small and qwen3-0.6b (deduplicated) plus the original paper.
+# Judged by an LLM (Claude) from title and abstract only, with each pool shuffled and without
+# model or rank labels. The judge had already seen both models' top-5 titles in earlier
+# evaluation output, so judging was not fully blind. relevant = a student asking this question
+# would find the paper genuinely useful for answering it.
+# These judgments should be reviewed by a human before the numbers are relied on.
+
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W3083504346
+  relevant: false
+  reason: Speeds up MCMC for doubly intractable models with surrogates; not an optimisation-based posterior approximation.
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W4367694390
+  relevant: false
+  reason: Parallel scheduling for ABC; about simulation-based inference, not replacing sampling by optimisation.
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W3019869015
+  relevant: false
+  reason: Optimisation-based sampler for large inverse problems; related idea but too specialised to answer a student's question.
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2027255954
+  relevant: false
+  reason: Computing Bayes factors from simulation output; different problem.
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W4295120361
+  relevant: false
+  reason: Faster ABC by stopping simulations early; still sampling, not optimisation.
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W4400542370
+  relevant: false
+  reason: Cheaper calibrated posterior p-values for model checking; different problem.
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2225156818
+  relevant: true
+  reason: 'Reviews variational inference: approximating the posterior by optimisation, faster than MCMC.'
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2775216473
+  relevant: false
+  reason: Asymptotic theory of ABC estimators; not about faster posterior approximation.
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W130037070
+  relevant: false
+  reason: Gibbs sampling for mixture models; sampling-based, not optimisation.
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2067392831
+  relevant: false
+  reason: Sequential ABC algorithm; simulation-based, does not answer the question.
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2416547532
+  relevant: true
+  reason: Tutorial on interrupted time series with segmented regression for evaluating a policy introduced at a known date.
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2266995761
+  relevant: false
+  reason: Goodness-of-fit tests for logistic regression; unrelated to before/after trend analysis.
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W1966714873
+  relevant: false
+  reason: Tests of the proportional hazards assumption; unrelated.
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2077618811
+  relevant: false
+  reason: Joinpoint regression finds unknown trend change points in rates; related but not the known-date intervention design asked about.
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2112669742
+  relevant: false
+  reason: Modified Poisson regression for relative risks; unrelated.
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2101603115
+  relevant: false
+  reason: Variance of trends in survey proportions without IDs; does not address an intervention effect.
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2039493274
+  relevant: false
+  reason: Dose-response and trend modelling with splines; not about before/after intervention effects.
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2950397612
+  relevant: false
+  reason: Operational risk losses above a threshold; unrelated.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2127008730
+  relevant: false
+  reason: Optimal treatment regimes from observational data; unrelated.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2115324205
+  relevant: false
+  reason: Disease prevalence from multiple diagnostic tests; unrelated to competing events.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W1977426244
+  relevant: false
+  reason: Predicting prostate cancer from longitudinal markers; unrelated.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W4293241248
+  relevant: false
+  reason: Kaplan-Meier estimator assumes the competing event is independent censoring; the question needs the alternative.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2161951565
+  relevant: true
+  reason: Estimating the cumulative incidence function when competing risks are present.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2274765283
+  relevant: false
+  reason: Recurrent-event gap times with a terminal event; different setting.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2264767503
+  relevant: true
+  reason: Introduces competing risks and explains using cumulative incidence instead of 1 - Kaplan-Meier.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2054957279
+  relevant: false
+  reason: Bivariate survival model for familial disease; unrelated.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2115108310
+  relevant: false
+  reason: Basic survival analysis concepts; does not cover competing events.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2053301665
+  relevant: false
+  reason: Case-cohort study design; unrelated.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2074703669
+  relevant: true
+  reason: Compares stepwise selection and alternatives for prognostic models with many candidate variables.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2007069447
+  relevant: true
+  reason: Bayesian method for choosing which predictors to include in a regression.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2157355630
+  relevant: false
+  reason: Generalised additive models for medical data; about functional form, not choosing predictors.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2336254838
+  relevant: false
+  reason: Predictors of latent classes in mixture regressions; different problem.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2171642892
+  relevant: true
+  reason: Penalised regression to avoid overfitting when there are many predictors and few events.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2130373985
+  relevant: true
+  reason: How many predictors per outcome event a logistic/Cox model can support; directly informs the decision.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2782176193
+  relevant: true
+  reason: Review of variable selection methods with recommendations for 10-30 candidate variables in medical research.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2073610283
+  relevant: true
+  reason: Bayesian predictor selection for prediction (median probability model).
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W1814560945
+  relevant: false
+  reason: Control functions for endogenous regressors; no dynamic panel setting.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W3123200913
+  relevant: true
+  reason: Difference and system GMM for dynamic panels with small T, large N and endogenous regressors.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W1964450723
+  relevant: false
+  reason: Initial conditions in nonlinear dynamic panels; does not deal with endogenous regressors in the linear case asked.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W1988201884
+  relevant: false
+  reason: Copula approach to endogeneity; not about dynamic panels.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W4232505725
+  relevant: false
+  reason: IV inference with imperfect instruments; not about dynamic panels.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W2127882594
+  relevant: false
+  reason: IV estimation of threshold models; unrelated.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W2164359947
+  relevant: true
+  reason: Classic paper on estimating autoregressive panel models with unit effects and N large.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W2094514178
+  relevant: false
+  reason: Seemingly unrelated regressions; unrelated.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W1989773174
+  relevant: false
+  reason: Identification through heteroscedasticity; not about dynamic panels.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W7165787828
+  relevant: false
+  reason: Identifying type I/II error rates in court decisions; unrelated.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2118836230
+  relevant: true
+  reason: Cluster-robust standard errors; explicitly covers state-year difference-in-differences.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2171642892
+  relevant: false
+  reason: Risk prediction with few events; unrelated.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2040503026
+  relevant: false
+  reason: Abstract (does not match title) is about natural-experiment design in general, not standard errors.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2096684396
+  relevant: true
+  reason: Shows serial correlation makes difference-in-differences standard errors far too small and tests fixes.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2154062944
+  relevant: true
+  reason: Inference for difference-in-differences with few groups; addresses unreliable standard errors.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W4283387379
+  relevant: false
+  reason: Bias of staggered difference-in-differences estimators; about the estimate, not its standard error.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W1981651168
+  relevant: false
+  reason: Standard errors in two-step models with generated regressors; different problem.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2170433190
+  relevant: false
+  reason: Panel standard errors under cross-sectional dependence; related but not the serial-correlation issue in the question.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W2886443073
+  relevant: true
+  reason: Compares fixed, random and within-between effects models for multilevel data to support the choice.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W2138432709
+  relevant: true
+  reason: Simulations giving guidance on when to prefer fixed or random effects for grouped data.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W2114968414
+  relevant: false
+  reason: Class distribution in training data for decision trees; unrelated.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W2035971761
+  relevant: false
+  reason: Constructing bivariate distributions from margins; unrelated.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W2170210994
+  relevant: false
+  reason: Software how-to for fitting multilevel models in SAS; does not address the choice.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W1990662707
+  relevant: false
+  reason: Chi-squared tests for clustered survey proportions; unrelated.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W1974268958
+  relevant: false
+  reason: Sampling weights in multilevel models of survey data; not the fixed vs random choice.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W2317709830
+  relevant: false
+  reason: Comparing logit/probit coefficients across nested models; unrelated.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W4316469706
+  relevant: false
+  reason: Resampling for imbalanced classification in education data; unrelated.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2042812801
+  relevant: true
+  reason: Overview of spatial dependence in regression on areal units and why it matters.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W1977414200
+  relevant: true
+  reason: Introduces spatial autoregressive extensions of regression, with a US county example.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2148169128
+  relevant: false
+  reason: Geographically weighted regression models coefficients varying over space, not neighbour spillovers.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2047120335
+  relevant: false
+  reason: Geographically weighted regression for spatial nonstationarity; not dependence between neighbours.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2121433202
+  relevant: true
+  reason: Regression on areal disease data allowing for spatial autocorrelation between neighbouring areas.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2145147745
+  relevant: false
+  reason: Regression diagnostics; no abstract and not about spatial dependence.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2118836230
+  relevant: false
+  reason: Cluster-robust standard errors; does not model influence between neighbouring units.
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W4226170891
+  relevant: false
+  reason: Feature visualisation of what a CNN learned globally; not per-patient attributions.
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2346578521
+  relevant: true
+  reason: 'DeepLIFT: per-input contribution scores for an individual prediction.'
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W4403845965
+  relevant: true
+  reason: 'Practical SHAP guide: per-prediction feature contributions and how to read the plots.'
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W3201437744
+  relevant: true
+  reason: Clinical review of explainable ML techniques for black-box models, including local explanations.
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2597603852
+  relevant: false
+  reason: Influence functions trace predictions to training points, not input features.
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2981836045
+  relevant: false
+  reason: Debate on black-box vs interpretable models; no method for explaining one prediction.
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W3126673261
+  relevant: true
+  reason: Compares global and local feature importance (incl. LIME) on medical data.
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2994120362
+  relevant: true
+  reason: Local rule-based and counterfactual explanations for a single black-box decision.
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2150165932
+  relevant: true
+  reason: Method to explain which features drove an individual classification decision.
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2606462007
+  relevant: false
+  reason: Image saliency by perturbation; about image regions, not patient features.
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W1970261191
+  relevant: true
+  reason: Review of research on classification with imbalanced data and remedies.
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W1965895350
+  relevant: true
+  reason: Survey of problems caused by rare classes and methods to address them.
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W2102734279
+  relevant: false
+  reason: Combining classifier rankings for character recognition; no class imbalance.
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W2012942264
+  relevant: false
+  reason: Calibrating classifier probabilities; not about imbalance.
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W2011376672
+  relevant: false
+  reason: Argues small disjuncts, not imbalance itself, hurt performance; does not address combining classifiers.
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W2124868070
+  relevant: false
+  reason: Book review citation with no content; combining classifiers without imbalance focus.
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W2099454382
+  relevant: true
+  reason: Review of bagging, boosting and hybrid ensembles designed for class imbalance.
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W2158275940
+  relevant: false
+  reason: Theory of classifier combination rules; not about imbalance.
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W2149308034
+  relevant: true
+  reason: Review of remedies for the class imbalance problem.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W3202428668
+  relevant: true
+  reason: Survey of why deep learning struggles on tabular data and methods to adapt it.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2020842694
+  relevant: false
+  reason: Probabilistic models for images with captions; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2064186732
+  relevant: false
+  reason: Imputing missing values in mixed-type data; not about model performance on tabular data.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2084341220
+  relevant: false
+  reason: Data models vs algorithmic models in statistics; does not address deep learning on tables.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2514173981
+  relevant: false
+  reason: Cross-validation vs hold-out; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2087028773
+  relevant: false
+  reason: Linear mixed models for repeated measures; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W1991135683
+  relevant: false
+  reason: Bayesian estimation for misclassified categorical data; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2138432709
+  relevant: false
+  reason: Fixed vs random effects; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2134843796
+  relevant: false
+  reason: Multiple imputation guidance; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W4226350030
+  relevant: false
+  reason: Categorical encodings for gradient boosting; does not explain why image/text models struggle on tables.
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W2171542081
+  relevant: false
+  reason: Recovering missing sensor channels in condition monitoring; too narrow.
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W2887782657
+  relevant: true
+  reason: Deep-learning pipeline for machine fault diagnosis from sensor signals across several machine types.
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W2962862931
+  relevant: false
+  reason: Measuring interpretability of degradation models; not how to detect faults or predict lifetime.
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W1986926053
+  relevant: false
+  reason: Broken rotor bar detector for one motor type; too narrow.
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W1983638645
+  relevant: true
+  reason: Review of fault diagnosis techniques for rotating electrical machines.
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W4308536716
+  relevant: false
+  reason: Single diesel-engine fault classifier; narrow case study.
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W2946111806
+  relevant: false
+  reason: Experimental detection of shaft misalignment and cracks; narrow case study.
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W2944364052
+  relevant: true
+  reason: 'Survey of data-driven predictive maintenance: fault diagnosis and remaining life assessment.'
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W3022604663
+  relevant: true
+  reason: Review of deep learning for bearing fault detection from sensor data.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W1993220166
+  relevant: false
+  reason: Resampling for class imbalance; not about enlarging a small image dataset.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W1821462560
+  relevant: false
+  reason: Knowledge distillation; not data augmentation.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2770173563
+  relevant: true
+  reason: GAN-based data augmentation for low-data image classification.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2334028018
+  relevant: false
+  reason: Re-sampling imbalanced tabular medical data; not image augmentation.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2163605009
+  relevant: false
+  reason: AlexNet paper; abstract covers architecture and dropout, not generating more training data.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2601450892
+  relevant: false
+  reason: Few-shot learning of new classes; different problem.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2148143831
+  relevant: false
+  reason: SMOTE oversamples a minority class in tabular data; not image augmentation.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2168508521
+  relevant: false
+  reason: Borderline oversampling for imbalance; not image augmentation.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2787035179
+  relevant: false
+  reason: Semi-supervised few-shot learning; different problem.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2954996726
+  relevant: true
+  reason: Survey of image data augmentation techniques to avoid overfitting with limited data.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W3035743198
+  relevant: false
+  reason: Adversarial training for large ImageNet models; not a practical answer for a small dataset.
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  paper_id: W2113839990
+  relevant: true
+  reason: Shows when and how much networks forget earlier tasks and which training choices reduce it.
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  paper_id: W2788388592
+  relevant: true
+  reason: 'Review of continual learning: why networks forget and approaches to learn over time.'
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  paper_id: W3000074789
+  relevant: true
+  reason: Ensemble approaches to avoid forgetting when retraining a network on new data.
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  paper_id: W2560647685
+  relevant: true
+  reason: 'Elastic weight consolidation: protects weights important for old tasks.'
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  paper_id: W2473930607
+  relevant: true
+  reason: Adds new tasks to a network while preserving old capabilities without old data.
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  paper_id: W2116522068
+  relevant: true
+  reason: Reviews forgetting and rehearsal/pseudorehearsal as remedies.
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  paper_id: W3030364939
+  relevant: true
+  reason: Survey and comparison of continual learning methods that prevent forgetting.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2543927648
+  relevant: true
+  reason: Shows tiny universal perturbations fool image classifiers; explains the vulnerability.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2963564844
+  relevant: true
+  reason: Evaluates proposed detection defenses against adversarial examples and why they fail.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2765384636
+  relevant: true
+  reason: Defends image classifiers against adversarial examples by transforming inputs.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W1932198206
+  relevant: false
+  reason: Unrecognisable images classified confidently; a different phenomenon from small perturbations.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2962700793
+  relevant: true
+  reason: Survey of adversarial attacks on vision models and defenses.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2606462007
+  relevant: false
+  reason: Saliency explanation method; not about attacks or defenses.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W1787224781
+  relevant: false
+  reason: Pixel-wise relevance explanations; not about attacks or defenses.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2243397390
+  relevant: true
+  reason: Computes minimal perturbations that fool networks and measures robustness.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2011376672
+  relevant: false
+  reason: Class imbalance vs small disjuncts; unrelated.
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W2905485203
+  relevant: true
+  reason: Explains why ReLU networks are overconfident and proposes a fix.
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W2516809705
+  relevant: false
+  reason: LIME explains predictions; does not measure confidence.
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W3183048323
+  relevant: true
+  reason: Survey of uncertainty estimation and calibration in neural networks.
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W2101807845
+  relevant: false
+  reason: Posterior of overall balanced accuracy; not per-prediction confidence.
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W2098021754
+  relevant: false
+  reason: Estimating the Bayes error rate; not per-prediction confidence.
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W2888728157
+  relevant: false
+  reason: Overview of classification metrics; not per-prediction confidence.
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W2806471870
+  relevant: true
+  reason: Evidential deep learning to quantify per-prediction classification uncertainty.
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W2012942264
+  relevant: true
+  reason: Calibrating classifier scores into accurate probability estimates.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W2553269777
+  relevant: true
+  reason: Shows Fed announcements move interest rates and shape beliefs about the economy.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W3122403692
+  relevant: false
+  reason: Determinants of corporate credit spreads; not central bank statements.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W2138293190
+  relevant: false
+  reason: Market efficiency debate; unrelated.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W3123195209
+  relevant: false
+  reason: Overconfidence and asset bubbles; unrelated.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W3125252370
+  relevant: true
+  reason: Forward guidance and public perceptions of monetary policy in Japan.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W1663622626
+  relevant: true
+  reason: Bond yield responses to Fed and BoE QE announcements, incl. signalling via communication.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W2098317876
+  relevant: true
+  reason: Survey of evidence that central bank communication moves markets and improves predictability.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W1578192140
+  relevant: false
+  reason: Survey of firms' price setting; unrelated to communication.
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W3023758731
+  relevant: true
+  reason: Measures contagion and integration across regional stock markets.
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W1974486301
+  relevant: true
+  reason: Framework and survey of channels through which crises spread between countries.
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W2149908462
+  relevant: true
+  reason: Model and evidence of how the 1987 crash transmitted across stock markets.
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W2128180562
+  relevant: false
+  reason: Sudden stops in capital flows within a country; not cross-country spread.
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W2889666266
+  relevant: true
+  reason: Transmission of the 2007-09 crisis to equity markets worldwide.
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W2123888799
+  relevant: false
+  reason: Carry-trade crash risk in currencies; not cross-country contagion.
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W2149785293
+  relevant: true
+  reason: Volatility spillovers from US, UK and China to African markets.
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W1549561640
+  relevant: true
+  reason: Links between banking and balance-of-payments crises; banking problems help predict currency crises.
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W2081308040
+  relevant: false
+  reason: Sudden stops in euro-area capital flows; not the bank-currency link.
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W2112559425
+  relevant: true
+  reason: Banking problems typically precede currency crises, which then deepen them.
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W2128180562
+  relevant: false
+  reason: Sudden stops causing crises; does not address which of banking or currency crisis comes first.
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W4256569773
+  relevant: false
+  reason: Exchange rate regimes in practice; not about banking crises.
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W1523084741
+  relevant: true
+  reason: Case study of causal links between banking and currency crises in Germany 1931.
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W2046004231
+  relevant: false
+  reason: Euro sovereign debt crisis; not the bank-currency sequence.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2149530077
+  relevant: false
+  reason: Effect of government spending on consumption; no zero-bound analysis.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W3121786260
+  relevant: true
+  reason: Spending multipliers are larger in recessions; directly on multiplier size depending on the state of the economy.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W3121962419
+  relevant: false
+  reason: Fiscal shocks in a VAR; no zero lower bound analysis.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2168008582
+  relevant: false
+  reason: Relative price of services across countries; unrelated.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2152110580
+  relevant: false
+  reason: Effects of quantitative easing on interest rates; monetary not fiscal.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W1905678139
+  relevant: true
+  reason: Estimates spending multipliers in slack periods and near the zero lower bound.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2125534266
+  relevant: false
+  reason: Output-inflation trade-offs; unrelated.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2095169544
+  relevant: false
+  reason: Keynes' restatement of the General Theory; too general to answer the question.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2104165247
+  relevant: true
+  reason: Shows the spending multiplier is well above one when the zero lower bound binds.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2066815740
+  relevant: true
+  reason: Forecasting future volatility from past positive and negative returns; out-of-sample forecast gains.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2118854883
+  relevant: true
+  reason: Review comparing historical and option-implied volatility forecasts.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2166536772
+  relevant: false
+  reason: Jump-diffusion modelling from spot and option data; about model fit, not forecasting volatility.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2158580072
+  relevant: false
+  reason: Whether option prices anticipated the 1987 crash; not a volatility forecasting method.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2084931349
+  relevant: true
+  reason: Derives a model-free volatility forecast from current option prices.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2114309779
+  relevant: true
+  reason: Compares option-implied variance with time-series forecasts of stock return variance.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2570784181
+  relevant: false
+  reason: Optimal hedging with options and futures; unrelated.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W3137152181
+  relevant: false
+  reason: Intraday index option trading decisions; not volatility forecasting.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2602224136
+  relevant: false
+  reason: Commodity futures and the theory of storage; unrelated.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2157858527
+  relevant: false
+  reason: Option pricing under stochastic volatility; not forecasting.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2128981260
+  relevant: false
+  reason: Gibbs sampling with auxiliary variables; unrelated.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2033612661
+  relevant: true
+  reason: Gaussian copula construction of joint models for correlated non-normal variables.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2001249527
+  relevant: true
+  reason: Practical introduction to copula models of joint distributions with given margins.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2905157140
+  relevant: false
+  reason: Correlated multinomial variates; too narrow for the question.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2035971761
+  relevant: true
+  reason: Constructs bivariate distributions from given margins with one dependence parameter.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2078565364
+  relevant: false
+  reason: Time series with unit roots; unrelated.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2976185742
+  relevant: false
+  reason: Gaussian process latent variable models for longitudinal data; unrelated.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W3165188543
+  relevant: false
+  reason: One specific bivariate count-gamma model; not a general way to join arbitrary margins.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2129843476
+  relevant: true
+  reason: Compares traditional and computational intelligence methods for loan granting decisions.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2168123127
+  relevant: true
+  reason: Review of statistical classification methods for consumer credit scoring.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2117352691
+  relevant: true
+  reason: Survey of quantitative methods for credit granting and management decisions.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W1989908534
+  relevant: true
+  reason: Credit scoring with discriminant analysis and logit for small-business loan applications.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W4385895737
+  relevant: true
+  reason: Predicting whether borrowers repay using data mining methods.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2118889105
+  relevant: false
+  reason: Theory of choosing bank loans vs bonds; not about assessing applicants.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W1562925244
+  relevant: true
+  reason: Compares linear and logistic regression credit scoring models.
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W2139116473
+  relevant: true
+  reason: Links oil futures spread, inventories (convenience yield) and spot price.
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W2014933671
+  relevant: true
+  reason: Explains how spot prices, inventories and futures prices are jointly determined, with petroleum data.
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W2089240053
+  relevant: true
+  reason: Oil futures pricing model with spot price and convenience yield from storage.
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W2602224136
+  relevant: true
+  reason: 'Theory of storage: futures-spot basis explained by storage costs and convenience yield.'
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W3122285251
+  relevant: true
+  reason: Equilibrium model of oil spot and futures prices with storage.
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W2026564718
+  relevant: false
+  reason: General drivers of crude oil prices; abstract does not cover storage or futures links.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W4413948191
+  relevant: false
+  reason: Manufacturing datasets and data acquisition; unrelated.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W2996061341
+  relevant: false
+  reason: Interpretable machine learning techniques; unrelated.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W3116194568
+  relevant: false
+  reason: Python package for explainability and fairness; not about deployment.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W2956281901
+  relevant: false
+  reason: Tool for probing models; not about deployment.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W2565167788
+  relevant: false
+  reason: Synthetic relational data generation; unrelated.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W2944264045
+  relevant: true
+  reason: Case study of software engineering challenges companies face putting ML components into products.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W4402592902
+  relevant: true
+  reason: MLOps practices and tools for developing and maintaining ML systems in production.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W2757528734
+  relevant: false
+  reason: Privacy leakage from trained models; unrelated.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W4360995249
+  relevant: true
+  reason: 'Defines MLOps: principles, roles, tools and architecture for getting models into production.'
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W3016099278
+  relevant: false
+  reason: How data scientists use interpretability tools; not deployment.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W2973193541
+  relevant: false
+  reason: Explainability use in deployed systems; not about deploying or maintaining models.
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W4243947286
+  relevant: false
+  reason: Xen hypervisor design; no comparison with containers.
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W2075174112
+  relevant: true
+  reason: Benchmarks Docker containers against KVM virtual machines.
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W2140953464
+  relevant: true
+  reason: Container-based virtualisation compared with a hypervisor on efficiency.
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W2158459299
+  relevant: false
+  reason: Power management for virtual machines; unrelated.
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W1971739358
+  relevant: false
+  reason: Virtual I/O drivers for hypervisors; no container comparison.
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W2023953679
+  relevant: false
+  reason: Short intro to containers and Kubernetes; no performance comparison.
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W2117648703
+  relevant: false
+  reason: Software vs hardware x86 virtualisation; no containers.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2100970777
+  relevant: true
+  reason: Survey of checkpoint- and log-based rollback recovery in distributed systems.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W1855233090
+  relevant: false
+  reason: Masking failures through process replication; not resuming from saved state.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2052915895
+  relevant: true
+  reason: 'Optimistic recovery: rollback and message replay to a consistent state after failures.'
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W1993143336
+  relevant: true
+  reason: Algorithms for consistent checkpoints and rollback recovery in distributed systems.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2078349455
+  relevant: true
+  reason: Checkpoint-restart for long-running coupled applications in HPC and cloud.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W1787375890
+  relevant: true
+  reason: Recovery of failed processes using causal message logging.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2098480851
+  relevant: false
+  reason: Recovering single programs from software bugs; not distributed state.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2131053137
+  relevant: true
+  reason: Distributed snapshot algorithm for recording a consistent global state, usable for checkpointing.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2087127367
+  relevant: false
+  reason: Recovery in replicated databases with partial amnesia; not resuming a distributed computation.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2026205964
+  relevant: true
+  reason: Why relational databases fall short for large web user data, and how to choose a NoSQL database.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W3186860860
+  relevant: false
+  reason: NoSQL for data warehousing; analytics focus, not operational user data.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W4232243154
+  relevant: false
+  reason: Security of MongoDB; not why or how to choose.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2036260704
+  relevant: true
+  reason: Tutorial on challenges of scalable data management for internet-scale applications.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2084568010
+  relevant: true
+  reason: Compares scalable SQL and NoSQL stores on data model, consistency and availability.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W1500693574
+  relevant: false
+  reason: Social and ethical questions about big data; unrelated.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2046006386
+  relevant: false
+  reason: One-sentence abstract; too little to judge as useful.

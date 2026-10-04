@@ -1,0 +1,153 @@
+# Retrieval test set: one question per paper, 4 papers per area.
+# Questions were written by an LLM from each paper's title and abstract, following these rules:
+# plain student language, asked before knowing the answer, no distinctive terms from the title,
+# all questions written before any search was run and not changed afterwards.
+# Because they were written while reading the abstract, they may be easier than real student
+# questions (vocabulary from the abstract can leak into the question).
+
+# statistics
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  relevant: [W2225156818]
+  area: statistics
+  paper_title: "Variational Inference: A Review for Statisticians"
+
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  relevant: [W2416547532]
+  area: statistics
+  paper_title: "Interrupted time series regression for the evaluation of public health interventions: a tutorial"
+
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  relevant: [W2264767503]
+  area: statistics
+  paper_title: "Introduction to the Analysis of Survival Data in the Presence of Competing Risks"
+
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  relevant: [W2782176193]
+  area: statistics
+  paper_title: "Variable selection – A review and recommendations for the practicing statistician"
+
+# econometrics
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  relevant: [W3123200913]
+  area: econometrics
+  paper_title: "How to do Xtabond2: An Introduction to Difference and System GMM in Stata"
+
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  relevant: [W2096684396]
+  area: econometrics
+  paper_title: "How Much Should We Trust Differences-In-Differences Estimates?"
+
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  relevant: [W2138432709]
+  area: econometrics
+  paper_title: "Should I Use Fixed or Random Effects?"
+
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  relevant: [W1977414200]
+  area: econometrics
+  paper_title: "An Introduction to Spatial Econometrics"
+
+# machine_learning
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  relevant: [W4403845965]
+  area: machine_learning
+  paper_title: "Practical guide to SHAP analysis: Explaining supervised machine learning model predictions in drug development"
+
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  relevant: [W2099454382]
+  area: machine_learning
+  paper_title: "A Review on Ensembles for the Class Imbalance Problem: Bagging-, Boosting-, and Hybrid-Based Approaches"
+
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  relevant: [W3202428668]
+  area: machine_learning
+  paper_title: "Deep Neural Networks and Tabular Data: A Survey"
+
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  relevant: [W2944364052]
+  area: machine_learning
+  paper_title: "Data-Driven Methods for Predictive Maintenance of Industrial Equipment: A Survey"
+
+# deep_learning
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  relevant: [W2954996726]
+  area: deep_learning
+  paper_title: "A survey on Image Data Augmentation for Deep Learning"
+
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  relevant: [W2788388592]
+  area: deep_learning
+  paper_title: "Continual lifelong learning with neural networks: A review"
+
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  relevant: [W2962700793]
+  area: deep_learning
+  paper_title: "Threat of Adversarial Attacks on Deep Learning in Computer Vision: A Survey"
+
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  relevant: [W3183048323]
+  area: deep_learning
+  paper_title: "A survey of uncertainty in deep neural networks"
+
+# economics
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  relevant: [W2098317876]
+  area: economics
+  paper_title: "Central Bank Communication and Monetary Policy: A Survey of Theory and Evidence"
+
+- question: How does a crash in one country's markets spread to other countries?
+  relevant: [W1974486301]
+  area: economics
+  paper_title: "A Primer on Financial Contagion"
+
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  relevant: [W2112559425]
+  area: economics
+  paper_title: "The Twin Crises: The Causes of Banking and Balance-of-Payments Problems"
+
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  relevant: [W2104165247]
+  area: economics
+  paper_title: "When Is the Government Spending Multiplier Large?"
+
+# finance
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  relevant: [W2118854883]
+  area: finance
+  paper_title: "Forecasting Volatility in Financial Markets: A Review"
+
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  relevant: [W2001249527]
+  area: finance
+  paper_title: "Copula Modeling: An Introduction for Practitioners"
+
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  relevant: [W2168123127]
+  area: finance
+  paper_title: "Statistical Classification Methods in Consumer Credit Scoring: A Review"
+
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  relevant: [W2014933671]
+  area: finance
+  paper_title: "The Dynamics of Commodity Spot and Futures Markets: A Primer"
+
+# cloud_infrastructure
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  relevant: [W4360995249]
+  area: cloud_infrastructure
+  paper_title: "Machine Learning Operations (MLOps): Overview, Definition, and Architecture"
+
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  relevant: [W2075174112]
+  area: cloud_infrastructure
+  paper_title: "An updated performance comparison of virtual machines and Linux containers"
+
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  relevant: [W2100970777]
+  area: cloud_infrastructure
+  paper_title: "A survey of rollback-recovery protocols in message-passing systems"
+
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  relevant: [W2026205964]
+  area: cloud_infrastructure
+  paper_title: "Survey on NoSQL database"

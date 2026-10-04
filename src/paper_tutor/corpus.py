@@ -2,6 +2,7 @@
 
 import yaml
 
+import re
 
 def load_config(path="config/syllabus.yaml"):
     with open(path) as f:
@@ -41,3 +42,14 @@ def check_rules(paper, settings):
 
 def passes_rules(paper, settings):
     return not any(check_rules(paper, settings).values())
+
+def normalize_title(title):
+    """Lowercase, and keep only letters and digits, so small differences don't matter."""
+    return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()
+
+
+def record_quality(paper):
+    """Higher is better: prefer records with a DOI, then with a longer abstract."""
+    has_doi = paper["doi"] is not None
+    abstract_length = len(paper["abstract_inverted_index"] or {})
+    return (has_doi, abstract_length)

@@ -12,6 +12,7 @@ settings:
   venue_lists: [cwts-core]       # peer-reviewed papers must come from a listed journal
   venue_exempt_types: [preprint, conference-paper]   # no journal-list requirement for these types
   recent_years: 2                # newer papers are labelled "recent" instead of ranked by citations
+  selections: [random, top_cited]   # random: for measuring rules; top_cited: for learning
 
 areas:
   statistics:
@@ -141,7 +142,7 @@ areas:
         queries: [mlops, machine learning deployment, data pipeline]
       - name: Distributed systems
         queries: [distributed systems, microservices]
-        
+
 embeddings:
   active: bge-small
   models:

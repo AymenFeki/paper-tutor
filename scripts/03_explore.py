@@ -7,7 +7,7 @@ from paper_tutor.corpus import load_config, venue_lists, check_rules
 
 config = load_config()
 settings = config["settings"]
-raw_dir = Path("data/raw")
+raw_dir = Path("data/raw/random")
 
 # Load all raw papers into one table, with one True/False column per rule
 rows = []

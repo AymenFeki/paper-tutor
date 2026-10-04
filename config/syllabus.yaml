@@ -141,3 +141,13 @@ areas:
         queries: [mlops, machine learning deployment, data pipeline]
       - name: Distributed systems
         queries: [distributed systems, microservices]
+        
+embeddings:
+  active: bge-small
+  models:
+    bge-small:
+      name: BAAI/bge-small-en-v1.5
+      query_prompt: "Represent this sentence for searching relevant passages: "
+    qwen3-0.6b:
+      name: Qwen/Qwen3-Embedding-0.6B
+      query_prompt_name: query

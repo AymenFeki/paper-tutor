@@ -1,4 +1,4 @@
-# Retrieval test set: one question per paper, 4 papers per area.
+# Retrieval test set: one question per paper, 4 papers per area, plus real-use failure cases at the end.
 # Questions were written by an LLM from each paper's title and abstract, following these rules:
 # plain student language, asked before knowing the answer, no distinctive terms from the title,
 # all questions written before any search was run and not changed afterwards.
@@ -151,3 +151,14 @@
   relevant: [W2026205964]
   area: cloud_infrastructure
   paper_title: "Survey on NoSQL database"
+
+# real-use failure cases (added later, not written by the LLM; see issue #1)
+- question: how should I choose a prior distribution?
+  relevant: [W2008640468, W2139606141]
+  area: statistics
+  paper_title: "A weakly informative default prior distribution for logistic and other regression models / The Selection of Prior Distributions by Formal Rules"
+
+- question: When does the Jeffreys prior fail?
+  relevant: [W2139606141]
+  area: statistics
+  paper_title: "The Selection of Prior Distributions by Formal Rules"

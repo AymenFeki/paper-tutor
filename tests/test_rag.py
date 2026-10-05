@@ -33,3 +33,14 @@ def test_format_context_separates_papers_with_blank_line():
 
 def test_format_context_no_papers():
     assert format_context([]) == ""
+
+
+def test_format_context_shows_authors():
+    papers = [{"title": "Paper A", "year": 2020, "venue": "Journal X", "authors": ["Ann Lee", "Bo Chen"],
+               "abstract": "Abstract A."}]
+    assert format_context(papers) == "[1] Paper A (2020, Journal X)\nAuthors: Ann Lee, Bo Chen\nAbstract A."
+
+
+def test_format_context_no_authors_line_when_unknown():
+    papers = [{"title": "Paper A", "year": 2020, "venue": "Journal X", "authors": [], "abstract": "Abstract A."}]
+    assert "Authors" not in format_context(papers)

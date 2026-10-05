@@ -19,11 +19,12 @@ UPSERT_TOPIC = """
 
 UPSERT_PAPER = """
     INSERT INTO papers (id, doi, title, abstract, year, type, language, venue,
-                        venue_lists, is_retracted, fwci, oa_url, topic_id)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        venue_lists, is_retracted, fwci, oa_url, topic_id, authors)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     ON CONFLICT (id) DO UPDATE SET
         title = EXCLUDED.title, abstract = EXCLUDED.abstract, fwci = EXCLUDED.fwci,
-        venue_lists = EXCLUDED.venue_lists, oa_url = EXCLUDED.oa_url, loaded_at = now()
+        venue_lists = EXCLUDED.venue_lists, oa_url = EXCLUDED.oa_url,
+        authors = EXCLUDED.authors, loaded_at = now()
 """
 
 # Papers that no longer pass the rules or were merged as duplicates (embeddings first: they point to papers)
@@ -33,6 +34,8 @@ DELETE_PAPERS = "DELETE FROM papers WHERE NOT (id = ANY(%s))"
 config = load_config()
 settings = config["settings"]
 raw_dir = Path("data/raw")
+authors_file = raw_dir / "authors.json"
+authors = json.loads(authors_file.read_text()) if authors_file.exists() else {}
 
 topics = {}   # topic_id -> (name, area)
 records = []  # (paper, topic_id) for every record that passes the rules
@@ -84,6 +87,7 @@ with connect() as conn, conn.cursor() as cur:
             paper["fwci"],
             oa.get("pdf_url") or oa.get("landing_page_url"),
             topic_id,
+            authors.get(paper["id"], [])[:settings["authors_per_paper"]],
         ))
 
     kept_ids = [paper["id"].split("/")[-1] for paper, _ in best]

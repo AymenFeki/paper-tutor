@@ -11,6 +11,7 @@ settings:
   venue_lists: [cwts-core]       # peer-reviewed papers must come from a listed journal
   venue_exempt_types: [preprint, conference-paper]   # no journal-list requirement for these types
   dedup_year_window: 3           # same title within 3 years = one paper (0 = same year only, the old rule)
+  authors_per_paper: 5           # author names stored per paper
   recent_years: 2                # newer papers are labelled "recent" instead of ranked by citations
   selections: [random, top_cited]   # random: for measuring rules; top_cited: for learning
 

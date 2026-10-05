@@ -9,7 +9,7 @@ from paper_tutor.db import connect
 from paper_tutor.embed import encode_query
 
 RETRIEVE = """
-    SELECT p.id, p.title, p.year, p.venue, p.abstract
+    SELECT p.id, p.title, p.year, p.venue, p.authors, p.abstract
     FROM embeddings e
     JOIN papers p ON p.id = e.paper_id
     WHERE e.model = %(model)s
@@ -21,7 +21,8 @@ SYSTEM = """You are a study tutor for a statistics and data science student.
 Answer the question using ONLY the numbered sources below.
 - Cite the sources you use with their numbers, like [1] or [2][4].
 - If the sources do not answer the question, say so plainly instead of guessing.
-- Do not add facts that are not in the sources, such as authors, dates or results.
+- Do not add facts that are not in the sources, such as dates or results.
+- Name authors only if they are listed in the sources.
 - Explain clearly for a bachelor student, in at most two short paragraphs."""
 
 HUMAN = """Sources:
@@ -39,17 +40,20 @@ def retrieve(question, embed_model, model_key, model_cfg, k=5):
             cur.execute(RETRIEVE, {"q": query_vector, "model": model_key, "k": k})
             rows = cur.fetchall()
     return [
-        {"id": pid, "title": title, "year": year, "venue": venue, "abstract": abstract}
-        for pid, title, year, venue, abstract in rows
+        {"id": pid, "title": title, "year": year, "venue": venue, "authors": authors or [], "abstract": abstract}
+        for pid, title, year, venue, authors, abstract in rows
     ]
 
 
 def format_context(papers):
-    """Number the papers as sources: [1] Title (year, venue), then the abstract."""
+    """Number the papers as sources: [1] Title (year, venue), the authors, then the abstract."""
     blocks = []
     for i, p in enumerate(papers, start=1):
         venue = p["venue"] or "unknown venue"
-        blocks.append(f"[{i}] {p['title']} ({p['year']}, {venue})\n{p['abstract']}")
+        header = f"[{i}] {p['title']} ({p['year']}, {venue})"
+        if p.get("authors"):
+            header += f"\nAuthors: {', '.join(p['authors'])}"
+        blocks.append(f"{header}\n{p['abstract']}")
     return "\n\n".join(blocks)
 
 

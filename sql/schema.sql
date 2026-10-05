@@ -1,3 +1,6 @@
+-- Safe to run again: every statement uses IF NOT EXISTS
+
+  CREATE EXTENSION IF NOT EXISTS vector;
 
   CREATE TABLE IF NOT EXISTS topics (
       id           TEXT PRIMARY KEY,
@@ -30,3 +33,8 @@
     embedding  vector NOT NULL,
     PRIMARY KEY (paper_id, model)
 );
+
+-- Added later, so they are ALTER statements instead of being part of CREATE TABLE above
+
+-- First author names in author order (#23)
+ALTER TABLE papers ADD COLUMN IF NOT EXISTS authors TEXT[];

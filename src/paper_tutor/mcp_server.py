@@ -15,8 +15,9 @@ def format_papers(papers):
     lines = []
     for i,paper in enumerate(papers, start=1):
         venue = paper.get("venue") or "unknown venue"
+        authors = ", ".join(paper.get("authors") or []) or "unknown authors"
         url = f"https://openalex.org/{paper['id']}"
-        lines.append(f"[{i}] {paper['title']} ({paper['year']}, {venue})\n{url}\n{paper['abstract']}")
+        lines.append(f"[{i}] {paper['title']} ({paper['year']}, {venue})\n{authors}\n{url}\n{paper['abstract']}")
     return "\n\n".join(lines)
 
 
@@ -27,7 +28,7 @@ async def search_papers(question: str, k: int = 5) -> str:
 
     Use this when the user asks about a statistical or ML method, concept or topic
     and wants answers grounded in real papers. Returns titles, years, venues,
-    OpenAlex links and abstracts. Cite papers by their number.
+    authors, OpenAlex links and abstracts. Cite papers by their number.
 
     Args:
         question: What to search for, in plain language.

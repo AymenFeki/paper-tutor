@@ -32,8 +32,8 @@ ANSWER = ChatPromptTemplate.from_messages([
      ("You are a tutor for statistics and machine learning. Answer the user's last "
       "message using ONLY the numbered sources below and the conversation so far. "
       "Cite sources as [n]. If the sources do not answer it, say so. Do not add "
-      "facts that are not in the sources, such as author names. Keep it to at most "
-      "two paragraphs.\n\nSources:\n{context}")),
+      "facts that are not in the sources. Name authors only if they are listed in "
+      "the sources. Keep it to at most two paragraphs.\n\nSources:\n{context}")),
     MessagesPlaceholder("messages"),
 ])
 

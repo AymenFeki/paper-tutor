@@ -26,6 +26,8 @@ def show_sources(papers):
             venue = paper.get("venue") or "unknown venue"
             url = f"https://openalex.org/{paper['id']}"
             st.markdown(f"**[{i}]** [{paper['title']}]({url}) ({paper['year']}, {venue})")
+            if paper.get("authors"):
+                st.caption(", ".join(paper["authors"]))
 
 
 # Replay the conversation so far

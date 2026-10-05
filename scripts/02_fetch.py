@@ -32,6 +32,15 @@ def fetch(topic_id, selection):
     return query.get(per_page=n_per_topic)
 
 
+def fetch_authors(paper_ids):
+    """Author names in author order, for up to 100 papers in one request."""
+    papers = Works().filter_or(openalex_id=paper_ids).select(["id", "authorships"]).get(per_page=len(paper_ids))
+    return {
+        paper["id"]: [authorship["author"]["display_name"] for authorship in paper["authorships"]]
+        for paper in papers
+    }
+
+
 for selection in settings["selections"]:
     raw_dir = Path("data/raw") / selection
     raw_dir.mkdir(parents=True, exist_ok=True)
@@ -47,3 +56,19 @@ for selection in settings["selections"]:
             with open(out_file, "w") as f:
                 json.dump(papers, f, indent=2)
             print(f"{selection} | {area_name} | {topic_id} | {len(papers)} papers")
+
+# Authors were not in the original field list, so they are cached separately for every downloaded paper
+authors_file = Path("data/raw/authors.json")
+authors = json.loads(authors_file.read_text()) if authors_file.exists() else {}
+paper_ids = set()
+for raw_file in Path("data/raw").glob("*/*.json"):
+    paper_ids.update(paper["id"] for paper in json.loads(raw_file.read_text()))
+missing = sorted(paper_ids - authors.keys())
+print(f"authors: {len(paper_ids)} papers, {len(missing)} without cached authors")
+for start in range(0, len(missing), 100):
+    batch = missing[start:start + 100]
+    found = fetch_authors(batch)
+    for paper_id in batch:
+        authors[paper_id] = found.get(paper_id, [])
+    authors_file.write_text(json.dumps(authors))
+    print(f"  authors fetched for {start + len(batch)} of {len(missing)} papers")

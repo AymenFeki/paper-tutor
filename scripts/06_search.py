@@ -4,7 +4,7 @@ from pgvector.psycopg import register_vector
 
 from paper_tutor.corpus import load_config
 from paper_tutor.db import connect
-from paper_tutor.embed import active_model, load_model, encode_query
+from paper_tutor.embed import active_model, encode_query, load_model
 
 SEARCH = """
     SELECT p.title, p.year, p.venue, t.area,

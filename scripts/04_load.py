@@ -2,8 +2,13 @@ import json
 from pathlib import Path
 
 from paper_tutor.corpus import (
-    load_config, get_source, venue_lists, rebuild_abstract, passes_rules,
-    normalize_title, record_quality,
+    get_source,
+    load_config,
+    normalize_title,
+    passes_rules,
+    rebuild_abstract,
+    record_quality,
+    venue_lists,
 )
 from paper_tutor.db import connect
 

@@ -22,8 +22,8 @@ POOL_DEPTH = 5
 config = load_config()
 model_keys = [key for key in config["embeddings"]["models"]
               if Path(f"eval/results/{key}.json").exists()]
-results = {key: json.load(open(f"eval/results/{key}.json")) for key in model_keys}
-judgments = yaml.safe_load(open("eval/judgments.yaml"))
+results = {key: json.loads(Path(f"eval/results/{key}.json").read_text()) for key in model_keys}
+judgments = yaml.safe_load(Path("eval/judgments.yaml").read_text())
 
 judged = defaultdict(dict)  # question -> paper_id -> relevant
 for j in judgments:

@@ -2,7 +2,7 @@ import sys
 
 from paper_tutor.corpus import load_config
 from paper_tutor.embed import active_model, load_model
-from paper_tutor.rag import retrieve, format_context, build_chain
+from paper_tutor.rag import build_chain, format_context, retrieve
 
 question = " ".join(sys.argv[1:])
 if not question:

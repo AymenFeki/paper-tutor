@@ -21,19 +21,19 @@ class TutorState(TypedDict):
 
 REWRITE = ChatPromptTemplate.from_messages([
     ("system",
-     "Rewrite the user's last message as a short standalone search query for a "
-     "database of research papers. Use the conversation to resolve words like "
-     "'it' or 'that method'. Return only the query, nothing else."),
+     ("Rewrite the user's last message as a short standalone search query for a "
+      "database of research papers. Use the conversation to resolve words like "
+      "'it' or 'that method'. Return only the query, nothing else.")),
     MessagesPlaceholder("messages"),
 ])
 
 ANSWER = ChatPromptTemplate.from_messages([
     ("system",
-     "You are a tutor for statistics and machine learning. Answer the user's last "
-     "message using ONLY the numbered sources below and the conversation so far. "
-     "Cite sources as [n]. If the sources do not answer it, say so. Do not add "
-     "facts that are not in the sources, such as author names. Keep it to at most "
-     "two paragraphs.\n\nSources:\n{context}"),
+     ("You are a tutor for statistics and machine learning. Answer the user's last "
+      "message using ONLY the numbered sources below and the conversation so far. "
+      "Cite sources as [n]. If the sources do not answer it, say so. Do not add "
+      "facts that are not in the sources, such as author names. Keep it to at most "
+      "two paragraphs.\n\nSources:\n{context}")),
     MessagesPlaceholder("messages"),
 ])
 

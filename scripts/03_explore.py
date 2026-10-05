@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from paper_tutor.corpus import load_config, venue_lists, check_rules
+from paper_tutor.corpus import check_rules, load_config, venue_lists
 
 config = load_config()
 settings = config["settings"]

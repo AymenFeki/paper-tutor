@@ -1,8 +1,9 @@
 """Config loading and credibility rules shared by all scripts."""
 
+import re
+
 import yaml
 
-import re
 
 def load_config(path="config/syllabus.yaml"):
     with open(path) as f:

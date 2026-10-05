@@ -1,7 +1,8 @@
 import os
-from dotenv import load_dotenv
+
 import pyalex
 import yaml
+from dotenv import load_dotenv
 from pyalex import Works
 
 load_dotenv()

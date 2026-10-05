@@ -5,6 +5,7 @@ import os
 import psycopg
 from dotenv import load_dotenv
 
+
 def connect():
     load_dotenv()
     return psycopg.connect(

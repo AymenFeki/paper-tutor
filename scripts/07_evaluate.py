@@ -14,7 +14,7 @@ from pgvector.psycopg import register_vector
 
 from paper_tutor.corpus import load_config
 from paper_tutor.db import connect
-from paper_tutor.embed import active_model, load_model, encode_query
+from paper_tutor.embed import active_model, encode_query, load_model
 from paper_tutor.evaluation import HITS_AT, first_relevant_rank, metrics, wilson_interval
 
 TOP_K = 10
@@ -32,7 +32,7 @@ SEARCH = """
 
 config = load_config()
 model_key, model_cfg = active_model(config)
-questions = yaml.safe_load(open("eval/questions.yaml"))
+questions = yaml.safe_load(Path("eval/questions.yaml").read_text())
 
 model = load_model(model_cfg)
 

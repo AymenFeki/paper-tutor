@@ -1,6 +1,7 @@
 # paper-tutor
 
 ![CI](https://github.com/AymenFeki/paper-tutor/actions/workflows/ci.yml/badge.svg)
+
 paper-tutor is a study assistant that answers questions from a curated database of
 research papers instead of from the open web. It downloads papers from
 [OpenAlex](https://openalex.org), keeps only those that pass a set of credibility rules
@@ -11,6 +12,8 @@ AI system over its own documents: a data pipeline, a database, an HTTP API, a ch
 a tool for an AI assistant, and an evaluation of retrieval quality. The current corpus
 has 7,168 papers in statistics, econometrics, machine learning, deep learning,
 economics, finance and cloud infrastructure.
+
+**Stack:** Python · PostgreSQL + pgvector · FastAPI · LangChain · LangGraph · MCP · Ollama · Streamlit · Docker · GitHub Actions
 
 ## Architecture
 

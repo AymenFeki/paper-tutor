@@ -35,7 +35,7 @@ df = pd.DataFrame(rows)
 print("papers, columns:", df.shape)
 print("duplicate ids:", df["id"].duplicated().sum())
 
-rule_cols = ["bad_type", "no_abstract", "not_english", "retracted", "not_listed"]
+rule_cols = ["bad_type", "no_abstract", "short_abstract", "not_english", "retracted", "not_listed"]
 df["kept"] = ~df[rule_cols].any(axis=1)
 
 print("\nShare of papers breaking each rule, per area:")
@@ -46,7 +46,7 @@ dropped = df[df["bad_type"]]
 print("\nDropped types per area:")
 print(pd.crosstab(dropped["type"], dropped["area"]))
 
-other_rules = ["bad_type", "no_abstract", "not_english", "retracted"]
+other_rules = ["bad_type", "no_abstract", "short_abstract", "not_english", "retracted"]
 df["only_venue"] = df["not_listed"] & ~df[other_rules].any(axis=1)
 print("\nShare of papers failing only the venue rule, per area:")
 print(df.groupby("area")["only_venue"].mean().round(2))

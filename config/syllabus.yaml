@@ -7,10 +7,10 @@ settings:
   papers_per_topic: 200          # cap per OpenAlex topic while exploring
   language: en
   keep_types: [article, review, preprint, conference-paper]
-  require_abstract: true
-  exclude_retracted: true
+  min_abstract_words: 30         # shorter "abstracts" are mostly citation strings; 0 turns the rule off
   venue_lists: [cwts-core]       # peer-reviewed papers must come from a listed journal
   venue_exempt_types: [preprint, conference-paper]   # no journal-list requirement for these types
+  dedup_year_window: 3           # same title within 3 years = one paper (0 = same year only, the old rule)
   recent_years: 2                # newer papers are labelled "recent" instead of ranked by citations
   selections: [random, top_cited]   # random: for measuring rules; top_cited: for learning
 

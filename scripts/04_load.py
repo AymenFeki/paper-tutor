@@ -2,12 +2,11 @@ import json
 from pathlib import Path
 
 from paper_tutor.corpus import (
+    deduplicate,
     get_source,
     load_config,
-    normalize_title,
     passes_rules,
     rebuild_abstract,
-    record_quality,
     venue_lists,
 )
 from paper_tutor.db import connect
@@ -27,15 +26,18 @@ UPSERT_PAPER = """
         venue_lists = EXCLUDED.venue_lists, oa_url = EXCLUDED.oa_url, loaded_at = now()
 """
 
+# Papers that no longer pass the rules or were merged as duplicates (embeddings first: they point to papers)
+DELETE_EMBEDDINGS = "DELETE FROM embeddings WHERE NOT (paper_id = ANY(%s))"
+DELETE_PAPERS = "DELETE FROM papers WHERE NOT (id = ANY(%s))"
+
 config = load_config()
 settings = config["settings"]
 raw_dir = Path("data/raw")
 
-topics = {}  # topic_id -> (name, area)
-best = {}    # (normalised title, year) -> (paper, topic_id)
-seen = 0
+topics = {}   # topic_id -> (name, area)
+records = []  # (paper, topic_id) for every record that passes the rules
 
-# Keep the best record per (title, year)
+# 1. Read: apply the credibility rules
 for selection in settings["selections"]:
     for area_name, area in config["areas"].items():
         if not area["active"]:
@@ -47,21 +49,25 @@ for selection in settings["selections"]:
                 topics[topic_id] = (papers[0]["primary_topic"]["display_name"], area_name)
 
             for paper in papers:
-                if not passes_rules(paper, settings):
-                    continue
-                seen += 1
-                key = (normalize_title(paper["title"]), paper["publication_year"])
-                if key not in best or record_quality(paper) > record_quality(best[key][0]):
-                    best[key] = (paper, topic_id)
+                if passes_rules(paper, settings):
+                    records.append((paper, topic_id))
 
-print(f"{seen} kept records, {len(best)} unique papers, {seen - len(best)} duplicates removed")
+# 2. Keep the best record per paper (same title, within the year window)
+best, merged = deduplicate(records, settings["dedup_year_window"])
+cross_year = [(kept, dropped) for kept, dropped in merged
+              if kept["publication_year"] != dropped["publication_year"]]
+print(f"{len(records)} kept records, {len(best)} unique papers, {len(merged)} duplicate papers merged "
+      f"({len(cross_year)} across years)")
+for kept, dropped in cross_year[:10]:
+    print(f"  {kept['title'][:70]!r}: kept {kept['publication_year']} {kept['type']}, "
+          f"dropped {dropped['publication_year']} {dropped['type']}")
 
-# 2. Write: topics first, then the unique papers
+# 3. Write: topics first, then the unique papers, then remove papers that are no longer kept
 with connect() as conn, conn.cursor() as cur:
     for topic_id, (name, area) in topics.items():
         cur.execute(UPSERT_TOPIC, (topic_id, name, area))
 
-    for paper, topic_id in best.values():
+    for paper, topic_id in best:
         source = get_source(paper)
         oa = paper.get("best_oa_location") or {}
         cur.execute(UPSERT_PAPER, (
@@ -79,5 +85,11 @@ with connect() as conn, conn.cursor() as cur:
             oa.get("pdf_url") or oa.get("landing_page_url"),
             topic_id,
         ))
+
+    kept_ids = [paper["id"].split("/")[-1] for paper, _ in best]
+    cur.execute(DELETE_EMBEDDINGS, (kept_ids,))
+    print(cur.rowcount, "embeddings of removed papers deleted")
+    cur.execute(DELETE_PAPERS, (kept_ids,))
+    print(cur.rowcount, "papers removed")
 
 print(len(best), "papers loaded")

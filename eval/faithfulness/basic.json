@@ -1,0 +1,239 @@
+{
+  "prompt": "basic",
+  "judge": "qwen3:8b",
+  "supported_citations": 23,
+  "citations": 29,
+  "supported_wilson_95": [
+    0.6161,
+    0.9015
+  ],
+  "cited_sentences": 28,
+  "sentences": 55,
+  "results": [
+    {
+      "question": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
+      "answer": "To approximate your Bayesian posterior more efficiently, you could consider optimization-based sampling methods such as randomize-then-optimize (RTO). These methods solve randomly perturbed optimization problems to draw samples from an approximate posterior distribution, which can be more computationally efficient than traditional sampling techniques, especially for large-scale problems [3]. By introducing a subspace strategy, RTO can scale linearly with the parameter dimension for problems with low-rank structures, making it a viable alternative for reducing computational time.\n\nAdditionally, if your model involves expensive simulations, you might explore lazy ABC or parallelization strategies to improve efficiency. Lazy ABC reduces computation time by abandoning unpromising simulations early, while parallelization strategies like look-ahead scheduling can optimize resource usage and reduce wall time [4][5]. However, if your goal is to directly turn the problem into an optimization, RTO and similar methods offer a promising approach to approximate the posterior without full sampling.",
+      "n_sentences": 6,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "These methods solve randomly perturbed optimization problems to draw samples from an approximate posterior distribution, which can be more computationally efficient than traditional sampling techniques, especially for large-scale problems [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "Lazy ABC reduces computation time by abandoning unpromising simulations early, while parallelization strategies like look-ahead scheduling can optimize resource usage and reduce wall time [4][5].",
+          "source": 4,
+          "supported": true
+        },
+        {
+          "sentence": "Lazy ABC reduces computation time by abandoning unpromising simulations early, while parallelization strategies like look-ahead scheduling can optimize resource usage and reduce wall time [4][5].",
+          "source": 5,
+          "supported": false
+        }
+      ]
+    },
+    {
+      "question": "I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?",
+      "answer": "To decide which predictors to keep in your regression model, consider using methods that address overfitting and improve predictive accuracy. Principal components regression or developing clinical indices from variable clusters can offer superior predictions, especially when dealing with a large number of variables and a relatively small sample size [1]. Additionally, the rule of thumb requiring 10 events per variable (EPV) in logistic and Cox regression may be relaxed in certain circumstances, particularly for sensitivity analyses [3]. \n\nYou might also explore variable selection techniques such as Gibbs sampling, which uses probabilistic considerations to identify promising subsets of predictors based on their higher posterior probability [5]. For more complex models, generalized additive models can provide flexibility in characterizing the effect of prognostic factors on medical outcomes [4]. If you are incorporating latent class predictors, consider a two-step approach: first determine the number of latent classes without predictors, then include the predictors with hypothesized direct covariate effects [2].",
+      "n_sentences": 6,
+      "n_cited_sentences": 5,
+      "checks": [
+        {
+          "sentence": "Principal components regression or developing clinical indices from variable clusters can offer superior predictions, especially when dealing with a large number of variables and a relatively small sample size [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, the rule of thumb requiring 10 events per variable (EPV) in logistic and Cox regression may be relaxed in certain circumstances, particularly for sensitivity analyses [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "You might also explore variable selection techniques such as Gibbs sampling, which uses probabilistic considerations to identify promising subsets of predictors based on their higher posterior probability [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "For more complex models, generalized additive models can provide flexibility in characterizing the effect of prognostic factors on medical outcomes [4].",
+          "source": 4,
+          "supported": true
+        },
+        {
+          "sentence": "If you are incorporating latent class predictors, consider a two-step approach: first determine the number of latent classes without predictors, then include the predictors with hypothesized direct covariate effects [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?",
+      "answer": "When dealing with pupils grouped in schools, you can choose between two approaches: giving each school its own dummy intercept or modelling school differences as draws from a distribution. The first approach, using dummy variables for each school, allows for unique intercepts per school but can become computationally intensive and may lead to overfitting if there are many schools [2]. The second approach, known as a multilevel or hierarchical model, assumes that school-level differences are drawn from a common distribution, which allows for more efficient estimation and can account for variability both within and between schools [2]. This method is particularly useful when you have a large number of schools or when you are interested in estimating the average effect across schools while also accounting for school-specific variation.",
+      "n_sentences": 4,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "The first approach, using dummy variables for each school, allows for unique intercepts per school but can become computationally intensive and may lead to overfitting if there are many schools [2].",
+          "source": 2,
+          "supported": false
+        },
+        {
+          "sentence": "The second approach, known as a multilevel or hierarchical model, assumes that school-level differences are drawn from a common distribution, which allows for more efficient estimation and can account for variability both within and between schools [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?",
+      "answer": "Combining many classifiers can help address the issue where your classifier ignores the rare class due to class imbalance. Ensemble methods, such as bagging and boosting, have been shown to improve performance on imbalanced datasets by incorporating techniques like random undersampling alongside these ensemble strategies [5]. These methods can enhance the model's ability to learn from the minority class, which is often overlooked by standard classifiers. Additionally, combining classifiers can lead to better generalization and more robust predictions, especially when dealing with rare classes [2].",
+      "n_sentences": 4,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "Ensemble methods, such as bagging and boosting, have been shown to improve performance on imbalanced datasets by incorporating techniques like random undersampling alongside these ensemble strategies [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, combining classifiers can lead to better generalization and more robust predictions, especially when dealing with rare classes [2].",
+          "source": 2,
+          "supported": false
+        }
+      ]
+    },
+    {
+      "question": "I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?",
+      "answer": "To artificially create more training examples from a small dataset of medical images and prevent overfitting, you can leverage semi-supervised learning techniques, such as those explored in Prototypical Networks [1]. These methods allow models to utilize unlabeled examples within the same episode, improving generalization by learning from both labeled and unlabeled data. Additionally, you could apply data augmentation techniques, such as flipping, rotating, or adjusting brightness, to generate variations of your existing images. Another approach is to use adversarial training, as demonstrated in AdvProp [5], which treats adversarial examples as additional data to improve robustness and reduce overfitting. This method can be particularly effective when combined with data augmentation.",
+      "n_sentences": 5,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "To artificially create more training examples from a small dataset of medical images and prevent overfitting, you can leverage semi-supervised learning techniques, such as those explored in Prototypical Networks [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Another approach is to use adversarial training, as demonstrated in AdvProp [5], which treats adversarial examples as additional data to improve robustness and reduce overfitting.",
+          "source": 5,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?",
+      "answer": "To obtain a trustworthy measure of a classifier's confidence, you can use methods that explicitly model uncertainty, such as evidential deep learning [3]. This approach treats predictions as subjective opinions and learns a function that collects the evidence leading to these opinions. By placing a Dirichlet distribution on the class probabilities, the model outputs a distribution over class probabilities, which provides a more nuanced measure of confidence than standard predicted probabilities. Additionally, you can calibrate the classifier's output to produce more accurate probability estimates, which can help mitigate overconfidence [4]. Calibration techniques can transform classifier scores into accurate multiclass probability estimates, improving the reliability of confidence measures.",
+      "n_sentences": 5,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "To obtain a trustworthy measure of a classifier's confidence, you can use methods that explicitly model uncertainty, such as evidential deep learning [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, you can calibrate the classifier's output to produce more accurate probability estimates, which can help mitigate overconfidence [4].",
+          "source": 4,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?",
+      "answer": "Problems at a country's lenders and a collapse of its currency often happen together because they are interconnected through a vicious spiral. Banking crises typically precede currency crises, as identified in the analysis of financial turmoil in Mexico and Asia [1]. When banks face difficulties, it can lead to a loss of confidence in the currency, exacerbating the crisis. Conversely, a currency collapse can deepen banking problems by causing liquidity issues and increasing the burden of foreign debt on banks [2]. \n\nThe banking crisis usually comes first, as financial liberalization and excessive risk-taking by banks often precede broader economic crises [1]. This is further supported by the German Twin Crisis of 1931, where political shocks and bank failures interacted to trigger a currency crisis [2]. Thus, while both issues can intensify each other, the initial trigger is often rooted in the banking sector.",
+      "n_sentences": 7,
+      "n_cited_sentences": 4,
+      "checks": [
+        {
+          "sentence": "Banking crises typically precede currency crises, as identified in the analysis of financial turmoil in Mexico and Asia [1].",
+          "source": 1,
+          "supported": false
+        },
+        {
+          "sentence": "Conversely, a currency collapse can deepen banking problems by causing liquidity issues and increasing the burden of foreign debt on banks [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "The banking crisis usually comes first, as financial liberalization and excessive risk-taking by banks often precede broader economic crises [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "This is further supported by the German Twin Crisis of 1931, where political shocks and bank failures interacted to trigger a currency crisis [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?",
+      "answer": "To model the joint behavior of two variables with non-normal distributions, you can consider using a bivariate distribution that allows for flexible marginal distributions while capturing their dependence structure. One approach is to use a one-parameter class of bivariate distributions constructed from given margins, which can accommodate non-normal marginals and provide a way to model their association [1]. This method includes the case of independent variables and boundary distributions, making it suitable for scenarios where the variables are not assumed to follow standard normal distributions. \n\nAdditionally, if the data involves time series or longitudinal observations with noise and irregular spacing, you might explore models like the Dynamical Gaussian Process Latent Variable Model, which is designed to handle high-dimensional and noisy data by learning low-dimensional representations [3]. For more complex dependencies, especially in cases involving mixed distributions or heavy-tailed variables, a stochastic model such as the one describing the joint distribution of (X,N), where X is the sum of N independent gamma random variables, could be appropriate [4]. These models provide a framework to capture how variables move together while respecting their individual distributional properties.",
+      "n_sentences": 6,
+      "n_cited_sentences": 3,
+      "checks": [
+        {
+          "sentence": "One approach is to use a one-parameter class of bivariate distributions constructed from given margins, which can accommodate non-normal marginals and provide a way to model their association [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, if the data involves time series or longitudinal observations with noise and irregular spacing, you might explore models like the Dynamical Gaussian Process Latent Variable Model, which is designed to handle high-dimensional and noisy data by learning low-dimensional representations [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "For more complex dependencies, especially in cases involving mixed distributions or heavy-tailed variables, a stochastic model such as the one describing the joint distribution of (X,N), where X is the sum of N independent gamma random variables, could be appropriate [4].",
+          "source": 4,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?",
+      "answer": "Many data science projects fail to transition into real products due to challenges in deployment, maintenance, and integration with existing systems. These challenges often stem from a lack of clear requirements, insufficient collaboration between data scientists and operational teams, and the complexity of scaling models in production environments [1]. Additionally, the absence of robust processes for monitoring, updating, and maintaining models can lead to performance degradation over time, further hindering their adoption [5].\n\nTo automate deploying and maintaining trained models, practices such as MLOps (Machine Learning Operations) are essential. MLOps integrates DevOps principles with machine learning to streamline the deployment, monitoring, and maintenance of models in production. It emphasizes collaboration between data scientists, software engineers, and operations teams, ensuring that models are reliable, scalable, and maintainable [5]. Tools like CI/CD pipelines, model registry systems, and monitoring platforms help automate these processes, enabling continuous integration and deployment of models while ensuring they meet performance and compliance standards [1].",
+      "n_sentences": 7,
+      "n_cited_sentences": 4,
+      "checks": [
+        {
+          "sentence": "These challenges often stem from a lack of clear requirements, insufficient collaboration between data scientists and operational teams, and the complexity of scaling models in production environments [1].",
+          "source": 1,
+          "supported": false
+        },
+        {
+          "sentence": "Additionally, the absence of robust processes for monitoring, updating, and maintaining models can lead to performance degradation over time, further hindering their adoption [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "It emphasizes collaboration between data scientists, software engineers, and operations teams, ensuring that models are reliable, scalable, and maintainable [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "Tools like CI/CD pipelines, model registry systems, and monitoring platforms help automate these processes, enabling continuous integration and deployment of models while ensuring they meet performance and compliance standards [1].",
+          "source": 1,
+          "supported": false
+        }
+      ]
+    },
+    {
+      "question": "Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?",
+      "answer": "Traditional relational databases face challenges in handling the large scale and high-concurrency demands of applications like social networks and search engines [1]. These systems require databases that can efficiently store and process big data with high-performance read and write operations, which relational databases are not always equipped to handle. To pick an alternative, consider the characteristics of NoSQL databases, which are designed for scalability and flexibility. NoSQL databases are classified based on the CAP theorem, which addresses consistency, availability, and partition tolerance [1]. When selecting a NoSQL database, evaluate factors such as data model, scalability, performance, and specific application requirements to find the best fit for your needs.",
+      "n_sentences": 5,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "Traditional relational databases face challenges in handling the large scale and high-concurrency demands of applications like social networks and search engines [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "NoSQL databases are classified based on the CAP theorem, which addresses consistency, availability, and partition tolerance [1].",
+          "source": 1,
+          "supported": true
+        }
+      ]
+    }
+  ]
+}

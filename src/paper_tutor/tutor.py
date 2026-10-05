@@ -27,16 +27,25 @@ REWRITE = ChatPromptTemplate.from_messages([
     MessagesPlaceholder("messages"),
 ])
 
-ANSWER = ChatPromptTemplate.from_messages([
-    ("system", (
+ANSWER_PROMPTS = {
+    "basic": (
         "You are a tutor for statistics and machine learning. Answer the user's last "
         "message using ONLY the numbered sources below and the conversation so far. "
         "Cite sources as [n]. If the sources do not answer it, say so. Do not add "
         "facts that are not in the sources. Name authors only if they are listed in "
         "the sources. Keep it to at most two paragraphs.\n\nSources:\n{context}"
-    )),
-    MessagesPlaceholder("messages"),
-])
+    ),
+    "strict": (
+        "You are a tutor for statistics and machine learning. Answer the user's last "
+        "message using ONLY the numbered sources below; use the conversation only to "
+        "understand the question. Every sentence must be supported by a source and end "
+        "with its citation, like [1] or [2][3]. Cite a source only for what its text "
+        "actually says. Do not use outside knowledge: no facts, examples, numbers or "
+        "names that are not in the sources. Name authors only if they are listed in the "
+        "sources. If the sources do not answer the question, say so instead of guessing. "
+        "Keep it to at most two paragraphs.\n\nSources:\n{context}"
+    ),
+}
 
 
 def route_papers(state):
@@ -52,6 +61,10 @@ def build_tutor(config, retrieve):
         temperature=llm_cfg["temperature"],
         reasoning=llm_cfg["reasoning"],
     )
+    answer_prompt = ChatPromptTemplate.from_messages([
+        ("system", ANSWER_PROMPTS[llm_cfg["prompt"]]),
+        MessagesPlaceholder("messages"),
+    ])
 
     def rewrite(state: TutorState):
         if len(state["messages"]) == 1:
@@ -67,7 +80,7 @@ def build_tutor(config, retrieve):
 
     def answer(state: TutorState):
         context = format_context(state["papers"])
-        response = (ANSWER | llm).invoke({
+        response = (answer_prompt | llm).invoke({
             "context": context,
             "messages": state["messages"],
         })

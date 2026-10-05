@@ -1,0 +1,244 @@
+{
+  "prompt": "strict",
+  "judge": "qwen3:8b",
+  "supported_citations": 24,
+  "citations": 30,
+  "supported_wilson_95": [
+    0.6269,
+    0.905
+  ],
+  "cited_sentences": 30,
+  "sentences": 53,
+  "results": [
+    {
+      "question": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
+      "answer": "Yes, you can approximate your Bayesian posterior more efficiently by transforming the problem into an optimization task. Optimization-based samplers, such as randomize-then-optimize (RTO), provide an efficient and parallellizable approach to solving large-scale Bayesian inverse problems by solving randomly perturbed optimization problems to draw samples from an approximate posterior distribution [3]. This method is particularly effective for problems with high- or infinite-dimensional parameters, as it can scale linearly with the parameter dimension when intrinsic low-rank structures are present [3].",
+      "n_sentences": 3,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "Optimization-based samplers, such as randomize-then-optimize (RTO), provide an efficient and parallellizable approach to solving large-scale Bayesian inverse problems by solving randomly perturbed optimization problems to draw samples from an approximate posterior distribution [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "This method is particularly effective for problems with high- or infinite-dimensional parameters, as it can scale linearly with the parameter dimension when intrinsic low-rank structures are present [3].",
+          "source": 3,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?",
+      "answer": "To decide which predictors to keep in your regression model, you can consider methods that address overfitting and identify important covariates. One approach is to use regression using principal components, which has been shown to offer superior predictions in test samples, especially when dealing with a large number of variables and a relatively small patient sample [1]. Alternatively, regression using clinical indices, which are developed from variable clusters, offers easily interpretable models that are nearly as good as principal components models [1]. Additionally, you might consider relaxing the rule of ten events per variable, as simulation studies suggest that this rule may be too conservative and that models can perform adequately with fewer events per predictor, particularly for sensitivity analyses [3]. For variable selection, methods such as Gibbs sampling can be used to identify promising subsets of predictors based on their higher posterior probability [5].",
+      "n_sentences": 5,
+      "n_cited_sentences": 4,
+      "checks": [
+        {
+          "sentence": "One approach is to use regression using principal components, which has been shown to offer superior predictions in test samples, especially when dealing with a large number of variables and a relatively small patient sample [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Alternatively, regression using clinical indices, which are developed from variable clusters, offers easily interpretable models that are nearly as good as principal components models [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, you might consider relaxing the rule of ten events per variable, as simulation studies suggest that this rule may be too conservative and that models can perform adequately with fewer events per predictor, particularly for sensitivity analyses [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "For variable selection, methods such as Gibbs sampling can be used to identify promising subsets of predictors based on their higher posterior probability [5].",
+          "source": 5,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?",
+      "answer": "When dealing with pupils grouped in schools, choosing between giving each school its own dummy intercept and modelling school differences as draws from a distribution involves understanding the implications of each approach. Giving each school its own dummy intercept allows for the estimation of unique intercepts for each school, which can capture specific school-level effects [2]. However, this approach may lead to overfitting if the number of schools is large, as it estimates a separate parameter for each school [2]. On the other hand, modelling school differences as draws from a distribution, such as a normal distribution, assumes that school-level effects are random and can be characterised by a mean and variance [2]. This approach is more parsimonious and allows for the estimation of school-level variability while reducing the number of parameters to estimate [2]. The choice between these two approaches depends on the research question and the assumptions about the nature of school-level differences. If the focus is on estimating specific school effects, then dummy intercepts may be more appropriate. If the focus is on estimating the variability across schools, then modelling school differences as draws from a distribution may be more suitable [2].",
+      "n_sentences": 8,
+      "n_cited_sentences": 5,
+      "checks": [
+        {
+          "sentence": "Giving each school its own dummy intercept allows for the estimation of unique intercepts for each school, which can capture specific school-level effects [2].",
+          "source": 2,
+          "supported": false
+        },
+        {
+          "sentence": "However, this approach may lead to overfitting if the number of schools is large, as it estimates a separate parameter for each school [2].",
+          "source": 2,
+          "supported": false
+        },
+        {
+          "sentence": "On the other hand, modelling school differences as draws from a distribution, such as a normal distribution, assumes that school-level effects are random and can be characterised by a mean and variance [2].",
+          "source": 2,
+          "supported": false
+        },
+        {
+          "sentence": "This approach is more parsimonious and allows for the estimation of school-level variability while reducing the number of parameters to estimate [2].",
+          "source": 2,
+          "supported": false
+        },
+        {
+          "sentence": "If the focus is on estimating the variability across schools, then modelling school differences as draws from a distribution may be more suitable [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?",
+      "answer": "Combining many classifiers can help address the issue where a classifier ignores the rare class due to class imbalance. Ensemble methods, such as bagging and boosting, have been shown to improve the performance of classifiers on imbalanced datasets by incorporating multiple models and leveraging their combined predictions [5]. Specifically, combining random undersampling techniques with bagging or boosting ensembles has demonstrated positive synergy, leading to better performance in handling class imbalance [5]. This approach can help ensure that the rare class is not overlooked during the learning process.",
+      "n_sentences": 4,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "Ensemble methods, such as bagging and boosting, have been shown to improve the performance of classifiers on imbalanced datasets by incorporating multiple models and leveraging their combined predictions [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "Specifically, combining random undersampling techniques with bagging or boosting ensembles has demonstrated positive synergy, leading to better performance in handling class imbalance [5].",
+          "source": 5,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?",
+      "answer": "To artificially create more training examples from a few hundred medical pictures and prevent overfitting, you can leverage semi-supervised learning techniques, such as those explored in Prototypical Networks [1]. These methods extend few-shot classification by incorporating unlabeled examples within each episode, allowing the model to learn from both labeled and unlabeled data. This approach can help the network generalize better by utilizing the unlabeled data to refine its predictions, similar to how semi-supervised algorithms operate. Additionally, you could consider data augmentation techniques, such as applying transformations to the existing images (e.g., rotations, flips, or brightness adjustments), which can artificially increase the size of your dataset without introducing new information [2]. However, if you are looking for a method that explicitly uses unlabeled data to improve performance, Prototypical Networks offer a promising direction [1].",
+      "n_sentences": 5,
+      "n_cited_sentences": 3,
+      "checks": [
+        {
+          "sentence": "To artificially create more training examples from a few hundred medical pictures and prevent overfitting, you can leverage semi-supervised learning techniques, such as those explored in Prototypical Networks [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, you could consider data augmentation techniques, such as applying transformations to the existing images (e.g., rotations, flips, or brightness adjustments), which can artificially increase the size of your dataset without introducing new information [2].",
+          "source": 2,
+          "supported": false
+        },
+        {
+          "sentence": "However, if you are looking for a method that explicitly uses unlabeled data to improve performance, Prototypical Networks offer a promising direction [1].",
+          "source": 1,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?",
+      "answer": "To obtain a trustworthy measure of how sure a classifier is about each prediction, you can use methods that quantify classification uncertainty. One approach is to employ evidential deep learning, which explicitly models prediction uncertainty using the theory of subjective logic. This method treats predictions of a neural net as subjective opinions and learns the function that collects the evidence leading to these opinions by a deterministic neural net from data. The resultant predictor for a multi-class classification problem is another Dirichlet distribution whose parameters are set by the continuous output of a neural net [3]. Additionally, transforming classifier scores into accurate multiclass probability estimates can help improve the reliability of predicted probabilities. This involves combining calibrated binary probability estimates to obtain accurate probability estimates for multiclass problems [4].",
+      "n_sentences": 6,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "The resultant predictor for a multi-class classification problem is another Dirichlet distribution whose parameters are set by the continuous output of a neural net [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "This involves combining calibrated binary probability estimates to obtain accurate probability estimates for multiclass problems [4].",
+          "source": 4,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?",
+      "answer": "Problems at a country's lenders and a collapse of its currency often happen together because a banking crisis can precede and exacerbate a currency crisis, creating a vicious spiral [1]. The banking crisis typically comes first, as it is often fueled by factors such as financial liberalization, excessive credit expansion, and capital inflows during a prolonged economic boom [1]. These conditions can lead to an overvalued currency, which, when the economy enters a recession, can trigger a currency crisis. The currency crisis then deepens the banking crisis by increasing the burden on banks, which may have significant foreign debt, leading to a run on banks and further destabilizing the financial system [2]. This interplay between banking and currency crises is further supported by the observation that banking panics can be triggered by the excessive risk-taking of \"too big to fail\" institutions, which can lead to a run on the currency and reinforce the banking crisis [2].",
+      "n_sentences": 5,
+      "n_cited_sentences": 4,
+      "checks": [
+        {
+          "sentence": "Problems at a country's lenders and a collapse of its currency often happen together because a banking crisis can precede and exacerbate a currency crisis, creating a vicious spiral [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "The banking crisis typically comes first, as it is often fueled by factors such as financial liberalization, excessive credit expansion, and capital inflows during a prolonged economic boom [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "The currency crisis then deepens the banking crisis by increasing the burden on banks, which may have significant foreign debt, leading to a run on banks and further destabilizing the financial system [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "This interplay between banking and currency crises is further supported by the observation that banking panics can be triggered by the excessive risk-taking of \"too big to fail\" institutions, which can lead to a run on the currency and reinforce the banking crisis [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?",
+      "answer": "To model the joint behaviour of two variables with non-normal distributions, you can use a bivariate distribution that allows for flexible marginal distributions while capturing their dependence structure. One approach is to construct a one-parameter class of bivariate distributions from given margins, which can accommodate non-normal marginals and provide a way to model their association [1]. This method is particularly useful when the goal is to estimate parameters that describe the relationship between the variables while maintaining the flexibility of non-normal marginals. Additionally, if the variables are part of a time series or longitudinal data, you might consider models like the Dynamical Gaussian Process Latent Variable Model, which can handle high-dimensional and noisy data by learning low-dimensional representations [3]. These models are especially suited for scenarios where the data is not equally spaced or complete, as they can incorporate systematic samples of unseen observations.",
+      "n_sentences": 5,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "One approach is to construct a one-parameter class of bivariate distributions from given margins, which can accommodate non-normal marginals and provide a way to model their association [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, if the variables are part of a time series or longitudinal data, you might consider models like the Dynamical Gaussian Process Latent Variable Model, which can handle high-dimensional and noisy data by learning low-dimensional representations [3].",
+          "source": 3,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?",
+      "answer": "Many data science projects fail to transition into real products due to challenges in deployment, maintenance, and integration with existing systems. These challenges often stem from a lack of clear requirements, insufficient collaboration between data scientists and operational teams, and the complexity of scaling models in production environments [1]. Additionally, the absence of robust data acquisition strategies can lead to biased or incomplete data, which negatively impacts model performance and reliability [1].\n\nTo automate deploying and maintaining trained models, practices such as MLOps (Machine Learning Operations) are essential. MLOps integrates machine learning development with DevOps practices, enabling teams to streamline the deployment, monitoring, and maintenance of models in production [5]. This approach involves roles such as data engineers, ML engineers, and DevOps engineers, who collaborate to ensure models are scalable, reliable, and maintainable. Tools like CI/CD pipelines, model registry systems, and monitoring platforms support these practices by automating testing, deployment, and performance tracking [5].",
+      "n_sentences": 7,
+      "n_cited_sentences": 4,
+      "checks": [
+        {
+          "sentence": "These challenges often stem from a lack of clear requirements, insufficient collaboration between data scientists and operational teams, and the complexity of scaling models in production environments [1].",
+          "source": 1,
+          "supported": false
+        },
+        {
+          "sentence": "Additionally, the absence of robust data acquisition strategies can lead to biased or incomplete data, which negatively impacts model performance and reliability [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "MLOps integrates machine learning development with DevOps practices, enabling teams to streamline the deployment, monitoring, and maintenance of models in production [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "Tools like CI/CD pipelines, model registry systems, and monitoring platforms support these practices by automating testing, deployment, and performance tracking [5].",
+          "source": 5,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?",
+      "answer": "Traditional relational databases face challenges in handling the large scale and high-concurrency demands of applications like social networks and search engines [1]. These systems require databases that can efficiently store and process big data with high-performance read and write operations, which relational databases struggle to provide in such environments. To pick an alternative, you should consider the characteristics of NoSQL databases, which are designed for scalability and flexibility. NoSQL databases are classified based on the CAP theorem, which outlines trade-offs between consistency, availability, and partition tolerance [1]. Therefore, selecting a NoSQL database depends on your specific requirements regarding these trade-offs.",
+      "n_sentences": 5,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "Traditional relational databases face challenges in handling the large scale and high-concurrency demands of applications like social networks and search engines [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "NoSQL databases are classified based on the CAP theorem, which outlines trade-offs between consistency, availability, and partition tolerance [1].",
+          "source": 1,
+          "supported": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
-"""Retrieval metrics shared by the evaluation scripts."""
+"""Retrieval and answer metrics shared by the evaluation scripts."""
 
 import math
+import re
 
 HITS_AT = (1, 5, 10)
 
@@ -50,3 +51,31 @@ def threshold_effect(questions, out_of_scope, min_score):
         "hits5_kept": hits5_kept,
         "out_of_scope_refused": out_of_scope_refused,
     }
+
+
+def split_sentences(text):
+    """Split an answer into sentences, keeping a trailing citation like "... model. [2]" with its sentence.
+
+    Rough on purpose: a new sentence starts after ".", "!", "?" or "]" followed by a space and a
+    capital letter, and every line is split separately. Bullet markers are removed.
+    """
+    sentences = []
+    for line in text.splitlines():
+        line = line.strip().lstrip("-*• ").strip()
+        sentences.extend(s for s in re.split(r"(?<=[.!?\]])\s+(?=[A-Z])", line) if s)
+    return sentences
+
+
+def citations(sentence):
+    """Source numbers cited in a sentence: "[1]", "[2][4]" and "[1, 3]" all count. In order, no repeats."""
+    numbers = []
+    for group in re.findall(r"\[(\d+(?:\s*,\s*\d+)*)\]", sentence):
+        for number in group.split(","):
+            if int(number) not in numbers:
+                numbers.append(int(number))
+    return numbers
+
+
+def strip_citations(sentence):
+    """The sentence without its citation brackets, for the judge."""
+    return re.sub(r"\s*\[\d+(?:\s*,\s*\d+)*\]", "", sentence).strip()

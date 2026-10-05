@@ -171,3 +171,4 @@ llm:
   temperature: 0        # 0 = always pick the most likely word
   reasoning: false
   top_k: 5
+  prompt: strict        # basic or strict (every sentence must be backed by a cited source); strict was slightly better, see README

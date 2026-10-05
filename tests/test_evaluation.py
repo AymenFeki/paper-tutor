@@ -2,7 +2,15 @@
 
 import pytest
 
-from paper_tutor.evaluation import first_relevant_rank, metrics, threshold_effect, wilson_interval
+from paper_tutor.evaluation import (
+    citations,
+    first_relevant_rank,
+    metrics,
+    split_sentences,
+    strip_citations,
+    threshold_effect,
+    wilson_interval,
+)
 
 # first_relevant_rank
 
@@ -106,3 +114,36 @@ def test_threshold_effect_zero_threshold_changes_nothing():
 def test_threshold_effect_hit_below_rank_5_is_not_counted():
     questions = [saved_question(6, [0.9] * 6)]
     assert threshold_effect(questions, [], 0.5)["hits5_kept"] == 0
+
+
+# split_sentences, citations and strip_citations (faithfulness check)
+
+
+def test_split_sentences_keeps_trailing_citation_with_its_sentence():
+    text = "Priors can be weakly informative. [1] Jeffreys priors are formal rules [2]."
+    assert split_sentences(text) == ["Priors can be weakly informative. [1]", "Jeffreys priors are formal rules [2]."]
+
+
+def test_split_sentences_lines_and_bullets():
+    text = "First point [1].\n\n- Second point [2].\n* Third point."
+    assert split_sentences(text) == ["First point [1].", "Second point [2].", "Third point."]
+
+
+def test_split_sentences_empty():
+    assert split_sentences("") == []
+
+
+def test_citations_formats():
+    assert citations("A claim [1].") == [1]
+    assert citations("A claim [2][4].") == [2, 4]
+    assert citations("A claim [1, 3].") == [1, 3]
+
+
+def test_citations_no_repeats_and_none():
+    assert citations("A [1] and again [1].") == [1]
+    assert citations("No citation here.") == []
+
+
+def test_strip_citations():
+    assert strip_citations("Priors matter [1][2].") == "Priors matter."
+    assert strip_citations("Priors matter [1, 2].") == "Priors matter."

@@ -41,13 +41,23 @@ FETCH_PAPERS = """
     WHERE p.id = ANY(%(ids)s)
 """
 
-SYSTEM = """You are a study tutor for a statistics and data science student.
+SYSTEM_PROMPTS = {
+    "basic": """You are a study tutor for a statistics and data science student.
 Answer the question using ONLY the numbered sources below.
 - Cite the sources you use with their numbers, like [1] or [2][4].
 - If the sources do not answer the question, say so plainly instead of guessing.
 - Do not add facts that are not in the sources, such as dates or results.
 - Name authors only if they are listed in the sources.
-- Explain clearly for a bachelor student, in at most two short paragraphs."""
+- Explain clearly for a bachelor student, in at most two short paragraphs.""",
+    "strict": """You are a study tutor for a statistics and data science student.
+Answer the question using ONLY the numbered sources below.
+- Every sentence must be supported by a source and end with its citation, like [1] or [2][4].
+- Cite a source only for what its text actually says.
+- Do not use outside knowledge: no facts, examples, numbers or dates that are not in the sources.
+- Name authors only if they are listed in the sources.
+- If the sources do not answer the question, say so plainly instead of guessing.
+- Explain clearly for a bachelor student, in at most two short paragraphs.""",
+}
 
 NO_PAPERS_MESSAGE = (
     "I found no papers in the database that are relevant enough to answer this, so I won't guess. "
@@ -146,7 +156,8 @@ def format_context(papers):
 
 def build_chain(llm_cfg):
     """Prompt -> local LLM -> plain text."""
-    prompt = ChatPromptTemplate.from_messages([("system", SYSTEM), ("human", HUMAN)])
+    system = SYSTEM_PROMPTS[llm_cfg["prompt"]]
+    prompt = ChatPromptTemplate.from_messages([("system", system), ("human", HUMAN)])
     llm = ChatOllama(
         model=llm_cfg["model"],
         temperature=llm_cfg["temperature"],

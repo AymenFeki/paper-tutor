@@ -1,6 +1,7 @@
 """Chat UI for the paper tutor. Talks to the FastAPI service over HTTP."""
 
 import os
+import uuid
 
 import httpx
 import streamlit as st
@@ -14,6 +15,9 @@ st.caption("Answers from a curated database of research papers, with sources.")
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+if "thread_id" not in st.session_state:
+    st.session_state.thread_id = str(uuid.uuid4())
+
 
 def show_sources(papers):
     """Show the papers an answer was based on, inside a collapsible box."""
@@ -24,11 +28,12 @@ def show_sources(papers):
             st.markdown(f"**[{i}]** [{paper['title']}]({url}) ({paper['year']}, {venue})")
 
 
-
 # Replay the conversation so far
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
+        if msg.get("query"):
+            st.caption(f"Searched for: {msg['query']}")
         if msg.get("papers"):
             show_sources(msg["papers"])
 
@@ -41,7 +46,11 @@ if question:
     with st.chat_message("assistant"):
         try:
             with st.spinner("Searching papers and writing an answer..."):
-                response = httpx.post(f"{API_URL}/ask", json={"question": question}, timeout=120)
+                response = httpx.post(
+                    f"{API_URL}/chat",
+                    json={"question": question, "thread_id": st.session_state.thread_id},
+                    timeout=120,
+                )
                 response.raise_for_status()
                 data = response.json()
         except httpx.HTTPError as error:
@@ -49,8 +58,14 @@ if question:
             st.stop()
 
         st.markdown(data["answer"])
+        st.caption(f"Searched for: {data['query']}")
         show_sources(data["papers"])
 
     st.session_state.messages.append(
-        {"role": "assistant", "content": data["answer"], "papers": data["papers"]}
+        {
+            "role": "assistant",
+            "content": data["answer"],
+            "query": data["query"],
+            "papers": data["papers"],
+        }
     )

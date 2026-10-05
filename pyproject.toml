@@ -9,6 +9,7 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.142.2",
+    "httpx>=0.28.1",
     "langchain-core>=1.6.6",
     "langchain-ollama>=1.1.0",
     "pandas>=3.0.6",
@@ -18,6 +19,7 @@ dependencies = [
     "python-dotenv>=1.2.4",
     "pyyaml>=6.0.3",
     "sentence-transformers>=6.1.0",
+    "streamlit>=1.65.0",
     "uvicorn>=0.54.0",
 ]
 

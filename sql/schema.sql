@@ -38,3 +38,10 @@
 
 -- First author names in author order (#23)
 ALTER TABLE papers ADD COLUMN IF NOT EXISTS authors TEXT[];
+
+-- Full-text search on title (weight A) and abstract (weight B), kept up to date by Postgres (#2)
+ALTER TABLE papers ADD COLUMN IF NOT EXISTS search_text tsvector GENERATED ALWAYS AS (
+    setweight(to_tsvector('english', coalesce(title, '')), 'A') ||
+    setweight(to_tsvector('english', coalesce(abstract, '')), 'B')
+) STORED;
+CREATE INDEX IF NOT EXISTS papers_search_text_idx ON papers USING GIN (search_text);

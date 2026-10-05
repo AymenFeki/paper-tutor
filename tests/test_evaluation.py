@@ -2,7 +2,7 @@
 
 import pytest
 
-from paper_tutor.evaluation import first_relevant_rank, metrics, wilson_interval
+from paper_tutor.evaluation import first_relevant_rank, metrics, threshold_effect, wilson_interval
 
 # first_relevant_rank
 
@@ -72,3 +72,37 @@ def test_wilson_interval_matches_saved_result():
 def test_wilson_interval_zero_successes_not_negative():
     low, _ = wilson_interval(0, 10)
     assert low >= 0
+
+
+# threshold_effect
+
+
+def saved_question(rank, scores):
+    """An in-scope result as saved by 07_evaluate.py: rank of the relevant paper and the scores."""
+    return {"rank": rank, "retrieved": [{"score": score} for score in scores]}
+
+
+def test_threshold_effect_small_example():
+    questions = [
+        saved_question(1, [0.8, 0.7]),   # hit at rank 1 with score 0.8
+        saved_question(2, [0.7, 0.6]),   # hit at rank 2 with score 0.6
+        saved_question(None, [0.5]),     # miss, best score 0.5
+    ]
+    out_of_scope = [{"top_score": 0.55}, {"top_score": 0.4}]
+    assert threshold_effect(questions, out_of_scope, 0.65) == {
+        "in_scope_refused": 1,       # only the question whose best score is 0.5
+        "hits5_kept": 1,             # the rank-2 hit has score 0.6 < 0.65
+        "out_of_scope_refused": 2,
+    }
+
+
+def test_threshold_effect_zero_threshold_changes_nothing():
+    questions = [saved_question(3, [0.9, 0.8, 0.7])]
+    assert threshold_effect(questions, [{"top_score": 0.1}], 0.0) == {
+        "in_scope_refused": 0, "hits5_kept": 1, "out_of_scope_refused": 0,
+    }
+
+
+def test_threshold_effect_hit_below_rank_5_is_not_counted():
+    questions = [saved_question(6, [0.9] * 6)]
+    assert threshold_effect(questions, [], 0.5)["hits5_kept"] == 0

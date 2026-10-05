@@ -1,13 +1,11 @@
 """Chat with the tutor in the terminal."""
 
 from paper_tutor.corpus import load_config
-from paper_tutor.embed import active_model, load_model
+from paper_tutor.rag import build_retriever
 from paper_tutor.tutor import build_tutor
 
 config = load_config()
-model_key, model_cfg = active_model(config)
-embed_model = load_model(model_cfg)
-tutor = build_tutor(config, embed_model, model_key, model_cfg)
+tutor = build_tutor(config, build_retriever(config))
 
 run_config = {"configurable": {"thread_id": "terminal"}}
 

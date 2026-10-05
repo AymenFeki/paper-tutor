@@ -1,6 +1,6 @@
-"""Embedding model helpers shared by all scripts."""
+"""Embedding and reranking model helpers shared by all scripts."""
 
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import CrossEncoder, SentenceTransformer
 
 
 def active_model(config):
@@ -23,3 +23,8 @@ def encode_query(model, model_cfg, text):
     if "query_prompt_name" in model_cfg:
         return model.encode(text, prompt_name=model_cfg["query_prompt_name"], normalize_embeddings=True)
     return model.encode(text, normalize_embeddings=True)
+
+
+def load_reranker(name):
+    """Cross-encoder that scores a (question, paper text) pair directly; slower but more precise."""
+    return CrossEncoder(name)

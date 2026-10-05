@@ -1,5 +1,5 @@
 {
-  "model": "bge-small",
+  "model": "bge-small+threshold",
   "model_name": "BAAI/bge-small-en-v1.5",
   "retrieval": {
     "hybrid": false,
@@ -7,7 +7,7 @@
     "rerank": false,
     "reranker_model": "BAAI/bge-reranker-base",
     "candidates": 30,
-    "threshold": false,
+    "threshold": true,
     "min_rerank_score": 0.0005,
     "min_similarity": 0.62
   },
@@ -74,7 +74,7 @@
       "n": 4
     }
   },
-  "out_of_scope_no_papers": 0,
+  "out_of_scope_no_papers": 9,
   "questions": [
     {
       "question": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
@@ -2455,55 +2455,6 @@
           "area": "statistics",
           "similarity": 0.6213,
           "score": 0.6213
-        },
-        {
-          "id": "W2092286368",
-          "title": "ON BAYESIAN ANALYSIS OF BINOMIAL RELIABILITY GROWTH",
-          "area": "statistics",
-          "similarity": 0.612,
-          "score": 0.612
-        },
-        {
-          "id": "W4404473841",
-          "title": "Potential Bias Models With Bayesian Shrinkage Priors for Dynamic Borrowing of Multiple Historical Control Data",
-          "area": "statistics",
-          "similarity": 0.6097,
-          "score": 0.6097
-        },
-        {
-          "id": "W1978136073",
-          "title": "Longitudinal Data Analysis for Discrete and Continuous Outcomes",
-          "area": "statistics",
-          "similarity": 0.6033,
-          "score": 0.6033
-        },
-        {
-          "id": "W1992958333",
-          "title": "Credit scoring with macroeconomic variables using survival analysis",
-          "area": "finance",
-          "similarity": 0.6017,
-          "score": 0.6017
-        },
-        {
-          "id": "W4211177544",
-          "title": "Bayes Factors",
-          "area": "statistics",
-          "similarity": 0.6008,
-          "score": 0.6008
-        },
-        {
-          "id": "W1536497620",
-          "title": "Prior distributions for variance parameters in hierarchical models (comment on article by Browne and Draper)",
-          "area": "statistics",
-          "similarity": 0.5963,
-          "score": 0.5963
-        },
-        {
-          "id": "W3094709160",
-          "title": "Comprehensible Counterfactual Explanation on Kolmogorov-Smirnov Test",
-          "area": "machine_learning",
-          "similarity": 0.5947,
-          "score": 0.5947
         }
       ]
     }
@@ -2511,63 +2462,63 @@
   "out_of_scope": [
     {
       "question": "How do I bake sourdough bread with a crispy crust?",
-      "n_papers": 10,
-      "top_score": 0.5254,
-      "top_title": "Transformer Decoders with MultiModal Regularization for Cross-Modal Food Retrieval"
+      "n_papers": 0,
+      "top_score": null,
+      "top_title": null
     },
     {
       "question": "Which football players were the most expensive transfers last summer?",
-      "n_papers": 10,
-      "top_score": 0.5408,
-      "top_title": "Maximum Likelihood Estimation of Discretely Sampled Diffusions: A Closed-form Approximation Approach"
+      "n_papers": 0,
+      "top_score": null,
+      "top_title": null
     },
     {
       "question": "Searched for",
-      "n_papers": 10,
+      "n_papers": 9,
       "top_score": 0.6604,
       "top_title": "LSAT Focus: EAGLE’s Embedded Entities Highlighting Technique for NTCIR-18 Lifelog-6"
     },
     {
       "question": "What is the weather forecast for Munich this weekend?",
-      "n_papers": 10,
-      "top_score": 0.5766,
-      "top_title": "Time-series forecasting with deep learning: a survey"
+      "n_papers": 0,
+      "top_score": null,
+      "top_title": null
     },
     {
       "question": "How do I fix a flat tyre on my bicycle?",
-      "n_papers": 10,
-      "top_score": 0.5464,
-      "top_title": "Experimental condition monitoring for the detection of misaligned and cracked shafts by order analysis"
+      "n_papers": 0,
+      "top_score": null,
+      "top_title": null
     },
     {
       "question": "What is a good recipe for spaghetti carbonara?",
-      "n_papers": 10,
-      "top_score": 0.4988,
-      "top_title": "A low-cost approach towards mixed task and data parallel scheduling"
+      "n_papers": 0,
+      "top_score": null,
+      "top_title": null
     },
     {
       "question": "How do I learn guitar chords as a beginner?",
-      "n_papers": 10,
-      "top_score": 0.535,
-      "top_title": "High-dimensional Mixed Graphical Models"
+      "n_papers": 0,
+      "top_score": null,
+      "top_title": null
     },
     {
       "question": "Who wrote the Harry Potter books?",
-      "n_papers": 10,
-      "top_score": 0.4649,
-      "top_title": "Spin Glass Theory and Beyond"
+      "n_papers": 0,
+      "top_score": null,
+      "top_title": null
     },
     {
       "question": "What are good exercises for lower back pain?",
-      "n_papers": 10,
-      "top_score": 0.5268,
-      "top_title": "Comparing Incremental Learning Methods for Human Activity Recognition"
+      "n_papers": 0,
+      "top_score": null,
+      "top_title": null
     },
     {
       "question": "How do I train my dog to stop barking?",
-      "n_papers": 10,
-      "top_score": 0.5372,
-      "top_title": "A Learning Algorithm for Continually Running Fully Recurrent Neural Networks"
+      "n_papers": 0,
+      "top_score": null,
+      "top_title": null
     }
   ]
 }

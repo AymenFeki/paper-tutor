@@ -1,6 +1,6 @@
 """Tests for the RAG helpers."""
 
-from paper_tutor.rag import format_context
+from paper_tutor.rag import apply_threshold, document_text, format_context, reciprocal_rank_fusion
 
 
 def test_format_context_numbers_papers():
@@ -44,3 +44,46 @@ def test_format_context_shows_authors():
 def test_format_context_no_authors_line_when_unknown():
     papers = [{"title": "Paper A", "year": 2020, "venue": "Journal X", "authors": [], "abstract": "Abstract A."}]
     assert "Authors" not in format_context(papers)
+
+
+# reciprocal_rank_fusion
+
+
+def test_rrf_paper_found_by_both_searches_wins():
+    vector = ["a", "b", "c"]
+    text = ["c", "d", "a"]
+    # a: 1/61 + 1/63, c: 1/63 + 1/61 (tie, a was seen first), b: 1/62, d: 1/62
+    assert reciprocal_rank_fusion([vector, text]) == ["a", "c", "b", "d"]
+
+
+def test_rrf_single_list_keeps_order():
+    assert reciprocal_rank_fusion([["x", "y", "z"]]) == ["x", "y", "z"]
+
+
+def test_rrf_scores_by_rank_not_by_list():
+    # "b" is 2nd and 2nd, "a" is 1st and missing: 2/(k+2) > 1/(k+1) for k=60
+    assert reciprocal_rank_fusion([["a", "b"], ["c", "b"]])[0] == "b"
+
+
+def test_rrf_empty():
+    assert reciprocal_rank_fusion([[], []]) == []
+
+
+# document_text and apply_threshold
+
+
+def test_document_text_joins_title_and_abstract():
+    assert document_text({"title": "Lasso", "abstract": "We propose..."}) == "Lasso. We propose..."
+
+
+def test_document_text_missing_abstract():
+    assert document_text({"title": "Lasso", "abstract": None}) == "Lasso"
+
+
+def test_apply_threshold_keeps_scores_at_or_above_minimum():
+    papers = [{"id": "a", "score": 0.8}, {"id": "b", "score": 0.62}, {"id": "c", "score": 0.5}]
+    assert [p["id"] for p in apply_threshold(papers, 0.62)] == ["a", "b"]
+
+
+def test_apply_threshold_can_return_nothing():
+    assert apply_threshold([{"id": "a", "score": 0.3}], 0.62) == []

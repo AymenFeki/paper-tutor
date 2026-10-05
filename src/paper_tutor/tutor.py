@@ -1,8 +1,8 @@
-"""LangGraph tutor: rewrite follow-ups, retrieve papers, answer with memory."""
+"""LangGraph tutor: rewrite follow-ups, retrieve papers, answer with memory or say no paper is relevant."""
 
 from typing import Annotated, TypedDict
 
-from langchain_core.messages import AnyMessage
+from langchain_core.messages import AIMessage, AnyMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_ollama import ChatOllama
@@ -10,7 +10,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 
-from paper_tutor.rag import format_context, retrieve
+from paper_tutor.rag import NO_PAPERS_MESSAGE, format_context
 
 
 class TutorState(TypedDict):
@@ -28,17 +28,24 @@ REWRITE = ChatPromptTemplate.from_messages([
 ])
 
 ANSWER = ChatPromptTemplate.from_messages([
-    ("system",
-     ("You are a tutor for statistics and machine learning. Answer the user's last "
-      "message using ONLY the numbered sources below and the conversation so far. "
-      "Cite sources as [n]. If the sources do not answer it, say so. Do not add "
-      "facts that are not in the sources. Name authors only if they are listed in "
-      "the sources. Keep it to at most two paragraphs.\n\nSources:\n{context}")),
+    ("system", (
+        "You are a tutor for statistics and machine learning. Answer the user's last "
+        "message using ONLY the numbered sources below and the conversation so far. "
+        "Cite sources as [n]. If the sources do not answer it, say so. Do not add "
+        "facts that are not in the sources. Name authors only if they are listed in "
+        "the sources. Keep it to at most two paragraphs.\n\nSources:\n{context}"
+    )),
     MessagesPlaceholder("messages"),
 ])
 
 
-def build_tutor(config, embed_model, model_key, model_cfg):
+def route_papers(state):
+    """No paper passed the relevance threshold -> say so instead of answering."""
+    return "answer" if state["papers"] else "no_papers"
+
+
+def build_tutor(config, retrieve):
+    """retrieve is the function returned by rag.build_retriever."""
     llm_cfg = config["llm"]
     llm = ChatOllama(
         model=llm_cfg["model"],
@@ -53,8 +60,10 @@ def build_tutor(config, embed_model, model_key, model_cfg):
         return {"query": query.strip()}
 
     def retrieve_papers(state: TutorState):
-        papers = retrieve(state["query"], embed_model, model_key, model_cfg, k=llm_cfg["top_k"])
-        return {"papers": papers}
+        return {"papers": retrieve(state["query"], k=llm_cfg["top_k"])}
+
+    def no_papers(state: TutorState):
+        return {"messages": [AIMessage(NO_PAPERS_MESSAGE)]}
 
     def answer(state: TutorState):
         context = format_context(state["papers"])
@@ -67,10 +76,12 @@ def build_tutor(config, embed_model, model_key, model_cfg):
     graph = StateGraph(TutorState)
     graph.add_node("rewrite", rewrite)
     graph.add_node("retrieve", retrieve_papers)
+    graph.add_node("no_papers", no_papers)
     graph.add_node("answer", answer)
     graph.add_edge(START, "rewrite")
     graph.add_edge("rewrite", "retrieve")
-    graph.add_edge("retrieve", "answer")
+    graph.add_conditional_edges("retrieve", route_papers)
+    graph.add_edge("no_papers", END)
     graph.add_edge("answer", END)
 
     return graph.compile(checkpointer=InMemorySaver())

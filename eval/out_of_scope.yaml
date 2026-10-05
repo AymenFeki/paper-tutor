@@ -1,0 +1,13 @@
+# Questions the paper database cannot answer. With the relevance threshold on, retrieval
+# should return no papers for these, so the tutor says so instead of answering.
+# Used by scripts/07_evaluate.py and to calibrate the threshold (scripts/12_threshold.py).
+- How do I bake sourdough bread with a crispy crust?
+- Which football players were the most expensive transfers last summer?
+- Searched for
+- What is the weather forecast for Munich this weekend?
+- How do I fix a flat tyre on my bicycle?
+- What is a good recipe for spaghetti carbonara?
+- How do I learn guitar chords as a beginner?
+- Who wrote the Harry Potter books?
+- What are good exercises for lower back pain?
+- How do I train my dog to stop barking?

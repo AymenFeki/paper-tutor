@@ -1,0 +1,2573 @@
+{
+  "model": "bge-small+hybrid",
+  "model_name": "BAAI/bge-small-en-v1.5",
+  "retrieval": {
+    "hybrid": true,
+    "rrf_k": 60,
+    "rerank": false,
+    "reranker_model": "BAAI/bge-reranker-base",
+    "candidates": 30,
+    "threshold": false,
+    "min_rerank_score": 0.0,
+    "min_similarity": 0.0
+  },
+  "top_k": 10,
+  "overall": {
+    "hit@1": 0.2,
+    "hit@5": 0.4,
+    "hit@10": 0.5,
+    "mrr": 0.2745767195767196,
+    "n": 30
+  },
+  "hit@5_wilson_95": [
+    0.2459,
+    0.5768
+  ],
+  "per_area": {
+    "statistics": {
+      "hit@1": 0.3333333333333333,
+      "hit@5": 0.5,
+      "hit@10": 0.6666666666666666,
+      "mrr": 0.40740740740740744,
+      "n": 6
+    },
+    "econometrics": {
+      "hit@1": 0.5,
+      "hit@5": 0.5,
+      "hit@10": 0.5,
+      "mrr": 0.5,
+      "n": 4
+    },
+    "machine_learning": {
+      "hit@1": 0.0,
+      "hit@5": 0.5,
+      "hit@10": 0.75,
+      "mrr": 0.21071428571428572,
+      "n": 4
+    },
+    "deep_learning": {
+      "hit@1": 0.0,
+      "hit@5": 0.0,
+      "hit@10": 0.25,
+      "mrr": 0.041666666666666664,
+      "n": 4
+    },
+    "economics": {
+      "hit@1": 0.25,
+      "hit@5": 0.75,
+      "hit@10": 0.75,
+      "mrr": 0.3958333333333333,
+      "n": 4
+    },
+    "finance": {
+      "hit@1": 0.0,
+      "hit@5": 0.0,
+      "hit@10": 0.0,
+      "mrr": 0.0,
+      "n": 4
+    },
+    "cloud_infrastructure": {
+      "hit@1": 0.25,
+      "hit@5": 0.5,
+      "hit@10": 0.5,
+      "mrr": 0.3,
+      "n": 4
+    }
+  },
+  "out_of_scope_no_papers": 0,
+  "questions": [
+    {
+      "question": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
+      "area": "statistics",
+      "relevant": [
+        "W2225156818"
+      ],
+      "paper_title": "Variational Inference: A Review for Statisticians",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2775216473",
+          "title": "On the Asymptotic Efficiency of Approximate Bayesian Computation Estimators",
+          "area": "statistics",
+          "similarity": 0.781,
+          "score": 0.781
+        },
+        {
+          "id": "W4400542370",
+          "title": "Computational Methods for Fast Bayesian Model Assessment via Calibrated Posterior p -values",
+          "area": "statistics",
+          "similarity": 0.7639,
+          "score": 0.7639
+        },
+        {
+          "id": "W2146620998",
+          "title": "Lack of confidence in approximate Bayesian computation model choice",
+          "area": "statistics",
+          "similarity": 0.7646,
+          "score": 0.7646
+        },
+        {
+          "id": "W1594863551",
+          "title": "Constructing Summary Statistics for Approximate Bayesian Computation: Semi-Automatic Approximate Bayesian Computation",
+          "area": "statistics",
+          "similarity": 0.7614,
+          "score": 0.7614
+        },
+        {
+          "id": "W2032616735",
+          "title": "Approximate Bayesian Computation",
+          "area": "statistics",
+          "similarity": 0.7628,
+          "score": 0.7628
+        },
+        {
+          "id": "W4367694390",
+          "title": "A Wall-time Minimizing Parallelization Strategy for Approximate Bayesian Computation",
+          "area": "statistics",
+          "similarity": 0.7748,
+          "score": 0.7748
+        },
+        {
+          "id": "W2067392831",
+          "title": "Adaptive approximate Bayesian computation",
+          "area": "statistics",
+          "similarity": 0.7928,
+          "score": 0.7928
+        },
+        {
+          "id": "W2109606780",
+          "title": "Efficient Approximate Bayesian Computation Coupled With Markov Chain Monte Carlo Without Likelihood",
+          "area": "statistics",
+          "similarity": 0.7636,
+          "score": 0.7636
+        },
+        {
+          "id": "W2123368367",
+          "title": "A Comparative Review of Dimension Reduction Methods in Approximate Bayesian Computation",
+          "area": "statistics",
+          "similarity": 0.7544,
+          "score": 0.7544
+        },
+        {
+          "id": "W2803889050",
+          "title": "Bayesian optimization for likelihood-free cosmological inference",
+          "area": "statistics",
+          "similarity": 0.7531,
+          "score": 0.7531
+        }
+      ]
+    },
+    {
+      "question": "A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?",
+      "area": "statistics",
+      "relevant": [
+        "W2416547532"
+      ],
+      "paper_title": "Interrupted time series regression for the evaluation of public health interventions: a tutorial",
+      "rank": 3,
+      "retrieved": [
+        {
+          "id": "W2101603115",
+          "title": "Estimating The Variance of Estimated Trends in Proportions When There is No Unique Subject Identifier",
+          "area": "statistics",
+          "similarity": 0.7037,
+          "score": 0.7037
+        },
+        {
+          "id": "W2096684396",
+          "title": "How Much Should We Trust Differences-In-Differences Estimates?",
+          "area": "econometrics",
+          "similarity": 0.6521,
+          "score": 0.6521
+        },
+        {
+          "id": "W2416547532",
+          "title": "Interrupted time series regression for the evaluation of public health interventions: a tutorial",
+          "area": "statistics",
+          "similarity": 0.7189,
+          "score": 0.7189
+        },
+        {
+          "id": "W2299360728",
+          "title": "A Flexible Modeling Approach Using Dirichlet Process Mixtures: Application to Multi-Level Railway Grade Crossing Crash Data",
+          "area": "statistics",
+          "similarity": 0.6054,
+          "score": 0.6054
+        },
+        {
+          "id": "W2006804758",
+          "title": "VALUING CORPORATE SECURITIES: SOME EFFECTS OF BOND INDENTURE PROVISIONS",
+          "area": "finance",
+          "similarity": 0.5493,
+          "score": 0.5493
+        },
+        {
+          "id": "W2077618811",
+          "title": "Permutation tests for joinpoint regression with applications to cancer rates",
+          "area": "statistics",
+          "similarity": 0.6819,
+          "score": 0.6819
+        },
+        {
+          "id": "W2137295153",
+          "title": "Non-Parametric Estimation of a Multivariate Probability Density",
+          "area": "statistics",
+          "similarity": 0.568,
+          "score": 0.568
+        },
+        {
+          "id": "W1966714873",
+          "title": "Proportional hazards tests and diagnostics based on weighted residuals",
+          "area": "statistics",
+          "similarity": 0.6798,
+          "score": 0.6798
+        },
+        {
+          "id": "W3122187992",
+          "title": "THE PERFORMANCE OF MUTUAL FUNDS IN THE PERIOD 1945–1964",
+          "area": "finance",
+          "similarity": 0.5182,
+          "score": 0.5182
+        },
+        {
+          "id": "W2950397612",
+          "title": "Modeling operational risk data reported above a time-varying threshold",
+          "area": "finance",
+          "similarity": 0.6761,
+          "score": 0.6761
+        }
+      ]
+    },
+    {
+      "question": "If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?",
+      "area": "statistics",
+      "relevant": [
+        "W2264767503"
+      ],
+      "paper_title": "Introduction to the Analysis of Survival Data in the Presence of Competing Risks",
+      "rank": 9,
+      "retrieved": [
+        {
+          "id": "W2153941399",
+          "title": "Estimating the Relative Risk in Cohort Studies and Clinical Trials of Common Outcomes",
+          "area": "statistics",
+          "similarity": 0.6986,
+          "score": 0.6986
+        },
+        {
+          "id": "W4312071226",
+          "title": "Dynamic predictions from longitudinal CD4 count measures and time to death of HIV/AIDS patients using a Bayesian joint model",
+          "area": "statistics",
+          "similarity": 0.6968,
+          "score": 0.6968
+        },
+        {
+          "id": "W2123664981",
+          "title": "Time‐Dependent ROC Curves for Censored Survival Data and a Diagnostic Marker",
+          "area": "statistics",
+          "similarity": 0.6869,
+          "score": 0.6869
+        },
+        {
+          "id": "W2127008730",
+          "title": "Estimation and extrapolation of optimal treatment and testing strategies",
+          "area": "statistics",
+          "similarity": 0.7207,
+          "score": 0.7207
+        },
+        {
+          "id": "W2144168223",
+          "title": "The use of propensity score methods with survival or time‐to‐event outcomes: reporting measures of effect similar to those used in randomized experiments",
+          "area": "statistics",
+          "similarity": 0.6867,
+          "score": 0.6867
+        },
+        {
+          "id": "W2053301665",
+          "title": "A case-cohort design for epidemiologic cohort studies and disease prevention trials",
+          "area": "statistics",
+          "similarity": 0.6931,
+          "score": 0.6931
+        },
+        {
+          "id": "W2115108310",
+          "title": "Survival Analysis Part I: Basic concepts and first analyses",
+          "area": "statistics",
+          "similarity": 0.7498,
+          "score": 0.7498
+        },
+        {
+          "id": "W4378803918",
+          "title": "Variance estimation of the risk difference when using propensity‐score matching and weighting with time‐to‐event outcomes",
+          "area": "statistics",
+          "similarity": 0.6655,
+          "score": 0.6655
+        },
+        {
+          "id": "W2264767503",
+          "title": "Introduction to the Analysis of Survival Data in the Presence of Competing Risks",
+          "area": "statistics",
+          "similarity": 0.7443,
+          "score": 0.7443
+        },
+        {
+          "id": "W2137295153",
+          "title": "Non-Parametric Estimation of a Multivariate Probability Density",
+          "area": "statistics",
+          "similarity": 0.5712,
+          "score": 0.5712
+        }
+      ]
+    },
+    {
+      "question": "I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?",
+      "area": "statistics",
+      "relevant": [
+        "W2782176193"
+      ],
+      "paper_title": "Variable selection – A review and recommendations for the practicing statistician",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2336254838",
+          "title": "Modeling Predictors of Latent Classes in Regression Mixture Models",
+          "area": "statistics",
+          "similarity": 0.7018,
+          "score": 0.7018
+        },
+        {
+          "id": "W1723129825",
+          "title": "Logistic Regression: A Brief Primer",
+          "area": "statistics",
+          "similarity": 0.6903,
+          "score": 0.6903
+        },
+        {
+          "id": "W4281717669",
+          "title": "The harm of class imbalance corrections for risk prediction models: illustration and simulation using logistic regression",
+          "area": "machine_learning",
+          "similarity": 0.6838,
+          "score": 0.6838
+        },
+        {
+          "id": "W2332603912",
+          "title": "Regression Modelling of Diagnostic Likelihood Ratios for the Evaluation of Medical Diagnostic Tests",
+          "area": "statistics",
+          "similarity": 0.6865,
+          "score": 0.6865
+        },
+        {
+          "id": "W2057964179",
+          "title": "Finite Mixture Modeling with Mixture Outcomes Using the EM Algorithm",
+          "area": "statistics",
+          "similarity": 0.676,
+          "score": 0.676
+        },
+        {
+          "id": "W2074703669",
+          "title": "Regression modelling strategies for improved prognostic prediction",
+          "area": "statistics",
+          "similarity": 0.7297,
+          "score": 0.7297
+        },
+        {
+          "id": "W1800261609",
+          "title": "Bayesian Model Averaging for Linear Regression Models",
+          "area": "statistics",
+          "similarity": 0.6439,
+          "score": 0.6439
+        },
+        {
+          "id": "W2130373985",
+          "title": "Relaxing the Rule of Ten Events per Variable in Logistic and Cox Regression",
+          "area": "statistics",
+          "similarity": 0.7017,
+          "score": 0.7017
+        },
+        {
+          "id": "W2157355630",
+          "title": "Generalized additive models for medical research",
+          "area": "statistics",
+          "similarity": 0.7008,
+          "score": 0.7008
+        },
+        {
+          "id": "W2796901959",
+          "title": "Applied Linear Regression Models",
+          "area": "statistics",
+          "similarity": 0.628,
+          "score": 0.628
+        }
+      ]
+    },
+    {
+      "question": "How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?",
+      "area": "econometrics",
+      "relevant": [
+        "W3123200913"
+      ],
+      "paper_title": "How to do Xtabond2: An Introduction to Difference and System GMM in Stata",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2171177579",
+          "title": "Panel Data Discrete Choice Models with Lagged Dependent Variables",
+          "area": "econometrics",
+          "similarity": 0.7311,
+          "score": 0.7311
+        },
+        {
+          "id": "W2083126399",
+          "title": "Pseudo Maximum Likelihood Methods: Applications to Poisson Models",
+          "area": "econometrics",
+          "similarity": 0.7313,
+          "score": 0.7313
+        },
+        {
+          "id": "W2047905873",
+          "title": "Econometric models based on count data. Comparisons and applications of some estimators and tests",
+          "area": "econometrics",
+          "similarity": 0.7393,
+          "score": 0.7393
+        },
+        {
+          "id": "W1989773174",
+          "title": "Using Heteroscedasticity to Identify and Estimate Mismeasured and Endogenous Regressor Models",
+          "area": "statistics",
+          "similarity": 0.7418,
+          "score": 0.7418
+        },
+        {
+          "id": "W2127882594",
+          "title": "INSTRUMENTAL VARIABLE ESTIMATION OF A THRESHOLD MODEL",
+          "area": "econometrics",
+          "similarity": 0.7473,
+          "score": 0.7473
+        },
+        {
+          "id": "W1964450723",
+          "title": "Simple solutions to the initial conditions problem in dynamic, nonlinear panel data models with unobserved heterogeneity",
+          "area": "econometrics",
+          "similarity": 0.7282,
+          "score": 0.7282
+        },
+        {
+          "id": "W1966980690",
+          "title": "Symmetrically Normalized Instrumental-Variable Estimation Using Panel Data",
+          "area": "econometrics",
+          "similarity": 0.7225,
+          "score": 0.7225
+        },
+        {
+          "id": "W4232505725",
+          "title": "Plausibly Exogenous",
+          "area": "statistics",
+          "similarity": 0.754,
+          "score": 0.754
+        },
+        {
+          "id": "W2969476445",
+          "title": "All Models are Wrong, but Many are Useful: Learning a Variable's Importance by Studying an Entire Class of Prediction Models Simultaneously",
+          "area": "machine_learning",
+          "similarity": 0.6663,
+          "score": 0.6663
+        },
+        {
+          "id": "W1988201884",
+          "title": "Handling Endogenous Regressors by Joint Estimation Using Copulas",
+          "area": "statistics",
+          "similarity": 0.747,
+          "score": 0.747
+        }
+      ]
+    },
+    {
+      "question": "When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?",
+      "area": "econometrics",
+      "relevant": [
+        "W2096684396"
+      ],
+      "paper_title": "How Much Should We Trust Differences-In-Differences Estimates?",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2096684396",
+          "title": "How Much Should We Trust Differences-In-Differences Estimates?",
+          "area": "econometrics",
+          "similarity": 0.6786,
+          "score": 0.6786
+        },
+        {
+          "id": "W2040503026",
+          "title": "Comparing Predictive Accuracy",
+          "area": "economics",
+          "similarity": 0.6807,
+          "score": 0.6807
+        },
+        {
+          "id": "W3125057276",
+          "title": "Synthetic Control Methods for Comparative Case Studies: Estimating the Effect of California’s Tobacco Control Program",
+          "area": "statistics",
+          "similarity": 0.6489,
+          "score": 0.6489
+        },
+        {
+          "id": "W3124280494",
+          "title": "The Long‐Run Stock Returns Following Bond Ratings Changes",
+          "area": "finance",
+          "similarity": 0.635,
+          "score": 0.635
+        },
+        {
+          "id": "W3122187992",
+          "title": "THE PERFORMANCE OF MUTUAL FUNDS IN THE PERIOD 1945–1964",
+          "area": "finance",
+          "similarity": 0.5699,
+          "score": 0.5699
+        },
+        {
+          "id": "W1973885323",
+          "title": "The Hazards of Hazard Ratios",
+          "area": "statistics",
+          "similarity": 0.5748,
+          "score": 0.5748
+        },
+        {
+          "id": "W2171642892",
+          "title": "How to develop a more accurate risk prediction model when there are few events",
+          "area": "statistics",
+          "similarity": 0.6644,
+          "score": 0.6644
+        },
+        {
+          "id": "W2006804758",
+          "title": "VALUING CORPORATE SECURITIES: SOME EFFECTS OF BOND INDENTURE PROVISIONS",
+          "area": "finance",
+          "similarity": 0.5786,
+          "score": 0.5786
+        },
+        {
+          "id": "W7165787828",
+          "title": "Using a Special Regressor to Identify Type I and Type II Error Probabilities, With an Illustrative Application to Miscarriages of Justice",
+          "area": "statistics",
+          "similarity": 0.6617,
+          "score": 0.6617
+        },
+        {
+          "id": "W4283387379",
+          "title": "How much should we trust staggered difference-in-differences estimates?",
+          "area": "statistics",
+          "similarity": 0.6591,
+          "score": 0.6591
+        }
+      ]
+    },
+    {
+      "question": "My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?",
+      "area": "econometrics",
+      "relevant": [
+        "W2138432709"
+      ],
+      "paper_title": "Should I Use Fixed or Random Effects?",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2033374689",
+          "title": "A Bayesian approach of joint models for clustered zero-inflated count data with skewness and measurement errors",
+          "area": "statistics",
+          "similarity": 0.6858,
+          "score": 0.6858
+        },
+        {
+          "id": "W4316469706",
+          "title": "A Comparison of Undersampling, Oversampling, and SMOTE Methods for Dealing with Imbalanced Classification in Educational Data Mining",
+          "area": "machine_learning",
+          "similarity": 0.7266,
+          "score": 0.7266
+        },
+        {
+          "id": "W2082738341",
+          "title": "The evolving role of Tier2s in ATLAS with the new Computing and Data Distribution model",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6361,
+          "score": 0.6361
+        },
+        {
+          "id": "W1974268958",
+          "title": "Multilevel modeling of complex survey data",
+          "area": "statistics",
+          "similarity": 0.7237,
+          "score": 0.7237
+        },
+        {
+          "id": "W4385221343",
+          "title": "Flexible Extension of the Lomax Distribution for Asymmetric Data under Different Failure Rate Profiles: Characteristics with Applications for Failure Modeling and Service Times for Aircraft Windshields",
+          "area": "statistics",
+          "similarity": 0.6209,
+          "score": 0.6209
+        },
+        {
+          "id": "W2114968414",
+          "title": "Learning When Training Data are Costly: The Effect of Class Distribution on Tree Induction",
+          "area": "machine_learning",
+          "similarity": 0.7167,
+          "score": 0.7167
+        },
+        {
+          "id": "W3122187992",
+          "title": "THE PERFORMANCE OF MUTUAL FUNDS IN THE PERIOD 1945–1964",
+          "area": "finance",
+          "similarity": 0.5585,
+          "score": 0.5585
+        },
+        {
+          "id": "W1990662707",
+          "title": "A comparison of chi-squared statistics for testing homogeneity of survey data:High School and Beyond survey",
+          "area": "statistics",
+          "similarity": 0.7145,
+          "score": 0.7145
+        },
+        {
+          "id": "W3024110832",
+          "title": "An optimal parameters-based geographical detector model enhances geographic characteristics of explanatory variables for spatial heterogeneity analysis: cases with different types of spatial data",
+          "area": "econometrics",
+          "similarity": 0.6637,
+          "score": 0.6637
+        },
+        {
+          "id": "W2035971761",
+          "title": "A Class of Bivariate Distributions",
+          "area": "statistics",
+          "similarity": 0.7111,
+          "score": 0.7111
+        }
+      ]
+    },
+    {
+      "question": "My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?",
+      "area": "econometrics",
+      "relevant": [
+        "W1977414200"
+      ],
+      "paper_title": "An Introduction to Spatial Econometrics",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W1977414200",
+          "title": "An Introduction to Spatial Econometrics",
+          "area": "econometrics",
+          "similarity": 0.7386,
+          "score": 0.7386
+        },
+        {
+          "id": "W4308933245",
+          "title": "Detecting Dividing Lines in Turnout: Spatial Dependence and Heterogeneity in the 2012 US Presidential Election",
+          "area": "econometrics",
+          "similarity": 0.7125,
+          "score": 0.7125
+        },
+        {
+          "id": "W2042812801",
+          "title": "DO SPATIAL EFFECFS REALLY MATTER IN REGRESSION ANALYSIS?",
+          "area": "econometrics",
+          "similarity": 0.7234,
+          "score": 0.7234
+        },
+        {
+          "id": "W2156339602",
+          "title": "Linear Regression Limit Theory for Nonstationary Panel Data",
+          "area": "economics",
+          "similarity": 0.693,
+          "score": 0.693
+        },
+        {
+          "id": "W3122187992",
+          "title": "THE PERFORMANCE OF MUTUAL FUNDS IN THE PERIOD 1945–1964",
+          "area": "finance",
+          "similarity": 0.5528,
+          "score": 0.5528
+        },
+        {
+          "id": "W2148169128",
+          "title": "Geographically Weighted Regression: A Natural Evolution of the Expansion Method for Spatial Data Analysis",
+          "area": "econometrics",
+          "similarity": 0.7379,
+          "score": 0.7379
+        },
+        {
+          "id": "W2162736562",
+          "title": "Influence of design on the rate of convergence to normality in L1 regression",
+          "area": "statistics",
+          "similarity": 0.6386,
+          "score": 0.6386
+        },
+        {
+          "id": "W2047120335",
+          "title": "Geographically Weighted Regression: A Method for Exploring Spatial Nonstationarity",
+          "area": "econometrics",
+          "similarity": 0.7297,
+          "score": 0.7297
+        },
+        {
+          "id": "W2028040032",
+          "title": "Propensity Score Estimation With Boosted Regression for Evaluating Causal Effects in Observational Studies.",
+          "area": "statistics",
+          "similarity": 0.6323,
+          "score": 0.6323
+        },
+        {
+          "id": "W2322183461",
+          "title": "Regression in Space and Time: A Statistical Essay",
+          "area": "econometrics",
+          "similarity": 0.7226,
+          "score": 0.7226
+        }
+      ]
+    },
+    {
+      "question": "How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?",
+      "area": "machine_learning",
+      "relevant": [
+        "W4403845965"
+      ],
+      "paper_title": "Practical guide to SHAP analysis: Explaining supervised machine learning model predictions in drug development",
+      "rank": 5,
+      "retrieved": [
+        {
+          "id": "W2981836045",
+          "title": "Black-Box vs. White-Box: Understanding Their Advantages and Weaknesses From a Practical Point of View",
+          "area": "machine_learning",
+          "similarity": 0.704,
+          "score": 0.704
+        },
+        {
+          "id": "W2597603852",
+          "title": "Understanding Black-box Predictions via Influence Functions",
+          "area": "deep_learning",
+          "similarity": 0.7107,
+          "score": 0.7107
+        },
+        {
+          "id": "W3201437744",
+          "title": "Opening the Black Box: The Promise and Limitations of Explainable Machine Learning in Cardiology",
+          "area": "machine_learning",
+          "similarity": 0.7274,
+          "score": 0.7274
+        },
+        {
+          "id": "W2346578521",
+          "title": "Not Just a Black Box: Learning Important Features Through Propagating Activation Differences",
+          "area": "machine_learning",
+          "similarity": 0.7313,
+          "score": 0.7313
+        },
+        {
+          "id": "W4403845965",
+          "title": "Practical guide to SHAP analysis: Explaining supervised machine learning model predictions in drug development",
+          "area": "machine_learning",
+          "similarity": 0.7194,
+          "score": 0.7194
+        },
+        {
+          "id": "W4386142022",
+          "title": "Interpreting Black-Box Models: A Review on Explainable Artificial Intelligence",
+          "area": "machine_learning",
+          "similarity": 0.6855,
+          "score": 0.6855
+        },
+        {
+          "id": "W2618851150",
+          "title": "A Unified Approach to Interpreting Model Predictions",
+          "area": "machine_learning",
+          "similarity": 0.7049,
+          "score": 0.7049
+        },
+        {
+          "id": "W2606462007",
+          "title": "Interpretable Explanations of Black Boxes by Meaningful Perturbation",
+          "area": "machine_learning",
+          "similarity": 0.7376,
+          "score": 0.7376
+        },
+        {
+          "id": "W4410159548",
+          "title": "Knowledge Distillation Decision Tree for Unravelling Black-Box Machine Learning Models",
+          "area": "machine_learning",
+          "similarity": 0.6519,
+          "score": 0.6519
+        },
+        {
+          "id": "W3126673261",
+          "title": "Comparison of feature importance measures as explanations for classification models",
+          "area": "machine_learning",
+          "similarity": 0.7241,
+          "score": 0.7241
+        }
+      ]
+    },
+    {
+      "question": "My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?",
+      "area": "machine_learning",
+      "relevant": [
+        "W2099454382"
+      ],
+      "paper_title": "A Review on Ensembles for the Class Imbalance Problem: Bagging-, Boosting-, and Hybrid-Based Approaches",
+      "rank": 2,
+      "retrieved": [
+        {
+          "id": "W2012942264",
+          "title": "Transforming classifier scores into accurate multiclass probability estimates",
+          "area": "machine_learning",
+          "similarity": 0.7634,
+          "score": 0.7634
+        },
+        {
+          "id": "W2099454382",
+          "title": "A Review on Ensembles for the Class Imbalance Problem: Bagging-, Boosting-, and Hybrid-Based Approaches",
+          "area": "machine_learning",
+          "similarity": 0.7416,
+          "score": 0.7416
+        },
+        {
+          "id": "W2149308034",
+          "title": "On the Class Imbalance Problem",
+          "area": "machine_learning",
+          "similarity": 0.7423,
+          "score": 0.7423
+        },
+        {
+          "id": "W2158275940",
+          "title": "On combining classifiers",
+          "area": "deep_learning",
+          "similarity": 0.7536,
+          "score": 0.7536
+        },
+        {
+          "id": "W2102734279",
+          "title": "Decision combination in multiple classifier systems",
+          "area": "machine_learning",
+          "similarity": 0.7305,
+          "score": 0.7305
+        },
+        {
+          "id": "W2114968414",
+          "title": "Learning When Training Data are Costly: The Effect of Class Distribution on Tree Induction",
+          "area": "machine_learning",
+          "similarity": 0.7243,
+          "score": 0.7243
+        },
+        {
+          "id": "W2104167780",
+          "title": "Exploratory Undersampling for Class-Imbalance Learning",
+          "area": "machine_learning",
+          "similarity": 0.7097,
+          "score": 0.7097
+        },
+        {
+          "id": "W2148143831",
+          "title": "SMOTE: Synthetic Minority Over-sampling Technique",
+          "area": "machine_learning",
+          "similarity": 0.7249,
+          "score": 0.7249
+        },
+        {
+          "id": "W2096945460",
+          "title": "RUSBoost: A Hybrid Approach to Alleviating Class Imbalance",
+          "area": "machine_learning",
+          "similarity": 0.7151,
+          "score": 0.7151
+        },
+        {
+          "id": "W2098021754",
+          "title": "Bayes Error Rate Estimation Using Classifier Ensembles",
+          "area": "deep_learning",
+          "similarity": 0.7125,
+          "score": 0.7125
+        }
+      ]
+    },
+    {
+      "question": "Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?",
+      "area": "machine_learning",
+      "relevant": [
+        "W3202428668"
+      ],
+      "paper_title": "Deep Neural Networks and Tabular Data: A Survey",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2087028773",
+          "title": "Using the general linear mixed model to analyse unbalanced repeated measures and longitudinal data",
+          "area": "statistics",
+          "similarity": 0.6805,
+          "score": 0.6805
+        },
+        {
+          "id": "W2952602694",
+          "title": "High-dimensional Mixed Graphical Models",
+          "area": "statistics",
+          "similarity": 0.6743,
+          "score": 0.6743
+        },
+        {
+          "id": "W2170210994",
+          "title": "Using SAS PROC MIXED to Fit Multilevel Models, Hierarchical Models, and Individual Growth Models",
+          "area": "statistics",
+          "similarity": 0.6646,
+          "score": 0.6646
+        },
+        {
+          "id": "W2084341220",
+          "title": "Statistical Modeling: The Two Cultures (with comments and a rejoinder by the author)",
+          "area": "statistics",
+          "similarity": 0.6982,
+          "score": 0.6982
+        },
+        {
+          "id": "W4387928520",
+          "title": "Localizing and Editing Knowledge in Text-to-Image Generative Models",
+          "area": "deep_learning",
+          "similarity": 0.6455,
+          "score": 0.6455
+        },
+        {
+          "id": "W2138432709",
+          "title": "Should I Use Fixed or Random Effects?",
+          "area": "econometrics",
+          "similarity": 0.6871,
+          "score": 0.6871
+        },
+        {
+          "id": "W4229042118",
+          "title": "CoCa: Contrastive Captioners are Image-Text Foundation Models",
+          "area": "deep_learning",
+          "similarity": 0.5868,
+          "score": 0.5868
+        },
+        {
+          "id": "W1993147091",
+          "title": "Nonlinear Mixed Effects Models for Repeated Measures Data",
+          "area": "statistics",
+          "similarity": 0.6028,
+          "score": 0.6028
+        },
+        {
+          "id": "W2514173981",
+          "title": "Analysis of k-Fold Cross-Validation over Hold-Out Validation on Colossal Datasets for Quality Classification",
+          "area": "machine_learning",
+          "similarity": 0.6793,
+          "score": 0.6793
+        },
+        {
+          "id": "W1991135683",
+          "title": "Bayesian estimation methods for categorical data with misclassifications",
+          "area": "statistics",
+          "similarity": 0.6784,
+          "score": 0.6784
+        }
+      ]
+    },
+    {
+      "question": "How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?",
+      "area": "machine_learning",
+      "relevant": [
+        "W2944364052"
+      ],
+      "paper_title": "Data-Driven Methods for Predictive Maintenance of Industrial Equipment: A Survey",
+      "rank": 7,
+      "retrieved": [
+        {
+          "id": "W3022604663",
+          "title": "Bearing Fault Detection and Diagnosis Using Case Western Reserve University Dataset With Deep Learning Approaches: A Review",
+          "area": "machine_learning",
+          "similarity": 0.7136,
+          "score": 0.7136
+        },
+        {
+          "id": "W4308536716",
+          "title": "SafeEngine: Fault Detection with Severity Prediction for Diesel Engine",
+          "area": "machine_learning",
+          "similarity": 0.7094,
+          "score": 0.7094
+        },
+        {
+          "id": "W4404031085",
+          "title": "Audio Based Machine Fault Diagnosis using Hybrid Feature Extraction and Ensemble Learning",
+          "area": "machine_learning",
+          "similarity": 0.702,
+          "score": 0.702
+        },
+        {
+          "id": "W2740570963",
+          "title": "Machine Health Monitoring Using Local Feature-Based Gated Recurrent Unit Networks",
+          "area": "machine_learning",
+          "similarity": 0.6908,
+          "score": 0.6908
+        },
+        {
+          "id": "W2887782657",
+          "title": "Highly Accurate Machine Fault Diagnosis Using Deep Transfer Learning",
+          "area": "machine_learning",
+          "similarity": 0.6936,
+          "score": 0.6936
+        },
+        {
+          "id": "W2558033953",
+          "title": "Forecasting time-to-failure of machine using hybrid Neuro-genetic algorithm – a case study in mining machinery",
+          "area": "machine_learning",
+          "similarity": 0.7018,
+          "score": 0.7018
+        },
+        {
+          "id": "W2944364052",
+          "title": "Data-Driven Methods for Predictive Maintenance of Industrial Equipment: A Survey",
+          "area": "machine_learning",
+          "similarity": 0.736,
+          "score": 0.736
+        },
+        {
+          "id": "W2795411881",
+          "title": "A Data-Driven Design for Fault Detection of Wind Turbines Using Random Forests and XGboost",
+          "area": "machine_learning",
+          "similarity": 0.6577,
+          "score": 0.6577
+        },
+        {
+          "id": "W2962862931",
+          "title": "On a Method to Measure Supervised Multiclass Model’s Interpretability: Application to Degradation Diagnosis (Short Paper)",
+          "area": "machine_learning",
+          "similarity": 0.7359,
+          "score": 0.7359
+        },
+        {
+          "id": "W2946111806",
+          "title": "Experimental condition monitoring for the detection of misaligned and cracked shafts by order analysis",
+          "area": "machine_learning",
+          "similarity": 0.7236,
+          "score": 0.7236
+        }
+      ]
+    },
+    {
+      "question": "I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?",
+      "area": "deep_learning",
+      "relevant": [
+        "W2954996726"
+      ],
+      "paper_title": "A survey on Image Data Augmentation for Deep Learning",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2808133870",
+          "title": "Scalable training of artificial neural networks with adaptive sparse connectivity inspired by network science",
+          "area": "deep_learning",
+          "similarity": 0.6912,
+          "score": 0.6912
+        },
+        {
+          "id": "W4417513677",
+          "title": "Deeply Explainable Artificial Neural Network",
+          "area": "machine_learning",
+          "similarity": 0.6919,
+          "score": 0.6919
+        },
+        {
+          "id": "W2119191234",
+          "title": "Training cost-sensitive neural networks with methods addressing the class imbalance problem",
+          "area": "machine_learning",
+          "similarity": 0.6944,
+          "score": 0.6944
+        },
+        {
+          "id": "W2787035179",
+          "title": "Meta-Learning for Semi-Supervised Few-Shot Classification",
+          "area": "deep_learning",
+          "similarity": 0.7509,
+          "score": 0.7509
+        },
+        {
+          "id": "W2163605009",
+          "title": "ImageNet classification with deep convolutional neural networks",
+          "area": "deep_learning",
+          "similarity": 0.721,
+          "score": 0.721
+        },
+        {
+          "id": "W2604117713",
+          "title": "Computing Nonvacuous Generalization Bounds for Deep (Stochastic) Neural Networks with Many More Parameters than Training Data",
+          "area": "deep_learning",
+          "similarity": 0.6169,
+          "score": 0.6169
+        },
+        {
+          "id": "W1821462560",
+          "title": "Distilling the Knowledge in a Neural Network",
+          "area": "deep_learning",
+          "similarity": 0.7161,
+          "score": 0.7161
+        },
+        {
+          "id": "W2942091739",
+          "title": "BadNets: Evaluating Backdooring Attacks on Deep Neural Networks",
+          "area": "deep_learning",
+          "similarity": 0.6404,
+          "score": 0.6404
+        },
+        {
+          "id": "W2601450892",
+          "title": "Prototypical Networks for Few-shot Learning",
+          "area": "deep_learning",
+          "similarity": 0.7085,
+          "score": 0.7085
+        },
+        {
+          "id": "W4226170891",
+          "title": "Feature visualization for convolutional neural network models trained on neuroimaging data",
+          "area": "machine_learning",
+          "similarity": 0.6445,
+          "score": 0.6445
+        }
+      ]
+    },
+    {
+      "question": "Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?",
+      "area": "deep_learning",
+      "relevant": [
+        "W2788388592"
+      ],
+      "paper_title": "Continual lifelong learning with neural networks: A review",
+      "rank": 6,
+      "retrieved": [
+        {
+          "id": "W2473930607",
+          "title": "Learning without Forgetting",
+          "area": "deep_learning",
+          "similarity": 0.7645,
+          "score": 0.7645
+        },
+        {
+          "id": "W2113839990",
+          "title": "An Empirical Investigation of Catastrophic Forgetting in Gradient-Based Neural Networks",
+          "area": "deep_learning",
+          "similarity": 0.7715,
+          "score": 0.7715
+        },
+        {
+          "id": "W3030364939",
+          "title": "A continual learning survey: Defying forgetting in classification tasks",
+          "area": "deep_learning",
+          "similarity": 0.7456,
+          "score": 0.7456
+        },
+        {
+          "id": "W2560647685",
+          "title": "Overcoming catastrophic forgetting in neural networks",
+          "area": "deep_learning",
+          "similarity": 0.7749,
+          "score": 0.7749
+        },
+        {
+          "id": "W4312238419",
+          "title": "Learning to Prompt for Continual Learning",
+          "area": "deep_learning",
+          "similarity": 0.724,
+          "score": 0.724
+        },
+        {
+          "id": "W2788388592",
+          "title": "Continual lifelong learning with neural networks: A review",
+          "area": "deep_learning",
+          "similarity": 0.735,
+          "score": 0.735
+        },
+        {
+          "id": "W2116522068",
+          "title": "Catastrophic Forgetting, Rehearsal and Pseudorehearsal",
+          "area": "deep_learning",
+          "similarity": 0.7715,
+          "score": 0.7715
+        },
+        {
+          "id": "W4362598145",
+          "title": "Reusing Deep Neural Network Models through Model Re-engineering",
+          "area": "deep_learning",
+          "similarity": 0.7084,
+          "score": 0.7084
+        },
+        {
+          "id": "W3004214282",
+          "title": "OvA-INN: Continual Learning with Invertible Neural Networks",
+          "area": "deep_learning",
+          "similarity": 0.6842,
+          "score": 0.6842
+        },
+        {
+          "id": "W3000074789",
+          "title": "Frosting Weights for Better Continual Training",
+          "area": "deep_learning",
+          "similarity": 0.7463,
+          "score": 0.7463
+        }
+      ]
+    },
+    {
+      "question": "How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?",
+      "area": "deep_learning",
+      "relevant": [
+        "W2962700793"
+      ],
+      "paper_title": "Threat of Adversarial Attacks on Deep Learning in Computer Vision: A Survey",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W1932198206",
+          "title": "Deep neural networks are easily fooled: High confidence predictions for unrecognizable images",
+          "area": "deep_learning",
+          "similarity": 0.7246,
+          "score": 0.7246
+        },
+        {
+          "id": "W2765384636",
+          "title": "Countering Adversarial Images using Input Transformations",
+          "area": "deep_learning",
+          "similarity": 0.7267,
+          "score": 0.7267
+        },
+        {
+          "id": "W2938470389",
+          "title": "Fooling Automated Surveillance Cameras: Adversarial Patches to Attack Person Detection",
+          "area": "deep_learning",
+          "similarity": 0.6944,
+          "score": 0.6944
+        },
+        {
+          "id": "W4396754377",
+          "title": "Category Alignment Mechanism for Few-Shot Image Classification",
+          "area": "deep_learning",
+          "similarity": 0.6896,
+          "score": 0.6896
+        },
+        {
+          "id": "W2560730294",
+          "title": "Making the V in VQA Matter: Elevating the Role of Image Understanding in Visual Question Answering",
+          "area": "deep_learning",
+          "similarity": 0.6397,
+          "score": 0.6397
+        },
+        {
+          "id": "W4226232092",
+          "title": "Segment and Complete: Defending Object Detectors against Adversarial Patch Attacks with Robust Patch Detection",
+          "area": "deep_learning",
+          "similarity": 0.6555,
+          "score": 0.6555
+        },
+        {
+          "id": "W2011376672",
+          "title": "Class imbalances versus small disjuncts",
+          "area": "machine_learning",
+          "similarity": 0.7235,
+          "score": 0.7235
+        },
+        {
+          "id": "W2606462007",
+          "title": "Interpretable Explanations of Black Boxes by Meaningful Perturbation",
+          "area": "machine_learning",
+          "similarity": 0.7229,
+          "score": 0.7229
+        },
+        {
+          "id": "W4392209816",
+          "title": "Vision Meets Language: Multimodal Transformers Elevating Predictive Power in Visual Question Answering",
+          "area": "deep_learning",
+          "similarity": 0.6229,
+          "score": 0.6229
+        },
+        {
+          "id": "W1787224781",
+          "title": "On Pixel-Wise Explanations for Non-Linear Classifier Decisions by Layer-Wise Relevance Propagation",
+          "area": "deep_learning",
+          "similarity": 0.7124,
+          "score": 0.7124
+        }
+      ]
+    },
+    {
+      "question": "How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?",
+      "area": "deep_learning",
+      "relevant": [
+        "W3183048323"
+      ],
+      "paper_title": "A survey of uncertainty in deep neural networks",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2098021754",
+          "title": "Bayes Error Rate Estimation Using Classifier Ensembles",
+          "area": "deep_learning",
+          "similarity": 0.7142,
+          "score": 0.7142
+        },
+        {
+          "id": "W2516809705",
+          "title": "“Why Should I Trust You?”: Explaining the Predictions of Any Classifier",
+          "area": "machine_learning",
+          "similarity": 0.7296,
+          "score": 0.7296
+        },
+        {
+          "id": "W2012942264",
+          "title": "Transforming classifier scores into accurate multiclass probability estimates",
+          "area": "machine_learning",
+          "similarity": 0.7187,
+          "score": 0.7187
+        },
+        {
+          "id": "W1990748933",
+          "title": "Measuring the Accuracy of Diagnostic Systems",
+          "area": "statistics",
+          "similarity": 0.6885,
+          "score": 0.6885
+        },
+        {
+          "id": "W7131061594",
+          "title": "Trustworthy AI for medical decisions: Adversarially robust and fair machine learning prediction for Parkinson’s disease",
+          "area": "deep_learning",
+          "similarity": 0.6054,
+          "score": 0.6054
+        },
+        {
+          "id": "W2101807845",
+          "title": "The Balanced Accuracy and Its Posterior Distribution",
+          "area": "machine_learning",
+          "similarity": 0.7277,
+          "score": 0.7277
+        },
+        {
+          "id": "W2139701068",
+          "title": "Probable networks and plausible predictions — a review of practical Bayesian methods for supervised neural networks",
+          "area": "statistics",
+          "similarity": 0.6381,
+          "score": 0.6381
+        },
+        {
+          "id": "W2806471870",
+          "title": "Evidential Deep Learning to Quantify Classification Uncertainty",
+          "area": "deep_learning",
+          "similarity": 0.7256,
+          "score": 0.7256
+        },
+        {
+          "id": "W1992563875",
+          "title": "SECURITY PRICES, RISK, AND MAXIMAL GAINS FROM DIVERSIFICATION*",
+          "area": "finance",
+          "similarity": 0.505,
+          "score": 0.505
+        },
+        {
+          "id": "W2338681524",
+          "title": "Changes of numéraire, changes of probability measure and option pricing",
+          "area": "finance",
+          "similarity": 0.5393,
+          "score": 0.5393
+        }
+      ]
+    },
+    {
+      "question": "Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?",
+      "area": "economics",
+      "relevant": [
+        "W2098317876"
+      ],
+      "paper_title": "Central Bank Communication and Monetary Policy: A Survey of Theory and Evidence",
+      "rank": 3,
+      "retrieved": [
+        {
+          "id": "W3021444882",
+          "title": "A Theory of the Term Structure of Interest Rates",
+          "area": "finance",
+          "similarity": 0.6553,
+          "score": 0.6553
+        },
+        {
+          "id": "W2943798158",
+          "title": "Analysing Indian G-Secs with a Predictive Approach",
+          "area": "economics",
+          "similarity": 0.6524,
+          "score": 0.6524
+        },
+        {
+          "id": "W2098317876",
+          "title": "Central Bank Communication and Monetary Policy: A Survey of Theory and Evidence",
+          "area": "economics",
+          "similarity": 0.6845,
+          "score": 0.6845
+        },
+        {
+          "id": "W1992563875",
+          "title": "SECURITY PRICES, RISK, AND MAXIMAL GAINS FROM DIVERSIFICATION*",
+          "area": "finance",
+          "similarity": 0.5453,
+          "score": 0.5453
+        },
+        {
+          "id": "W2138293190",
+          "title": "The Efficient Market Hypothesis and Its Critics",
+          "area": "finance",
+          "similarity": 0.6813,
+          "score": 0.6813
+        },
+        {
+          "id": "W2016031348",
+          "title": "Statistical Models of Bond Ratings: A Methodological Inquiry",
+          "area": "finance",
+          "similarity": 0.6412,
+          "score": 0.6412
+        },
+        {
+          "id": "W1663622626",
+          "title": "The Response of Interest Rates to US and UK Quantitative Easing",
+          "area": "finance",
+          "similarity": 0.6807,
+          "score": 0.6807
+        },
+        {
+          "id": "W2006804758",
+          "title": "VALUING CORPORATE SECURITIES: SOME EFFECTS OF BOND INDENTURE PROVISIONS",
+          "area": "finance",
+          "similarity": 0.5585,
+          "score": 0.5585
+        },
+        {
+          "id": "W3125252370",
+          "title": "Policy Regime Change Against Chronic Deflation? Policy Option Under a Long-term Liquidity Trap",
+          "area": "economics",
+          "similarity": 0.6763,
+          "score": 0.6763
+        },
+        {
+          "id": "W3137152181",
+          "title": "Decision making in intraday index options trading: A parametric approach",
+          "area": "finance",
+          "similarity": 0.6005,
+          "score": 0.6005
+        }
+      ]
+    },
+    {
+      "question": "How does a crash in one country's markets spread to other countries?",
+      "area": "economics",
+      "relevant": [
+        "W1974486301"
+      ],
+      "paper_title": "A Primer on Financial Contagion",
+      "rank": 4,
+      "retrieved": [
+        {
+          "id": "W2149785293",
+          "title": "A spillover analysis of shocks from US, UK and China on African financial markets",
+          "area": "finance",
+          "similarity": 0.7282,
+          "score": 0.7282
+        },
+        {
+          "id": "W3021709961",
+          "title": "No Contagion, Only Interdependence: Measuring Stock Market Comovements",
+          "area": "finance",
+          "similarity": 0.6978,
+          "score": 0.6978
+        },
+        {
+          "id": "W2153524550",
+          "title": "Subnational Bond Market Development: What Drives the Yield Spreads of M exican C ebures?",
+          "area": "finance",
+          "similarity": 0.7092,
+          "score": 0.7092
+        },
+        {
+          "id": "W1974486301",
+          "title": "A Primer on Financial Contagion",
+          "area": "economics",
+          "similarity": 0.7608,
+          "score": 0.7608
+        },
+        {
+          "id": "W2139400178",
+          "title": "Contagion: Understanding How It Spreads",
+          "area": "economics",
+          "similarity": 0.7225,
+          "score": 0.7225
+        },
+        {
+          "id": "W2158580072",
+          "title": "The Crash of ʼ87: Was It Expected? The Evidence from Options Markets",
+          "area": "finance",
+          "similarity": 0.6879,
+          "score": 0.6879
+        },
+        {
+          "id": "W3021107451",
+          "title": "What Segments Equity Markets?",
+          "area": "finance",
+          "similarity": 0.697,
+          "score": 0.697
+        },
+        {
+          "id": "W2228490130",
+          "title": "A New Risk Appetite Index and CDS spreads: Evidence from an Emerging Market",
+          "area": "finance",
+          "similarity": 0.6761,
+          "score": 0.6761
+        },
+        {
+          "id": "W2128180562",
+          "title": "CAPITAL FLOWS AND CAPITAL-MARKET CRISES: The Simple Economics of Sudden Stops",
+          "area": "economics",
+          "similarity": 0.736,
+          "score": 0.736
+        },
+        {
+          "id": "W1989930905",
+          "title": "One money, one market: the effect of common currencies on trade",
+          "area": "economics",
+          "similarity": 0.6668,
+          "score": 0.6668
+        }
+      ]
+    },
+    {
+      "question": "Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?",
+      "area": "economics",
+      "relevant": [
+        "W2112559425"
+      ],
+      "paper_title": "The Twin Crises: The Causes of Banking and Balance-of-Payments Problems",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2112559425",
+          "title": "The Twin Crises: The Causes of Banking and Balance-of-Payments Problems",
+          "area": "economics",
+          "similarity": 0.7761,
+          "score": 0.7761
+        },
+        {
+          "id": "W2159904091",
+          "title": "How to Evaluate the Solvency of an Indebted Nation",
+          "area": "economics",
+          "similarity": 0.6973,
+          "score": 0.6973
+        },
+        {
+          "id": "W3122997816",
+          "title": "The European Central Bank as Lender of Last Resort in the Government Bond Markets",
+          "area": "economics",
+          "similarity": 0.6791,
+          "score": 0.6791
+        },
+        {
+          "id": "W2126180267",
+          "title": "One Money for Europe? Lessons from the US Currency Union",
+          "area": "economics",
+          "similarity": 0.6386,
+          "score": 0.6386
+        },
+        {
+          "id": "W1523084741",
+          "title": "The German Twin Crisis of 1931",
+          "area": "economics",
+          "similarity": 0.754,
+          "score": 0.754
+        },
+        {
+          "id": "W1989930905",
+          "title": "One money, one market: the effect of common currencies on trade",
+          "area": "economics",
+          "similarity": 0.6379,
+          "score": 0.6379
+        },
+        {
+          "id": "W2046004231",
+          "title": "The European Sovereign Debt Crisis",
+          "area": "economics",
+          "similarity": 0.7367,
+          "score": 0.7367
+        },
+        {
+          "id": "W3122610053",
+          "title": "An Estimate of the Effect of Common Currencies on Trade and Income",
+          "area": "economics",
+          "similarity": 0.6071,
+          "score": 0.6071
+        },
+        {
+          "id": "W2081308040",
+          "title": "Sudden Stops in the Euro Area",
+          "area": "economics",
+          "similarity": 0.7325,
+          "score": 0.7325
+        },
+        {
+          "id": "W2907798246",
+          "title": "Exchange Arrangements Entering the Twenty-First Century: Which Anchor will Hold?*",
+          "area": "economics",
+          "similarity": 0.6581,
+          "score": 0.6581
+        }
+      ]
+    },
+    {
+      "question": "Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?",
+      "area": "economics",
+      "relevant": [
+        "W2104165247"
+      ],
+      "paper_title": "When Is the Government Spending Multiplier Large?",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2168008582",
+          "title": "The Relative Price of Services",
+          "area": "economics",
+          "similarity": 0.6844,
+          "score": 0.6844
+        },
+        {
+          "id": "W2127680685",
+          "title": "An Optimization-Based Econometric Framework for the Evaluation of Monetary Policy",
+          "area": "economics",
+          "similarity": 0.6629,
+          "score": 0.6629
+        },
+        {
+          "id": "W2923973045",
+          "title": "The pace of potential output growth in the South African economy",
+          "area": "economics",
+          "similarity": 0.6634,
+          "score": 0.6634
+        },
+        {
+          "id": "W3121786260",
+          "title": "Measuring the Output Responses to Fiscal Policy",
+          "area": "economics",
+          "similarity": 0.6885,
+          "score": 0.6885
+        },
+        {
+          "id": "W1992563875",
+          "title": "SECURITY PRICES, RISK, AND MAXIMAL GAINS FROM DIVERSIFICATION*",
+          "area": "finance",
+          "similarity": 0.5155,
+          "score": 0.5155
+        },
+        {
+          "id": "W1510048707",
+          "title": "On the Mark: A Theory of Floating Exchange Rates Based on Real Interest Differentials",
+          "area": "economics",
+          "similarity": 0.6164,
+          "score": 0.6164
+        },
+        {
+          "id": "W3121962419",
+          "title": "What are the effects of fiscal policy shocks?",
+          "area": "economics",
+          "similarity": 0.6794,
+          "score": 0.6794
+        },
+        {
+          "id": "W2152110580",
+          "title": "The Effects of Quantitative Easing on Interest Rates: Channels and Implications for Policy",
+          "area": "finance",
+          "similarity": 0.6711,
+          "score": 0.6711
+        },
+        {
+          "id": "W1975063543",
+          "title": "Zero Bound on Interest Rates and Optimal Monetary Policy",
+          "area": "economics",
+          "similarity": 0.621,
+          "score": 0.621
+        },
+        {
+          "id": "W2125534266",
+          "title": "Some International Evidence on Output-Inflation Tradeoffs.",
+          "area": "economics",
+          "similarity": 0.6698,
+          "score": 0.6698
+        }
+      ]
+    },
+    {
+      "question": "What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?",
+      "area": "finance",
+      "relevant": [
+        "W2118854883"
+      ],
+      "paper_title": "Forecasting Volatility in Financial Markets: A Review",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2166536772",
+          "title": "Do Stock Prices and Volatility Jump? Reconciling Evidence from Spot and Option Prices",
+          "area": "finance",
+          "similarity": 0.717,
+          "score": 0.717
+        },
+        {
+          "id": "W2157858527",
+          "title": "Option Pricing when the Variance Changes Randomly: Theory, Estimation, and an Application",
+          "area": "finance",
+          "similarity": 0.7115,
+          "score": 0.7115
+        },
+        {
+          "id": "W4408267500",
+          "title": "Do changes in the implied volatility of stock options predict future changes in CDS spreads?",
+          "area": "finance",
+          "similarity": 0.6985,
+          "score": 0.6985
+        },
+        {
+          "id": "W4245762542",
+          "title": "Does money supply growth contain predictive power for stock returns? Evidence and explanation",
+          "area": "finance",
+          "similarity": 0.6866,
+          "score": 0.6866
+        },
+        {
+          "id": "W3137152181",
+          "title": "Decision making in intraday index options trading: A parametric approach",
+          "area": "finance",
+          "similarity": 0.711,
+          "score": 0.711
+        },
+        {
+          "id": "W2114309779",
+          "title": "Forecasting Stock-Return Variance: Toward an Understanding of Stochastic Implied Volatilities",
+          "area": "finance",
+          "similarity": 0.6945,
+          "score": 0.6945
+        },
+        {
+          "id": "W2084931349",
+          "title": "Option Prices, Implied Price Processes, and Stochastic Volatility",
+          "area": "finance",
+          "similarity": 0.7025,
+          "score": 0.7025
+        },
+        {
+          "id": "W3121174621",
+          "title": "Empirical Performance of Alternative Option Pricing Models",
+          "area": "finance",
+          "similarity": 0.6859,
+          "score": 0.6859
+        },
+        {
+          "id": "W2570784181",
+          "title": "Optimal Hedging with Options and Futures against Price Risk and Background Risk",
+          "area": "finance",
+          "similarity": 0.7195,
+          "score": 0.7195
+        },
+        {
+          "id": "W1992563875",
+          "title": "SECURITY PRICES, RISK, AND MAXIMAL GAINS FROM DIVERSIFICATION*",
+          "area": "finance",
+          "similarity": 0.6218,
+          "score": 0.6218
+        }
+      ]
+    },
+    {
+      "question": "How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?",
+      "area": "finance",
+      "relevant": [
+        "W2001249527"
+      ],
+      "paper_title": "Copula Modeling: An Introduction for Practitioners",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2128981260",
+          "title": "Gibbs Sampling for Bayesian Non-Conjugate and Hierarchical Models by Using Auxiliary Variables",
+          "area": "statistics",
+          "similarity": 0.7269,
+          "score": 0.7269
+        },
+        {
+          "id": "W3111294340",
+          "title": "Bayesian joint modeling for partially linear mixed-effects quantile regression of longitudinal and time-to-event data with limit of detection, covariate measurement errors and skewness",
+          "area": "statistics",
+          "similarity": 0.7126,
+          "score": 0.7126
+        },
+        {
+          "id": "W2143902124",
+          "title": "BETA-NORMAL DISTRIBUTION AND ITS APPLICATIONS",
+          "area": "statistics",
+          "similarity": 0.7105,
+          "score": 0.7105
+        },
+        {
+          "id": "W3083504346",
+          "title": "Bayesian indirect inference for models with intractable normalizing functions",
+          "area": "statistics",
+          "similarity": 0.7112,
+          "score": 0.7112
+        },
+        {
+          "id": "W2035971761",
+          "title": "A Class of Bivariate Distributions",
+          "area": "statistics",
+          "similarity": 0.7372,
+          "score": 0.7372
+        },
+        {
+          "id": "W2137295153",
+          "title": "Non-Parametric Estimation of a Multivariate Probability Density",
+          "area": "statistics",
+          "similarity": 0.6673,
+          "score": 0.6673
+        },
+        {
+          "id": "W2078565364",
+          "title": "Inference in Linear Time Series Models with some Unit Roots",
+          "area": "economics",
+          "similarity": 0.7299,
+          "score": 0.7299
+        },
+        {
+          "id": "W4322495979",
+          "title": "Bayesian estimation of two‐part joint models for a longitudinal semicontinuous biomarker and a terminal event with INLA: Interests for cancer clinical trial evaluation",
+          "area": "statistics",
+          "similarity": 0.6626,
+          "score": 0.6626
+        },
+        {
+          "id": "W2976185742",
+          "title": "The Dynamical Gaussian Process Latent Variable Model in the Longitudinal Scenario",
+          "area": "statistics",
+          "similarity": 0.7279,
+          "score": 0.7279
+        },
+        {
+          "id": "W2014380952",
+          "title": "Asymptotic expansion and asymptotic robustness of the normal-theory estimators in the random regression model",
+          "area": "statistics",
+          "similarity": 0.6834,
+          "score": 0.6834
+        }
+      ]
+    },
+    {
+      "question": "How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?",
+      "area": "finance",
+      "relevant": [
+        "W2168123127"
+      ],
+      "paper_title": "Statistical Classification Methods in Consumer Credit Scoring: A Review",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2809488497",
+          "title": "Prediction of loan status in commercial bank using machine learning classifier",
+          "area": "finance",
+          "similarity": 0.7219,
+          "score": 0.7219
+        },
+        {
+          "id": "W1989908534",
+          "title": "Credit-scoring models for the evaluation of small-business loan applications",
+          "area": "finance",
+          "similarity": 0.7383,
+          "score": 0.7383
+        },
+        {
+          "id": "W2098471783",
+          "title": "Credit Supply and Monetary Policy: Identifying the Bank Balance-Sheet Channel with Loan Applications",
+          "area": "finance",
+          "similarity": 0.7122,
+          "score": 0.7122
+        },
+        {
+          "id": "W2948225451",
+          "title": "The credit risk evaluation models: an application of data mining techniques",
+          "area": "finance",
+          "similarity": 0.7132,
+          "score": 0.7132
+        },
+        {
+          "id": "W2036547589",
+          "title": "Using Neural Network Rule Extraction and Decision Tables for Credit-Risk Evaluation",
+          "area": "finance",
+          "similarity": 0.6932,
+          "score": 0.6932
+        },
+        {
+          "id": "W3184858604",
+          "title": "Financial Inclusion in Emerging Economies: The Application of Machine Learning and Artificial Intelligence in Credit Risk Assessment",
+          "area": "finance",
+          "similarity": 0.7094,
+          "score": 0.7094
+        },
+        {
+          "id": "W2000062594",
+          "title": "THE INFORMATIONAL ROLE OF BANK LOAN RATINGS",
+          "area": "finance",
+          "similarity": 0.6884,
+          "score": 0.6884
+        },
+        {
+          "id": "W1562925244",
+          "title": "Developing Credit Scoring Models When Small Sample Sizes Are Available",
+          "area": "finance",
+          "similarity": 0.7707,
+          "score": 0.7707
+        },
+        {
+          "id": "W4293053848",
+          "title": "Use of Soft Computing Techniques in Credit Risk Management of an Indian Bank: Application of Artificial Neural network",
+          "area": "finance",
+          "similarity": 0.6749,
+          "score": 0.6749
+        },
+        {
+          "id": "W2129843476",
+          "title": "Comparisons of the Performance of Computational Intelligence Methods for Loan Granting Decisions",
+          "area": "finance",
+          "similarity": 0.7443,
+          "score": 0.7443
+        }
+      ]
+    },
+    {
+      "question": "How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?",
+      "area": "finance",
+      "relevant": [
+        "W2014933671"
+      ],
+      "paper_title": "The Dynamics of Commodity Spot and Futures Markets: A Primer",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2089240053",
+          "title": "Stochastic Convenience Yield and the Pricing of Oil Contingent Claims",
+          "area": "finance",
+          "similarity": 0.6887,
+          "score": 0.6887
+        },
+        {
+          "id": "W2139116473",
+          "title": "What do we learn from the price of crude oil futures?",
+          "area": "finance",
+          "similarity": 0.6969,
+          "score": 0.6969
+        },
+        {
+          "id": "W3124797040",
+          "title": "Forty Years of Oil Price Fluctuations: Why the Price of Oil May Still Surprise Us",
+          "area": "finance",
+          "similarity": 0.6708,
+          "score": 0.6708
+        },
+        {
+          "id": "W2098052145",
+          "title": "Not All Oil Price Shocks Are Alike: Disentangling Demand and Supply Shocks in the Crude Oil Market",
+          "area": "finance",
+          "similarity": 0.6575,
+          "score": 0.6575
+        },
+        {
+          "id": "W2039709163",
+          "title": "Oil Price Uncertainty",
+          "area": "finance",
+          "similarity": 0.6734,
+          "score": 0.6734
+        },
+        {
+          "id": "W2026564718",
+          "title": "Understanding Crude Oil Prices",
+          "area": "finance",
+          "similarity": 0.7,
+          "score": 0.7
+        },
+        {
+          "id": "W2768223287",
+          "title": "Revisiting the Dynamics Effects of Oil Price Shocks on Small Developing Economies",
+          "area": "finance",
+          "similarity": 0.6415,
+          "score": 0.6415
+        },
+        {
+          "id": "W2602224136",
+          "title": "Commodity Futures Prices: Some Evidence on Forecast Power, Premiums, and the Theory of Storage",
+          "area": "finance",
+          "similarity": 0.6859,
+          "score": 0.6859
+        },
+        {
+          "id": "W3122460317",
+          "title": "Oil price shocks and real GDP growth: empirical evidence for some OECD countries",
+          "area": "finance",
+          "similarity": 0.6357,
+          "score": 0.6357
+        },
+        {
+          "id": "W2145224101",
+          "title": "Short-Term Variations and Long-Term Dynamics in Commodity Prices",
+          "area": "finance",
+          "similarity": 0.6767,
+          "score": 0.6767
+        }
+      ]
+    },
+    {
+      "question": "Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?",
+      "area": "cloud_infrastructure",
+      "relevant": [
+        "W4360995249"
+      ],
+      "paper_title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W3016099278",
+          "title": "Interpreting Interpretability: Understanding Data Scientists' Use of Interpretability Tools for Machine Learning",
+          "area": "machine_learning",
+          "similarity": 0.6555,
+          "score": 0.6555
+        },
+        {
+          "id": "W4413948191",
+          "title": "Rocket assembly line testbed as a service (TaaS): a comparison of data acquisition strategies",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6986,
+          "score": 0.6986
+        },
+        {
+          "id": "W2963999143",
+          "title": "Tools and Benchmarks for Automated Log Parsing",
+          "area": "cloud_infrastructure",
+          "similarity": 0.5599,
+          "score": 0.5599
+        },
+        {
+          "id": "W2944264045",
+          "title": "A Taxonomy of Software Engineering Challenges for Machine Learning Systems: An Empirical Investigation",
+          "area": "cloud_infrastructure",
+          "similarity": 0.695,
+          "score": 0.695
+        },
+        {
+          "id": "W2807096445",
+          "title": "ML-Leaks: Model and Data Independent Membership Inference Attacks and Defenses on Machine Learning Models",
+          "area": "deep_learning",
+          "similarity": 0.5857,
+          "score": 0.5857
+        },
+        {
+          "id": "W2973193541",
+          "title": "Explainable machine learning in deployment",
+          "area": "machine_learning",
+          "similarity": 0.6904,
+          "score": 0.6904
+        },
+        {
+          "id": "W2116814040",
+          "title": "Missing Data Analysis: Making It Work in the Real World",
+          "area": "statistics",
+          "similarity": 0.5469,
+          "score": 0.5469
+        },
+        {
+          "id": "W2565167788",
+          "title": "The Synthetic Data Vault",
+          "area": "statistics",
+          "similarity": 0.6749,
+          "score": 0.6749
+        },
+        {
+          "id": "W4402592902",
+          "title": "MLOps as Enabler of Trustworthy AI",
+          "area": "machine_learning",
+          "similarity": 0.6703,
+          "score": 0.6703
+        },
+        {
+          "id": "W4416259481",
+          "title": "Eva-VLA: Evaluating Vision-Language-Action Models' Robustness Under Real-World Physical Variations",
+          "area": "deep_learning",
+          "similarity": 0.6093,
+          "score": 0.6093
+        }
+      ]
+    },
+    {
+      "question": "Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?",
+      "area": "cloud_infrastructure",
+      "relevant": [
+        "W2075174112"
+      ],
+      "paper_title": "An updated performance comparison of virtual machines and Linux containers",
+      "rank": 5,
+      "retrieved": [
+        {
+          "id": "W1971739358",
+          "title": "virtio",
+          "area": "cloud_infrastructure",
+          "similarity": 0.728,
+          "score": 0.728
+        },
+        {
+          "id": "W2140953464",
+          "title": "Container-based operating system virtualization",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7565,
+          "score": 0.7565
+        },
+        {
+          "id": "W2158459299",
+          "title": "VirtualPower",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6963,
+          "score": 0.6963
+        },
+        {
+          "id": "W1984564341",
+          "title": "Design, Modeling, and Evaluation of a Scalable Multi-level Checkpointing System",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6572,
+          "score": 0.6572
+        },
+        {
+          "id": "W2075174112",
+          "title": "An updated performance comparison of virtual machines and Linux containers",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7826,
+          "score": 0.7826
+        },
+        {
+          "id": "W4386047745",
+          "title": "Run, Don't Walk: Chasing Higher FLOPS for Faster Neural Networks",
+          "area": "deep_learning",
+          "similarity": 0.5973,
+          "score": 0.5973
+        },
+        {
+          "id": "W4414836192",
+          "title": "Connecting the geometry and dynamics of many-body complex systems with message passing neural operators",
+          "area": "deep_learning",
+          "similarity": 0.5169,
+          "score": 0.5169
+        },
+        {
+          "id": "W2117648703",
+          "title": "A comparison of software and hardware techniques for x86 virtualization",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6954,
+          "score": 0.6954
+        },
+        {
+          "id": "W2133747588",
+          "title": "Parallel Control and Management for Intelligent Transportation Systems: Concepts, Architectures, and Applications",
+          "area": "cloud_infrastructure",
+          "similarity": 0.5821,
+          "score": 0.5821
+        },
+        {
+          "id": "W4243947286",
+          "title": "Xen and the art of virtualization",
+          "area": "cloud_infrastructure",
+          "similarity": 0.692,
+          "score": 0.692
+        }
+      ]
+    },
+    {
+      "question": "If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?",
+      "area": "cloud_infrastructure",
+      "relevant": [
+        "W2100970777"
+      ],
+      "paper_title": "A survey of rollback-recovery protocols in message-passing systems",
+      "rank": null,
+      "retrieved": [
+        {
+          "id": "W2098480851",
+          "title": "Improving Fault Tolerance through Crash Recovery",
+          "area": "cloud_infrastructure",
+          "similarity": 0.776,
+          "score": 0.776
+        },
+        {
+          "id": "W2045362872",
+          "title": "The process group approach to reliable distributed computing",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6998,
+          "score": 0.6998
+        },
+        {
+          "id": "W1993143336",
+          "title": "Checkpointing and Rollback-Recovery for Distributed Systems",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7915,
+          "score": 0.7915
+        },
+        {
+          "id": "W2103179919",
+          "title": "Real-Time Computing Without Stable States: A New Framework for Neural Computation Based on Perturbations",
+          "area": "deep_learning",
+          "similarity": 0.6074,
+          "score": 0.6074
+        },
+        {
+          "id": "W2049808757",
+          "title": "Infusing Cognition into Distributed Computing: A New Approach to Distributed Datacenters with Self-Managing Services on Commodity Hardware (Virtualized or Not)",
+          "area": "cloud_infrastructure",
+          "similarity": 0.653,
+          "score": 0.653
+        },
+        {
+          "id": "W1855233090",
+          "title": "Implementing halt on failure processors",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7674,
+          "score": 0.7674
+        },
+        {
+          "id": "W2108167744",
+          "title": "PVM: A framework for parallel distributed computing",
+          "area": "cloud_infrastructure",
+          "similarity": 0.6848,
+          "score": 0.6848
+        },
+        {
+          "id": "W2078349455",
+          "title": "AI-Ckpt",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7639,
+          "score": 0.7639
+        },
+        {
+          "id": "W1992563875",
+          "title": "SECURITY PRICES, RISK, AND MAXIMAL GAINS FROM DIVERSIFICATION*",
+          "area": "finance",
+          "similarity": 0.4862,
+          "score": 0.4862
+        },
+        {
+          "id": "W2087127367",
+          "title": "Supporting amnesia in log-based recovery protocols",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7524,
+          "score": 0.7524
+        }
+      ]
+    },
+    {
+      "question": "Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?",
+      "area": "cloud_infrastructure",
+      "relevant": [
+        "W2026205964"
+      ],
+      "paper_title": "Survey on NoSQL database",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2026205964",
+          "title": "Survey on NoSQL database",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7634,
+          "score": 0.7634
+        },
+        {
+          "id": "W2432978112",
+          "title": "Group formation in large social networks",
+          "area": "statistics",
+          "similarity": 0.6857,
+          "score": 0.6857
+        },
+        {
+          "id": "W103340358",
+          "title": "PathSim",
+          "area": "deep_learning",
+          "similarity": 0.6902,
+          "score": 0.6902
+        },
+        {
+          "id": "W1986298815",
+          "title": "X-RIME: Hadoop-based large-scale Social Network Analysis",
+          "area": "statistics",
+          "similarity": 0.6831,
+          "score": 0.6831
+        },
+        {
+          "id": "W2029830906",
+          "title": "Increasing the veracity of event detection on social media networks through user trust modeling",
+          "area": "statistics",
+          "similarity": 0.6765,
+          "score": 0.6765
+        },
+        {
+          "id": "W1500693574",
+          "title": "CRITICAL QUESTIONS FOR BIG DATA",
+          "area": "statistics",
+          "similarity": 0.7391,
+          "score": 0.7391
+        },
+        {
+          "id": "W2902700103",
+          "title": "Remaining useful life predictions for turbofan engine degradation using semi-supervised deep architecture",
+          "area": "machine_learning",
+          "similarity": 0.5277,
+          "score": 0.5277
+        },
+        {
+          "id": "W3186860860",
+          "title": "Data Warehouse Based on NoSQL: a literature mapping",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7257,
+          "score": 0.7257
+        },
+        {
+          "id": "W2146591355",
+          "title": "Community Structure in Large Networks: Natural Cluster Sizes and the Absence of Large Well-Defined Clusters",
+          "area": "statistics",
+          "similarity": 0.666,
+          "score": 0.666
+        },
+        {
+          "id": "W4232243154",
+          "title": "Security Analysis of MongoDB",
+          "area": "cloud_infrastructure",
+          "similarity": 0.7164,
+          "score": 0.7164
+        }
+      ]
+    },
+    {
+      "question": "how should I choose a prior distribution?",
+      "area": "statistics",
+      "relevant": [
+        "W2008640468",
+        "W2139606141"
+      ],
+      "paper_title": "A weakly informative default prior distribution for logistic and other regression models / The Selection of Prior Distributions by Formal Rules",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2008640468",
+          "title": "A weakly informative default prior distribution for logistic and other regression models",
+          "area": "statistics",
+          "similarity": 0.7235,
+          "score": 0.7235
+        },
+        {
+          "id": "W2139606141",
+          "title": "The Selection of Prior Distributions by Formal Rules",
+          "area": "statistics",
+          "similarity": 0.7524,
+          "score": 0.7524
+        },
+        {
+          "id": "W2104232463",
+          "title": "Prior distributions for variance parameters in hierarchical models",
+          "area": "statistics",
+          "similarity": 0.7011,
+          "score": 0.7011
+        },
+        {
+          "id": "W2069429561",
+          "title": "A Bayesian Analysis of Some Nonparametric Problems",
+          "area": "statistics",
+          "similarity": 0.7081,
+          "score": 0.7081
+        },
+        {
+          "id": "W1536497620",
+          "title": "Prior distributions for variance parameters in hierarchical models (comment on article by Browne and Draper)",
+          "area": "statistics",
+          "similarity": 0.7002,
+          "score": 0.7002
+        },
+        {
+          "id": "W1487139063",
+          "title": "Penalising Model Component Complexity: A Principled, Practical Approach to Constructing Priors",
+          "area": "statistics",
+          "similarity": 0.7066,
+          "score": 0.7066
+        },
+        {
+          "id": "W2001272401",
+          "title": "Prior Distributions on Spaces of Probability Measures",
+          "area": "statistics",
+          "similarity": 0.6982,
+          "score": 0.6982
+        },
+        {
+          "id": "W2367161869",
+          "title": "A Bayesian Approach to Multiple Fuzzy Hypothesis Testing for Two-Parameter Exoonential Distribution",
+          "area": "statistics",
+          "similarity": 0.7012,
+          "score": 0.7012
+        },
+        {
+          "id": "W2049228615",
+          "title": "A review of Bayesian variable selection methods: what, how and which",
+          "area": "statistics",
+          "similarity": 0.7272,
+          "score": 0.7272
+        },
+        {
+          "id": "W2007069447",
+          "title": "Variable Selection via Gibbs Sampling",
+          "area": "statistics",
+          "similarity": 0.7166,
+          "score": 0.7166
+        }
+      ]
+    },
+    {
+      "question": "When does the Jeffreys prior fail?",
+      "area": "statistics",
+      "relevant": [
+        "W2139606141"
+      ],
+      "paper_title": "The Selection of Prior Distributions by Formal Rules",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W2139606141",
+          "title": "The Selection of Prior Distributions by Formal Rules",
+          "area": "statistics",
+          "similarity": 0.6533,
+          "score": 0.6533
+        },
+        {
+          "id": "W4404473841",
+          "title": "Potential Bias Models With Bayesian Shrinkage Priors for Dynamic Borrowing of Multiple Historical Control Data",
+          "area": "statistics",
+          "similarity": 0.6097,
+          "score": 0.6097
+        },
+        {
+          "id": "W1536497620",
+          "title": "Prior distributions for variance parameters in hierarchical models (comment on article by Browne and Draper)",
+          "area": "statistics",
+          "similarity": 0.5963,
+          "score": 0.5963
+        },
+        {
+          "id": "W2008640468",
+          "title": "A weakly informative default prior distribution for logistic and other regression models",
+          "area": "statistics",
+          "similarity": 0.5929,
+          "score": 0.5929
+        },
+        {
+          "id": "W3121029575",
+          "title": "Prior Sample Size Extensions for Assessing Prior Impact and Prior-Likelihood Discordance",
+          "area": "statistics",
+          "similarity": 0.5913,
+          "score": 0.5913
+        },
+        {
+          "id": "W2072169887",
+          "title": "Gibbs Sampling Methods for Stick-Breaking Priors",
+          "area": "statistics",
+          "similarity": 0.5907,
+          "score": 0.5907
+        },
+        {
+          "id": "W2104232463",
+          "title": "Prior distributions for variance parameters in hierarchical models",
+          "area": "statistics",
+          "similarity": 0.5894,
+          "score": 0.5894
+        },
+        {
+          "id": "W4393235807",
+          "title": "Case weighted power priors for hybrid control analyses with time-to-event data",
+          "area": "statistics",
+          "similarity": 0.5928,
+          "score": 0.5928
+        },
+        {
+          "id": "W4211177544",
+          "title": "Bayes Factors",
+          "area": "statistics",
+          "similarity": 0.6008,
+          "score": 0.6008
+        },
+        {
+          "id": "W1974862873",
+          "title": "Discretizing a Normal Prior for Change Point Estimation in Switching Regressions",
+          "area": "statistics",
+          "similarity": 0.5857,
+          "score": 0.5857
+        }
+      ]
+    }
+  ],
+  "out_of_scope": [
+    {
+      "question": "How do I bake sourdough bread with a crispy crust?",
+      "n_papers": 10,
+      "top_score": 0.5254,
+      "top_title": "Transformer Decoders with MultiModal Regularization for Cross-Modal Food Retrieval"
+    },
+    {
+      "question": "Which football players were the most expensive transfers last summer?",
+      "n_papers": 10,
+      "top_score": 0.532,
+      "top_title": "A survey of transfer learning"
+    },
+    {
+      "question": "Searched for",
+      "n_papers": 10,
+      "top_score": 0.6419,
+      "top_title": "Causal Effect Identification from Multiple Incomplete Data Sources: A General Search-Based Approach"
+    },
+    {
+      "question": "What is the weather forecast for Munich this weekend?",
+      "n_papers": 10,
+      "top_score": 0.5766,
+      "top_title": "Time-series forecasting with deep learning: a survey"
+    },
+    {
+      "question": "How do I fix a flat tyre on my bicycle?",
+      "n_papers": 10,
+      "top_score": 0.5464,
+      "top_title": "Experimental condition monitoring for the detection of misaligned and cracked shafts by order analysis"
+    },
+    {
+      "question": "What is a good recipe for spaghetti carbonara?",
+      "n_papers": 10,
+      "top_score": 0.4587,
+      "top_title": "Data Analysis Recipes: Using Markov Chain Monte Carlo*"
+    },
+    {
+      "question": "How do I learn guitar chords as a beginner?",
+      "n_papers": 10,
+      "top_score": 0.5078,
+      "top_title": "Learning to Prompt for Continual Learning"
+    },
+    {
+      "question": "Who wrote the Harry Potter books?",
+      "n_papers": 10,
+      "top_score": 0.4308,
+      "top_title": "Aligning Books and Movies: Towards Story-Like Visual Explanations by Watching Movies and Reading Books"
+    },
+    {
+      "question": "What are good exercises for lower back pain?",
+      "n_papers": 10,
+      "top_score": 0.5268,
+      "top_title": "Comparing Incremental Learning Methods for Human Activity Recognition"
+    },
+    {
+      "question": "How do I train my dog to stop barking?",
+      "n_papers": 10,
+      "top_score": 0.5372,
+      "top_title": "A Learning Algorithm for Continually Running Fully Recurrent Neural Networks"
+    }
+  ]
+}

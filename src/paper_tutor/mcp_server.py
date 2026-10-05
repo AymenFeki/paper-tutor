@@ -12,6 +12,8 @@ mcp = MCPServer("paper-tutor")
 
 def format_papers(papers):
     """Turn the API's paper list into numbered plain text for the model."""
+    if not papers:
+        return "No papers in the database are relevant enough to this question."
     lines = []
     for i,paper in enumerate(papers, start=1):
         venue = paper.get("venue") or "unknown venue"
@@ -28,7 +30,8 @@ async def search_papers(question: str, k: int = 5) -> str:
 
     Use this when the user asks about a statistical or ML method, concept or topic
     and wants answers grounded in real papers. Returns titles, years, venues,
-    authors, OpenAlex links and abstracts. Cite papers by their number.
+    authors, OpenAlex links and abstracts. Cite papers by their number. If no paper is
+    relevant enough, it says so: then the database does not cover the question.
 
     Args:
         question: What to search for, in plain language.

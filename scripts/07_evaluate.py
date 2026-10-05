@@ -1,63 +1,69 @@
-"""Measure retrieval quality of the active embedding model on eval/questions.yaml.
+"""Measure retrieval quality on eval/questions.yaml with the retrieval settings in the config.
 
-For each question: encode it, take the top 10 papers by cosine distance (same query as
-06_search.py, plus the paper id) and record the rank of the relevant paper.
-Reports hit@1/5/10 and MRR overall and per area, a Wilson interval for hit@5, and the misses.
+For each question: retrieve the top 10 papers with the same retriever the API uses and record
+the rank of the relevant paper. Reports hit@1/5/10 and MRR overall and per area, a Wilson
+interval for hit@5, and the misses. Also runs eval/out_of_scope.yaml and counts how many of
+those questions get no papers (only possible with the threshold on).
+
+Retrieval settings can be overridden for one run, so variants can be compared without
+editing the config, e.g.:
+    uv run python scripts/07_evaluate.py hybrid=true rerank=true
+The result is saved as eval/results/<model>[+hybrid][+rerank][+threshold].json.
 """
 
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 import yaml
-from pgvector.psycopg import register_vector
 
 from paper_tutor.corpus import load_config
-from paper_tutor.db import connect
-from paper_tutor.embed import active_model, encode_query, load_model
+from paper_tutor.embed import active_model
 from paper_tutor.evaluation import HITS_AT, first_relevant_rank, metrics, wilson_interval
+from paper_tutor.rag import build_retriever
 
 TOP_K = 10
 
-SEARCH = """
-    SELECT p.id, p.title, t.area,
-           1 - (e.embedding <=> %(q)s) AS similarity
-    FROM embeddings e
-    JOIN papers p ON p.id = e.paper_id
-    JOIN topics t ON t.id = p.topic_id
-    WHERE e.model = %(model)s
-    ORDER BY e.embedding <=> %(q)s
-    LIMIT %(k)s
-"""
-
 config = load_config()
-model_key, model_cfg = active_model(config)
-questions = yaml.safe_load(Path("eval/questions.yaml").read_text())
+for override in sys.argv[1:]:
+    key, value = override.split("=")
+    config["retrieval"][key] = yaml.safe_load(value)  # "true" -> True, "0.5" -> 0.5
 
-model = load_model(model_cfg)
+settings = config["retrieval"]
+model_key, model_cfg = active_model(config)
+name = model_key + "".join(f"+{step}" for step in ("hybrid", "rerank", "threshold") if settings[step])
+questions = yaml.safe_load(Path("eval/questions.yaml").read_text())
+out_of_scope = yaml.safe_load(Path("eval/out_of_scope.yaml").read_text())
+
+retrieve = build_retriever(config)
+print(f"\n{name}: {model_cfg['name']}, retrieval settings {settings}")
 
 results = []
-with connect() as conn:
-    register_vector(conn)
-    with conn.cursor() as cur:
-        cur.execute("SELECT count(*) FROM embeddings WHERE model = %s", (model_key,))
-        print(f"\nModel: {model_key} ({model_cfg['name']}), {cur.fetchone()[0]} papers embedded")
+for item in questions:
+    retrieved = [
+        {"id": p["id"], "title": p["title"], "area": p["area"],
+         "similarity": round(p["similarity"], 4), "score": round(p["score"], 4)}
+        for p in retrieve(item["question"], k=TOP_K)
+    ]
+    results.append({
+        "question": item["question"],
+        "area": item["area"],
+        "relevant": item["relevant"],
+        "paper_title": item["paper_title"],
+        "rank": first_relevant_rank([r["id"] for r in retrieved], set(item["relevant"])),
+        "retrieved": retrieved,
+    })
 
-        for item in questions:
-            query_vector = encode_query(model, model_cfg, item["question"])
-            cur.execute(SEARCH, {"q": query_vector, "model": model_key, "k": TOP_K})
-            retrieved = [
-                {"id": pid, "title": title, "area": area, "similarity": round(float(sim), 4)}
-                for pid, title, area, sim in cur.fetchall()
-            ]
-            results.append({
-                "question": item["question"],
-                "area": item["area"],
-                "relevant": item["relevant"],
-                "paper_title": item["paper_title"],
-                "rank": first_relevant_rank([r["id"] for r in retrieved], set(item["relevant"])),
-                "retrieved": retrieved,
-            })
+oos_results = []
+for question in out_of_scope:
+    papers = retrieve(question, k=TOP_K)
+    oos_results.append({
+        "question": question,
+        "n_papers": len(papers),
+        "top_score": round(papers[0]["score"], 4) if papers else None,
+        "top_title": papers[0]["title"] if papers else None,
+    })
 
 # Overall and per-area metrics
 by_area = defaultdict(list)
@@ -77,6 +83,11 @@ for area, m in list(per_area.items()) + [("overall", overall)]:
 print(f"\nhit@5 = {hits5}/{len(results)} = {hits5 / len(results):.2f}, "
       f"95% Wilson CI [{low:.2f}, {high:.2f}]")
 
+no_papers = sum(r["n_papers"] == 0 for r in oos_results)
+in_scope_empty = sum(not r["retrieved"] for r in results)
+print(f"out of scope: {no_papers}/{len(oos_results)} questions got no papers; "
+      f"in scope: {in_scope_empty}/{len(results)} questions got no papers")
+
 # Questions where the relevant paper is not in the top 5
 misses = [r for r in results if r["rank"] is None or r["rank"] > 5]
 print(f"\n{len(misses)} questions with the relevant paper not in the top 5:")
@@ -85,18 +96,21 @@ for r in misses:
     print(f"\n[{r['area']}] {r['question']}")
     print(f"  expected (rank {rank}): {r['paper_title']}")
     for i, hit in enumerate(r["retrieved"][:5], start=1):
-        print(f"  {i}. {hit['title']} [{hit['area']}] ({hit['similarity']:.3f})")
+        print(f"  {i}. {hit['title']} [{hit['area']}] ({hit['score']:.3f})")
 
-out_path = Path("eval/results") / f"{model_key}.json"
+out_path = Path("eval/results") / f"{name}.json"
 out_path.parent.mkdir(parents=True, exist_ok=True)
 with open(out_path, "w") as f:
     json.dump({
-        "model": model_key,
+        "model": name,
         "model_name": model_cfg["name"],
+        "retrieval": settings,
         "top_k": TOP_K,
         "overall": overall,
         "hit@5_wilson_95": [round(low, 4), round(high, 4)],
         "per_area": per_area,
+        "out_of_scope_no_papers": no_papers,
         "questions": results,
+        "out_of_scope": oos_results,
     }, f, indent=2, ensure_ascii=False)
 print(f"\nSaved {out_path}")

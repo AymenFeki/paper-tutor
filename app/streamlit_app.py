@@ -60,8 +60,10 @@ if question:
             st.stop()
 
         st.markdown(data["answer"])
-        st.caption(f"Searched for: {data['query']}")
-        show_sources(data["papers"])
+        if data["query"]:
+            st.caption(f"Searched for: {data['query']}")
+        if data["papers"]:
+            show_sources(data["papers"])
 
     st.session_state.messages.append(
         {

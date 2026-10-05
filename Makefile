@@ -1,7 +1,7 @@
 # One-command setup for paper-tutor. Run `make rebuild` to build the database from scratch.
 # Needs: uv, Docker, Ollama with qwen3:8b, and a .env file with OPENALEX_API_KEY and POSTGRES_PASSWORD.
 
-.PHONY: db-up schema fetch load embed rebuild api ui test lint
+.PHONY: db-up schema fetch load embed rebuild evaluate threshold faithfulness api ui test lint
 
 # Start Postgres + pgvector in Docker and wait until it accepts connections
 db-up:
@@ -12,7 +12,7 @@ db-up:
 schema:
 	docker compose exec -T db psql -U tutor -d paper_tutor -v ON_ERROR_STOP=1 < sql/schema.sql
 
-# Download papers from OpenAlex into data/raw (topics already downloaded are skipped)
+# Download papers and their authors from OpenAlex into data/raw (already downloaded data is skipped)
 fetch:
 	uv run python scripts/02_fetch.py
 
@@ -26,6 +26,20 @@ embed:
 
 # Everything above, in order
 rebuild: db-up schema fetch load embed
+
+# Retrieval evaluation with the settings in config/syllabus.yaml, then the pooled judgments
+evaluate:
+	uv run python scripts/07_evaluate.py
+	uv run python scripts/08_pooled_evaluate.py
+
+# Table for choosing the relevance threshold (needs a result saved with threshold=false)
+threshold:
+	uv run python scripts/07_evaluate.py threshold=false
+	uv run python scripts/12_threshold.py bge-small
+
+# Share of the tutor's citations that the LLM judge finds supported (needs Ollama, takes minutes)
+faithfulness:
+	uv run python scripts/11_faithfulness.py
 
 # Start the FastAPI service on http://127.0.0.1:8000
 api:

@@ -166,6 +166,9 @@ retrieval:
   min_rerank_score: 0.0005      # used when rerank is on (cross-encoder score, 0 to 1); see scripts/12_threshold.py
   min_similarity: 0.62          # used when rerank is off (cosine similarity); see scripts/12_threshold.py
 
+tutor:
+  clarify_vague: true           # ask what the user means when a first question is too vague to search
+
 llm:
   model: qwen3:8b
   temperature: 0        # 0 = always pick the most likely word

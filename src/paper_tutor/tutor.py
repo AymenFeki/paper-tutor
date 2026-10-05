@@ -1,5 +1,6 @@
-"""LangGraph tutor: rewrite follow-ups, retrieve papers, answer with memory or say no paper is relevant."""
+"""LangGraph tutor: ask about vague questions, rewrite follow-ups, retrieve papers, answer with memory."""
 
+import re
 from typing import Annotated, TypedDict
 
 from langchain_core.messages import AIMessage, AnyMessage
@@ -47,6 +48,36 @@ ANSWER_PROMPTS = {
     ),
 }
 
+CLARIFY_MESSAGE = (
+    "Your question refers to something I don't know yet (like 'it' or 'this'). "
+    "Which method or topic do you mean? For example: 'When does the Jeffreys prior fail?'"
+)
+
+PRONOUNS = {"it", "its", "this", "that", "these", "those", "they", "them"}
+STOPWORDS = {
+    "a", "an", "the", "is", "are", "was", "were", "be", "do", "does", "did", "can", "could",
+    "should", "would", "will", "how", "what", "when", "why", "where", "which", "who", "i",
+    "you", "we", "me", "my", "to", "of", "in", "on", "for", "with", "and", "or", "about",
+}
+
+
+def is_vague(question):
+    """True if the question points at something it doesn't name, like 'When does it fail?'.
+
+    That is: it contains a pronoun such as 'it' or 'this', and fewer than two other words
+    that are not stopwords.
+    """
+    words = re.findall(r"[a-z]+", question.lower())
+    other_words = [w for w in words if w not in PRONOUNS and w not in STOPWORDS]
+    return any(w in PRONOUNS for w in words) and len(other_words) < 2
+
+
+def route_question(state):
+    """First message too vague to search -> ask what the user means; otherwise -> search."""
+    if len(state["messages"]) == 1 and is_vague(state["messages"][-1].content):
+        return "clarify"
+    return "rewrite"
+
 
 def route_papers(state):
     """No paper passed the relevance threshold -> say so instead of answering."""
@@ -65,6 +96,9 @@ def build_tutor(config, retrieve):
         ("system", ANSWER_PROMPTS[llm_cfg["prompt"]]),
         MessagesPlaceholder("messages"),
     ])
+
+    def clarify(state: TutorState):
+        return {"query": "", "papers": [], "messages": [AIMessage(CLARIFY_MESSAGE)]}
 
     def rewrite(state: TutorState):
         if len(state["messages"]) == 1:
@@ -87,11 +121,16 @@ def build_tutor(config, retrieve):
         return {"messages": [response]}
 
     graph = StateGraph(TutorState)
+    graph.add_node("clarify", clarify)
     graph.add_node("rewrite", rewrite)
     graph.add_node("retrieve", retrieve_papers)
     graph.add_node("no_papers", no_papers)
     graph.add_node("answer", answer)
-    graph.add_edge(START, "rewrite")
+    if config["tutor"]["clarify_vague"]:
+        graph.add_conditional_edges(START, route_question)
+    else:
+        graph.add_edge(START, "rewrite")
+    graph.add_edge("clarify", END)
     graph.add_edge("rewrite", "retrieve")
     graph.add_conditional_edges("retrieve", route_papers)
     graph.add_edge("no_papers", END)

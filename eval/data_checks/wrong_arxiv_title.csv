@@ -1,0 +1,2 @@
+id,doi,title,type,area,signals,title_abstract_similarity,nearest_area,margin
+W2900470550,https://doi.org/10.48550/arxiv.1811.05868,Multimodal Temporal Graph Neural Networks for Detecting and Disrupting Dark-Web Cybercrime Communities: A Vendor-Disjoint Inductive Evaluation Finding No Measurable Benefit from the Graph,preprint,deep_learning,,0.912,deep_learning,0.0

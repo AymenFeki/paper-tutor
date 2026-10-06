@@ -1,0 +1,500 @@
+id,doi,title,type,area,signals
+W1492318834,https://doi.org/10.5089/9781451866971.001,Modalities of Moving to Inflation Targeting in Armenia and Georgia,article,economics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W1493044792,https://doi.org/10.2307/146317,Estimating Models with Sample Selection Bias: A Survey,article,econometrics,"\bsurvey\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W1507985183,https://doi.org/10.1214/ss/1032280214,Bootstrap confidence intervals,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W1529533208,https://doi.org/10.1109/jproc.2015.2483592,A Review of Relational Machine Learning for Knowledge Graphs,article,deep_learning,\breview\b
+W1557832879,https://doi.org/10.2307/2109844,The Financial Accelerator and the Flight to Quality,article,finance,\bwe (review|survey)\b
+W1587464373,https://doi.org/10.1002/spe.2168,Inter‐Cloud architectures and application brokering: taxonomy and survey,article,cloud_infrastructure,\bsurvey\b
+W1598796236,https://doi.org/10.48550/arxiv.1506.00019,A Critical Review of Recurrent Neural Networks for Sequence Learning,preprint,deep_learning,"\breview\b, \bwe (review|survey)\b, \bthis (review|survey|tutorial)\b"
+W1603903339,https://doi.org/10.1214/ss/1009212519,"Bayesian model averaging: a tutorial (with comments by M. Clyde, David Draper and E. I. George, and a rejoinder by the authors",article,statistics,\btutorial\b
+W1605077306,https://doi.org/10.1109/tie.2015.2422112,A Survey on Wind Turbine Condition Monitoring and Fault Diagnosis—Part I: Components and Subsystems,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W1623006543,https://doi.org/10.48550/arxiv.1305.1707,Class Imbalance Problem in Data Mining Review,preprint,machine_learning,\breview\b
+W1670132599,https://doi.org/10.48550/arxiv.1304.5634,A Survey on Multi-view Learning,preprint,deep_learning,"\bsurvey\b, \bwe (review|survey)\b"
+W1723129825,https://doi.org/10.1111/j.1553-2712.2011.01185.x,Logistic Regression: A Brief Primer,article,statistics,\bprimer\b
+W1810406100,https://doi.org/10.1155/2015/431047,Data Mining for the Internet of Things: Literature Review and Challenges,article,statistics,\breview\b
+W1839382906,https://doi.org/10.18637/jss.v067.i07,TheglarmaPackage for Observation-Driven Time Series Regression of Counts,article,statistics,\bwe (review|survey)\b
+W1853291804,https://doi.org/10.4230/lipics.ecoop.2019.25,Automatic differentiation in machine learning: a survey,preprint,statistics,"\bsurvey\b, \bwe (review|survey)\b"
+W191367579,,"A Review on Efficient Virtual Machine Live Migration: Challenges, requirements and technology of VM migration in cloud",conference-paper,cloud_infrastructure,\breview\b
+W1931576180,https://doi.org/10.1111/jors.12188,THE SLX MODEL,article,econometrics,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W1968185435,https://doi.org/10.1177/0962280210395740,Review of inverse probability weighting for dealing with missing data,article,statistics,\breview\b
+W1972271595,https://doi.org/10.1145/583810.583838,A brief overview of scalable distributed concurrency services for hierarchical locking,conference-paper,cloud_infrastructure,\boverview\b
+W1974268958,,Multilevel modeling of complex survey data,preprint,statistics,\bsurvey\b
+W1974486301,https://doi.org/10.1111/1467-6419.00205,A Primer on Financial Contagion,article,economics,"\bprimer\b, \bwe (review|survey)\b"
+W1975107026,https://doi.org/10.1080/00031305.1990.10475751,A Suggestion for Using Powerful and Informative Tests of Normality,article,statistics,\bwe (review|survey)\b
+W1975499742,https://doi.org/10.1515/em-2013-0005,A Tutorial on Interaction,article,statistics,"\btutorial\b, \bthis (review|survey|tutorial)\b"
+W1977414200,https://doi.org/10.4000/rei.3887,An Introduction to Spatial Econometrics,article,econometrics,\bintroduction to\b
+W1978710835,https://doi.org/10.1126/science.1165821,Network Analysis in the Social Sciences,article,statistics,\bwe (review|survey)\b
+W1981552604,https://doi.org/10.1214/09-ss054,A survey of cross-validation procedures for model selection,article,statistics,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W1982696459,https://doi.org/10.1109/msp.2014.2347059,Visual Domain Adaptation: A survey of recent advances,article,deep_learning,\bsurvey\b
+W1983607152,https://doi.org/10.1080/01621459.1983.10477920,Parametric Empirical Bayes Inference: Theory and Applications,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W1983638645,https://doi.org/10.1109/mie.2013.2287651,Trends in Fault Diagnosis for Electrical Machines: A Review of Diagnostic Techniques,article,machine_learning,\breview\b
+W1985258161,https://doi.org/10.1080/00031305.1992.10475879,An Introduction to Kernel and Nearest-Neighbor Nonparametric Regression,article,statistics,\bintroduction to\b
+W1990488619,https://doi.org/10.1109/msp.2014.2329213,Big Data Analysis with Signal Processing on Graphs: Representation and processing of massive data sets with irregular structure,article,deep_learning,\bwe (review|survey)\b
+W1990662707,https://doi.org/10.1080/02664769100000016,A comparison of chi-squared statistics for testing homogeneity of survey data:High School and Beyond survey,article,statistics,\bsurvey\b
+W1993949541,https://doi.org/10.1109/ncm.2009.218,A Taxonomy and Survey of Cloud Computing Systems,conference-paper,cloud_infrastructure,\bsurvey\b
+W1994005439,https://doi.org/10.1142/s0129065704001899,GAUSSIAN PROCESSES FOR MACHINE LEARNING,article,statistics,\bthis (review|survey|tutorial)\b
+W1999392360,https://doi.org/10.1145/1380584.1380585,"A survey of autonomic computing—degrees, models, and applications",article,cloud_infrastructure,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W2002016471,https://doi.org/10.1109/2.485891,Artificial neural networks: a tutorial,article,deep_learning,\btutorial\b
+W2004147962,https://doi.org/10.1080/00220670209598786,An Introduction to Logistic Regression Analysis and Reporting,article,statistics,\bintroduction to\b
+W2006307164,https://doi.org/10.1145/2670979.2670986,What Bugs Live in the Cloud? A Study of 3000+ Issues in Cloud Systems,conference-paper,cloud_infrastructure,\bwe (review|survey)\b
+W2008703230,https://doi.org/10.1214/ss/1015346320,Optimal scaling for various Metropolis-Hastings algorithms,article,statistics,\bwe (review|survey)\b
+W2010636948,https://doi.org/10.1145/2188286.2188326,Kieker,conference-paper,cloud_infrastructure,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2011643344,https://doi.org/10.1049/iet-epa:20070280,Review of condition monitoring of rotating electrical machines,article,machine_learning,\breview\b
+W2011832962,https://doi.org/10.1198/016214502760047131,"Model-Based Clustering, Discriminant Analysis, and Density Estimation",article,statistics,\bwe (review|survey)\b
+W2014933671,https://doi.org/10.5547/issn0195-6574-ej-vol22-no3-1,The Dynamics of Commodity Spot and Futures Markets: A Primer,article,finance,\bprimer\b
+W2015452969,https://doi.org/10.1142/s0218001409007326,CLASSIFICATION OF IMBALANCED DATA: A REVIEW,article,machine_learning,\breview\b
+W2023331046,https://doi.org/10.1109/tse.2012.64,Software Architecture Optimization Methods: A Systematic Literature Review,review,cloud_infrastructure,"\breview\b, \bthis (review|survey|tutorial)\b"
+W2026205964,https://doi.org/10.1109/icpca.2011.6106531,Survey on NoSQL database,conference-paper,cloud_infrastructure,\bsurvey\b
+W2029173860,https://doi.org/10.1080/00018730601170527,Characterization of complex networks: A survey of measurements,article,statistics,\bsurvey\b
+W2031668066,https://doi.org/10.1207/s15327906mbr3304_5,Multiple Imputation for Multivariate Missing-Data Problems: A Data Analyst's Perspective,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2032118239,https://doi.org/10.1088/0957-0233/3/9/001,On the sensitivity of the chi-square test and its consequences,article,deep_learning,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W2033314834,https://doi.org/10.1214/ss/1177011454,A Survey of Exact Inference for Contingency Tables,article,statistics,"\bsurvey\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2033491376,https://doi.org/10.1147/sj.281.0015,Enterprise Systems Architecture/370: An architecture for multiple virtual space access and authorization,article,cloud_infrastructure,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2035756456,https://doi.org/10.1214/088342305000000016,Markov Chain Monte Carlo Methods and the Label Switching Problem in Bayesian Mixture Modeling,article,statistics,\bwe (review|survey)\b
+W2036193982,https://doi.org/10.1080/00273171.2011.568786,An Introduction to Propensity Score Methods for Reducing the Effects of Confounding in Observational Studies,article,statistics,\bintroduction to\b
+W2036260704,https://doi.org/10.1145/1951365.1951432,Big data and cloud computing,conference-paper,cloud_infrastructure,\bthis (review|survey|tutorial)\b
+W2037608980,https://doi.org/10.1207/s15328007sem0801_7,A Primer on Maximum Likelihood Algorithms Available for Use With Missing Data,article,statistics,\bprimer\b
+W2038686546,https://doi.org/10.1007/s11537-007-0657-8,Mean field games,article,finance,\bwe (review|survey)\b
+W2038901421,https://doi.org/10.1109/cloud.2012.87,Data Centers in the Cloud: A Large Scale Performance Study,conference-paper,cloud_infrastructure,\bthis (review|survey|tutorial)\b
+W2040040446,https://doi.org/10.1111/j.1475-4991.1972.tb00865.x,THE IMPACT OF EDUCATION ON INCOME DISTRIBUTION,article,economics,\bthis (review|survey|tutorial)\b
+W2040466547,https://doi.org/10.1145/344588.344618,Static scheduling algorithms for allocating directed task graphs to multiprocessors,article,cloud_infrastructure,\bthis (review|survey|tutorial)\b
+W2044936152,https://doi.org/10.1145/2094114.2094118,Parallel data processing with MapReduce,article,cloud_infrastructure,\bthis (review|survey|tutorial)\b
+W2045362872,https://doi.org/10.1145/163298.163303,The process group approach to reliable distributed computing,article,cloud_infrastructure,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2048071586,https://doi.org/10.1145/5505.5508,Consistency in a partitioned network: a survey,article,cloud_infrastructure,\bsurvey\b
+W2048470090,https://doi.org/10.1002/sim.5753,A tutorial on propensity score estimation for multiple treatments using generalized boosted models,article,statistics,\btutorial\b
+W2049228615,https://doi.org/10.1214/09-ba403,"A review of Bayesian variable selection methods: what, how and which",article,statistics,"\breview\b, \bwe (review|survey)\b"
+W2049287603,https://doi.org/10.2307/1268718,Introduction to Statistical Time Series,article,deep_learning,\bintroduction to\b
+W2050059289,https://doi.org/10.1177/0049124189018002003,An Introduction to Bootstrap Methods,article,statistics,\bintroduction to\b
+W2052495386,https://doi.org/10.1109/icassp.2013.6639165,Large-scale community detection on speaker content graphs,conference-paper,statistics,\bwe (review|survey)\b
+W2052740587,https://doi.org/10.1257/jep.11.4.3,EMU: Why and How It Might Happen,article,economics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2054282473,https://doi.org/10.1002/wics.199,"The Bayesian information criterion: background, derivation, and applications",article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2054878302,https://doi.org/10.1109/msp.2013.2265316,Time-Frequency Reassignment and Synchrosqueezing: An Overview,article,machine_learning,\boverview\b
+W2054932015,https://doi.org/10.1155/2014/312521,A Review of Subsequence Time Series Clustering,article,statistics,"\breview\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2057608512,https://doi.org/10.1109/tia.2010.2090839,A Survey of Condition Monitoring and Protection Methods for Medium-Voltage Induction Motors,article,machine_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2058635431,https://doi.org/10.1145/568438.568450,ACM SIGACT news distributed computing column 2,article,cloud_infrastructure,\bthis (review|survey|tutorial)\b
+W2059571939,https://doi.org/10.1081/etc-120008723,SMOOTH TRANSITION AUTOREGRESSIVE MODELS — A SURVEY OF RECENT DEVELOPMENTS,article,finance,"\bsurvey\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2060050130,https://doi.org/10.2307/2983440,"Model Uncertainty, Data Mining and Statistical Inference",article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2061504687,https://doi.org/10.1613/jair.575,Decision-Theoretic Planning: Structural Assumptions and Computational Leverage,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2063698478,https://doi.org/10.2307/1391399,An Introduction to Multivariate Statistical Analysis,article,statistics,\bintroduction to\b
+W2063909986,https://doi.org/10.1214/aos/1176346391,On Chi-Squared Tests for Multiway Contingency Tables with Cell Proportions Estimated from Survey Data,article,statistics,\bsurvey\b
+W2065572315,https://doi.org/10.1177/0027950106067048,Central Bank Independence - Economic and Political Dimensions,article,economics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2066310392,https://doi.org/10.1111/j.1540-6261.2005.00763.x,The Theory of Bank Risk Taking and Competition Revisited,article,finance,\bwe (review|survey)\b
+W2068238590,https://doi.org/10.1109/tnnls.2012.2200299,Twenty Years of Mixture of Experts,article,statistics,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W2069429561,https://doi.org/10.1214/aos/1176342360,A Bayesian Analysis of Some Nonparametric Problems,article,statistics,\bwe (review|survey)\b
+W2069469807,https://doi.org/10.1214/ss/1177010888,Bayesian Analysis in Expert Systems,article,statistics,\bwe (review|survey)\b
+W2073627497,https://doi.org/10.1098/rsif.2005.0051,Networks and epidemic models,article,statistics,\bwe (review|survey)\b
+W2076489324,https://doi.org/10.1287/opre.30.5.803,Feature Article—Decision Analysis: An Overview,article,statistics,\boverview\b
+W2078001646,https://doi.org/10.2307/3315165,Goodness‐of‐link testing in ordinal regression models,article,statistics,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W2080972498,https://doi.org/10.1080/10618600.2000.10474879,Markov Chain Sampling Methods for Dirichlet Process Mixture Models,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2083485815,https://doi.org/10.1198/073500102288618658,A Survey of Weak Instruments and Weak Identification in Generalized Method of Moments,article,economics,\bsurvey\b
+W2084552861,https://doi.org/10.1111/j.1540-5915.1979.tb00026.x,THE LEARNING CURVE: HISTORICAL REVIEW AND COMPREHENSIVE SURVEY,article,economics,"\breview\b, \bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2087028773,https://doi.org/10.1002/(sici)1097-0258(19971030)16:20<2349::aid-sim667>3.0.co;2-e,Using the general linear mixed model to analyse unbalanced repeated measures and longitudinal data,article,statistics,\bthis (review|survey|tutorial)\b
+W2093135704,https://doi.org/10.1142/s0218001401000836,AN INTRODUCTION TO HIDDEN MARKOV MODELS AND BAYESIAN NETWORKS,article,statistics,"\bintroduction to\b, \bthis (review|survey|tutorial)\b"
+W2093223772,https://doi.org/10.1080/10618600.1998.10474787,General Methods for Monitoring Convergence of Iterative Simulations,article,statistics,\bwe (review|survey)\b
+W2095763317,https://doi.org/10.1214/ecp.v2-981,Geometric Ergodicity and Hybrid Markov Chains,article,statistics,\bwe (review|survey)\b
+W2096011304,https://doi.org/10.1287/opre.1090.0712,From CVaR to Uncertainty Set: Implications in Joint Chance-Constrained Optimization,article,finance,\bwe (review|survey)\b
+W2097152068,https://doi.org/10.1257/jep.4.2.19,The Noise Trader Approach to Finance,article,finance,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2097752063,https://doi.org/10.1109/72.935101,Bankruptcy prediction for credit risk using neural networks: A survey and new results,article,finance,"\bsurvey\b, \bwe (review|survey)\b"
+W2098235928,https://doi.org/10.1177/0165025407077757,New developments in latent variable panel analyses of longitudinal data,article,econometrics,\bwe (review|survey)\b
+W2098317876,https://doi.org/10.1257/jel.46.4.910,Central Bank Communication and Monetary Policy: A Survey of Theory and Evidence,article,economics,"\bsurvey\b, \bwe (review|survey)\b"
+W2098626917,https://doi.org/10.1109/ias.1999.799956,Condition monitoring and fault diagnosis of electrical machines-a review,conference-paper,machine_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W2099454382,https://doi.org/10.1109/tsmcc.2011.2161285,"A Review on Ensembles for the Class Imbalance Problem: Bagging-, Boosting-, and Hybrid-Based Approaches",article,machine_learning,\breview\b
+W2100235303,https://doi.org/10.1162/0899766042321814,Canonical Correlation Analysis: An Overview with Application to Learning Methods,article,deep_learning,\boverview\b
+W2100970777,https://doi.org/10.1145/568522.568525,A survey of rollback-recovery protocols in message-passing systems,article,cloud_infrastructure,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W2101231451,https://doi.org/10.1109/tec.2004.837304,A Review of Stator Fault Monitoring Techniques of Induction Motors,article,machine_learning,"\breview\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2101491865,https://doi.org/10.1109/msp.2012.2235192,The emerging field of signal processing on graphs: Extending high-dimensional data analysis to networks and other irregular domains,article,statistics,\bthis (review|survey|tutorial)\b
+W2102862543,https://doi.org/10.1080/01621459.1996.10476956,Markov Chain Monte Carlo Convergence Diagnostics: A Comparative Review,article,statistics,\breview\b
+W2103313816,https://doi.org/10.1093/rfs/hhg010,Term Structure Dynamics in Theory and Reality,article,finance,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W2104560855,https://doi.org/10.1109/hpcc.2008.38,Scientific Cloud Computing: Early Definition and Experience,conference-paper,cloud_infrastructure,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2108165346,https://doi.org/10.1002/spe.432,A taxonomy and survey of grid resource management systems for distributed computing,article,cloud_infrastructure,\bsurvey\b
+W2108447811,https://doi.org/10.1080/01621459.1996.10476701,A Brief Survey of Bandwidth Selection for Density Estimation,article,statistics,\bsurvey\b
+W2108995755,https://doi.org/10.1109/72.914517,An introduction to kernel-based learning algorithms,article,deep_learning,\bintroduction to\b
+W2116522068,https://doi.org/10.1080/09540099550039318,"Catastrophic Forgetting, Rehearsal and Pseudorehearsal",article,deep_learning,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2116814040,https://doi.org/10.1146/annurev.psych.58.110405.085530,Missing Data Analysis: Making It Work in the Real World,review,statistics,\bthis (review|survey|tutorial)\b
+W2116984840,https://doi.org/10.1007/s10115-011-0463-8,Data preprocessing techniques for classification without discrimination,article,machine_learning,\bwe (review|survey)\b
+W2117171612,https://doi.org/10.1109/tie.2008.2004665,A Survey on Testing and Monitoring Methods for Stator Insulation Systems of Low-Voltage Induction Machines Focusing on Turn Insulation Problems,article,machine_learning,\bsurvey\b
+W2117352691,https://doi.org/10.1287/opre.42.4.589,Quantitative Methods in Credit Management: A Survey,article,finance,"\bsurvey\b, \bwe (review|survey)\b"
+W2118836230,https://doi.org/10.3368/jhr.50.2.317,A Practitioner’s Guide to Cluster-Robust Inference,article,statistics,\bguide\b
+W2118854883,https://doi.org/10.1257/002205103765762743,Forecasting Volatility in Financial Markets: A Review,article,finance,"\breview\b, \bthis (review|survey|tutorial)\b"
+W2118978333,https://doi.org/10.1109/tkde.2008.239,Learning from Imbalanced Data,article,machine_learning,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W2119169915,https://doi.org/10.5120/17146-7173,Survey of Algorithm: Scheduling Systems and Distributed Resource Management in Grid,article,cloud_infrastructure,\bsurvey\b
+W2120674393,https://doi.org/10.3390/en7042595,"Wind Turbine Condition Monitoring: State-of-the-Art Review, New Trends, and Future Challenges",article,machine_learning,\breview\b
+W2121598944,https://doi.org/10.1109/pemwa.2009.5208325,A review of recent advances in wind turbine condition monitoring and fault diagnosis,conference-paper,machine_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W2121690051,https://doi.org/10.1002/(sici)1097-0258(19981015)17:19<2265::aid-sim918>3.0.co;2-b,Propensity score methods for bias reduction in the comparison of a treatment to a non-randomized control group,article,statistics,\bthis (review|survey|tutorial)\b
+W2123368367,https://doi.org/10.1214/12-sts406,A Comparative Review of Dimension Reduction Methods in Approximate Bayesian Computation,article,statistics,"\breview\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2123713131,https://doi.org/10.1126/science.1192788,"How to Grow a Mind: Statistics, Structure, and Abstraction",article,statistics,\bthis (review|survey|tutorial)\b
+W2123959143,https://doi.org/10.2307/2291702,Multivariate Statistical Methods: A Primer.,article,statistics,\bprimer\b
+W2124637492,https://doi.org/10.1103/revmodphys.74.47,Statistical mechanics of complex networks,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2125838338,https://doi.org/10.1109/5.18626,A tutorial on hidden Markov models and selected applications in speech recognition,article,statistics,"\btutorial\b, \bthis (review|survey|tutorial)\b"
+W2125895608,https://doi.org/10.1109/mc.1974.6323581,Survey of virtual machine research,article,cloud_infrastructure,\bsurvey\b
+W2126052291,https://doi.org/10.1148/radiol.2273011499,Correlation and Simple Linear Regression,article,statistics,\bthis (review|survey|tutorial)\b
+W2127008730,https://doi.org/10.1002/sim.3301,Estimation and extrapolation of optimal treatment and testing strategies,article,statistics,\bwe (review|survey)\b
+W2127841934,https://doi.org/10.1177/096228029900800102,Multiple imputation: a primer,article,statistics,\bprimer\b
+W2128984831,https://doi.org/10.1136/jech.2004.029496,Estimating causal effects from epidemiological data,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2130836428,https://doi.org/10.3102/00346543074004525,Missing Data in Educational Research: A Review of Reporting Practices and Suggestions for Improvement,article,statistics,\breview\b
+W2132265582,https://doi.org/10.1109/41.873206,A review of induction motors signature analysis as a medium for faults detection,article,machine_learning,\breview\b
+W2133992176,https://doi.org/10.1080/00223890802634175,The Analysis of Count Data: A Gentle Introduction to Poisson Regression and Its Alternatives,article,statistics,\bintroduction to\b
+W2134825574,https://doi.org/10.1109/tec.2006.889614,Survey of Failures in Wind Power Systems With Focus on Swedish Wind Power Plants During 1997–2005,article,machine_learning,\bsurvey\b
+W2135689168,https://doi.org/10.1109/icnsc.2004.1297040,Survey of fraud detection techniques,conference-paper,machine_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2136502970,https://doi.org/10.2307/622936,Spatial Point Pattern Analysis and Its Application in Geographical Epidemiology,article,econometrics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2136848157,https://doi.org/10.1162/089976600300015015,Learning to Forget: Continual Prediction with LSTM,article,deep_learning,\bwe (review|survey)\b
+W2136931666,https://doi.org/10.1080/00018730110112519,Evolution of networks,article,statistics,\bwe (review|survey)\b
+W2138293190,https://doi.org/10.1257/089533003321164958,The Efficient Market Hypothesis and Its Critics,article,finance,\bthis (review|survey|tutorial)\b
+W2139606141,https://doi.org/10.1080/01621459.1996.10477003,The Selection of Prior Distributions by Formal Rules,article,statistics,\bwe (review|survey)\b
+W2139701068,https://doi.org/10.1088/0954-898x_6_3_011,Probable networks and plausible predictions — a review of practical Bayesian methods for supervised neural networks,article,statistics,"\breview\b, \bthis (review|survey|tutorial)\b"
+W2140291117,https://doi.org/10.1103/revmodphys.83.943,Bayesian inference in physics,article,statistics,\bthis (review|survey|tutorial)\b
+W2142623799,https://doi.org/10.1214/154957804100000024,General state space Markov chains and MCMC algorithms,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2143117649,https://doi.org/10.1214/09-ss057,Causal inference in statistics: An overview,article,statistics,"\boverview\b, \bthis (review|survey|tutorial)\b"
+W2144168223,https://doi.org/10.1002/sim.5984,The use of propensity score methods with survival or time‐to‐event outcomes: reporting measures of effect similar to those used in randomized experiments,article,statistics,\bthis (review|survey|tutorial)\b
+W2144242878,https://doi.org/10.2307/2291439,Introduction to Mathematical Statistics.,article,statistics,\bintroduction to\b
+W2144979178,https://doi.org/10.1109/tse.2004.9,Model-based performance prediction in software development: a survey,article,cloud_infrastructure,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2145137020,https://doi.org/10.1137/s0036144500378302,An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations,article,finance,\bintroduction to\b
+W2145429839,https://doi.org/10.2202/1557-4679.1203,An Introduction to Causal Inference,article,statistics,\bintroduction to\b
+W2146050890,https://doi.org/10.1097/01.ede.0000222409.00878.37,Instruments for Causal Inference,article,statistics,\bwe (review|survey)\b
+W2146611938,https://doi.org/10.1561/2200000036,Kernels for Vector-Valued Functions: A Review,article,statistics,\breview\b
+W2147330627,https://doi.org/10.1111/j.0016-7363.2005.00671.x,GeoDa : An Introduction to Spatial Data Analysis,article,econometrics,\bintroduction to\b
+W2148606196,https://doi.org/10.1137/s003614450342480,The Structure and Function of Complex Networks,article,statistics,\bwe (review|survey)\b
+W2149298154,https://doi.org/10.1109/72.788640,An overview of statistical learning theory,article,deep_learning,\boverview\b
+W2151355802,https://doi.org/10.1093/ije/29.4.722,An introduction to instrumental variables for epidemiologists,article,statistics,\bintroduction to\b
+W2152465173,https://doi.org/10.1145/98163.98167,Implementing fault-tolerant services using the state machine approach: a tutorial,article,cloud_infrastructure,"\btutorial\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2152804254,https://doi.org/10.1111/j.1467-6419.1993.tb00170.x,"ARCH MODELS: PROPERTIES, ESTIMATION AND TESTING",article,finance,\bthis (review|survey|tutorial)\b
+W2152820192,https://doi.org/10.2307/1269292,A User's Guide to Principal Components,article,deep_learning,\bguide\b
+W2153146814,https://doi.org/10.2307/2330874,The Relation Between Price Changes and Trading Volume: A Survey,article,finance,"\bsurvey\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2155163959,https://doi.org/10.1214/09-sts313,Matching Methods for Causal Inference: A Review and a Look Forward,article,statistics,\breview\b
+W2156127902,https://doi.org/10.18637/jss.v063.i18,Comparing Implementations of Estimation Methods for Spatial Econometrics,article,econometrics,\bthis (review|survey|tutorial)\b
+W2157355630,https://doi.org/10.1177/096228029500400302,Generalized additive models for medical research,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2157954477,https://doi.org/10.1109/access.2014.2332453,Toward Scalable Systems for Big Data Analytics: A Technology Tutorial,article,cloud_infrastructure,\btutorial\b
+W2160150610,https://doi.org/10.1109/5254.809570,Distributed data mining in credit card fraud detection,article,machine_learning,\bwe (review|survey)\b
+W2160277425,https://doi.org/10.2469/faj.v55.n1.2243,Credit Swap Valuation,article,finance,\bthis (review|survey|tutorial)\b
+W2160313008,https://doi.org/10.1257/jep.12.4.9,The Global Capital Market: Benefactor or Menace?,article,economics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2162313689,https://doi.org/10.1111/j.1751-5823.2010.00103.x,A Review of Hot Deck Imputation for Survey Non‐response,article,statistics,"\breview\b, \bsurvey\b, \bwe (review|survey)\b"
+W2163345210,https://doi.org/10.1109/tnnls.2014.2330900,Transfer Learning for Visual Categorization: A Survey,article,deep_learning,"\bsurvey\b, \bwe (review|survey)\b"
+W2165698076,https://doi.org/10.1109/tkde.2009.191,A Survey on Transfer Learning,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W2165900899,https://doi.org/10.1145/503112.503113,Group communication specifications,article,cloud_infrastructure,\bthis (review|survey|tutorial)\b
+W2166348281,https://doi.org/10.1109/tevc.2002.800880,Parallelism and evolutionary algorithms,article,cloud_infrastructure,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W2167277498,https://doi.org/10.1162/089976698300017197,Approximate Statistical Tests for Comparing Supervised Classification Learning Algorithms,article,deep_learning,\bthis (paper|article|chapter) (reviews|surveys)\b
+W2168029744,https://doi.org/10.1214/009053607000000677,Kernel methods in machine learning,article,statistics,\bwe (review|survey)\b
+W2168123127,https://doi.org/10.1111/j.1467-985x.1997.00078.x,Statistical Classification Methods in Consumer Credit Scoring: A Review,article,finance,\breview\b
+W2168639902,https://doi.org/10.1002/sim.1903,Stratification and weighting via the propensity score in estimation of causal treatment effects: a comparative study,article,statistics,\bwe (review|survey)\b
+W2171018098,https://doi.org/10.1002/sim.5408,Social contagion theory: examining dynamic social networks and human behavior,article,statistics,\bwe (review|survey)\b
+W2192240806,https://doi.org/10.1561/2200000050,Convex Optimization: Algorithms and Complexity,article,deep_learning,\blecture notes\b
+W2193561325,https://doi.org/10.1146/annurev-publhealth-032315-021402,Mediation Analysis: A Practitioner's Guide,review,statistics,\bguide\b
+W2225156818,https://doi.org/10.1080/01621459.2017.1285773,Variational Inference: A Review for Statisticians,article,statistics,"\breview\b, \bwe (review|survey)\b"
+W2264767503,https://doi.org/10.1161/circulationaha.115.017719,Introduction to the Analysis of Survival Data in the Presence of Competing Risks,article,statistics,\bintroduction to\b
+W2266995761,https://doi.org/10.1093/oxfordjournals.aje.a113284,A REVIEW OF GOODNESS OF FIT STATISTICS FOR USE IN THE DEVELOPMENT OF LOGISTIC REGRESSION MODELS1,article,statistics,\breview\b
+W2274765283,,Modeling and Inferential Thoughts for Consecutive Gap Times Observed with Death and Censoring,article,statistics,\bwe (review|survey)\b
+W2284351912,https://doi.org/10.1109/comst.2015.2481183,Data Center Energy Consumption Modeling: A Survey,article,cloud_infrastructure,"\bsurvey\b, \bwe (review|survey)\b"
+W2295541535,https://doi.org/10.1145/1057977.1057980,Optimistic replication,article,cloud_infrastructure,"\bthis (paper|article|chapter) (reviews|surveys)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2295803031,https://doi.org/10.3758/s13423-016-1015-8,A simple introduction to Markov Chain Monte–Carlo sampling,article,statistics,\bintroduction to\b
+W2307376191,https://doi.org/10.1109/tsmcc.2011.2170420,Machine Learning in Financial Crisis Prediction: A Survey,article,finance,"\bsurvey\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2318977435,https://doi.org/10.1111/jifm.12053,Financial Distress Prediction in an International Context: A Review and Empirical Analysis of Altman's Z‐ Score Model,article,finance,\breview\b
+W2328078142,https://doi.org/10.1017/s0140525x16001837,Building machines that learn and think like people,article,machine_learning,\bwe (review|survey)\b
+W2339911297,https://doi.org/10.5351/csam.2015.22.4.313,A Comparison Study of the Test for Right Censored and Grouped Data,article,statistics,\bwe (review|survey)\b
+W2372554847,,Which Time-frequency Analysis——A Survey,article,machine_learning,\bsurvey\b
+W2378818347,https://doi.org/10.2991/emim-16.2016.260,Review on Determinants of Corporate Bond Spread on the Basis of Liquidity Risk,conference-paper,finance,\breview\b
+W2395579298,https://doi.org/10.1186/s40537-016-0043-6,A survey of transfer learning,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W2416547532,https://doi.org/10.1093/ije/dyw098,Interrupted time series regression for the evaluation of public health interventions: a tutorial,article,statistics,"\btutorial\b, \bthis (review|survey|tutorial)\b"
+W2418306335,https://doi.org/10.1561/2200000060,Kernel Mean Embedding of Distributions: A Review and Beyond,article,statistics,"\breview\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2466989778,https://doi.org/10.1073/pnas.1510507113,Causal inference and the data-fusion problem,article,statistics,\bwe (review|survey)\b
+W2488793338,https://doi.org/10.1109/tec.2005.847955,Condition Monitoring and Fault Diagnosis of Electrical Motors—A Review,article,machine_learning,\breview\b
+W2490420619,https://doi.org/10.1145/2907070,A Survey of Predictive Modeling on Imbalanced Domains,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W2507337291,https://doi.org/10.4303/jdar/235992,An Overview of Causal Directed Acyclic Graphs for Substance Abuse Researchers,article,statistics,\boverview\b
+W2523246573,https://doi.org/10.48550/arxiv.1609.04747,An overview of gradient descent optimization algorithms,preprint,deep_learning,\boverview\b
+W2533627605,https://doi.org/10.1109/ofc.1999.767848,Applying undersea technologies to Project Oxygen,conference-paper,cloud_infrastructure,\bwe (review|survey)\b
+W2555077524,https://doi.org/10.1007/s10618-016-0483-9,The great time series classification bake off: a review and experimental evaluation of recent algorithmic advances,article,statistics,\breview\b
+W2558603713,https://doi.org/10.1109/iceeot.2016.7755114,A review on intrensic mode function of EMD,conference-paper,machine_learning,\breview\b
+W2561675875,https://doi.org/10.1108/ir.1999.04926fae.001,Lecture Notes in Computer Science 1205,article,cloud_infrastructure,\blecture notes?\b
+W2572702041,https://doi.org/10.48550/arxiv.1701.02434,A Conceptual Introduction to Hamiltonian Monte Carlo,preprint,statistics,"\bintroduction to\b, \bthis (review|survey|tutorial)\b"
+W2604319603,https://doi.org/10.1109/jproc.2017.2761740,Efficient Processing of Deep Neural Networks: A Tutorial and Survey,article,deep_learning,"\bsurvey\b, \btutorial\b"
+W2622826443,https://doi.org/10.1162/neco_a_00990,Deep Convolutional Neural Networks for Image Classification: A Comprehensive Review,article,deep_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W2624871570,https://doi.org/10.48550/arxiv.1706.05098,An Overview of Multi-Task Learning in Deep Neural Networks,preprint,deep_learning,\boverview\b
+W265896103,https://doi.org/10.1214/ss/1042727940,Statistical Fraud Detection: A Review,article,machine_learning,\breview\b
+W2734405990,https://doi.org/10.13140/rg.2.2.11223.68003,Variational Inference via Transformations on Distributions,preprint,statistics,\bwe (review|survey)\b
+W2739349903,https://doi.org/10.1109/uic-atc.2017.8397411,Interpretability of deep learning models: A survey of results,conference-paper,machine_learning,\bsurvey\b
+W2748264495,https://doi.org/10.1109/icaccs.2017.8014672,Survey of consensus protocols on blockchain applications,conference-paper,cloud_infrastructure,\bsurvey\b
+W2753709519,https://doi.org/10.1093/nsr/nwx105,An overview of multi-task learning,article,deep_learning,\boverview\b
+W2759136286,https://doi.org/10.1109/tkde.2017.2754499,Knowledge Graph Embedding: A Survey of Approaches and Applications,article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2767290858,https://doi.org/10.1109/msp.2017.2738401,Deep Multimodal Learning: A Survey on Recent Advances and Trends,article,deep_learning,"\bsurvey\b, \bwe (review|survey)\b"
+W2772803673,https://doi.org/10.1186/s12874-017-0442-1,When and how should multiple imputation be used for handling missing data in randomised clinical trials – a practical guide with flowcharts,article,statistics,\bguide\b
+W2779054585,https://doi.org/10.1109/tgrs.2017.2776321,Exploring Models and Data for Remote Sensing Image Caption Generation,article,deep_learning,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W2782176193,https://doi.org/10.1002/bimj.201700067,Variable selection – A review and recommendations for the practicing statistician,article,statistics,\breview\b
+W2783319287,https://doi.org/10.1146/annurev-publhealth-040617-013507,Designing Difference in Difference Studies: Best Practices for Public Health Policy Research,review,statistics,\bwe (review|survey)\b
+W2788193959,https://doi.org/10.48550/arxiv.1802.09941,Demystifying Parallel and Distributed Deep Learning: An In-Depth Concurrency Analysis,preprint,deep_learning,\bthis (review|survey|tutorial)\b
+W2788388592,https://doi.org/10.1016/j.neunet.2019.01.012,Continual lifelong learning with neural networks: A review,article,deep_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W2791319131,https://doi.org/10.1109/access.2018.2805680,A Survey on Security Threats and Defensive Techniques of Machine Learning: A Data Driven View,article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2794284562,https://doi.org/10.1155/2018/7068349,Deep Learning for Computer Vision: A Brief Review,article,deep_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W2796431263,https://doi.org/10.1109/jproc.2018.2820126,"Graph Signal Processing: Overview, Challenges, and Applications",article,deep_learning,"\boverview\b, \bwe (review|survey)\b"
+W2798435682,https://doi.org/10.1561/1500000066,Explainable Recommendation: A Survey and New Perspectives,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2809925683,https://doi.org/10.23919/mipro.2018.8400040,Explainable artificial intelligence: A survey,conference-paper,machine_learning,\bsurvey\b
+W2888487581,https://doi.org/10.1145/3233547.3233667,Interpretable Machine Learning in Healthcare,conference-paper,machine_learning,\bthis (review|survey|tutorial)\b
+W2891503716,https://doi.org/10.1109/access.2018.2870052,Peeking Inside the Black-Box: A Survey on Explainable Artificial Intelligence (XAI),article,machine_learning,"\bsurvey\b, \bwe (review|survey)\b, \bthis (review|survey|tutorial)\b"
+W2893554781,https://doi.org/10.48550/arxiv.1810.00069,Adversarial Attacks and Defences: A Survey,preprint,deep_learning,\bsurvey\b
+W2896348597,https://doi.org/10.1145/3295748,A Comprehensive Survey of Deep Learning for Image Captioning,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2897250207,https://doi.org/10.1016/j.renene.2018.10.047,Machine learning methods for wind turbine condition monitoring: A review,article,machine_learning,"\breview\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2899434936,https://doi.org/10.1186/s40537-018-0151-6,A survey on addressing high-class imbalance in big data,article,machine_learning,\bsurvey\b
+W2901114541,https://doi.org/10.1109/tpami.2020.2981604,Recent Advances in Open Set Recognition: A Survey,article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2901312569,https://doi.org/10.1016/j.heliyon.2018.e00938,State-of-the-art in artificial neural network applications: A survey,article,deep_learning,\bsurvey\b
+W2901899262,https://doi.org/10.1109/icstc.2018.8528604,A Review of Cloud Migration Strategies in the Developing Country,conference-paper,cloud_infrastructure,"\breview\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2902672843,https://doi.org/10.1088/1742-6596/1142/1/012012,Machine Learning from Theory to Algorithms: An Overview,conference-paper,statistics,\boverview\b
+W2903799441,https://doi.org/10.1109/tse.2018.2887384,"Fault Analysis and Debugging of Microservice Systems: Industrial Survey, Benchmark System, and Empirical Study",article,cloud_infrastructure,\bsurvey\b
+W2905233554,https://doi.org/10.1111/j.2517-6161.1978.tb01039.x,The Inverse Gaussian Distribution and its Statistical Application—A Review,article,statistics,"\breview\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2907492528,https://doi.org/10.1109/tnnls.2020.2978386,A Comprehensive Survey on Graph Neural Networks,article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2909699807,https://doi.org/10.1109/phm-chongqing.2018.00081,A Review on Neurocomputing Based wind Turbines Fault Diagnosis and Prognosis,conference-paper,machine_learning,"\breview\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2912412749,https://doi.org/10.1109/access.2020.2972859,Deep Learning Algorithms for Bearing Fault Diagnostics—A Comprehensive Review,article,machine_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W2914598080,https://doi.org/10.1109/dsaa.2018.00018,Explaining Explanations: An Overview of Interpretability of Machine Learning,conference-paper,machine_learning,\boverview\b
+W2914670199,https://doi.org/10.48550/arxiv.1901.06708,Fitting A Mixture Distribution to Data: Tutorial,preprint,statistics,\btutorial\b
+W2918821272,https://doi.org/10.3390/risks7010029,Machine Learning in Banking Risk Management: A Literature Review,article,finance,\breview\b
+W2919491917,https://doi.org/10.3390/app9050909,Review of Artificial Intelligence Adversarial Attack and Defense Technologies,article,deep_learning,\breview\b
+W2920529430,https://doi.org/10.1016/j.jclinepi.2019.02.016,The proportion of missing data should not be used to guide decisions on multiple imputation,article,statistics,\bguide\b
+W2925177113,https://doi.org/10.1007/s41109-019-0195-3,A survey on graph kernels,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2930650313,https://doi.org/10.3390/app9071345,Wavelet Transform Application for/in Non-Stationary Time-Series Analysis: A Review,article,statistics,\breview\b
+W2936268283,https://doi.org/10.1109/access.2019.2911732,"Container Security: Issues, Challenges, and the Road Ahead",article,cloud_infrastructure,\bwe (review|survey)\b
+W2936503027,https://doi.org/10.1186/s40537-019-0192-5,Survey on deep learning with class imbalance,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W2940156133,https://doi.org/10.1145/3400066,A Survey of Unsupervised Deep Domain Adaptation,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W2941531368,https://doi.org/10.1145/3465055,An Attentive Survey of Attention Models,article,machine_learning,"\bsurvey\b, \bwe (review|survey)\b, \bthis (review|survey|tutorial)\b"
+W2944364052,https://doi.org/10.1109/jsyst.2019.2905565,Data-Driven Methods for Predictive Maintenance of Industrial Equipment: A Survey,article,machine_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2944378183,https://doi.org/10.48550/arxiv.1904.05046,Generalizing from a Few Examples: A Survey on Few-Shot Learning,preprint,deep_learning,"\bsurvey\b, \bwe (review|survey)\b"
+W2944851425,https://doi.org/10.1162/neco_a_01199,A Review of Recurrent Neural Networks: LSTM Cells and Network Architectures,article,deep_learning,"\breview\b, \bwe (review|survey)\b"
+W2945526235,https://doi.org/10.1109/access.2020.2976199,Explainable Machine Learning for Scientific Insights and Discoveries,article,machine_learning,\bwe (review|survey)\b
+W2946165673,https://doi.org/10.1109/access.2019.2916887,Deep Multimodal Representation Learning: A Survey,article,deep_learning,"\bsurvey\b, \bwe (review|survey)\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2949029836,https://doi.org/10.1111/2041-210x.13234,Analysing continuous proportions in ecology and evolution: A practical introduction to beta and Dirichlet regression,article,statistics,"\bintroduction to\b, \bwe (review|survey)\b"
+W2949449669,https://doi.org/10.1109/jsen.2019.2923982,A Review of Deep Learning Models for Time Series Prediction,article,statistics,"\breview\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2949835970,https://doi.org/10.1109/ccgrid.2001.923162,The anatomy of the grid: enabling scalable virtual organizations,conference-paper,cloud_infrastructure,\bwe (review|survey)\b
+W2950627632,https://doi.org/10.1080/00107510500052444,"Power laws, Pareto distributions and Zipf's law",article,statistics,\bwe (review|survey)\b
+W2954996726,https://doi.org/10.1186/s40537-019-0197-0,A survey on Image Data Augmentation for Deep Learning,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W2958089299,https://doi.org/10.1109/tnnls.2020.3027314,A Survey on Explainable Artificial Intelligence (XAI): Toward Medical XAI,article,machine_learning,\bsurvey\b
+W2962700793,https://doi.org/10.1109/access.2018.2807385,Threat of Adversarial Attacks on Deep Learning in Computer Vision: A Survey,article,deep_learning,"\bsurvey\b, \bwe (review|survey)\b"
+W2962851448,https://doi.org/10.1109/tpami.2018.2889774,Advances in Variational Inference,article,statistics,\bthis (review|survey|tutorial)\b
+W2962975498,https://doi.org/10.1109/tkde.2018.2849727,A Survey on Network Embedding,article,statistics,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2963178695,https://doi.org/10.1109/tnnls.2018.2886017,Adversarial Examples: Attacks and Defenses for Deep Learning,article,deep_learning,\bwe (review|survey)\b
+W2963224980,https://doi.org/10.1109/tkde.2018.2807452,"A Comprehensive Survey of Graph Embedding: Problems, Techniques, and Applications",article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2963374347,https://doi.org/10.1631/fitee.1700808,Visual interpretability for deep learning: a survey,article,machine_learning,"\bsurvey\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2963384510,https://doi.org/10.1109/msp.2018.2887284,Learning Graphs From Data: A Signal Representation Perspective,article,deep_learning,\bwe (review|survey)\b
+W2963564844,https://doi.org/10.1145/3128572.3140444,Adversarial Examples Are Not Easily Detected,conference-paper,deep_learning,\bwe (review|survey)\b
+W2964303497,https://doi.org/10.3390/electronics8080832,Machine Learning Interpretability: A Survey on Methods and Metrics,article,machine_learning,\bsurvey\b
+W2968009374,https://doi.org/10.48550/arxiv.1908.05659,Distributionally Robust Optimization: A Review,preprint,finance,"\breview\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W2971644666,https://doi.org/10.1145/3343440,A Systematic Review on Imbalanced Data Challenges in Machine Learning,review,machine_learning,\breview\b
+W2972087877,https://doi.org/10.1145/3320060,Demystifying Parallel and Distributed Deep Learning,article,deep_learning,\bthis (review|survey|tutorial)\b
+W2974581576,https://doi.org/10.1007/s11633-019-1211-x,"Adversarial Attacks and Defenses in Images, Graphs and Text: A Review",article,deep_learning,"\breview\b, \bwe (review|survey)\b, \bthis (review|survey|tutorial)\b"
+W2976194262,https://doi.org/10.1146/annurev-statistics-031219-041300,Convergence Diagnostics for Markov Chain Monte Carlo,review,statistics,\bthis (review|survey|tutorial)\b
+W2984353870,https://doi.org/10.1007/s10994-019-05855-6,A survey on semi-supervised learning,article,deep_learning,\bsurvey\b
+W2984417636,https://doi.org/10.1073/pnas.1912789117,The frontier of simulation-based inference,article,statistics,\bwe (review|survey)\b
+W2985331920,https://doi.org/10.1186/s40649-019-0069-y,Graph convolutional networks: a comprehensive review,article,deep_learning,"\breview\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2988916019,https://doi.org/10.1007/s11263-019-01247-4,Deep Learning for Generic Object Detection: A Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2990283237,https://doi.org/10.3390/make3040048,Analysis of Explainers of Black Box Deep Neural Networks for Computer Vision: A Survey,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W2992035660,https://doi.org/10.48550/arxiv.1912.02762,Normalizing Flows for Probabilistic Modeling and Inference,preprint,statistics,\bthis (review|survey|tutorial)\b
+W2992923261,https://doi.org/10.1145/3387166,A Multidisciplinary Survey and Framework for Design and Evaluation of Explainable AI Systems,article,machine_learning,\bsurvey\b
+W2998216295,https://doi.org/10.5555/944919.944968,An introduction to variable and feature selection,article,deep_learning,\bintroduction to\b
+W3000508506,https://doi.org/10.1109/tnnls.2019.2957109,When Gaussian Process Meets Big Data: A Review of Scalable GPs,article,statistics,\breview\b
+W3003265726,https://doi.org/10.1109/tnnls.2021.3070843,"A Survey on Knowledge Graphs: Representation, Acquisition, and Applications",article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3005649142,https://doi.org/10.48550/arxiv.2002.04255,Big Data and model-based survey sampling,preprint,statistics,\bsurvey\b
+W3007157104,https://doi.org/10.1109/tse.2019.2962027,"Machine Learning Testing: Survey, Landscapes and Horizons",article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3008872739,https://doi.org/10.24963/ijcai.2021/631,Time Series Data Augmentation for Deep Learning: A Survey,conference-paper,statistics,\bsurvey\b
+W3011667710,https://doi.org/10.1109/tkde.2020.2981333,Deep Learning on Graphs: A Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3014596384,https://doi.org/10.1007/s10994-021-05946-3,Aleatoric and epistemic uncertainty in machine learning: an introduction to concepts and methods,article,deep_learning,\bintroduction to\b
+W3015001695,https://doi.org/10.1145/3374217,Adversarial Attacks on Deep-learning Models in Natural Language Processing,article,deep_learning,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W3015575765,https://doi.org/10.18653/v1/2020.acl-main.386,Towards Faithfully Interpretable NLP Systems: How Should We Define and Evaluate Faithfulness?,conference-paper,machine_learning,\bwe (review|survey)\b
+W3015735225,https://doi.org/10.1109/tpami.2021.3055564,Knowledge Distillation and Student-Teacher Learning for Visual Intelligence: A Review and New Outlooks,article,deep_learning,"\breview\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3016757214,https://doi.org/10.1016/j.dss.2020.113303,Fraud detection: A systematic literature review of graph-based anomaly detection approaches,review,machine_learning,\breview\b
+W3020975691,https://doi.org/10.1613/jair.1.13200,Explainable Deep Learning: A Field Guide for the Uninitiated,article,machine_learning,\bguide\b
+W3021444882,https://doi.org/10.2307/1911242,A Theory of the Term Structure of Interest Rates,article,finance,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W3021503072,https://doi.org/10.1109/icics49469.2020.239556,Machine Learning with Oversampling and Undersampling Techniques: Overview Study and Experimental Results,conference-paper,machine_learning,\boverview\b
+W3022604663,https://doi.org/10.1109/access.2020.2990528,Bearing Fault Detection and Diagnosis Using Case Western Reserve University Dataset With Deep Learning Approaches: A Review,article,machine_learning,\breview\b
+W3022643593,https://doi.org/10.1098/rsta.2020.0209,Time-series forecasting with deep learning: a survey,article,statistics,"\bsurvey\b, \bwe (review|survey)\b"
+W3030364939,https://doi.org/10.1109/tpami.2021.3057446,A continual learning survey: Defying forgetting in classification tasks,article,deep_learning,\bsurvey\b
+W3032388710,https://doi.org/10.18653/v1/2020.acl-main.485,Language (Technology) is Power: A Critical Survey of “Bias” in NLP,conference-paper,agents,"\bsurvey\b, \bwe (review|survey)\b"
+W3033513666,https://doi.org/10.1016/j.physrep.2020.05.004,Networks beyond pairwise interactions: Structure and dynamics,article,statistics,\bwe (review|survey)\b
+W3034942609,https://doi.org/10.1145/3386252,Generalizing from a Few Examples,article,deep_learning,\bwe (review|survey)\b
+W3035725276,https://doi.org/10.1109/tkde.2021.3090866,Self-supervised Learning: Generative or Contrastive,article,deep_learning,\bthis (review|survey|tutorial)\b
+W3036453007,https://doi.org/10.48550/arxiv.2006.11371,Opportunities and Challenges in Explainable Artificial Intelligence (XAI): A Survey,preprint,machine_learning,\bsurvey\b
+W3037826211,https://doi.org/10.1093/comnet/cnu016,Multilayer networks,article,statistics,\bwe (review|survey)\b
+W3041133507,https://doi.org/10.1109/jproc.2020.3004555,A Comprehensive Survey on Transfer Learning,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W3042368254,https://doi.org/10.1109/tnnls.2022.3182979,Backdoor Learning: A Survey,article,deep_learning,\bsurvey\b
+W3042737680,,"The past, present and future of scalable computing technologies trends and paradigms: A survey",article,cloud_infrastructure,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3046238651,https://doi.org/10.1016/j.jbi.2020.103655,"The role of explainability in creating trustworthy artificial intelligence for health care: A comprehensive survey of the terminology, design choices, and evaluation strategies",article,machine_learning,"\bsurvey\b, \bwe (review|survey)\b"
+W3046296398,https://doi.org/10.1371/journal.pone.0254841,An empirical survey of data augmentation for time series classification with neural networks,article,statistics,"\bsurvey\b, \bwe (review|survey)\b, \bthis (review|survey|tutorial)\b"
+W3082059448,https://doi.org/10.1186/s40537-020-00349-y,Boosting methods for multi-class imbalanced data classification: an experimental review,article,machine_learning,\breview\b
+W3083912353,https://doi.org/10.1371/journal.pone.0238508,The exploration of the dispersal of British military families in England following the Strategic Defence and Security Review 2010,article,econometrics,\breview\b
+W3085046840,https://doi.org/10.1109/tpami.2021.3054719,Multi-Task Learning for Dense Prediction Tasks: A Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W3094594436,https://doi.org/10.1109/tits.2020.3029946,"Data-Driven Fault Diagnosis for Traction Systems in High-Speed Trains: A Survey, Challenges, and Perspectives",article,machine_learning,\bsurvey\b
+W3094948551,https://doi.org/10.1186/s40537-020-00369-8,CatBoost for big data: an interdisciplinary review,article,machine_learning,\breview\b
+W3096655658,https://doi.org/10.1109/access.2020.3031549,Contrastive Representation Learning: A Framework and Review,article,deep_learning,\breview\b
+W3101981467,https://doi.org/10.1613/jair.1.12228,A Survey on the Explainability of Supervised Machine Learning,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W3102547229,https://doi.org/10.1097/ccm.0000000000004710,Practitioner’s Guide to Latent Class Analysis: Methodological Considerations and Common Pitfalls,article,statistics,"\bguide\b, \bthis (review|survey|tutorial)\b"
+W3107593835,https://doi.org/10.1109/iccst50977.2020.00123,A Survey of Temporal Activity Localization via Language in Untrimmed Videos,conference-paper,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3108202858,https://doi.org/10.1109/tbdata.2022.3177455,"A Survey on Heterogeneous Graph Embedding: Methods, Techniques, Applications and Sources",article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3108353645,https://doi.org/10.1017/s0962492920000021,Randomized numerical linear algebra: Foundations and algorithms,article,deep_learning,\bthis (review|survey|tutorial)\b
+W3109365969,https://doi.org/10.1089/big.2020.0159,Deep Learning for Time Series Forecasting: A Survey,article,statistics,\bsurvey\b
+W3109682927,https://doi.org/10.1016/j.cjca.2020.11.010,Missing Data in Clinical Research: A Tutorial on Multiple Imputation,article,statistics,\btutorial\b
+W3112410551,https://doi.org/10.1561/0400000060,Sketching as a Tool for Numerical Linear Algebra,article,deep_learning,\bthis (review|survey|tutorial)\b
+W3114319529,https://doi.org/10.1093/ije/dyaa213,Use of directed acyclic graphs (DAGs) to identify confounders in applied health research: review and recommendations,article,statistics,"\breview\b, \bthis (review|survey|tutorial)\b"
+W3115948762,https://doi.org/10.1007/s10618-020-00727-3,The great multivariate time series classification bake off: a review and experimental evaluation of recent algorithmic advances,article,statistics,"\breview\b, \bwe (review|survey)\b"
+W3116286104,https://doi.org/10.3390/e23010018,Explainable AI: A Review of Machine Learning Interpretability Methods,article,machine_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W3116637551,https://doi.org/10.1109/tpami.2022.3204236,Explainability in Graph Neural Networks: A Taxonomic Survey,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W3117215073,https://doi.org/10.1613/jair.1.13673,Towards Continual Reinforcement Learning: A Review and Perspectives,article,agents,"\breview\b, \bwe (review|survey)\b"
+W3117379604,https://doi.org/10.1109/tetci.2021.3100641,A Survey on Neural Network Interpretability,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3119997354,https://doi.org/10.1145/3505244,Transformers in Vision: A Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3121421445,https://doi.org/10.1257/0895330042632708,Oil and the Macroeconomy Since the 1970s,article,finance,\bwe (review|survey)\b
+W3123200913,https://doi.org/10.1177/1536867x0900900106,How to do Xtabond2: An Introduction to Difference and System GMM in Stata,article,econometrics,\bintroduction to\b
+W3123769562,https://doi.org/10.1257/jel.39.3.839,"Official Intervention in the Foreign Exchange Market: Is It Effective and, If So, How Does It Work?",article,economics,\bwe (review|survey)\b
+W3123950623,,Competitiveness and the Evolution of the Real Exchange Rate in Chile,preprint,economics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W3124120302,https://doi.org/10.1162/003465304323023651,Nonparametric Estimation of Average Treatment Effects Under Exogeneity: A Review,article,statistics,\breview\b
+W3125780646,https://doi.org/10.1111/0022-1082.00379,Investor Psychology and Asset Pricing,article,finance,\bthis (review|survey|tutorial)\b
+W3125997628,https://doi.org/10.1109/access.2021.3051315,A Survey of Contrastive and Counterfactual Explanation Generation Methods for Explainable Artificial Intelligence,article,machine_learning,\bsurvey\b
+W3126027997,https://doi.org/10.1111/j.1468-0084.2008.00542.x,A Note on the Theme of Too Many Instruments *,article,economics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W3129850062,https://doi.org/10.1109/tpami.2022.3170559,Self-Supervised Learning of Graph Neural Networks: A Unified Review,article,deep_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W3130794141,https://doi.org/10.1109/tbme.2021.3117407,Domain Adaptation for Medical Image Analysis: A Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W3132191748,https://doi.org/10.1109/jproc.2021.3060483,Explaining Deep Neural Networks and Beyond: A Review of Methods and Applications,article,machine_learning,\breview\b
+W3133542152,https://doi.org/10.1109/tkde.2022.3178128,Generalizing to Unseen Domains: A Survey on Domain Generalization,article,deep_learning,\bsurvey\b
+W3133543405,https://doi.org/10.3390/electronics10050593,Evaluating the Quality of Machine Learning Explanations: A Survey on Methods and Metrics,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3134210100,https://doi.org/10.1109/tkde.2022.3172903,Graph Self-Supervised Learning: A Survey,article,deep_learning,\bsurvey\b
+W3134299861,https://doi.org/10.1109/tits.2021.3122865,Explanations in Autonomous Driving: A Survey,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3135588948,https://doi.org/10.1109/jproc.2021.3058954,Toward Causal Representation Learning,article,statistics,\bwe (review|survey)\b
+W3135970545,https://doi.org/10.1049/cit2.12028,A survey on adversarial attacks and defences,article,deep_learning,\bsurvey\b
+W3136879969,https://doi.org/10.1017/s0962492921000027,Deep learning: a statistical viewpoint,article,deep_learning,\bwe (review|survey)\b
+W3137125108,https://doi.org/10.1214/21-ss133,Interpretable machine learning: Fundamental principles and 10 grand challenges,article,machine_learning,\bthis (review|survey|tutorial)\b
+W3138815606,https://doi.org/10.1145/3523273,Membership Inference Attacks on Machine Learning: A Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W3140854437,https://doi.org/10.1186/s40537-021-00444-8,"Review of deep learning: concepts, CNN architectures, challenges, applications, future directions",article,deep_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W3141797743,https://doi.org/10.1109/tkde.2021.3070203,A Survey on Multi-Task Learning,article,deep_learning,"\bsurvey\b, \bwe (review|survey)\b"
+W3146354115,https://doi.org/10.1080/00401706.1997.10485461,Statistics and Data Analysis,article,statistics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W3150882435,https://doi.org/10.1109/asonam49781.2020.9381328,k-Truss Network Community Detection,conference-paper,statistics,\bwe (review|survey)\b
+W3152893301,https://doi.org/10.1016/j.aiopen.2021.01.001,Graph neural networks: A review of methods and applications,article,deep_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W3154435685,https://doi.org/10.1109/trpms.2021.3066428,On Interpretability of Artificial Neural Networks: A Survey,article,machine_learning,\bsurvey\b
+W3157999218,https://doi.org/10.1109/tai.2021.3076021,Graph Learning: A Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3163939464,https://doi.org/10.1109/tpami.2022.3213473,Class-Incremental Learning: Survey and Performance Evaluation on Image Classification,article,deep_learning,\bsurvey\b
+W3164846705,https://doi.org/10.1016/j.inffus.2021.05.009,Notions of explainability and evaluation approaches for explainable artificial intelligence,article,machine_learning,"\bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3165186175,https://doi.org/10.1145/3501297,Anomaly Detection and Failure Root Cause Analysis in (Micro) Service-Based Cloud Applications: A Survey,article,cloud_infrastructure,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W3168997536,https://doi.org/10.1109/tnnls.2021.3084827,"A Survey of Convolutional Neural Networks: Analysis, Applications, and Prospects",article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W3171328115,,Anomaly Detection in Credit Card Transactions using Machine Learning,preprint,machine_learning,\bwe (review|survey)\b
+W3172362366,https://doi.org/10.3390/app11115088,Current Challenges and Future Opportunities for XAI in Machine Learning-Based Clinical Decision Support Systems: A Systematic Review,review,machine_learning,\breview\b
+W3177661038,https://doi.org/10.18690/978-961-286-485-9.13,Alternative Data for Credit Risk Management: An Analysis of the Current State of Research,conference-paper,finance,\bthis (review|survey|tutorial)\b
+W3182546273,https://doi.org/10.1002/widm.1424,Explainable artificial intelligence: an analytical review,article,machine_learning,\breview\b
+W3183048323,https://doi.org/10.1007/s10462-023-10562-9,A survey of uncertainty in deep neural networks,article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3183198896,https://doi.org/10.1016/j.media.2022.102470,Explainable artificial intelligence (XAI) in deep learning-based medical image analysis,article,machine_learning,\bthis (review|survey|tutorial)\b
+W3183619936,https://doi.org/10.1145/3460345,A Survey on Automated Log Analysis for Reliability Engineering,article,cloud_infrastructure,"\bsurvey\b, \bwe (review|survey)\b, \bthis (review|survey|tutorial)\b"
+W3183620985,https://doi.org/10.1145/3502289,"AI in Finance: Challenges, Techniques, and Opportunities",article,finance,\bthis (review|survey|tutorial)\b
+W3187418919,https://doi.org/10.1109/tpami.2022.3152247,A Survey on Vision Transformer,article,deep_learning,"\bsurvey\b, \bwe (review|survey)\b"
+W3191453585,https://doi.org/10.24963/ijcai.2021/591,Recent Advances in Adversarial Training for Adversarial Robustness,conference-paper,deep_learning,"\bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3201437744,https://doi.org/10.1016/j.cjca.2021.09.004,Opening the Black Box: The Promise and Limitations of Explainable Machine Learning in Cardiology,article,machine_learning,\bthis (paper|article|chapter) (reviews|surveys)\b
+W3201753566,https://doi.org/10.1109/tim.2021.3116309,Applications of Unsupervised Deep Transfer Learning to Intelligent Fault Diagnosis: A Survey and Comparative Study,article,machine_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3202183072,https://doi.org/10.1145/3555803,Trustworthy AI: From Principles to Practices,article,deep_learning,\bthis (review|survey|tutorial)\b
+W3202428668,https://doi.org/10.1109/tnnls.2022.3229161,Deep Neural Networks and Tabular Data: A Survey,article,machine_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W3205211596,https://doi.org/10.1093/ckj/sfab158,An introduction to inverse probability of treatment weighting in observational research,article,statistics,\bintroduction to\b
+W3211317523,https://doi.org/10.1016/j.compbiomed.2021.105111,Transparency of deep neural networks for medical image analysis: A review of interpretability methods,article,machine_learning,\breview\b
+W3212442665,https://doi.org/10.1111/joes.12481,Modeling time‐varying higher‐order conditional moments: A survey,article,finance,\bsurvey\b
+W3212604410,https://doi.org/10.1109/tkde.2021.3126456,A General Survey on Attention Mechanisms in Deep Learning,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W3214439486,https://doi.org/10.1016/j.jclinepi.2021.11.023,Missing data is poorly handled and reported in prediction model studies using machine learning: a literature review,article,statistics,\breview\b
+W4200133817,https://doi.org/10.3389/frai.2021.794996,Audience-Dependent Explanations for AI-Based Risk Management Tools: A Survey,article,machine_learning,\bsurvey\b
+W4205471456,https://doi.org/10.1016/j.eswa.2021.116429,Financial Fraud: A Review of Anomaly Detection Techniques and Recent Advances,article,machine_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W4205641472,https://doi.org/10.1561/0800000014,The Estimation of Causal Effects by Difference-in-Difference Methods,article,econometrics,\bthis (review|survey|tutorial)\b
+W4206348828,https://doi.org/10.3390/diagnostics12020237,Applications of Explainable Artificial Intelligence in Diagnosis and Surgery,article,machine_learning,\bthis (review|survey|tutorial)\b
+W4210598935,https://doi.org/10.1016/j.procs.2022.01.135,A Review of Yolo Algorithm Developments,conference-paper,deep_learning,\breview\b
+W4211177544,https://doi.org/10.1080/01621459.1995.10476572,Bayes Factors,article,statistics,\bwe (review|survey)\b
+W4224983028,https://doi.org/10.1109/jas.2022.105506,Cooperative and Competitive Multi-Agent Systems: From Optimization to Games,article,deep_learning,\bthis (review|survey|tutorial)\b
+W4225150645,https://doi.org/10.1007/s10618-022-00831-6,Counterfactual explanations and how to find them: literature review and benchmarking,article,machine_learning,\breview\b
+W4226108798,https://doi.org/10.1007/978-3-031-04083-2_2,Explainable AI Methods - A Brief Overview,conference-paper,machine_learning,\boverview\b
+W4226512186,https://doi.org/10.1109/tnnls.2022.3227717,A Survey of Visual Transformers,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4256053265,https://doi.org/10.1111/j.1574-0862.2002.tb00120.x,Under the hood Issues in the specification and interpretation of spatial regression models,article,econometrics,\bthis (paper|article|chapter) (reviews|surveys)\b
+W4282966320,https://doi.org/10.3390/s22124531,A Review on the Trends in Event Detection by Analyzing Social Media Platforms’ Data,article,statistics,"\breview\b, \bthis (review|survey|tutorial)\b"
+W4283159491,https://doi.org/10.1145/3531146.3534639,A Review of Taxonomies of Explainable Artificial Intelligence (XAI) Methods,conference-paper,machine_learning,\breview\b
+W4287322212,https://doi.org/10.1109/tkde.2022.3220219,A Survey on Deep Semi-Supervised Learning,article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4289639938,https://doi.org/10.1109/tpami.2022.3195549,Domain Generalization: A Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4292289324,https://doi.org/10.1007/s10462-022-10246-w,Human-in-the-loop machine learning: a state of the art,article,machine_learning,\bwe (review|survey)\b
+W4292363360,https://doi.org/10.1561/2200000016,Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers,article,deep_learning,\bthis (review|survey|tutorial)\b
+W4293083210,https://doi.org/10.46647/ijetms.2022.v06i05.096,An Overview of Heterogeneous Information Networks based on Recommendation System,article,deep_learning,\boverview\b
+W4293770403,https://doi.org/10.1007/s10586-022-03713-0,Energy efficiency in cloud computing data centers: a survey on software technologies,article,cloud_infrastructure,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4294559022,https://doi.org/10.1145/3561048,"Explainable AI (XAI): Core Ideas, Techniques, and Solutions",article,machine_learning,"\bwe (review|survey)\b, \bthis (review|survey|tutorial)\b"
+W4295854586,https://doi.org/10.1109/access.2022.3204051,Explainable Artificial Intelligence Applications in Cyber Security: State-of-the-Art in Research,article,deep_learning,"\bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4297347671,https://doi.org/10.3390/app12199637,Financial Fraud Detection Based on Machine Learning: A Systematic Literature Review,review,machine_learning,\breview\b
+W4307183157,https://doi.org/10.48550/arxiv.2112.08313,Measure and Improve Robustness in NLP Models: A Survey,preprint,deep_learning,\bsurvey\b
+W4308609512,https://doi.org/10.48550/arxiv.2103.10948,The Shape of Learning Curves: a Review,preprint,statistics,"\breview\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4313178214,https://doi.org/10.1109/access.2022.3223444,Mel Frequency Cepstral Coefficient and its Applications: A Review,article,statistics,\breview\b
+W4313591247,https://doi.org/10.1109/comst.2022.3233793,Adversarial Machine Learning for Network Intrusion Detection Systems: A Comprehensive Survey,article,deep_learning,"\bsurvey\b, \bthis (paper|article|chapter) (reviews|surveys)\b, \bwe (review|survey)\b"
+W4313648826,https://doi.org/10.3390/s23020634,Survey of Explainable AI Techniques in Healthcare,article,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4319163914,https://doi.org/10.1145/3582688,"A Comprehensive Survey of Few-shot Learning: Evolution, Applications, Challenges, and Opportunities",article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4320002812,https://doi.org/10.1109/jproc.2023.3238524,Object Detection in 20 Years: A Survey,article,deep_learning,\bsurvey\b
+W4321016476,https://doi.org/10.1109/tim.2023.3244237,Deep Transfer Learning for Bearing Fault Diagnosis: A Systematic Review Since 2016,review,machine_learning,"\breview\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4321786089,https://doi.org/10.1145/3583558,From Anecdotal Evidence to Quantitative Evaluation Methods: A Systematic Review on Evaluating Explainable AI,review,machine_learning,"\breview\b, \bthis (review|survey|tutorial)\b"
+W4322627364,https://doi.org/10.1155/2023/8342104,Deep Learning with Graph Convolutional Networks: An Overview and Latest Applications in Computational Intelligence,article,deep_learning,"\boverview\b, \bthis (review|survey|tutorial)\b"
+W4324142429,https://doi.org/10.3390/technologies11020040,A Review of Deep Transfer Learning and Recent Advancements,article,deep_learning,"\breview\b, \bthis (paper|article|chapter) (reviews|surveys)\b"
+W4360995249,https://doi.org/10.1109/access.2023.3262138,"Machine Learning Operations (MLOps): Overview, Definition, and Architecture",article,cloud_infrastructure,\boverview\b
+W4366085876,https://doi.org/10.1016/j.dajour.2023.100230,A systematic review of Explainable Artificial Intelligence models and applications: Recent developments and future trends,review,machine_learning,\breview\b
+W4366352743,https://doi.org/10.1109/tpami.2023.3268118,Deep Long-Tailed Learning: A Survey,article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4367595583,https://doi.org/10.1109/jas.2023.123618,"A Brief Overview of ChatGPT: The History, Status Quo and Potential Future Development",article,agents,\boverview\b
+W4376226279,https://doi.org/10.1109/tpami.2023.3275156,Multimodal Learning With Transformers: A Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4376288669,https://doi.org/10.1016/j.mlwa.2023.100470,Deep learning for anomaly detection in log data: A survey,article,cloud_infrastructure,\bsurvey\b
+W4376643691,https://doi.org/10.1145/3597307,"Biases in Large Language Models: Origins, Inventory, and Discussion",article,agents,\bwe (review|survey)\b
+W4377043947,https://doi.org/10.1002/mef2.43,Accelerating the integration of ChatGPT and other large‐scale AI models into biomedical research and healthcare,article,agents,\bthis (review|survey|tutorial)\b
+W4380685454,https://doi.org/10.3390/app13127082,"Re-Thinking Data Strategy and Integration for Artificial Intelligence: Concepts, Opportunities, and Challenges",article,machine_learning,\bthis (review|survey|tutorial)\b
+W4381587418,https://doi.org/10.1093/bib/bbad493,Opportunities and challenges for ChatGPT and large language models in biomedicine and health,article,agents,\bthis (review|survey|tutorial)\b
+W4383737134,https://doi.org/10.36227/techrxiv.23589741.v1,"A Survey on Large Language Models: Applications, Challenges, Limitations, and Practical Usage",preprint,agents,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4385456320,https://doi.org/10.1145/3611651,Pre-trained Language Models in Biomedical Domain: A Systematic Survey,article,agents,\bsurvey\b
+W4385469325,https://doi.org/10.1109/ojcs.2023.3300321,"A Survey on ChatGPT: AI–Generated Contents, Challenges, and Solutions",article,agents,"\bsurvey\b, \bwe (review|survey)\b"
+W4385569771,https://doi.org/10.18653/v1/2023.acl-long.294,Reasoning with Language Model Prompting: A Survey,conference-paper,agents,\bsurvey\b
+W4385571689,https://doi.org/10.18653/v1/2023.findings-acl.67,Towards Reasoning in Large Language Models: A Survey,conference-paper,agents,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4385572142,https://doi.org/10.18653/v1/2023.acl-long.411,Large Language Models Meet NL2Code: A Survey,conference-paper,agents,\bsurvey\b
+W4385763767,https://doi.org/10.24963/ijcai.2023/759,Transformers in Time Series: A Survey,conference-paper,statistics,\bsurvey\b
+W4386142022,https://doi.org/10.1007/s12559-023-10179-8,Interpreting Black-Box Models: A Review on Explainable Artificial Intelligence,article,machine_learning,\breview\b
+W4388725733,https://doi.org/10.36227/techrxiv.23589741.v4,"Large Language Models: A Comprehensive Survey of its Applications, Challenges, Limitations, and Future Prospects",preprint,agents,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4388823657,https://doi.org/10.3390/make5040083,A Comprehensive Review of YOLO Architectures in Computer Vision: From YOLOv1 to YOLOv8 and YOLO-NAS,article,deep_learning,\breview\b
+W4389359039,https://doi.org/10.1007/s12525-023-00680-1,Generative artificial intelligence,article,machine_learning,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W4389513437,https://doi.org/10.1016/j.eswa.2023.122778,"A review of ensemble learning and data augmentation models for class imbalanced problems: Combination, implementation and evaluation",article,machine_learning,\breview\b
+W4389518307,https://doi.org/10.18653/v1/2023.argmining-1.12,Overview of ImageArg-2023: The First Shared Task in Multimodal Argument Mining,conference-paper,deep_learning,\boverview\b
+W4389618734,https://doi.org/10.1016/j.dibe.2023.100300,"GPT models in construction industry: Opportunities, limitations, and a use case validation",article,agents,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W4389763759,https://doi.org/10.1109/mcse.2023.3342149,An Intuitive Tutorial to Gaussian Process Regression,article,statistics,"\btutorial\b, \bthis (review|survey|tutorial)\b"
+W4389977189,https://doi.org/10.1016/j.nlp.2023.100048,A survey of GPT-3 family large language models including ChatGPT and GPT-4,article,agents,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4390058985,https://doi.org/10.1162/dint_a_00243,The Limitations and Ethical Considerations of ChatGPT,article,agents,\bthis (review|survey|tutorial)\b
+W4390437444,https://doi.org/10.48550/arxiv.2312.16602,Visual Instruction Tuning towards General-Purpose Multimodal Model: A Survey,preprint,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4390490761,https://doi.org/10.1145/3639372,Explainability for Large Language Models: A Survey,article,machine_learning,\bsurvey\b
+W4390906246,https://doi.org/10.1186/s40537-023-00876-4,"A review of graph neural networks: concepts, architectures, techniques, challenges, datasets, applications, and future directions",article,deep_learning,\breview\b
+W4391136507,https://doi.org/10.1145/3641289,A Survey on Evaluation of Large Language Models,article,agents,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4391158686,https://doi.org/10.48550/arxiv.2401.11720,Graph Condensation: A Survey,preprint,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4391301614,https://doi.org/10.7326/m23-2772,Large Language Models in Medicine: The Potentials and Pitfalls,article,agents,\bthis (review|survey|tutorial)\b
+W4391359174,https://doi.org/10.1111/emip.12593,MxML (Exploring the Relationship between Measurement and Machine Learning): Current State of the Field,article,machine_learning,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W4391407054,https://doi.org/10.1109/tkde.2024.3360454,Give us the Facts: Enhancing Large Language Models With Knowledge Graphs for Fact-Aware Language Modeling,article,agents,\bthis (paper|article|chapter) (reviews|surveys)\b
+W4391840390,https://doi.org/10.1145/3648471,"Utilizing BERT for Information Retrieval: Survey, Applications, Resources, and Challenges",article,agents,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4392172801,https://doi.org/10.1109/tpami.2024.3369699,Vision-Language Models for Vision Tasks: A Survey,article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4392173735,https://doi.org/10.1109/tpami.2024.3367329,"A Comprehensive Survey of Continual Learning: Theory, Method and Application",article,deep_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4392358084,https://doi.org/10.3390/app14052074,"A Review of Current Trends, Techniques, and Challenges in Large Language Models (LLMs)",article,agents,"\breview\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4392414327,https://doi.org/10.1109/icse-fose59343.2023.00008,Large Language Models for Software Engineering: Survey and Open Problems,conference-paper,agents,\bsurvey\b
+W4394862623,https://doi.org/10.1109/wacvw60836.2024.00106,A Survey on Multimodal Large Language Models for Autonomous Driving,conference-paper,agents,\bsurvey\b
+W4394966885,https://doi.org/10.1109/mgrs.2024.3383473,Vision-Language Models in Remote Sensing: Current progress and future trends,article,agents,"\bwe (review|survey)\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4394994587,https://doi.org/10.1109/tkde.2024.3392335,Recommender Systems in the Era of Large Language Models (LLMs),article,agents,"\bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4395052272,https://doi.org/10.1016/j.isci.2024.109713,The application of large language models in medicine: A scoping review,article,agents,\breview\b
+W4396773505,https://doi.org/10.1007/s10462-024-10759-6,"A survey on imbalanced learning: latest research, applications and future directions",article,machine_learning,\bsurvey\b
+W4399433746,https://doi.org/10.1016/j.compeleceng.2024.109370,A review of Explainable Artificial Intelligence in healthcare,article,machine_learning,"\breview\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4399528455,https://doi.org/10.1162/coli_a_00524,Bias and Fairness in Large Language Models: A Survey,article,agents,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4399978597,https://doi.org/10.1145/3674501,A Comprehensive Survey on Relation Extraction: Recent Advances and New Frontiers,article,agents,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4400520863,https://doi.org/10.1016/j.infsof.2024.107523,Fine-tuning and prompt engineering for large language models-based code review automation,article,agents,\breview\b
+W4401353528,https://doi.org/10.29007/43tn,Image Captioning: A Survey on its methods and Implementation.,conference-paper,deep_learning,\bsurvey\b
+W4401567681,https://doi.org/10.1109/tpami.2024.3443141,"A Survey on Graph Neural Networks for Time Series: Forecasting, Classification, Imputation, and Anomaly Detection",article,statistics,"\bsurvey\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4401857430,https://doi.org/10.1145/3637528.3671474,A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys),conference-paper,agents,"\breview\b, \bthis (review|survey|tutorial)\b"
+W4402665833,https://doi.org/10.1145/3695988,Large Language Models for Software Engineering: A Systematic Literature Review,review,agents,\breview\b
+W4402890475,https://doi.org/10.1177/02783649241281508,"Foundation models in robotics: Applications, challenges, and the future",article,agents,"\bwe (review|survey)\b, \bthis (review|survey|tutorial)\b"
+W4402905690,https://doi.org/10.1016/j.inffus.2024.102707,A review of Bayes filters with machine learning techniques and their applications,article,statistics,"\breview\b, \bthis (review|survey|tutorial)\b"
+W4402924663,https://doi.org/10.17148/ijarcce.2024.13920,Systematic Review of Real-Time Analytics and Artificial Intelligence Frameworks for Financial Fraud Detection,review,finance,"\breview\b, \bthis (review|survey|tutorial)\b"
+W4403371192,https://doi.org/10.1007/s44212-024-00060-w,"Leveraging generative AI for urban digital twins: a scoping review on the autonomous generation of urban data, scenarios, designs, and 3D city models for smart city advancement",article,agents,\breview\b
+W4403845965,https://doi.org/10.1111/cts.70056,Practical guide to SHAP analysis: Explaining supervised machine learning model predictions in drug development,article,machine_learning,"\bguide\b, \bthis (review|survey|tutorial)\b"
+W4404304597,https://doi.org/10.48550/arxiv.2410.17281,A Comprehensive Survey and Classification of Evaluation Criteria for Trustworthy Artificial Intelligence,preprint,machine_learning,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4404356490,https://doi.org/10.1093/nsr/nwae403,A survey on multimodal large language models,article,deep_learning,\bsurvey\b
+W4404509535,https://doi.org/10.3389/frai.2024.1430984,Vision-language models for medical report generation and visual question answering: a review,article,agents,\breview\b
+W4404835216,https://doi.org/10.1016/j.procs.2024.09.178,A Survey on RAG with LLMs,conference-paper,agents,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4405185373,https://doi.org/10.1039/d4sc03921a,A review of large language models and autonomous agents in chemistry,article,agents,"\breview\b, \bthis (review|survey|tutorial)\b"
+W4405616956,https://doi.org/10.1039/d4cs00913d,From text to insight: large language models for chemical data extraction,review,agents,"\bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4405910844,https://doi.org/10.1016/j.jai.2024.12.003,"Large language models for robotics: Opportunities, challenges, and perspectives",article,agents,\b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b
+W4406241919,https://doi.org/10.1016/j.patter.2024.101118,A survey of multilingual large language models,article,agents,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4406302454,https://doi.org/10.1145/3712001,Security and Privacy Challenges of Large Language Models: A Survey,article,agents,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4406602253,https://doi.org/10.1016/j.inffus.2025.102963,"A survey of large language models for healthcare: from data, technology, and applications to accountability and ethics",article,agents,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4406887664,https://doi.org/10.2196/59823,The Clinicians’ Guide to Large Language Models: A General Perspective With a Focus on Hallucinations,article,agents,\bguide\b
+W4407236106,https://doi.org/10.1145/3716628,AI Agents Under Threat: A Survey of Key Security Challenges and Future Pathways,article,agents,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W4409348640,https://doi.org/10.3390/app15084234,Retrieval-Augmented Generation (RAG) Chatbots for Education: A Survey of Applications,article,agents,\bsurvey\b
+W4410202262,https://doi.org/10.1016/j.patter.2025.101260,Unleashing the potential of prompt engineering for large language models,article,agents,\bthis (review|survey|tutorial)\b
+W4411403346,https://doi.org/10.1145/3744746,A Comprehensive Overview of Large Language Models,article,agents,"\boverview\b, \bthis (review|survey|tutorial)\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W4412404226,https://doi.org/10.1109/access.2025.3588688,A Review of Distributed Ledger Technologies for Satellite Operations,article,cloud_infrastructure,"\breview\b, \bthis (review|survey|tutorial)\b"
+W4413427262,https://doi.org/10.1016/j.inffus.2025.103599,"AI Agents vs. Agentic AI: A Conceptual taxonomy, applications and challenges",article,agents,\bthis (review|survey|tutorial)\b
+W4414677042,https://doi.org/10.3389/frai.2025.1622292,Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior,article,agents,"\bsurvey\b, \b(a|this) (comprehensive|systematic|critical) (review|survey|overview)\b"
+W633372463,,Consumer Tendency Survey of Turkey : A Disaggregated Analysis,preprint,economics,\bsurvey\b
+W7109650326,https://doi.org/10.5281/zenodo.17843043,Learning to Defer: A Survey,preprint,machine_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W7129489580,https://doi.org/10.1145/3795880,Graph-Based Approaches and Functionalities in Retrieval-Augmented Generation: A Comprehensive Survey,article,deep_learning,"\bsurvey\b, \bthis (review|survey|tutorial)\b"
+W7166710021,https://doi.org/10.3390/info17080809,Beyond the Black Box—A New Vector for Explainable AI Through Comparative Analysis of Logical Systems,article,machine_learning,\bthis (review|survey|tutorial)\b
+W7204035353,https://doi.org/10.5281/zenodo.22071619,A Primer on Frame-QL,preprint,machine_learning,\bprimer\b

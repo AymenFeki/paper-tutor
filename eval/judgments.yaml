@@ -962,3 +962,953 @@
   paper_id: W2046006386
   relevant: false
   reason: One-sentence abstract; too little to judge as useful.
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W1594863551
+  relevant: false
+  judge: human
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2032616735
+  relevant: false
+  judge: human
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2144898279
+  relevant: false
+  judge: human
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2146620998
+  relevant: false
+  judge: human
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2151729750
+  relevant: false
+  judge: human
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2774971100
+  relevant: false
+  judge: human
+- question: My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?
+  paper_id: W2803889050
+  relevant: false
+  judge: human
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2006804758
+  relevant: false
+  judge: human
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2062594082
+  relevant: false
+  judge: human
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2096684396
+  relevant: true
+  judge: human
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2255146410
+  relevant: true
+  judge: human
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W3123201237
+  relevant: false
+  judge: llm
+  reason: Bankruptcy hazard models; not an intervention/before-after analysis.
+- question: A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?
+  paper_id: W2299360728
+  relevant: false
+  judge: llm
+  reason: Bayesian mixture model for crash data; nothing on level/trend change after an intervention.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2123664981
+  relevant: false
+  judge: llm
+  reason: Time-dependent ROC curves; not competing risks or cumulative incidence.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2144168223
+  relevant: false
+  judge: llm
+  reason: Propensity scores with survival outcomes; does not address competing risks.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W2153941399
+  relevant: false
+  judge: llm
+  reason: Relative risk vs odds ratio; different problem.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W4312071226
+  relevant: false
+  judge: llm
+  reason: Joint longitudinal-survival model for HIV; not competing risks.
+- question: If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?
+  paper_id: W3007600959
+  relevant: false
+  judge: human
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2134732827
+  relevant: true
+  judge: human
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W1723129825
+  relevant: false
+  judge: human
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2560656592
+  relevant: false
+  judge: human
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2503920952
+  relevant: false
+  judge: human
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W4281717669
+  relevant: false
+  judge: llm
+  reason: Class imbalance corrections; not variable selection.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2332603912
+  relevant: false
+  judge: llm
+  reason: Regression for diagnostic likelihood ratios; different problem.
+- question: I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?
+  paper_id: W2057964179
+  relevant: false
+  judge: llm
+  reason: Finite mixture models with EM; different problem.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W2171177579
+  relevant: false
+  judge: human
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W3109682927
+  relevant: false
+  judge: llm
+  reason: Multiple imputation tutorial; different problem.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W2083126399
+  relevant: false
+  judge: llm
+  reason: Pseudo-ML for Poisson models; not dynamic panels.
+- question: How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?
+  paper_id: W2047905873
+  relevant: false
+  judge: llm
+  reason: Count-data econometrics; not dynamic panels.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2313987759
+  relevant: false
+  judge: llm
+  reason: Standard errors for EM in joint models; unrelated setting.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2062337042
+  relevant: false
+  judge: llm
+  reason: Comparing coefficients across nested models; not serial correlation in DiD.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W4394597808
+  relevant: false
+  judge: llm
+  reason: Semi-supervised learning; unrelated.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W3125057276
+  relevant: false
+  judge: human
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W3124280494
+  relevant: false
+  judge: llm
+  reason: Stock returns after bond rating changes; unrelated.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W3122187992
+  relevant: false
+  judge: llm
+  reason: Mutual fund performance; unrelated.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2128017766
+  relevant: false
+  judge: human
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2011376672
+  relevant: false
+  judge: llm
+  reason: Class imbalance in classifiers; unrelated.
+- question: When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?
+  paper_id: W2994811916
+  relevant: false
+  judge: llm
+  reason: Measurement error myths; different problem.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W2339911297
+  relevant: false
+  judge: human
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W2033374689
+  relevant: false
+  judge: human
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W2082738341
+  relevant: false
+  judge: llm
+  reason: ATLAS computing; unrelated.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W4385221343
+  relevant: false
+  judge: llm
+  reason: New lifetime distribution; unrelated.
+- question: My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?
+  paper_id: W4289639938
+  relevant: false
+  judge: human
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2024424774
+  relevant: false
+  judge: llm
+  reason: General linear regression textbook; no spatial dependence.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W1829241487
+  relevant: false
+  judge: human
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W1998613841
+  relevant: false
+  judge: human
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2146409954
+  relevant: false
+  judge: llm
+  reason: Robust regression via PSO; unrelated.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W4308933245
+  relevant: true
+  judge: human
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2156339602
+  relevant: false
+  judge: llm
+  reason: Nonstationary panel regression theory; unrelated.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W3122187992
+  relevant: false
+  judge: llm
+  reason: Mutual fund performance; unrelated.
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W1536389597
+  relevant: false
+  judge: human
+- question: My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?
+  paper_id: W2045066934
+  relevant: false
+  judge: human
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2739349903
+  relevant: false
+  judge: human
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2905209730
+  relevant: false
+  judge: llm
+  reason: Model stealing attack; unrelated.
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2753415590
+  relevant: true
+  judge: human
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2590082389
+  relevant: true
+  judge: human
+- question: How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?
+  paper_id: W2605409611
+  relevant: true
+  judge: human
+- question: My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?
+  paper_id: W2104167780
+  relevant: true
+  judge: llm
+  reason: 'EasyEnsemble/BalanceCascade: ensembles of undersampled learners for class imbalance.'
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W4387928520
+  relevant: false
+  judge: llm
+  reason: Knowledge editing in diffusion models; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2883311563
+  relevant: false
+  judge: human
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W3203737321
+  relevant: false
+  judge: llm
+  reason: Multimodal dataset audit; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W4281485151
+  relevant: false
+  judge: llm
+  reason: Imagen text-to-image model; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2952602694
+  relevant: false
+  judge: llm
+  reason: Graphical models for mixed data; not deep learning on tabular data.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2170210994
+  relevant: false
+  judge: llm
+  reason: SAS PROC MIXED; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W2784121710
+  relevant: false
+  judge: llm
+  reason: Fine-tuning language models for text; unrelated.
+- question: Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?
+  paper_id: W4290876805
+  relevant: false
+  judge: human
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W2740570963
+  relevant: true
+  judge: llm
+  reason: 'GRU networks for machine health monitoring: fault diagnosis and prognosis from sensor data.'
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W4391266662
+  relevant: true
+  judge: human
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W4404031085
+  relevant: true
+  judge: human
+- question: How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?
+  paper_id: W2046657367
+  relevant: false
+  judge: llm
+  reason: Current sensor fault in PMSM drives via control theory; too specific.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2963845150
+  relevant: true
+  judge: human
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2114968414
+  relevant: false
+  judge: llm
+  reason: Class distribution for tree induction; not data augmentation.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W4402387055
+  relevant: false
+  judge: human
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2948734064
+  relevant: false
+  judge: llm
+  reason: Incremental learning; unrelated.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2808133870
+  relevant: false
+  judge: llm
+  reason: Sparse network training; unrelated.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W4417513677
+  relevant: false
+  judge: llm
+  reason: Explainable network design; unrelated.
+- question: I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?
+  paper_id: W2119191234
+  relevant: false
+  judge: llm
+  reason: Over/undersampling for cost-sensitive nets; imbalance, not augmentation.
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  paper_id: W4392173735
+  relevant: true
+  judge: llm
+  reason: Comprehensive survey of continual learning and catastrophic forgetting.
+- question: Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?
+  paper_id: W4312238419
+  relevant: true
+  judge: llm
+  reason: Prompt-based continual learning method addressing catastrophic forgetting.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2938470389
+  relevant: true
+  judge: human
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W4396754377
+  relevant: false
+  judge: llm
+  reason: Few-shot classification; unrelated.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2560730294
+  relevant: false
+  judge: llm
+  reason: VQA dataset bias; unrelated.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W2626639386
+  relevant: false
+  judge: llm
+  reason: SmoothGrad saliency maps; explanation, not adversarial attacks.
+- question: How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?
+  paper_id: W4303648801
+  relevant: true
+  judge: llm
+  reason: 'Robustness to L-infinity and spatial perturbations: adversarial threat models and adversarial training.'
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W7131061594
+  relevant: false
+  judge: human
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W2282821441
+  relevant: false
+  judge: human
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W4212821809
+  relevant: false
+  judge: human
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W1990748933
+  relevant: false
+  judge: llm
+  reason: ROC accuracy measurement; discrimination, not calibration.
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W7165853068
+  relevant: false
+  judge: human
+- question: How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?
+  paper_id: W2116666691
+  relevant: false
+  judge: human
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W3126053622
+  relevant: false
+  judge: llm
+  reason: Stock message boards; not central bank communication.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W2943798158
+  relevant: false
+  judge: llm
+  reason: Indian government bonds prediction; unrelated.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W2677898325
+  relevant: false
+  judge: human
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W3137152181
+  relevant: false
+  judge: llm
+  reason: Index options trading; unrelated.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W3021444882
+  relevant: false
+  judge: llm
+  reason: Term structure theory; not central bank communication.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W1992563875
+  relevant: false
+  judge: llm
+  reason: CAPM-style asset pricing; unrelated.
+- question: Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?
+  paper_id: W1587744912
+  relevant: false
+  judge: human
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W3021709961
+  relevant: true
+  judge: llm
+  reason: 'Forbes-Rigobon: measuring contagion vs interdependence across stock markets.'
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W2139400178
+  relevant: true
+  judge: llm
+  reason: Survey of how financial contagion spreads across countries.
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W3124454571
+  relevant: false
+  judge: human
+- question: How does a crash in one country's markets spread to other countries?
+  paper_id: W2153524550
+  relevant: false
+  judge: llm
+  reason: Mexican subnational bonds; unrelated.
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W2169478177
+  relevant: true
+  judge: human
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W2159904091
+  relevant: false
+  judge: llm
+  reason: Sovereign solvency measures; unrelated.
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W2104456410
+  relevant: true
+  judge: human
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W3122997816
+  relevant: false
+  judge: human
+- question: Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?
+  paper_id: W2126180267
+  relevant: false
+  judge: llm
+  reason: Currency union lessons; unrelated.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2028988097
+  relevant: false
+  judge: human
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W1975063543
+  relevant: false
+  judge: human
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2127680685
+  relevant: false
+  judge: llm
+  reason: Monetary policy evaluation model; not fiscal.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W1994121926
+  relevant: false
+  judge: llm
+  reason: Monetary theory textbook; not fiscal multipliers.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2923973045
+  relevant: false
+  judge: llm
+  reason: Potential output in South Africa; unrelated.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W1992563875
+  relevant: false
+  judge: llm
+  reason: Asset pricing; unrelated.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W1899786413
+  relevant: false
+  judge: llm
+  reason: Increasing returns; unrelated.
+- question: Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?
+  paper_id: W2014648357
+  relevant: false
+  judge: llm
+  reason: Bank deregulation and growth; unrelated.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2120925732
+  relevant: true
+  judge: llm
+  reason: Compares option-implied vs time-series volatility forecasts (FX, but the method transfers).
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W2139080644
+  relevant: false
+  judge: llm
+  reason: Price-volume dynamics; not volatility forecasting.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W4408267500
+  relevant: false
+  judge: llm
+  reason: Implied vol predicting CDS spreads; different target.
+- question: What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?
+  paper_id: W4245762542
+  relevant: false
+  judge: llm
+  reason: Money supply and stock returns; unrelated.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2425896407
+  relevant: false
+  judge: llm
+  reason: Unit root test; unrelated.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W4241004242
+  relevant: false
+  judge: llm
+  reason: Multivariate extremal processes theory; not a practical joint model.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W3111294340
+  relevant: false
+  judge: llm
+  reason: Joint longitudinal/survival quantile model; different problem.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2143902124
+  relevant: false
+  judge: llm
+  reason: Univariate beta-normal distribution; no dependence.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W3083504346
+  relevant: false
+  judge: llm
+  reason: Intractable normalising functions; unrelated.
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2060597638
+  relevant: false
+  judge: human
+- question: How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?
+  paper_id: W2048580686
+  relevant: true
+  judge: human
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W4237297574
+  relevant: true
+  judge: llm
+  reason: ML credit risk evaluation for loan decisions.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2346625195
+  relevant: true
+  judge: llm
+  reason: Credit scorecard modelling.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2809488497
+  relevant: true
+  judge: llm
+  reason: Predicting loan status/default with ML classifiers.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2098471783
+  relevant: false
+  judge: llm
+  reason: Monetary policy and credit supply; not applicant scoring.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2948225451
+  relevant: true
+  judge: llm
+  reason: Data mining models for credit risk assessment.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2036547589
+  relevant: true
+  judge: llm
+  reason: Neural networks and rule extraction for credit-risk evaluation.
+- question: How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?
+  paper_id: W2788025656
+  relevant: true
+  judge: llm
+  reason: ML and deep learning for credit risk prediction.
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W2039709163
+  relevant: false
+  judge: llm
+  reason: Oil price uncertainty and investment; not storage/futures.
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W2145224101
+  relevant: true
+  judge: human
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W3124797040
+  relevant: true
+  judge: human
+- question: How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?
+  paper_id: W2098052145
+  relevant: false
+  judge: human
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W2084341220
+  relevant: false
+  judge: llm
+  reason: Two cultures of statistical modelling; not MLOps.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W2963999143
+  relevant: false
+  judge: llm
+  reason: Log parsing tools; unrelated.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W4383737134
+  relevant: false
+  judge: llm
+  reason: LLM survey; not deployment.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W3195577433
+  relevant: false
+  judge: llm
+  reason: Foundation models report; not MLOps.
+- question: Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?
+  paper_id: W3198659451
+  relevant: false
+  judge: llm
+  reason: Pre-trained models survey; not MLOps.
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W4285049756
+  relevant: false
+  judge: human
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W1984564341
+  relevant: false
+  judge: llm
+  reason: HPC checkpointing; unrelated.
+- question: Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?
+  paper_id: W2151182669
+  relevant: false
+  judge: llm
+  reason: Intel VT hardware virtualisation; background only, no Docker comparison.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2268702383
+  relevant: false
+  judge: llm
+  reason: Coded computation for stragglers; not checkpoint recovery.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2105872910
+  relevant: true
+  judge: human
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2045362872
+  relevant: false
+  judge: human
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2103179919
+  relevant: false
+  judge: llm
+  reason: Neural computation model; unrelated.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2049808757
+  relevant: false
+  judge: llm
+  reason: Self-managing datacenter services; unrelated.
+- question: If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?
+  paper_id: W2152465173
+  relevant: false
+  judge: human
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W4308731653
+  relevant: false
+  judge: llm
+  reason: Network robustness prediction; unrelated.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2146591355
+  relevant: false
+  judge: llm
+  reason: Community structure in networks; unrelated.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2029830906
+  relevant: false
+  judge: human
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W1986298815
+  relevant: false
+  judge: human
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2432978112
+  relevant: false
+  judge: llm
+  reason: Group formation; unrelated.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W103340358
+  relevant: false
+  judge: llm
+  reason: Similarity search in networks; unrelated.
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2110086534
+  relevant: false
+  judge: human
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2248418826
+  relevant: false
+  judge: human
+- question: Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?
+  paper_id: W2167679350
+  relevant: false
+  judge: llm
+  reason: Relational query optimisation; unrelated.
+- question: If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?
+  paper_id: W4390054202
+  relevant: false
+  judge: llm
+  reason: ChatGPT and creative writing; unrelated.
+- question: If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?
+  paper_id: W4391376033
+  relevant: true
+  judge: llm
+  reason: Studies how position and type of retrieved documents in the prompt affect RAG accuracy.
+- question: If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?
+  paper_id: W2969476445
+  relevant: false
+  judge: llm
+  reason: Variable importance; unrelated.
+- question: If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?
+  paper_id: W4399657295
+  relevant: false
+  judge: llm
+  reason: Dashboard for conversational AI; unrelated.
+- question: If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?
+  paper_id: W3122187992
+  relevant: false
+  judge: llm
+  reason: Mutual funds; unrelated.
+- question: If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?
+  paper_id: W3199958362
+  relevant: false
+  judge: llm
+  reason: LM calibration for QA; unrelated.
+- question: If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?
+  paper_id: W4400079353
+  relevant: false
+  judge: llm
+  reason: Simulated patient chatbot; unrelated.
+- question: If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?
+  paper_id: W4385469325
+  relevant: false
+  judge: llm
+  reason: ChatGPT survey; unrelated.
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  paper_id: W3030163527
+  relevant: false
+  judge: llm
+  reason: GPT-3 few-shot learning; not RAG.
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  paper_id: W4320165837
+  relevant: false
+  judge: llm
+  reason: Toolformer; not RAG failure modes.
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  paper_id: W3206079177
+  relevant: false
+  judge: llm
+  reason: Science writing sparks; unrelated.
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  paper_id: W4389520670
+  relevant: true
+  judge: llm
+  reason: LLMs generating text with citations; evaluating whether answers are supported by retrieved documents.
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  paper_id: W3199958362
+  relevant: false
+  judge: human
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  paper_id: W3008686018
+  relevant: false
+  judge: llm
+  reason: Closed-book QA without retrieval; unrelated.
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  paper_id: W4391376033
+  relevant: true
+  judge: llm
+  reason: How retrieved passages (incl. irrelevant ones) affect RAG answers.
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  paper_id: W3155807546
+  relevant: true
+  judge: llm
+  reason: Retrieval augmentation and hallucination in dialogue; evaluation of retrieval-in-the-loop.
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  paper_id: W4390054202
+  relevant: false
+  judge: llm
+  reason: ChatGPT and creative writing; unrelated.
+- question: Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?
+  paper_id: W3120325630
+  relevant: false
+  judge: llm
+  reason: Essay on AI limitations; unrelated.
+- question: Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?
+  paper_id: W3155807546
+  relevant: false
+  judge: human
+- question: Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?
+  paper_id: W3186138538
+  relevant: false
+  judge: human
+- question: Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?
+  paper_id: W4409348640
+  relevant: false
+  judge: human
+- question: Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?
+  paper_id: W4318014888
+  relevant: false
+  judge: llm
+  reason: ChatGPT for finance research; unrelated.
+- question: Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?
+  paper_id: W3135367836
+  relevant: false
+  judge: llm
+  reason: CLIP; unrelated.
+- question: Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?
+  paper_id: W3008686018
+  relevant: false
+  judge: llm
+  reason: Closed-book QA; unrelated.
+- question: How often do chatbots like ChatGPT make up information that cannot be verified, and how can we test whether a model is able to notice such made-up content?
+  paper_id: W4381587418
+  relevant: false
+  judge: human
+- question: How often do chatbots like ChatGPT make up information that cannot be verified, and how can we test whether a model is able to notice such made-up content?
+  paper_id: W4389523957
+  relevant: false
+  judge: llm
+  reason: ChatGPT as general NLP solver; not hallucination.
+- question: How often do chatbots like ChatGPT make up information that cannot be verified, and how can we test whether a model is able to notice such made-up content?
+  paper_id: W4390054202
+  relevant: false
+  judge: llm
+  reason: Creative writing; unrelated.
+- question: How often do chatbots like ChatGPT make up information that cannot be verified, and how can we test whether a model is able to notice such made-up content?
+  paper_id: W4385469325
+  relevant: false
+  judge: human
+- question: How often do chatbots like ChatGPT make up information that cannot be verified, and how can we test whether a model is able to notice such made-up content?
+  paper_id: W4387378202
+  relevant: false
+  judge: llm
+  reason: Reasoning biases in LLMs; not hallucination.
+- question: how should I choose a prior distribution?
+  paper_id: W966598069
+  relevant: false
+  judge: llm
+  reason: Pareto wage models; unrelated.
+- question: how should I choose a prior distribution?
+  paper_id: W2001272401
+  relevant: false
+  judge: human
+- question: how should I choose a prior distribution?
+  paper_id: W1487139063
+  relevant: true
+  judge: llm
+  reason: 'PC priors: principled practical approach to constructing priors.'
+- question: how should I choose a prior distribution?
+  paper_id: W2104232463
+  relevant: true
+  judge: llm
+  reason: 'Gelman on priors for variance parameters: noninformative vs weakly informative.'
+- question: how should I choose a prior distribution?
+  paper_id: W2069429561
+  relevant: true
+  judge: human
+- question: how should I choose a prior distribution?
+  paper_id: W1536497620
+  relevant: true
+  judge: llm
+  reason: Gelman on priors for hierarchical variance parameters.
+- question: how should I choose a prior distribution?
+  paper_id: W3034774545
+  relevant: false
+  judge: llm
+  reason: Bayes factor bridge; not prior choice.
+- question: When does the Jeffreys prior fail?
+  paper_id: W1487139063
+  relevant: false
+  judge: human
+- question: When does the Jeffreys prior fail?
+  paper_id: W4211177544
+  relevant: false
+  judge: llm
+  reason: Bayes factors; not the Jeffreys prior.
+- question: When does the Jeffreys prior fail?
+  paper_id: W2078129874
+  relevant: false
+  judge: human
+- question: When does the Jeffreys prior fail?
+  paper_id: W2092648747
+  relevant: false
+  judge: llm
+  reason: Multivariate failure time; unrelated.
+- question: When does the Jeffreys prior fail?
+  paper_id: W4404473841
+  relevant: false
+  judge: llm
+  reason: Shrinkage priors for historical controls; unrelated.
+- question: When does the Jeffreys prior fail?
+  paper_id: W1536497620
+  relevant: false
+  judge: human
+- question: When does the Jeffreys prior fail?
+  paper_id: W2008640468
+  relevant: false
+  judge: llm
+  reason: Weakly informative logistic prior; not Jeffreys.
+- question: When does the Jeffreys prior fail?
+  paper_id: W3121029575
+  relevant: false
+  judge: llm
+  reason: Prior sample size; unrelated.
+- question: When does the Jeffreys prior fail?
+  paper_id: W3043657149
+  relevant: false
+  judge: llm
+  reason: Predicting failures; unrelated.
+- question: When does the Jeffreys prior fail?
+  paper_id: W2047538922
+  relevant: false
+  judge: llm
+  reason: Financial distress model; unrelated.

@@ -161,10 +161,11 @@ embeddings:
       max_seq_length: 512        # same truncation as bge-small; longer inputs run out of memory on MPS
 
 retrieval:
-  # hybrid and rerank are off: neither improved the evaluation (see README, Evaluation)
+  # rerank on, hybrid off: with full pooled judgments, reranking raised MRR (0.64 -> 0.76) and
+  # hybrid lowered it (0.64 -> 0.50); see README, Evaluation
   hybrid: false                 # also run Postgres full-text search and fuse both rankings (Reciprocal Rank Fusion)
   rrf_k: 60                     # RRF constant: score = sum of 1 / (rrf_k + rank); 60 is the usual default
-  rerank: false                 # rescore the candidates with a cross-encoder
+  rerank: true                 # rescore the candidates with a cross-encoder
   reranker_model: BAAI/bge-reranker-base
   candidates: 30                # papers taken from each search before fusion / reranking
   threshold: true               # drop papers below a minimum score; can return no papers at all

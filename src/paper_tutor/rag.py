@@ -61,8 +61,8 @@ Answer the question using ONLY the numbered sources below.
 
 NO_PAPERS_MESSAGE = (
     "I found no papers in the database that are relevant enough to answer this, so I won't guess. "
-    "The database covers statistics, econometrics, machine learning, deep learning, economics, "
-    "finance and cloud computing; try rephrasing with the name of a method or topic."
+    "The database covers statistics, econometrics, machine learning, deep learning, LLMs and agents, "
+    "economics, finance and cloud computing; try rephrasing with the name of a method or topic."
 )
 
 HUMAN = """Sources:

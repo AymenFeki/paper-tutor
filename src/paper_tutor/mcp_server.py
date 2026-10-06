@@ -26,7 +26,7 @@ def format_papers(papers):
 @mcp.tool()
 async def search_papers(question: str, k: int = 5) -> str:
     """Search a curated database of research papers in statistics, econometrics,
-    machine learning, deep learning, economics, finance and cloud computing.
+    machine learning, deep learning, LLMs and agents, economics, finance and cloud computing.
 
     Use this when the user asks about a statistical or ML method, concept or topic
     and wants answers grounded in real papers. Returns titles, years, venues,

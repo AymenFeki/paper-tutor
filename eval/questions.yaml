@@ -1,4 +1,5 @@
-# Retrieval test set: one question per paper, 4 papers per area, plus real-use failure cases at the end.
+# Retrieval test set: one question per paper, 4 papers per area (agents added later, same rules),
+# plus real-use failure cases at the end.
 # Questions were written by an LLM from each paper's title and abstract, following these rules:
 # plain student language, asked before knowing the answer, no distinctive terms from the title,
 # all questions written before any search was run and not changed afterwards.
@@ -151,6 +152,27 @@
   relevant: [W2026205964]
   area: cloud_infrastructure
   paper_title: "Survey on NoSQL database"
+
+# agents
+- question: If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?
+  relevant: [W4391876619]
+  area: agents
+  paper_title: "Lost in the Middle: How Language Models Use Long Contexts"
+
+- question: I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?
+  relevant: [W4399530612]
+  area: agents
+  paper_title: "Seven Failure Points When Engineering a Retrieval Augmented Generation System"
+
+- question: Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?
+  relevant: [W4320165837]
+  area: agents
+  paper_title: "Toolformer: Language Models Can Teach Themselves to Use Tools"
+
+- question: How often do chatbots like ChatGPT make up information that cannot be verified, and how can we test whether a model is able to notice such made-up content?
+  relevant: [W4389518784]
+  area: agents
+  paper_title: "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models"
 
 # real-use failure cases (added later, not written by the LLM; see issue #1)
 - question: how should I choose a prior distribution?

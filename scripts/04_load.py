@@ -7,6 +7,7 @@ from paper_tutor.corpus import (
     load_config,
     passes_rules,
     rebuild_abstract,
+    select_seed_papers,
     venue_lists,
 )
 from paper_tutor.db import connect
@@ -36,6 +37,9 @@ settings = config["settings"]
 raw_dir = Path("data/raw")
 authors_file = raw_dir / "authors.json"
 authors = json.loads(authors_file.read_text()) if authors_file.exists() else {}
+titles_file = raw_dir / "arxiv_titles.json"
+use_arxiv_titles = settings["check_arxiv_titles"] and titles_file.exists()
+arxiv_titles = json.loads(titles_file.read_text()) if use_arxiv_titles else {}
 
 topics = {}   # topic_id -> (name, area)
 records = []  # (paper, topic_id) for every record that passes the rules
@@ -54,6 +58,18 @@ for selection in settings["selections"]:
             for paper in papers:
                 if passes_rules(paper, settings):
                     records.append((paper, topic_id))
+
+# Areas built from seed papers: rules, on-topic keywords, correct arXiv metadata, most cited.
+# They come after the topic areas, so a paper that is already in a topic area keeps that area.
+for area_name, area in config["areas"].items():
+    if not area["active"] or not area.get("seeds"):
+        continue
+    papers = json.loads((raw_dir / "seeds" / f"{area_name}.json").read_text())
+    selected = select_seed_papers(papers, settings, area["keywords"], arxiv_titles, area["max_papers"])
+    topic_id = f"seeds-{area_name}"
+    topics[topic_id] = ("Papers citing or cited by the seed papers", area_name)
+    records += [(paper, topic_id) for paper in selected]
+    print(f"{area_name}: {len({p['id'] for p in papers})} candidates from seed papers, {len(selected)} selected")
 
 # 2. Keep the best record per paper (same title, within the year window)
 best, merged = deduplicate(records, settings["dedup_year_window"])

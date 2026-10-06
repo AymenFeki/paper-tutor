@@ -108,3 +108,38 @@ def deduplicate(records, year_window):
                     merged.append((best[0], paper))
                     seen_ids.add(paper["id"])
     return kept, merged
+
+
+def arxiv_id(doi):
+    """The arXiv id in an arXiv DOI ("10.48550/arxiv.2005.11401" -> "2005.11401"), or None."""
+    match = re.search(r"arxiv\.(\d{4}\.\d{4,5})", (doi or "").lower())
+    return match.group(1) if match else None
+
+
+def mentions_keywords(paper, keywords):
+    """True if the title or abstract contains one of the keywords (case-insensitive, at a word start)."""
+    text = f"{paper['title'] or ''} {rebuild_abstract(paper['abstract_inverted_index']) or ''}".lower()
+    return any(re.search(r"\b" + re.escape(keyword.lower()), text) for keyword in keywords)
+
+
+def has_wrong_arxiv_title(paper, arxiv_titles):
+    """True if OpenAlex gives this arXiv paper a different title than arXiv itself.
+
+    Some OpenAlex records keep the arXiv DOI and citation count of a famous paper but show an
+    unrelated title and abstract. arxiv_titles maps arXiv id -> title, fetched by 02_fetch.py.
+    """
+    real_title = arxiv_titles.get(arxiv_id(paper["doi"]))
+    return real_title is not None and normalize_title(real_title) != normalize_title(paper["title"])
+
+
+def select_seed_papers(papers, settings, keywords, arxiv_titles, max_papers):
+    """Pick the papers of a seed area: credibility rules, on topic, correct metadata, most cited first."""
+    unique = {paper["id"]: paper for paper in papers}.values()
+    selected = [
+        paper for paper in unique
+        if passes_rules(paper, settings)
+        and mentions_keywords(paper, keywords)
+        and not has_wrong_arxiv_title(paper, arxiv_titles)
+    ]
+    selected.sort(key=lambda paper: paper["cited_by_count"], reverse=True)
+    return selected[:max_papers]

@@ -12,6 +12,7 @@ settings:
   venue_exempt_types: [preprint, conference-paper]   # no journal-list requirement for these types
   dedup_year_window: 3           # same title within 3 years = one paper (0 = same year only, the old rule)
   authors_per_paper: 5           # author names stored per paper
+  check_arxiv_titles: true       # drop records whose title differs from arXiv's (corrupted OpenAlex metadata)
   recent_years: 2                # newer papers are labelled "recent" instead of ranked by citations
   selections: [random, top_cited]   # random: for measuring rules; top_cited: for learning
 
@@ -113,14 +114,18 @@ areas:
         queries: [machine learning finance, financial sentiment analysis]
 
   agents:
-    active: false                # collected via seed papers, not topics (see notes.md)
-    topics: []
-    seeds:                       # landmark papers; we collect the papers that cite them
-      - "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
-      - "ReAct: Synergizing Reasoning and Acting in Language Models"
-      - "Toolformer: Language Models Can Teach Themselves to Use Tools"
-      - "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"
-      - "Language Models are Few-Shot Learners"
+    active: true
+    topics: []                   # collected around seed papers instead of OpenAlex topics (#9)
+    seeds:                       # landmark papers; we collect papers that cite them and papers they cite
+      - {title: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks", doi: 10.48550/arxiv.2005.11401}
+      - {title: "ReAct: Synergizing Reasoning and Acting in Language Models", doi: 10.48550/arxiv.2210.03629}
+      - {title: "Toolformer: Language Models Can Teach Themselves to Use Tools", doi: 10.48550/arxiv.2302.04761}
+      - {title: "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models", doi: 10.48550/arxiv.2201.11903}
+      - {title: "Language Models are Few-Shot Learners", doi: 10.48550/arxiv.2005.14165}
+    citing_per_seed: 200         # most-cited papers that cite each seed
+    keywords: [language model, llm, gpt, retrieval-augmented, retrieval augmented, chain-of-thought,
+               chain of thought, in-context learning, prompt, agent, tool use, hallucination, instruction]
+    max_papers: 300              # keep the most-cited papers that pass the rules and mention a keyword
     learn:
       - name: Large language models
         queries: [large language model, instruction tuning]

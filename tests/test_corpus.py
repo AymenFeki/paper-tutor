@@ -4,12 +4,16 @@ import pytest
 
 from paper_tutor.corpus import (
     abstract_word_count,
+    arxiv_id,
     check_rules,
     deduplicate,
+    has_wrong_arxiv_title,
+    mentions_keywords,
     normalize_title,
     passes_rules,
     rebuild_abstract,
     record_quality,
+    select_seed_papers,
     split_by_year_window,
 )
 
@@ -253,3 +257,62 @@ def test_deduplicate_same_id_twice_is_not_reported_as_merge():
 def test_deduplicate_never_merges_papers_without_a_title():
     kept, _ = deduplicate([record("W1", 2020, title=None), record("W2", 2020, title="!!!")], year_window=3)
     assert len(kept) == 2
+
+
+# seed areas: arxiv_id, mentions_keywords, has_wrong_arxiv_title and select_seed_papers
+
+
+def test_arxiv_id():
+    assert arxiv_id("https://doi.org/10.48550/arxiv.2005.11401") == "2005.11401"
+    assert arxiv_id("https://doi.org/10.48550/arXiv.2201.11903") == "2201.11903"
+    assert arxiv_id("https://doi.org/10.1000/example") is None
+    assert arxiv_id(None) is None
+
+
+def test_mentions_keywords_in_title_or_abstract():
+    in_title = make_paper(title="Large Language Models as Agents")
+    in_abstract = make_paper(abstract_inverted_index={"We": [0], "prompt": [1], "models": [2]})
+    off_topic = make_paper(title="Bootstrap confidence intervals")
+    keywords = ["language model", "prompt"]
+    assert mentions_keywords(in_title, keywords)
+    assert mentions_keywords(in_abstract, keywords)
+    assert not mentions_keywords(off_topic, keywords)
+
+
+def test_mentions_keywords_matches_at_word_start_only():
+    # "llm" must not match inside another word, but "agent" matches "agents"
+    assert not mentions_keywords(make_paper(title="A survey of Tallmadge county"), ["llm"])
+    assert mentions_keywords(make_paper(title="Cooperative agents"), ["agent"])
+
+
+ARXIV_TITLES = {"2201.11903": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"}
+
+
+def test_wrong_arxiv_title_is_detected():
+    corrupted = make_paper(doi="https://doi.org/10.48550/arxiv.2201.11903", title="BNAI, NO-TOKEN, and MIND-UNITY")
+    assert has_wrong_arxiv_title(corrupted, ARXIV_TITLES)
+
+
+def test_right_arxiv_title_or_no_arxiv_doi_is_fine():
+    correct = make_paper(doi="https://doi.org/10.48550/arxiv.2201.11903",
+                         title="Chain-of-thought prompting elicits reasoning in large language models")
+    assert not has_wrong_arxiv_title(correct, ARXIV_TITLES)
+    assert not has_wrong_arxiv_title(make_paper(), ARXIV_TITLES)
+
+
+def seed_candidate(paper_id, citations, title="A Language Model Paper", **changes):
+    return make_paper(id=paper_id, title=title, cited_by_count=citations, type="preprint", **changes)
+
+
+def test_select_seed_papers_filters_sorts_and_caps():
+    papers = [
+        seed_candidate("W1", 10),
+        seed_candidate("W2", 500),
+        seed_candidate("W3", 300, title="Vision Transformers for Images"),  # off topic
+        seed_candidate("W4", 900, language="de"),                          # breaks a rule
+        seed_candidate("W5", 800, doi="https://doi.org/10.48550/arxiv.2201.11903"),  # wrong arXiv title
+        seed_candidate("W6", 200),
+        seed_candidate("W2", 500),                                          # same paper twice
+    ]
+    selected = select_seed_papers(papers, SETTINGS, ["language model"], ARXIV_TITLES, max_papers=2)
+    assert [paper["id"] for paper in selected] == ["W2", "W6"]

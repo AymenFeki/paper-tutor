@@ -1,7 +1,7 @@
 # One-command setup for paper-tutor. Run `make rebuild` to build the database from scratch.
 # Needs: uv, Docker, Ollama with qwen3:8b, and a .env file with OPENALEX_API_KEY and POSTGRES_PASSWORD.
 
-.PHONY: db-up schema fetch load embed rebuild evaluate threshold faithfulness api ui test lint
+.PHONY: db-up schema fetch load embed rebuild evaluate threshold keyword-queries faithfulness data-checks judge api ui test lint
 
 # Start Postgres + pgvector in Docker and wait until it accepts connections
 db-up:
@@ -12,7 +12,7 @@ db-up:
 schema:
 	docker compose exec -T db psql -U tutor -d paper_tutor -v ON_ERROR_STOP=1 < sql/schema.sql
 
-# Download papers and their authors from OpenAlex into data/raw (already downloaded data is skipped)
+# Download papers (by topic and around seed papers), authors and arXiv titles into data/raw (cached data is skipped)
 fetch:
 	uv run python scripts/02_fetch.py
 
@@ -37,9 +37,21 @@ threshold:
 	uv run python scripts/07_evaluate.py threshold=false
 	uv run python scripts/12_threshold.py bge-small
 
+# Threshold rules on long questions and short keyword queries (#22)
+keyword-queries:
+	uv run python scripts/14_keyword_queries.py
+
 # Share of the tutor's citations that the LLM judge finds supported (needs Ollama, takes minutes)
 faithfulness:
 	uv run python scripts/11_faithfulness.py
+
+# Data-quality report: reviews, title-abstract mismatches, area mismatches, wrong arXiv titles (no changes)
+data-checks:
+	uv run python scripts/13_data_checks.py
+
+# Judge unjudged (question, paper) pairs by hand; answers go to eval/judgments.yaml (#5)
+judge:
+	uv run streamlit run app/judge.py
 
 # Start the FastAPI service on http://127.0.0.1:8000
 api:

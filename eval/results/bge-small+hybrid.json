@@ -8,20 +8,22 @@
     "reranker_model": "BAAI/bge-reranker-base",
     "candidates": 30,
     "threshold": false,
-    "min_rerank_score": 0.0,
-    "min_similarity": 0.0
+    "min_rerank_score": 0.0005,
+    "min_similarity": 0.62,
+    "short_query_words": 5,
+    "min_rerank_score_short": 0.5
   },
   "top_k": 10,
   "overall": {
-    "hit@1": 0.2,
-    "hit@5": 0.4,
-    "hit@10": 0.5,
-    "mrr": 0.2745767195767196,
-    "n": 30
+    "hit@1": 0.20588235294117646,
+    "hit@5": 0.47058823529411764,
+    "hit@10": 0.5588235294117647,
+    "mrr": 0.29717553688141923,
+    "n": 34
   },
   "hit@5_wilson_95": [
-    0.2459,
-    0.5768
+    0.3145,
+    0.6326
   ],
   "per_area": {
     "statistics": {
@@ -72,9 +74,22 @@
       "hit@10": 0.5,
       "mrr": 0.3,
       "n": 4
+    },
+    "agents": {
+      "hit@1": 0.25,
+      "hit@5": 1.0,
+      "hit@10": 1.0,
+      "mrr": 0.4666666666666667,
+      "n": 4
     }
   },
   "out_of_scope_no_papers": 0,
+  "keyword_queries": {
+    "in_scope_answered": 24,
+    "in_scope": 24,
+    "off_topic_refused": 0,
+    "off_topic": 16
+  },
   "questions": [
     {
       "question": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
@@ -1463,6 +1478,13 @@
       "rank": 4,
       "retrieved": [
         {
+          "id": "W2153524550",
+          "title": "Subnational Bond Market Development: What Drives the Yield Spreads of M exican C ebures?",
+          "area": "finance",
+          "similarity": 0.7092,
+          "score": 0.7092
+        },
+        {
           "id": "W2149785293",
           "title": "A spillover analysis of shocks from US, UK and China on African financial markets",
           "area": "finance",
@@ -1475,13 +1497,6 @@
           "area": "finance",
           "similarity": 0.6978,
           "score": 0.6978
-        },
-        {
-          "id": "W2153524550",
-          "title": "Subnational Bond Market Development: What Drives the Yield Spreads of M exican C ebures?",
-          "area": "finance",
-          "similarity": 0.7092,
-          "score": 0.7092
         },
         {
           "id": "W1974486301",
@@ -1991,18 +2006,18 @@
           "score": 0.7
         },
         {
-          "id": "W2768223287",
-          "title": "Revisiting the Dynamics Effects of Oil Price Shocks on Small Developing Economies",
-          "area": "finance",
-          "similarity": 0.6415,
-          "score": 0.6415
-        },
-        {
           "id": "W2602224136",
           "title": "Commodity Futures Prices: Some Evidence on Forecast Power, Premiums, and the Theory of Storage",
           "area": "finance",
           "similarity": 0.6859,
           "score": 0.6859
+        },
+        {
+          "id": "W2768223287",
+          "title": "Revisiting the Dynamics Effects of Oil Price Shocks on Small Developing Economies",
+          "area": "finance",
+          "similarity": 0.6415,
+          "score": 0.6415
         },
         {
           "id": "W3122460317",
@@ -2058,11 +2073,11 @@
           "score": 0.695
         },
         {
-          "id": "W2807096445",
-          "title": "ML-Leaks: Model and Data Independent Membership Inference Attacks and Defenses on Machine Learning Models",
-          "area": "deep_learning",
-          "similarity": 0.5857,
-          "score": 0.5857
+          "id": "W4383737134",
+          "title": "A Survey on Large Language Models: Applications, Challenges, Limitations, and Practical Usage",
+          "area": "agents",
+          "similarity": 0.6047,
+          "score": 0.6047
         },
         {
           "id": "W2973193541",
@@ -2072,11 +2087,25 @@
           "score": 0.6904
         },
         {
-          "id": "W2116814040",
-          "title": "Missing Data Analysis: Making It Work in the Real World",
-          "area": "statistics",
-          "similarity": 0.5469,
-          "score": 0.5469
+          "id": "W2807096445",
+          "title": "ML-Leaks: Model and Data Independent Membership Inference Attacks and Defenses on Machine Learning Models",
+          "area": "deep_learning",
+          "similarity": 0.5857,
+          "score": 0.5857
+        },
+        {
+          "id": "W4319831789",
+          "title": "Augmenting human innovation teams with artificial intelligence: Exploring transformer‐based language models",
+          "area": "agents",
+          "similarity": 0.6812,
+          "score": 0.6812
+        },
+        {
+          "id": "W4400520863",
+          "title": "Fine-tuning and prompt engineering for large language models-based code review automation",
+          "area": "agents",
+          "similarity": 0.6116,
+          "score": 0.6116
         },
         {
           "id": "W2565167788",
@@ -2084,20 +2113,6 @@
           "area": "statistics",
           "similarity": 0.6749,
           "score": 0.6749
-        },
-        {
-          "id": "W4402592902",
-          "title": "MLOps as Enabler of Trustworthy AI",
-          "area": "machine_learning",
-          "similarity": 0.6703,
-          "score": 0.6703
-        },
-        {
-          "id": "W4416259481",
-          "title": "Eva-VLA: Evaluating Vision-Language-Action Models' Robustness Under Real-World Physical Variations",
-          "area": "deep_learning",
-          "similarity": 0.6093,
-          "score": 0.6093
         }
       ]
     },
@@ -2345,6 +2360,330 @@
       ]
     },
     {
+      "question": "If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?",
+      "area": "agents",
+      "relevant": [
+        "W4391876619"
+      ],
+      "paper_title": "Lost in the Middle: How Language Models Use Long Contexts",
+      "rank": 3,
+      "retrieved": [
+        {
+          "id": "W4390054202",
+          "title": "Is Chatgpt a menace for creative writing ability? An experiment",
+          "area": "agents",
+          "similarity": 0.6954,
+          "score": 0.6954
+        },
+        {
+          "id": "W2969476445",
+          "title": "All Models are Wrong, but Many are Useful: Learning a Variable's Importance by Studying an Entire Class of Prediction Models Simultaneously",
+          "area": "machine_learning",
+          "similarity": 0.6119,
+          "score": 0.6119
+        },
+        {
+          "id": "W4391876619",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "area": "agents",
+          "similarity": 0.6918,
+          "score": 0.6918
+        },
+        {
+          "id": "W3122187992",
+          "title": "THE PERFORMANCE OF MUTUAL FUNDS IN THE PERIOD 1945–1964",
+          "area": "finance",
+          "similarity": 0.4924,
+          "score": 0.4924
+        },
+        {
+          "id": "W3199958362",
+          "title": "How Can We Know When Language Models Know? On the Calibration of Language Models for Question Answering",
+          "area": "agents",
+          "similarity": 0.6886,
+          "score": 0.6886
+        },
+        {
+          "id": "W2143707047",
+          "title": "Bayesian Data Analysis, 2nd edn",
+          "area": "statistics",
+          "similarity": 0.5651,
+          "score": 0.5651
+        },
+        {
+          "id": "W3166846774",
+          "title": "Learning How to Ask: Querying LMs with Mixtures of Soft Prompts",
+          "area": "agents",
+          "similarity": 0.6818,
+          "score": 0.6818
+        },
+        {
+          "id": "W2006804758",
+          "title": "VALUING CORPORATE SECURITIES: SOME EFFECTS OF BOND INDENTURE PROVISIONS",
+          "area": "finance",
+          "similarity": 0.4927,
+          "score": 0.4927
+        },
+        {
+          "id": "W4392619076",
+          "title": "PromptCharm: Text-to-Image Generation through Multi-modal Prompting and Refinement",
+          "area": "agents",
+          "similarity": 0.6761,
+          "score": 0.6761
+        },
+        {
+          "id": "W4221153690",
+          "title": "LinkBERT: Pretraining Language Models with Document Links",
+          "area": "agents",
+          "similarity": 0.6345,
+          "score": 0.6345
+        }
+      ]
+    },
+    {
+      "question": "I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?",
+      "area": "agents",
+      "relevant": [
+        "W4399530612"
+      ],
+      "paper_title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System",
+      "rank": 3,
+      "retrieved": [
+        {
+          "id": "W3199958362",
+          "title": "How Can We Know When Language Models Know? On the Calibration of Language Models for Question Answering",
+          "area": "agents",
+          "similarity": 0.7518,
+          "score": 0.7518
+        },
+        {
+          "id": "W3008686018",
+          "title": "How Much Knowledge Can You Pack Into the Parameters of a Language Model?",
+          "area": "agents",
+          "similarity": 0.73,
+          "score": 0.73
+        },
+        {
+          "id": "W4399530612",
+          "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System",
+          "area": "agents",
+          "similarity": 0.7114,
+          "score": 0.7114
+        },
+        {
+          "id": "W4391376033",
+          "title": "The Power of Noise: Redefining Retrieval for RAG Systems",
+          "area": "agents",
+          "similarity": 0.6915,
+          "score": 0.6915
+        },
+        {
+          "id": "W4389520670",
+          "title": "Enabling Large Language Models to Generate Text with Citations",
+          "area": "agents",
+          "similarity": 0.6596,
+          "score": 0.6596
+        },
+        {
+          "id": "W4402923149",
+          "title": "Towards building multilingual language model for medicine",
+          "area": "agents",
+          "similarity": 0.6638,
+          "score": 0.6638
+        },
+        {
+          "id": "W4390054202",
+          "title": "Is Chatgpt a menace for creative writing ability? An experiment",
+          "area": "agents",
+          "similarity": 0.725,
+          "score": 0.725
+        },
+        {
+          "id": "W7167515236",
+          "title": "AP-9: When an AI System Must Not Create Its Own Rules — Evaluating Self-Authorization in Language Models under Normative Vacuum",
+          "area": "machine_learning",
+          "similarity": 0.6886,
+          "score": 0.6886
+        },
+        {
+          "id": "W4367595583",
+          "title": "A Brief Overview of ChatGPT: The History, Status Quo and Potential Future Development",
+          "area": "agents",
+          "similarity": 0.7211,
+          "score": 0.7211
+        },
+        {
+          "id": "W4388223983",
+          "title": "From natural language to simulations: applying AI to automate simulation modelling of logistics systems",
+          "area": "agents",
+          "similarity": 0.6428,
+          "score": 0.6428
+        }
+      ]
+    },
+    {
+      "question": "Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?",
+      "area": "agents",
+      "relevant": [
+        "W4320165837"
+      ],
+      "paper_title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W4320165837",
+          "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+          "area": "agents",
+          "similarity": 0.7178,
+          "score": 0.7178
+        },
+        {
+          "id": "W3120325630",
+          "title": "Artificial Intelligence Is Stupid and Causal Reasoning Will Not Fix It",
+          "area": "deep_learning",
+          "similarity": 0.7295,
+          "score": 0.7295
+        },
+        {
+          "id": "W4318014888",
+          "title": "ChatGPT for (Finance) research: The Bananarama Conjecture",
+          "area": "machine_learning",
+          "similarity": 0.7244,
+          "score": 0.7244
+        },
+        {
+          "id": "W3135367836",
+          "title": "Learning Transferable Visual Models From Natural Language Supervision",
+          "area": "deep_learning",
+          "similarity": 0.5937,
+          "score": 0.5937
+        },
+        {
+          "id": "W3008686018",
+          "title": "How Much Knowledge Can You Pack Into the Parameters of a Language Model?",
+          "area": "agents",
+          "similarity": 0.7192,
+          "score": 0.7192
+        },
+        {
+          "id": "W2025909913",
+          "title": "Learning about physical parameters: the importance of model discrepancy",
+          "area": "statistics",
+          "similarity": 0.5797,
+          "score": 0.5797
+        },
+        {
+          "id": "W4409348640",
+          "title": "Retrieval-Augmented Generation (RAG) Chatbots for Education: A Survey of Applications",
+          "area": "agents",
+          "similarity": 0.719,
+          "score": 0.719
+        },
+        {
+          "id": "W4324299474",
+          "title": "InPL: Pseudo-labeling the Inliers First for Imbalanced Semi-supervised Learning",
+          "area": "machine_learning",
+          "similarity": 0.596,
+          "score": 0.596
+        },
+        {
+          "id": "W3155807546",
+          "title": "Retrieval Augmentation Reduces Hallucination in Conversation",
+          "area": "agents",
+          "similarity": 0.7188,
+          "score": 0.7188
+        },
+        {
+          "id": "W2087101057",
+          "title": "Dealing With Label Switching in Mixture Models",
+          "area": "statistics",
+          "similarity": 0.5477,
+          "score": 0.5477
+        }
+      ]
+    },
+    {
+      "question": "How often do chatbots like ChatGPT make up information that cannot be verified, and how can we test whether a model is able to notice such made-up content?",
+      "area": "agents",
+      "relevant": [
+        "W4389518784"
+      ],
+      "paper_title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
+      "rank": 5,
+      "retrieved": [
+        {
+          "id": "W4390054202",
+          "title": "Is Chatgpt a menace for creative writing ability? An experiment",
+          "area": "agents",
+          "similarity": 0.6881,
+          "score": 0.6881
+        },
+        {
+          "id": "W4385469325",
+          "title": "A Survey on ChatGPT: AI–Generated Contents, Challenges, and Solutions",
+          "area": "agents",
+          "similarity": 0.7273,
+          "score": 0.7273
+        },
+        {
+          "id": "W4387378202",
+          "title": "Human-like intuitive behavior and reasoning biases emerged in large language models but disappeared in ChatGPT",
+          "area": "agents",
+          "similarity": 0.6565,
+          "score": 0.6565
+        },
+        {
+          "id": "W4381587418",
+          "title": "Opportunities and challenges for ChatGPT and large language models in biomedicine and health",
+          "area": "agents",
+          "similarity": 0.6555,
+          "score": 0.6555
+        },
+        {
+          "id": "W4389518784",
+          "title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
+          "area": "agents",
+          "similarity": 0.6601,
+          "score": 0.6601
+        },
+        {
+          "id": "W4367595583",
+          "title": "A Brief Overview of ChatGPT: The History, Status Quo and Potential Future Development",
+          "area": "agents",
+          "similarity": 0.7476,
+          "score": 0.7476
+        },
+        {
+          "id": "W2006804758",
+          "title": "VALUING CORPORATE SECURITIES: SOME EFFECTS OF BOND INDENTURE PROVISIONS",
+          "area": "finance",
+          "similarity": 0.4575,
+          "score": 0.4575
+        },
+        {
+          "id": "W4390058985",
+          "title": "The Limitations and Ethical Considerations of ChatGPT",
+          "area": "agents",
+          "similarity": 0.7455,
+          "score": 0.7455
+        },
+        {
+          "id": "W4389518968",
+          "title": "Multi-step Jailbreaking Privacy Attacks on ChatGPT",
+          "area": "agents",
+          "similarity": 0.7239,
+          "score": 0.7239
+        },
+        {
+          "id": "W4386735541",
+          "title": "Benchmarking ChatGPT-4 on a radiation oncology in-training exam and Red Journal Gray Zone cases: potentials and challenges for ai-assisted medical education and decision making in radiation oncology",
+          "area": "agents",
+          "similarity": 0.6181,
+          "score": 0.6181
+        }
+      ]
+    },
+    {
       "question": "how should I choose a prior distribution?",
       "area": "statistics",
       "relevant": [
@@ -2369,18 +2708,18 @@
           "score": 0.7524
         },
         {
-          "id": "W2104232463",
-          "title": "Prior distributions for variance parameters in hierarchical models",
-          "area": "statistics",
-          "similarity": 0.7011,
-          "score": 0.7011
-        },
-        {
           "id": "W2069429561",
           "title": "A Bayesian Analysis of Some Nonparametric Problems",
           "area": "statistics",
           "similarity": 0.7081,
           "score": 0.7081
+        },
+        {
+          "id": "W2104232463",
+          "title": "Prior distributions for variance parameters in hierarchical models",
+          "area": "statistics",
+          "similarity": 0.7011,
+          "score": 0.7011
         },
         {
           "id": "W1536497620",
@@ -2478,18 +2817,18 @@
           "score": 0.5907
         },
         {
+          "id": "W2078129874",
+          "title": "Bias reduction of maximum likelihood estimates",
+          "area": "statistics",
+          "similarity": 0.6519,
+          "score": 0.6519
+        },
+        {
           "id": "W2104232463",
           "title": "Prior distributions for variance parameters in hierarchical models",
           "area": "statistics",
           "similarity": 0.5894,
           "score": 0.5894
-        },
-        {
-          "id": "W4393235807",
-          "title": "Case weighted power priors for hybrid control analyses with time-to-event data",
-          "area": "statistics",
-          "similarity": 0.5928,
-          "score": 0.5928
         },
         {
           "id": "W4211177544",
@@ -2499,11 +2838,11 @@
           "score": 0.6008
         },
         {
-          "id": "W1974862873",
-          "title": "Discretizing a Normal Prior for Change Point Estimation in Switching Regressions",
+          "id": "W4393235807",
+          "title": "Case weighted power priors for hybrid control analyses with time-to-event data",
           "area": "statistics",
-          "similarity": 0.5857,
-          "score": 0.5857
+          "similarity": 0.5928,
+          "score": 0.5928
         }
       ]
     }
@@ -2548,8 +2887,8 @@
     {
       "question": "How do I learn guitar chords as a beginner?",
       "n_papers": 10,
-      "top_score": 0.5078,
-      "top_title": "Learning to Prompt for Continual Learning"
+      "top_score": 0.5027,
+      "top_title": "Meta-SGD: Learning to Learn Quickly for Few-Shot Learning"
     },
     {
       "question": "Who wrote the Harry Potter books?",
@@ -2566,8 +2905,8 @@
     {
       "question": "How do I train my dog to stop barking?",
       "n_papers": 10,
-      "top_score": 0.5372,
-      "top_title": "A Learning Algorithm for Continually Running Fully Recurrent Neural Networks"
+      "top_score": 0.4918,
+      "top_title": "MASS: Masked Sequence to Sequence Pre-training for Language Generation"
     }
   ]
 }

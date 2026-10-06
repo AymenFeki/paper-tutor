@@ -8,6 +8,7 @@ eval/keyword_queries.yaml and counts which get no papers (only possible with the
 Retrieval settings can be overridden for one run, so variants can be compared without
 editing the config, e.g.:
     uv run python scripts/07_evaluate.py hybrid=true rerank=true
+    uv run python scripts/07_evaluate.py embedding=qwen3-0.6b threshold=false
 The result is saved as eval/results/<model>[+hybrid][+rerank][+threshold].json.
 """
 
@@ -28,7 +29,10 @@ TOP_K = 10
 config = load_config()
 for override in sys.argv[1:]:
     key, value = override.split("=")
-    config["retrieval"][key] = yaml.safe_load(value)  # "true" -> True, "0.5" -> 0.5
+    if key == "embedding":  # e.g. embedding=qwen3-0.6b
+        config["embeddings"]["active"] = value
+    else:
+        config["retrieval"][key] = yaml.safe_load(value)  # "true" -> True, "0.5" -> 0.5
 
 settings = config["retrieval"]
 model_key, model_cfg = active_model(config)

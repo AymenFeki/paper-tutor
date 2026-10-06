@@ -8,20 +8,22 @@
     "reranker_model": "BAAI/bge-reranker-base",
     "candidates": 30,
     "threshold": false,
-    "min_rerank_score": 0.0,
-    "min_similarity": 0.0
+    "min_rerank_score": 0.0005,
+    "min_similarity": 0.62,
+    "short_query_words": 5,
+    "min_rerank_score_short": 0.5
   },
   "top_k": 10,
   "overall": {
-    "hit@1": 0.3,
-    "hit@5": 0.5,
-    "hit@10": 0.6666666666666666,
-    "mrr": 0.40398148148148144,
-    "n": 30
+    "hit@1": 0.35294117647058826,
+    "hit@5": 0.5294117647058824,
+    "hit@10": 0.7058823529411765,
+    "mrr": 0.44889122315592905,
+    "n": 34
   },
   "hit@5_wilson_95": [
-    0.3315,
-    0.6685
+    0.3674,
+    0.6855
   ],
   "per_area": {
     "statistics": {
@@ -72,9 +74,22 @@
       "hit@10": 0.75,
       "mrr": 0.5416666666666666,
       "n": 4
+    },
+    "agents": {
+      "hit@1": 0.75,
+      "hit@5": 0.75,
+      "hit@10": 1.0,
+      "mrr": 0.7857142857142857,
+      "n": 4
     }
   },
   "out_of_scope_no_papers": 0,
+  "keyword_queries": {
+    "in_scope_answered": 24,
+    "in_scope": 24,
+    "off_topic_refused": 0,
+    "off_topic": 16
+  },
   "questions": [
     {
       "question": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
@@ -903,6 +918,20 @@
           "score": 0.0275
         },
         {
+          "id": "W3203737321",
+          "title": "Multimodal datasets: misogyny, pornography, and malignant stereotypes",
+          "area": "agents",
+          "similarity": 0.6656,
+          "score": 0.0079
+        },
+        {
+          "id": "W2784121710",
+          "title": "Fine-tuned Language Models for Text Classification.",
+          "area": "agents",
+          "similarity": 0.6633,
+          "score": 0.0047
+        },
+        {
           "id": "W2952602694",
           "title": "High-dimensional Mixed Graphical Models",
           "area": "statistics",
@@ -950,20 +979,6 @@
           "area": "econometrics",
           "similarity": 0.6871,
           "score": 0.0014
-        },
-        {
-          "id": "W1645816215",
-          "title": "Issues in Stacked Generalization",
-          "area": "machine_learning",
-          "similarity": 0.6563,
-          "score": 0.0013
-        },
-        {
-          "id": "W4396754377",
-          "title": "Category Alignment Mechanism for Few-Shot Image Classification",
-          "area": "deep_learning",
-          "similarity": 0.6625,
-          "score": 0.0011
         }
       ]
     },
@@ -2044,13 +2059,6 @@
           "score": 0.0057
         },
         {
-          "id": "W1821462560",
-          "title": "Distilling the Knowledge in a Neural Network",
-          "area": "deep_learning",
-          "similarity": 0.6386,
-          "score": 0.0047
-        },
-        {
           "id": "W2084341220",
           "title": "Statistical Modeling: The Two Cultures (with comments and a rejoinder by the author)",
           "area": "statistics",
@@ -2063,6 +2071,13 @@
           "area": "machine_learning",
           "similarity": 0.6904,
           "score": 0.0031
+        },
+        {
+          "id": "W3198659451",
+          "title": "Pre-trained models: Past, present and future",
+          "area": "agents",
+          "similarity": 0.6474,
+          "score": 0.003
         },
         {
           "id": "W4360995249",
@@ -2093,11 +2108,11 @@
           "score": 0.0011
         },
         {
-          "id": "W4221162079",
-          "title": "Should Machine Learning Models Report to Us When They Are Clueless?",
-          "area": "machine_learning",
-          "similarity": 0.6435,
-          "score": 0.0008
+          "id": "W4378469229",
+          "title": "Learning theories for artificial intelligence promoting learning processes",
+          "area": "agents",
+          "similarity": 0.6555,
+          "score": 0.001
         }
       ]
     },
@@ -2341,6 +2356,330 @@
           "area": "statistics",
           "similarity": 0.6749,
           "score": 0.0025
+        }
+      ]
+    },
+    {
+      "question": "If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?",
+      "area": "agents",
+      "relevant": [
+        "W4391876619"
+      ],
+      "paper_title": "Lost in the Middle: How Language Models Use Long Contexts",
+      "rank": 7,
+      "retrieved": [
+        {
+          "id": "W4390054202",
+          "title": "Is Chatgpt a menace for creative writing ability? An experiment",
+          "area": "agents",
+          "similarity": 0.6954,
+          "score": 0.001
+        },
+        {
+          "id": "W4391376033",
+          "title": "The Power of Noise: Redefining Retrieval for RAG Systems",
+          "area": "agents",
+          "similarity": 0.6687,
+          "score": 0.0008
+        },
+        {
+          "id": "W4400079353",
+          "title": "A Language Model–Powered Simulated Patient With Automated Feedback for History Taking: Prospective Study",
+          "area": "agents",
+          "similarity": 0.665,
+          "score": 0.0004
+        },
+        {
+          "id": "W4385469325",
+          "title": "A Survey on ChatGPT: AI–Generated Contents, Challenges, and Solutions",
+          "area": "agents",
+          "similarity": 0.6626,
+          "score": 0.0003
+        },
+        {
+          "id": "W4399657295",
+          "title": "Designing a Dashboard for Transparency and Control of Conversational AI",
+          "area": "machine_learning",
+          "similarity": 0.672,
+          "score": 0.0003
+        },
+        {
+          "id": "W4409348640",
+          "title": "Retrieval-Augmented Generation (RAG) Chatbots for Education: A Survey of Applications",
+          "area": "agents",
+          "similarity": 0.6635,
+          "score": 0.0003
+        },
+        {
+          "id": "W4391876619",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "area": "agents",
+          "similarity": 0.6918,
+          "score": 0.0002
+        },
+        {
+          "id": "W1994606570",
+          "title": "Too much, too little, or just right? Ways explanations impact end users' mental models",
+          "area": "machine_learning",
+          "similarity": 0.6666,
+          "score": 0.0001
+        },
+        {
+          "id": "W4389523957",
+          "title": "Is ChatGPT a General-Purpose Natural Language Processing Task Solver?",
+          "area": "agents",
+          "similarity": 0.6715,
+          "score": 0.0001
+        },
+        {
+          "id": "W3166846774",
+          "title": "Learning How to Ask: Querying LMs with Mixtures of Soft Prompts",
+          "area": "agents",
+          "similarity": 0.6818,
+          "score": 0.0
+        }
+      ]
+    },
+    {
+      "question": "I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?",
+      "area": "agents",
+      "relevant": [
+        "W4399530612"
+      ],
+      "paper_title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W4399530612",
+          "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System",
+          "area": "agents",
+          "similarity": 0.7114,
+          "score": 0.05
+        },
+        {
+          "id": "W4320165837",
+          "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+          "area": "agents",
+          "similarity": 0.7186,
+          "score": 0.0224
+        },
+        {
+          "id": "W3155807546",
+          "title": "Retrieval Augmentation Reduces Hallucination in Conversation",
+          "area": "agents",
+          "similarity": 0.6994,
+          "score": 0.0094
+        },
+        {
+          "id": "W3008686018",
+          "title": "How Much Knowledge Can You Pack Into the Parameters of a Language Model?",
+          "area": "agents",
+          "similarity": 0.73,
+          "score": 0.0087
+        },
+        {
+          "id": "W4390054202",
+          "title": "Is Chatgpt a menace for creative writing ability? An experiment",
+          "area": "agents",
+          "similarity": 0.725,
+          "score": 0.0077
+        },
+        {
+          "id": "W2969958763",
+          "title": "Release Strategies and the Social Impacts of Language Models",
+          "area": "agents",
+          "similarity": 0.6938,
+          "score": 0.0069
+        },
+        {
+          "id": "W3186138538",
+          "title": "Internet-Augmented Dialogue Generation",
+          "area": "agents",
+          "similarity": 0.6908,
+          "score": 0.0068
+        },
+        {
+          "id": "W4409348640",
+          "title": "Retrieval-Augmented Generation (RAG) Chatbots for Education: A Survey of Applications",
+          "area": "agents",
+          "similarity": 0.6951,
+          "score": 0.0066
+        },
+        {
+          "id": "W4391876619",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "area": "agents",
+          "similarity": 0.698,
+          "score": 0.0057
+        },
+        {
+          "id": "W4224912544",
+          "title": "Do As I Can, Not As I Say: Grounding Language in Robotic Affordances",
+          "area": "deep_learning",
+          "similarity": 0.7016,
+          "score": 0.0056
+        }
+      ]
+    },
+    {
+      "question": "Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?",
+      "area": "agents",
+      "relevant": [
+        "W4320165837"
+      ],
+      "paper_title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W4320165837",
+          "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+          "area": "agents",
+          "similarity": 0.7178,
+          "score": 0.0677
+        },
+        {
+          "id": "W3120325630",
+          "title": "Artificial Intelligence Is Stupid and Causal Reasoning Will Not Fix It",
+          "area": "deep_learning",
+          "similarity": 0.7295,
+          "score": 0.021
+        },
+        {
+          "id": "W3155807546",
+          "title": "Retrieval Augmentation Reduces Hallucination in Conversation",
+          "area": "agents",
+          "similarity": 0.7188,
+          "score": 0.0026
+        },
+        {
+          "id": "W3186138538",
+          "title": "Internet-Augmented Dialogue Generation",
+          "area": "agents",
+          "similarity": 0.7068,
+          "score": 0.0012
+        },
+        {
+          "id": "W4409348640",
+          "title": "Retrieval-Augmented Generation (RAG) Chatbots for Education: A Survey of Applications",
+          "area": "agents",
+          "similarity": 0.719,
+          "score": 0.0007
+        },
+        {
+          "id": "W4390054202",
+          "title": "Is Chatgpt a menace for creative writing ability? An experiment",
+          "area": "agents",
+          "similarity": 0.7089,
+          "score": 0.0006
+        },
+        {
+          "id": "W4389523957",
+          "title": "Is ChatGPT a General-Purpose Natural Language Processing Task Solver?",
+          "area": "agents",
+          "similarity": 0.711,
+          "score": 0.0004
+        },
+        {
+          "id": "W4399657295",
+          "title": "Designing a Dashboard for Transparency and Control of Conversational AI",
+          "area": "machine_learning",
+          "similarity": 0.717,
+          "score": 0.0003
+        },
+        {
+          "id": "W4221162079",
+          "title": "Should Machine Learning Models Report to Us When They Are Clueless?",
+          "area": "machine_learning",
+          "similarity": 0.7012,
+          "score": 0.0002
+        },
+        {
+          "id": "W3201174429",
+          "title": "TruthfulQA: Measuring How Models Mimic Human Falsehoods",
+          "area": "agents",
+          "similarity": 0.7032,
+          "score": 0.0002
+        }
+      ]
+    },
+    {
+      "question": "How often do chatbots like ChatGPT make up information that cannot be verified, and how can we test whether a model is able to notice such made-up content?",
+      "area": "agents",
+      "relevant": [
+        "W4389518784"
+      ],
+      "paper_title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
+      "rank": 1,
+      "retrieved": [
+        {
+          "id": "W4389518784",
+          "title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
+          "area": "agents",
+          "similarity": 0.6601,
+          "score": 0.9588
+        },
+        {
+          "id": "W4381587418",
+          "title": "Opportunities and challenges for ChatGPT and large language models in biomedicine and health",
+          "area": "agents",
+          "similarity": 0.6555,
+          "score": 0.6492
+        },
+        {
+          "id": "W4389523957",
+          "title": "Is ChatGPT a General-Purpose Natural Language Processing Task Solver?",
+          "area": "agents",
+          "similarity": 0.7122,
+          "score": 0.647
+        },
+        {
+          "id": "W4390054202",
+          "title": "Is Chatgpt a menace for creative writing ability? An experiment",
+          "area": "agents",
+          "similarity": 0.6881,
+          "score": 0.5943
+        },
+        {
+          "id": "W4385469325",
+          "title": "A Survey on ChatGPT: AI–Generated Contents, Challenges, and Solutions",
+          "area": "agents",
+          "similarity": 0.7273,
+          "score": 0.5671
+        },
+        {
+          "id": "W4318014888",
+          "title": "ChatGPT for (Finance) research: The Bananarama Conjecture",
+          "area": "machine_learning",
+          "similarity": 0.7093,
+          "score": 0.4702
+        },
+        {
+          "id": "W4389518968",
+          "title": "Multi-step Jailbreaking Privacy Attacks on ChatGPT",
+          "area": "agents",
+          "similarity": 0.7239,
+          "score": 0.4118
+        },
+        {
+          "id": "W4377043947",
+          "title": "Accelerating the integration of ChatGPT and other large‐scale AI models into biomedical research and healthcare",
+          "area": "agents",
+          "similarity": 0.6565,
+          "score": 0.3791
+        },
+        {
+          "id": "W4367595583",
+          "title": "A Brief Overview of ChatGPT: The History, Status Quo and Potential Future Development",
+          "area": "agents",
+          "similarity": 0.7476,
+          "score": 0.1813
+        },
+        {
+          "id": "W4381587445",
+          "title": "Thrilled by Your Progress! Large Language Models (GPT-4) No Longer Struggle to Pass Assessments in Higher Education Programming Courses",
+          "area": "agents",
+          "similarity": 0.6599,
+          "score": 0.1276
         }
       ]
     },

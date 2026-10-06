@@ -1,11 +1,14 @@
+import sys
+
 from pgvector.psycopg import register_vector
 
 from paper_tutor.corpus import load_config
 from paper_tutor.db import connect
 from paper_tutor.embed import load_model
 
+# The active model from the config, or another one for this run: scripts/05_embed.py qwen3-0.6b
 config = load_config()
-model_key = config["embeddings"]["active"]
+model_key = sys.argv[1] if len(sys.argv) > 1 else config["embeddings"]["active"]
 model_cfg = config["embeddings"]["models"][model_key]
 
 FIND_MISSING = """

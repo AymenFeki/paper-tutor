@@ -1,14 +1,17 @@
 """Tests for the retrieval metrics."""
 
 import pytest
+import yaml
 
 from paper_tutor.evaluation import (
     citations,
     first_relevant_rank,
+    judgment_yaml,
     metrics,
     split_sentences,
     strip_citations,
     threshold_effect,
+    unjudged_pairs,
     wilson_interval,
 )
 
@@ -147,3 +150,42 @@ def test_citations_no_repeats_and_none():
 def test_strip_citations():
     assert strip_citations("Priors matter [1][2].") == "Priors matter."
     assert strip_citations("Priors matter [1, 2].") == "Priors matter."
+
+
+# unjudged_pairs and judgment_yaml (app/judge.py)
+
+
+def result(questions):
+    """A saved result with (question, relevant ids, retrieved ids) triples."""
+    return {"questions": [
+        {"question": q, "relevant": relevant, "retrieved": [{"id": pid, "title": f"Title {pid}"} for pid in ids]}
+        for q, relevant, ids in questions
+    ]}
+
+
+def test_unjudged_pairs_skips_judged_and_original_papers():
+    results = [result([("q1", ["W1"], ["W1", "W2", "W3"])])]
+    judgments = [{"question": "q1", "paper_id": "W2", "relevant": True}]
+    assert [p["paper_id"] for p in unjudged_pairs(results, judgments)] == ["W3"]
+
+
+def test_unjudged_pairs_once_per_pair_and_only_top_depth():
+    results = [
+        result([("q1", ["W0"], ["W5", "W4"])]),
+        result([("q1", ["W0"], ["W4", "W9"])]),  # W4 again
+    ]
+    pairs = unjudged_pairs(results, [], depth=1)
+    assert [(p["question"], p["paper_id"]) for p in pairs] == [("q1", "W4"), ("q1", "W5")]
+
+
+def test_unjudged_pairs_grouped_by_question_in_first_seen_order():
+    results = [result([("q2", [], ["W8"]), ("q1", [], ["W7", "W3"])])]
+    pairs = unjudged_pairs(results, [])
+    assert [(p["question"], p["paper_id"]) for p in pairs] == [("q2", "W8"), ("q1", "W3"), ("q1", "W7")]
+
+
+def test_judgment_yaml_round_trip():
+    text = judgment_yaml("How should I choose a prior?", "W2008640468", True)
+    assert yaml.safe_load(text) == [{"question": "How should I choose a prior?", "paper_id": "W2008640468",
+                                     "relevant": True, "judge": "human"}]
+    assert text.startswith("- question:") and text.endswith("\n")

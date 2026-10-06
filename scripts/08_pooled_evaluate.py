@@ -2,13 +2,14 @@
 
 Reads every result file saved by 07_evaluate.py in eval/results/ and the judgments in
 eval/judgments.yaml (top-5 of bge-small and qwen3-0.6b plus the original paper, judged by an
-LLM, not fully blind). Prints hit@5 and MRR with the original relevant paper(s) ("single") and
-with all papers judged relevant ("pooled").
+LLM, not fully blind; later judgments marked `judge: human` come from app/judge.py). Prints
+hit@5 and MRR with the original relevant paper(s) ("single") and with all papers judged
+relevant ("pooled").
 
 Papers that were never judged count as not relevant, so pooled numbers are a lower bound.
 This matters for new retrieval variants: they can find papers that nobody judged, so the
-"unjudged" column shows how many top-5 papers are missing a judgment. Questions with no
-judgments at all (added after the pool was judged) fall back to their own relevant list.
+"unjudged" column shows how many top-5 papers are missing a judgment. The paper a question
+was written for always counts as relevant unless a judgment says otherwise.
 """
 
 import json
@@ -46,16 +47,17 @@ def single(q):
 
 
 def pooled(q):
-    if q["question"] not in judged:
-        return set(q["relevant"])
-    return {pid for pid, rel in judged[q["question"]].items() if rel}
+    """Papers judged relevant, plus the paper the question was written for unless a judgment says no."""
+    judgments_for_q = judged.get(q["question"], {})
+    relevant = {pid for pid, rel in judgments_for_q.items() if rel}
+    return relevant | {pid for pid in q["relevant"] if judgments_for_q.get(pid, True)}
 
 
 def count_unjudged(questions):
-    """Number of top-5 papers without a judgment, over the questions that were judged."""
+    """Number of top-5 papers with no judgment (the paper a question was written for counts as judged)."""
     return sum(
-        r["id"] not in judged[q["question"]]
-        for q in questions if q["question"] in judged
+        r["id"] not in judged.get(q["question"], {}) and r["id"] not in q["relevant"]
+        for q in questions
         for r in q["retrieved"][:POOL_DEPTH]
     )
 

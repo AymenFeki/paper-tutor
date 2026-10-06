@@ -3,6 +3,8 @@
 import math
 import re
 
+import yaml
+
 HITS_AT = (1, 5, 10)
 
 
@@ -79,3 +81,31 @@ def citations(sentence):
 def strip_citations(sentence):
     """The sentence without its citation brackets, for the judge."""
     return re.sub(r"\s*\[\d+(?:\s*,\s*\d+)*\]", "", sentence).strip()
+
+
+def unjudged_pairs(results, judgments, depth=5):
+    """(question, paper) pairs from the top `depth` of the results that nobody has judged yet.
+
+    results: result dictionaries saved by 07_evaluate.py; judgments: the list in eval/judgments.yaml.
+    The paper a question was written for is skipped (it is relevant by construction). Each pair
+    appears once; pairs are grouped by question and sorted by paper id inside a question, so
+    their order does not reveal which retrieval variant found them or at which rank.
+    """
+    judged = {(j["question"], j["paper_id"]) for j in judgments}
+    pairs = {}
+    for result in results:
+        for q in result["questions"]:
+            for paper in q["retrieved"][:depth]:
+                key = (q["question"], paper["id"])
+                if key not in judged and paper["id"] not in q["relevant"]:
+                    pairs[key] = {"question": q["question"], "paper_id": paper["id"], "title": paper["title"]}
+    question_order = {}
+    for question, _ in pairs:
+        question_order.setdefault(question, len(question_order))
+    return sorted(pairs.values(), key=lambda p: (question_order[p["question"]], p["paper_id"]))
+
+
+def judgment_yaml(question, paper_id, relevant):
+    """One human judgment as YAML text, ready to append to eval/judgments.yaml."""
+    entry = {"question": question, "paper_id": paper_id, "relevant": relevant, "judge": "human"}
+    return yaml.safe_dump([entry], sort_keys=False, allow_unicode=True, width=1000)

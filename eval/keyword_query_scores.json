@@ -1,0 +1,514 @@
+{
+  "long, in scope": [
+    {
+      "query": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
+      "words": 27,
+      "similarity": 0.7928107144591031,
+      "rerank_score": 0.28023505210876465
+    },
+    {
+      "query": "A new law came into force in a specific year. How can I use monthly data from before and after that date to check whether it changed the level or trend of hospital admissions?",
+      "words": 34,
+      "similarity": 0.7189488196686291,
+      "rerank_score": 0.000962471473030746
+    },
+    {
+      "query": "If patients can die of something else before the disease outcome I'm studying happens, how should I estimate the share of them who get the disease over time?",
+      "words": 28,
+      "similarity": 0.7498458027839661,
+      "rerank_score": 0.3746817111968994
+    },
+    {
+      "query": "I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?",
+      "words": 22,
+      "similarity": 0.7297495442479693,
+      "rerank_score": 0.08350230753421783
+    },
+    {
+      "query": "How do I estimate a model where this year's value depends on last year's value, when I have many firms but only a few years of data and some explanatory variables are endogenous?",
+      "words": 33,
+      "similarity": 0.7539771052585307,
+      "rerank_score": 0.03757002577185631
+    },
+    {
+      "query": "When I compare states that changed a law with states that didn't over many years, why might my standard errors be too small so that results look significant by mistake?",
+      "words": 30,
+      "similarity": 0.6806515252396037,
+      "rerank_score": 0.24613645672798157
+    },
+    {
+      "query": "My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?",
+      "words": 28,
+      "similarity": 0.7265549518631388,
+      "rerank_score": 0.002800546120852232
+    },
+    {
+      "query": "My observations are US counties and neighbouring counties influence each other. How do I extend an ordinary regression to account for that?",
+      "words": 22,
+      "similarity": 0.7386376261711173,
+      "rerank_score": 0.01415171381086111
+    },
+    {
+      "query": "How can I see which input features pushed a black-box model's prediction up or down for one particular patient, and how do I read the resulting plots?",
+      "words": 27,
+      "similarity": 0.7376360233751597,
+      "rerank_score": 0.2133052498102188
+    },
+    {
+      "query": "My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?",
+      "words": 23,
+      "similarity": 0.763365626335144,
+      "rerank_score": 0.9215903282165527
+    },
+    {
+      "query": "Why do the models that work so well on images and text often struggle on spreadsheet-like data with mixed numeric and categorical columns, and what methods try to fix that?",
+      "words": 30,
+      "similarity": 0.6981644034385681,
+      "rerank_score": 0.027501892298460007
+    },
+    {
+      "query": "How can sensor data from factory machines be used to detect faults and estimate how long a machine will keep working before it breaks down?",
+      "words": 25,
+      "similarity": 0.7359913148885194,
+      "rerank_score": 0.33095023036003113
+    },
+    {
+      "query": "I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?",
+      "words": 25,
+      "similarity": 0.7509062587134583,
+      "rerank_score": 0.005001225974410772
+    },
+    {
+      "query": "Why does a network forget what it learned on an old task when I train it on a new one, and how can a model keep learning new things over time without that happening?",
+      "words": 34,
+      "similarity": 0.7749448187665726,
+      "rerank_score": 0.995347797870636
+    },
+    {
+      "query": "How can tiny, invisible changes to a photo make an image classifier give a completely wrong answer, and how can we defend against this?",
+      "words": 24,
+      "similarity": 0.7266933917999268,
+      "rerank_score": 0.08333458751440048
+    },
+    {
+      "query": "How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?",
+      "words": 24,
+      "similarity": 0.7295742034912109,
+      "rerank_score": 0.2562359571456909
+    },
+    {
+      "query": "Do speeches and public statements by the people who set interest rates actually move markets and make their decisions easier to predict?",
+      "words": 22,
+      "similarity": 0.6845296997392536,
+      "rerank_score": 0.08576502650976181
+    },
+    {
+      "query": "How does a crash in one country's markets spread to other countries?",
+      "words": 12,
+      "similarity": 0.7608373391877815,
+      "rerank_score": 0.1956843137741089
+    },
+    {
+      "query": "Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?",
+      "words": 22,
+      "similarity": 0.7760639190673828,
+      "rerank_score": 0.1609341949224472
+    },
+    {
+      "query": "Does the state buying more goods and services raise output by more than its cost when interest rates cannot be cut any further?",
+      "words": 23,
+      "similarity": 0.6884850263595581,
+      "rerank_score": 0.03185552358627319
+    },
+    {
+      "query": "What is the best way to predict how much a stock's price will swing around next month, using past price movements or prices of options?",
+      "words": 25,
+      "similarity": 0.7195494509280382,
+      "rerank_score": 0.045475155115127563
+    },
+    {
+      "query": "How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?",
+      "words": 26,
+      "similarity": 0.7371528368339791,
+      "rerank_score": 0.06029099225997925
+    },
+    {
+      "query": "How do banks decide whether a loan applicant is likely to repay, and which statistical techniques are used for that decision?",
+      "words": 21,
+      "similarity": 0.7707163461829352,
+      "rerank_score": 0.6374744176864624
+    },
+    {
+      "query": "How are oil prices, the amount of oil held in storage, and the prices of contracts for later delivery connected to each other?",
+      "words": 23,
+      "similarity": 0.7080074337718684,
+      "rerank_score": 0.16418558359146118
+    },
+    {
+      "query": "Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?",
+      "words": 27,
+      "similarity": 0.6986317606003576,
+      "rerank_score": 0.011007411405444145
+    },
+    {
+      "query": "Is my application faster when I run it in Docker or in a full guest operating system on a hypervisor like KVM?",
+      "words": 22,
+      "similarity": 0.7825723679234338,
+      "rerank_score": 0.42581722140312195
+    },
+    {
+      "query": "If one machine in a distributed program crashes, how can the computation resume from a saved state without starting over or ending up inconsistent?",
+      "words": 24,
+      "similarity": 0.7914616714165659,
+      "rerank_score": 0.04803261533379555
+    },
+    {
+      "query": "Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?",
+      "words": 23,
+      "similarity": 0.7634381510876521,
+      "rerank_score": 0.926365852355957
+    },
+    {
+      "query": "If I paste many documents into a chatbot's prompt, does it matter where the important one is placed, or does the model read all of them equally well?",
+      "words": 28,
+      "similarity": 0.6953705083440522,
+      "rerank_score": 0.0009823724394664168
+    },
+    {
+      "query": "I'm building a chatbot that first searches my company's documents and then lets a language model write the answer. What typically goes wrong with this kind of system, and when can I tell that it really works?",
+      "words": 37,
+      "similarity": 0.7517504096031189,
+      "rerank_score": 0.049985531717538834
+    },
+    {
+      "query": "Chatbots are often bad at simple arithmetic or looking up facts. Can a model learn by itself when to call a calculator or a search engine, without lots of hand-labelled examples?",
+      "words": 31,
+      "similarity": 0.7295188034154463,
+      "rerank_score": 0.0677022635936737
+    },
+    {
+      "query": "How often do chatbots like ChatGPT make up information that cannot be verified, and how can we test whether a model is able to notice such made-up content?",
+      "words": 28,
+      "similarity": 0.7475841268177154,
+      "rerank_score": 0.9588345885276794
+    },
+    {
+      "query": "how should I choose a prior distribution?",
+      "words": 7,
+      "similarity": 0.752428471463091,
+      "rerank_score": 0.5829798579216003
+    },
+    {
+      "query": "When does the Jeffreys prior fail?",
+      "words": 6,
+      "similarity": 0.6533101224940808,
+      "rerank_score": 0.0008654204430058599
+    }
+  ],
+  "long, off topic": [
+    {
+      "query": "How do I bake sourdough bread with a crispy crust?",
+      "words": 10,
+      "similarity": 0.5253643863228907,
+      "rerank_score": 4.633115531760268e-05
+    },
+    {
+      "query": "Which football players were the most expensive transfers last summer?",
+      "words": 10,
+      "similarity": 0.5408283247044667,
+      "rerank_score": 0.0001818094460759312
+    },
+    {
+      "query": "Searched for",
+      "words": 2,
+      "similarity": 0.6603550112459082,
+      "rerank_score": 0.09067028760910034
+    },
+    {
+      "query": "What is the weather forecast for Munich this weekend?",
+      "words": 9,
+      "similarity": 0.5766373529054323,
+      "rerank_score": 0.003517997683957219
+    },
+    {
+      "query": "How do I fix a flat tyre on my bicycle?",
+      "words": 10,
+      "similarity": 0.5464333132972348,
+      "rerank_score": 0.0004949331050738692
+    },
+    {
+      "query": "What is a good recipe for spaghetti carbonara?",
+      "words": 8,
+      "similarity": 0.4987764361437712,
+      "rerank_score": 6.095122080296278e-05
+    },
+    {
+      "query": "How do I learn guitar chords as a beginner?",
+      "words": 9,
+      "similarity": 0.5350303012096561,
+      "rerank_score": 0.0002306141977896914
+    },
+    {
+      "query": "Who wrote the Harry Potter books?",
+      "words": 6,
+      "similarity": 0.4665746728688902,
+      "rerank_score": 0.014764395542442799
+    },
+    {
+      "query": "What are good exercises for lower back pain?",
+      "words": 8,
+      "similarity": 0.5268354572902758,
+      "rerank_score": 0.0027192248962819576
+    },
+    {
+      "query": "How do I train my dog to stop barking?",
+      "words": 9,
+      "similarity": 0.537216337753317,
+      "rerank_score": 5.021774995839223e-05
+    }
+  ],
+  "short, in scope": [
+    {
+      "query": "Jeffreys prior",
+      "words": 2,
+      "similarity": 0.6283058371179343,
+      "rerank_score": 0.9906992316246033
+    },
+    {
+      "query": "lasso",
+      "words": 1,
+      "similarity": 0.859567948605542,
+      "rerank_score": 0.9974187612533569
+    },
+    {
+      "query": "GARCH",
+      "words": 1,
+      "similarity": 0.8204608177589454,
+      "rerank_score": 0.994890570640564
+    },
+    {
+      "query": "transformer attention",
+      "words": 2,
+      "similarity": 0.8118232022365843,
+      "rerank_score": 0.9981288313865662
+    },
+    {
+      "query": "retrieval augmented generation",
+      "words": 3,
+      "similarity": 0.8589411973953247,
+      "rerank_score": 0.9998689889907837
+    },
+    {
+      "query": "bootstrap confidence intervals",
+      "words": 3,
+      "similarity": 0.9029019744068977,
+      "rerank_score": 0.9992650151252747
+    },
+    {
+      "query": "difference in differences",
+      "words": 3,
+      "similarity": 0.7366400957107596,
+      "rerank_score": 0.9927176237106323
+    },
+    {
+      "query": "propensity score",
+      "words": 2,
+      "similarity": 0.8309252463668291,
+      "rerank_score": 0.9998935461044312
+    },
+    {
+      "query": "mixed effects model",
+      "words": 3,
+      "similarity": 0.8267782576912126,
+      "rerank_score": 0.9987064599990845
+    },
+    {
+      "query": "Gibbs sampling",
+      "words": 2,
+      "similarity": 0.830578992928328,
+      "rerank_score": 0.9995927214622498
+    },
+    {
+      "query": "instrumental variables",
+      "words": 2,
+      "similarity": 0.8248240664915935,
+      "rerank_score": 0.9996067881584167
+    },
+    {
+      "query": "cointegration",
+      "words": 1,
+      "similarity": 0.8508355617523193,
+      "rerank_score": 0.994305431842804
+    },
+    {
+      "query": "gradient boosting",
+      "words": 2,
+      "similarity": 0.8180631426070847,
+      "rerank_score": 0.9984758496284485
+    },
+    {
+      "query": "SHAP values",
+      "words": 2,
+      "similarity": 0.6877846512858823,
+      "rerank_score": 0.9980504512786865
+    },
+    {
+      "query": "conformal prediction",
+      "words": 2,
+      "similarity": 0.8301964897034475,
+      "rerank_score": 0.9998594522476196
+    },
+    {
+      "query": "LSTM",
+      "words": 1,
+      "similarity": 0.7857471236141265,
+      "rerank_score": 0.9992178678512573
+    },
+    {
+      "query": "image data augmentation",
+      "words": 3,
+      "similarity": 0.9008562446661351,
+      "rerank_score": 0.9996769428253174
+    },
+    {
+      "query": "monetary policy",
+      "words": 2,
+      "similarity": 0.8383615016937256,
+      "rerank_score": 0.9896302819252014
+    },
+    {
+      "query": "option pricing",
+      "words": 2,
+      "similarity": 0.812757216363285,
+      "rerank_score": 0.9973631501197815
+    },
+    {
+      "query": "credit risk",
+      "words": 2,
+      "similarity": 0.787026071161809,
+      "rerank_score": 0.9837364554405212
+    },
+    {
+      "query": "kubernetes",
+      "words": 1,
+      "similarity": 0.7847773093250621,
+      "rerank_score": 0.9822323322296143
+    },
+    {
+      "query": "MLOps",
+      "words": 1,
+      "similarity": 0.8366748842604388,
+      "rerank_score": 0.9991289973258972
+    },
+    {
+      "query": "chain of thought prompting",
+      "words": 4,
+      "similarity": 0.824319839477545,
+      "rerank_score": 0.9914686679840088
+    },
+    {
+      "query": "LLM hallucination",
+      "words": 2,
+      "similarity": 0.7690751094177314,
+      "rerank_score": 0.9987509250640869
+    }
+  ],
+  "short, off topic": [
+    {
+      "query": "pasta recipe",
+      "words": 2,
+      "similarity": 0.6261179447174117,
+      "rerank_score": 0.002634207019582391
+    },
+    {
+      "query": "football transfers",
+      "words": 2,
+      "similarity": 0.6240096092224166,
+      "rerank_score": 0.0019788406789302826
+    },
+    {
+      "query": "weather Munich",
+      "words": 2,
+      "similarity": 0.6342269996269356,
+      "rerank_score": 0.015000926330685616
+    },
+    {
+      "query": "sourdough bread",
+      "words": 2,
+      "similarity": 0.5511598051976926,
+      "rerank_score": 0.0003144757356494665
+    },
+    {
+      "query": "guitar chords",
+      "words": 2,
+      "similarity": 0.5835529565811157,
+      "rerank_score": 0.008363530039787292
+    },
+    {
+      "query": "Harry Potter",
+      "words": 2,
+      "similarity": 0.5368813116287816,
+      "rerank_score": 0.00032161123817786574
+    },
+    {
+      "query": "dog training",
+      "words": 2,
+      "similarity": 0.6485879453561415,
+      "rerank_score": 0.047050610184669495
+    },
+    {
+      "query": "lower back pain exercises",
+      "words": 4,
+      "similarity": 0.6069904204016684,
+      "rerank_score": 0.0039185406640172005
+    },
+    {
+      "query": "Searched for",
+      "words": 2,
+      "similarity": 0.6603550112459082,
+      "rerank_score": 0.09067028760910034
+    },
+    {
+      "query": "Taylor Swift tour",
+      "words": 3,
+      "similarity": 0.48998987674713135,
+      "rerank_score": 0.00367565406486392
+    },
+    {
+      "query": "Paris travel tips",
+      "words": 3,
+      "similarity": 0.5532352264839141,
+      "rerank_score": 0.02832355909049511
+    },
+    {
+      "query": "knitting patterns",
+      "words": 2,
+      "similarity": 0.6105943372314339,
+      "rerank_score": 0.00958806462585926
+    },
+    {
+      "query": "World Cup 2026",
+      "words": 3,
+      "similarity": 0.6132619110913489,
+      "rerank_score": 0.005729206372052431
+    },
+    {
+      "query": "haircut styles",
+      "words": 2,
+      "similarity": 0.6355508376493826,
+      "rerank_score": 0.0012838549446314573
+    },
+    {
+      "query": "Netflix series recommendations",
+      "words": 3,
+      "similarity": 0.5755554600556873,
+      "rerank_score": 0.006321075838059187
+    },
+    {
+      "query": "best pizza in Naples",
+      "words": 4,
+      "similarity": 0.44872530683580725,
+      "rerank_score": 0.00015473488019779325
+    }
+  ]
+}

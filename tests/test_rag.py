@@ -1,6 +1,6 @@
 """Tests for the RAG helpers."""
 
-from paper_tutor.rag import apply_threshold, document_text, format_context, reciprocal_rank_fusion
+from paper_tutor.rag import document_text, format_context, is_short_query, passes_threshold, reciprocal_rank_fusion
 
 
 def test_format_context_numbers_papers():
@@ -69,7 +69,7 @@ def test_rrf_empty():
     assert reciprocal_rank_fusion([[], []]) == []
 
 
-# document_text and apply_threshold
+# document_text, is_short_query and passes_threshold
 
 
 def test_document_text_joins_title_and_abstract():
@@ -80,10 +80,22 @@ def test_document_text_missing_abstract():
     assert document_text({"title": "Lasso", "abstract": None}) == "Lasso"
 
 
-def test_apply_threshold_keeps_scores_at_or_above_minimum():
-    papers = [{"id": "a", "score": 0.8}, {"id": "b", "score": 0.62}, {"id": "c", "score": 0.5}]
-    assert [p["id"] for p in apply_threshold(papers, 0.62)] == ["a", "b"]
+def test_is_short_query():
+    assert is_short_query("Jeffreys prior", 5)
+    assert is_short_query("retrieval augmented generation", 5)
+    assert not is_short_query("How should I choose a prior distribution for my model?", 5)
+    assert not is_short_query("lasso", 0)  # 0 switches the short-query rule off
 
 
-def test_apply_threshold_can_return_nothing():
-    assert apply_threshold([{"id": "a", "score": 0.3}], 0.62) == []
+SETTINGS = {"min_similarity": 0.62, "min_rerank_score_short": 0.5}
+
+
+def test_passes_threshold_long_question_uses_similarity():
+    assert passes_threshold({"similarity": 0.70, "rerank_score": 0.001}, False, SETTINGS)
+    assert not passes_threshold({"similarity": 0.60, "rerank_score": 0.9}, False, SETTINGS)
+
+
+def test_passes_threshold_short_query_uses_reranker():
+    # "pasta recipe": similar enough by embedding, but the reranker says off-topic
+    assert not passes_threshold({"similarity": 0.63, "rerank_score": 0.003}, True, SETTINGS)
+    assert passes_threshold({"similarity": 0.63, "rerank_score": 0.99}, True, SETTINGS)

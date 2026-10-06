@@ -85,9 +85,21 @@ def document_text(paper):
     return ". ".join(part for part in (paper["title"], paper["abstract"]) if part)
 
 
-def apply_threshold(papers, min_score):
-    """Keep only the papers whose score is at least min_score."""
-    return [p for p in papers if p["score"] >= min_score]
+def is_short_query(question, max_words):
+    """True for keyword-style queries such as "Jeffreys prior": at most max_words words."""
+    return len(question.split()) <= max_words
+
+
+def passes_threshold(paper, short_query, settings):
+    """Is this paper relevant enough to keep?
+
+    Short keyword queries are judged by the reranker score: their embedding similarity is about
+    the same for on- and off-topic queries. Longer questions are judged by the similarity, which
+    separates them better than the reranker score does (see README, Evaluation).
+    """
+    if short_query:
+        return paper["rerank_score"] >= settings["min_rerank_score_short"]
+    return paper["similarity"] >= settings["min_similarity"]
 
 
 def build_retriever(config):
@@ -100,11 +112,14 @@ def build_retriever(config):
     settings = config["retrieval"]
     model_key, model_cfg = active_model(config)
     embed_model = load_model(model_cfg)
-    reranker = load_reranker(settings["reranker_model"]) if settings["rerank"] else None
+    short_query_threshold = settings["threshold"] and settings["short_query_words"] > 0
+    reranker = load_reranker(settings["reranker_model"]) if settings["rerank"] or short_query_threshold else None
 
     def retrieve(question, k=5):
         query_vector = encode_query(embed_model, model_cfg, question)
-        n = max(k, settings["candidates"]) if settings["hybrid"] or reranker else k
+        short_query = short_query_threshold and is_short_query(question, settings["short_query_words"])
+        use_reranker = settings["rerank"] or short_query
+        n = max(k, settings["candidates"]) if settings["hybrid"] or use_reranker else k
 
         with connect() as conn:
             register_vector(conn)
@@ -125,18 +140,19 @@ def build_retriever(config):
         }
         papers = [found[pid] for pid in ids if pid in found]  # keep the search order
 
-        if reranker:
+        if use_reranker:
             scores = reranker.predict([(question, document_text(p)) for p in papers])
             for paper, score in zip(papers, scores):
-                paper["score"] = float(score)
+                paper["rerank_score"] = float(score)
+
+        # score = what the papers are ranked by; without the reranker the search order stays
+        for paper in papers:
+            paper["score"] = paper["rerank_score"] if settings["rerank"] else paper["similarity"]
+        if settings["rerank"]:
             papers.sort(key=lambda p: p["score"], reverse=True)
-        else:
-            for paper in papers:
-                paper["score"] = paper["similarity"]
 
         if settings["threshold"]:
-            min_score = settings["min_rerank_score"] if reranker else settings["min_similarity"]
-            papers = apply_threshold(papers, min_score)
+            papers = [p for p in papers if passes_threshold(p, short_query, settings)]
         return papers[:k]
 
     return retrieve

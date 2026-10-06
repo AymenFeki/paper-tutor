@@ -15,17 +15,17 @@ from paper_tutor.evaluation import threshold_effect
 
 name = sys.argv[1] if len(sys.argv) > 1 else "bge-small"
 result = json.loads(Path(f"eval/results/{name}.json").read_text())
-if result["retrieval"]["threshold"]:
-    raise SystemExit("Use a result saved with threshold=false, otherwise the scores are already cut off.")
+if result["retrieval"]["threshold"] or result["retrieval"]["rerank"]:
+    raise SystemExit("Use a result saved with threshold=false and rerank=false: the threshold for longer "
+                     "questions is on the similarity, and the scores must not be cut off yet.")
 
 questions, out_of_scope = result["questions"], result["out_of_scope"]
 hits5 = sum(q["rank"] is not None and q["rank"] <= 5 for q in questions)
 
 # Candidate thresholds: every score seen, so no interesting value is skipped
 scores = {q["retrieved"][0]["score"] for q in questions} | {q["top_score"] for q in out_of_scope}
-score_name = "reranker score" if result["retrieval"]["rerank"] else "cosine similarity"
 
-print(f"\n{name}: threshold on {score_name}; {len(questions)} in-scope questions "
+print(f"\n{name}: threshold on the cosine similarity; {len(questions)} in-scope questions "
       f"({hits5} top-5 hits without a threshold), {len(out_of_scope)} out-of-scope questions\n")
 print(f"{'min score':>10}{'in-scope refused':>18}{'top-5 hits kept':>17}{'out-of-scope refused':>22}")
 for min_score in sorted(scores):

@@ -168,8 +168,9 @@ retrieval:
   reranker_model: BAAI/bge-reranker-base
   candidates: 30                # papers taken from each search before fusion / reranking
   threshold: true               # drop papers below a minimum score; can return no papers at all
-  min_rerank_score: 0.0005      # used when rerank is on (cross-encoder score, 0 to 1); see scripts/12_threshold.py
-  min_similarity: 0.62          # used when rerank is off (cosine similarity); see scripts/12_threshold.py
+  min_similarity: 0.62          # longer questions: cosine similarity a paper needs; scripts/12_threshold.py
+  short_query_words: 5          # queries with at most this many words are judged by the reranker instead (0 = off)
+  min_rerank_score_short: 0.5   # short queries: reranker score (0 to 1) a paper needs; scripts/14_keyword_queries.py
 
 tutor:
   clarify_vague: true           # ask what the user means when a first question is too vague to search

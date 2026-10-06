@@ -1,0 +1,45 @@
+# Short keyword-style queries, as Claude Desktop sends them through the MCP tool (#22).
+# in_scope: the database has papers on these; off_topic: it has nothing on these.
+# Used by scripts/14_keyword_queries.py to choose the relevance threshold for short queries.
+in_scope:
+  - Jeffreys prior
+  - lasso
+  - GARCH
+  - transformer attention
+  - retrieval augmented generation
+  - bootstrap confidence intervals
+  - difference in differences
+  - propensity score
+  - mixed effects model
+  - Gibbs sampling
+  - instrumental variables
+  - cointegration
+  - gradient boosting
+  - SHAP values
+  - conformal prediction
+  - LSTM
+  - image data augmentation
+  - monetary policy
+  - option pricing
+  - credit risk
+  - kubernetes
+  - MLOps
+  - chain of thought prompting
+  - LLM hallucination
+off_topic:
+  - pasta recipe
+  - football transfers
+  - weather Munich
+  - sourdough bread
+  - guitar chords
+  - Harry Potter
+  - dog training
+  - lower back pain exercises
+  - Searched for
+  - Taylor Swift tour
+  - Paris travel tips
+  - knitting patterns
+  - World Cup 2026
+  - haircut styles
+  - Netflix series recommendations
+  - best pizza in Naples

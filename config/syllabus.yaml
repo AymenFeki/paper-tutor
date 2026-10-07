@@ -162,7 +162,7 @@ embeddings:
 
 retrieval:
   # rerank on, hybrid off: with full pooled judgments, reranking raised MRR (0.64 -> 0.76) and
-  # hybrid lowered it (0.64 -> 0.50); see README, Evaluation
+  # hybrid lowered it (0.64 -> 0.50); see eval/README.md
   hybrid: false                 # also run Postgres full-text search and fuse both rankings (Reciprocal Rank Fusion)
   rrf_k: 60                     # RRF constant: score = sum of 1 / (rrf_k + rank); 60 is the usual default
   rerank: true                 # rescore the candidates with a cross-encoder

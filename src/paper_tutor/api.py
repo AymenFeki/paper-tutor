@@ -7,9 +7,9 @@ from pydantic import BaseModel
 
 from paper_tutor.corpus import load_config
 from paper_tutor.embed import active_model
+from paper_tutor.quiz import make_quiz, syllabus_paper
 from paper_tutor.rag import NO_PAPERS_MESSAGE, build_chain, build_retriever, format_context
 from paper_tutor.tutor import build_tutor
-from paper_tutor.quiz import make_quiz, syllabus_paper
 
 state = {}
 

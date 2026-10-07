@@ -287,8 +287,7 @@ The MCP server calls the API at `http://127.0.0.1:8000`; set `PAPER_TUTOR_API` i
 - **The trusted-server rule only checks preprints.** A Zenodo record typed as a conference
   paper still passes (one such paper is in the corpus), because conference papers are
   exempt from the venue list.
-- **Refreshed papers are only embedded with the active model** (bge-small), as are the 11
-  agents papers that moved into the top 300 after the preprint rule. Run
+- **Refreshed papers are only embedded with the active model** (bge-small). Run
   `uv run python scripts/05_embed.py qwen3-0.6b` before comparing against Qwen3 again.
 - **The automations only run while the Mac is awake** and Docker and the API are running;
   a missed schedule is not repeated later. A cloud deployment would fix this (#18).

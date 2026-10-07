@@ -8,7 +8,11 @@ How well paper-tutor finds relevant papers, refuses off-topic questions and cite
 area), plus 2 real-use failure cases about choosing priors. For each question the top 10
 papers are retrieved and the rank of the relevant paper is recorded. Results are in
 `eval/results/` (`uv run python scripts/07_evaluate.py`, add e.g. `hybrid=true` or
-`embedding=qwen3-0.6b` to try a variant). All rows use the current corpus (7,226 papers).
+`embedding=qwen3-0.6b` to try a variant). All rows were measured on a corpus of 7,226
+papers. The corpus now has 7,183 papers: the trusted-preprint rule removed 74, 11 agents
+papers moved into the top 300, and the first weekly refresh added 20. The default variant
+(bge-small + reranker + threshold) was re-run on it after each step, with exactly the same
+numbers; none of the 20 refreshed papers appears in any top 10.
 
 | Variant (n = 34) | hit@1 | hit@5 | hit@10 | MRR | hit@5 95% Wilson CI |
 |---|---|---|---|---|---|

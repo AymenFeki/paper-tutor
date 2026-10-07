@@ -1,4 +1,4 @@
-"""HTTP API for the paper tutor: semantic search, cited answers and a tutor with memory."""
+"""HTTP API for the paper tutor: semantic search, cited answers, a tutor with memory and the weekly refresh."""
 
 from contextlib import asynccontextmanager
 
@@ -6,9 +6,10 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 from paper_tutor.corpus import load_config
-from paper_tutor.embed import active_model
+from paper_tutor.embed import active_model, load_model
 from paper_tutor.quiz import make_quiz, syllabus_paper
 from paper_tutor.rag import NO_PAPERS_MESSAGE, build_chain, build_retriever, format_context
+from paper_tutor.refresh import refresh as refresh_papers
 from paper_tutor.tutor import build_tutor
 
 state = {}
@@ -19,8 +20,9 @@ async def lifespan(app: FastAPI):
     """Load the config, the models (embedding, reranker if on), LLM chain and tutor once, when the server starts."""
     config = load_config()
     state["config"] = config
-    state["model_key"], _ = active_model(config)
-    state["retrieve"] = build_retriever(config)
+    state["model_key"], state["model_cfg"] = active_model(config)
+    state["embed_model"] = load_model(state["model_cfg"])  # shared by the retriever and /refresh
+    state["retrieve"] = build_retriever(config, state["embed_model"])
     state["chain"] = build_chain(config["llm"])
     state["tutor"] = build_tutor(config, state["retrieve"])
     yield
@@ -87,3 +89,9 @@ def quiz():
     """A multiple-choice question about a paper for a random learn item from the syllabus."""
     topic, paper = syllabus_paper(state["config"], state["retrieve"])
     return {"topic": topic, **make_quiz(paper, state["config"]["llm"])}
+
+
+@app.post("/refresh")
+def refresh():
+    """Add the best recently published papers that pass the rules and match the syllabus (n8n calls it weekly)."""
+    return refresh_papers(state["config"], state["embed_model"], state["model_cfg"])

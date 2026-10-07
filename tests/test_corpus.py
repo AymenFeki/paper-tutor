@@ -5,15 +5,18 @@ import pytest
 from paper_tutor.corpus import (
     abstract_word_count,
     arxiv_id,
+    author_names,
     check_rules,
     deduplicate,
     has_wrong_arxiv_title,
+    is_known,
     mentions_keywords,
     normalize_title,
     passes_rules,
     rebuild_abstract,
     record_quality,
     select_seed_papers,
+    select_top,
     split_by_year_window,
 )
 
@@ -24,9 +27,11 @@ SETTINGS = {
     "venue_lists": ["cwts-core"],
     "venue_exempt_types": ["preprint", "conference-paper"],
     "min_abstract_words": 30,
+    "preprint_servers": ["arXiv (Cornell University)", "SSRN Electronic Journal"],
 }
 
 LONG_ABSTRACT = {f"word{i}": [i] for i in range(40)}  # 40 different words
+ARXIV = {"source": {"display_name": "arXiv (Cornell University)"}}  # a trusted preprint server
 
 
 def make_paper(**changes):
@@ -136,9 +141,32 @@ def test_article_without_source_is_not_listed():
 
 @pytest.mark.parametrize("paper_type", ["preprint", "conference-paper"])
 def test_exempt_types_do_not_need_a_listed_venue(paper_type):
-    paper = make_paper(type=paper_type, primary_location=None)
+    paper = make_paper(type=paper_type, primary_location=ARXIV)
     assert not check_rules(paper, SETTINGS)["not_listed"]
     assert passes_rules(paper, SETTINGS)
+
+
+def test_preprint_from_trusted_server_passes():
+    paper = make_paper(type="preprint", primary_location=ARXIV)
+    assert not check_rules(paper, SETTINGS)["untrusted_preprint"]
+    assert passes_rules(paper, SETTINGS)
+
+
+def test_preprint_from_untrusted_server_fails():
+    zenodo = {"source": {"display_name": "Zenodo (CERN European Organization for Nuclear Research)"}}
+    paper = make_paper(type="preprint", primary_location=zenodo)
+    assert check_rules(paper, SETTINGS)["untrusted_preprint"]
+    assert not passes_rules(paper, SETTINGS)
+
+
+def test_preprint_without_source_is_untrusted():
+    assert check_rules(make_paper(type="preprint", primary_location=None), SETTINGS)["untrusted_preprint"]
+
+
+def test_untrusted_preprint_rule_ignores_other_types():
+    # Articles are checked against the venue list instead, whatever their source is called
+    paper = make_paper(primary_location={"source": {"display_name": "Zenodo", "listed_in": ["cwts-core"]}})
+    assert not check_rules(paper, SETTINGS)["untrusted_preprint"]
 
 
 # normalize_title
@@ -301,7 +329,8 @@ def test_right_arxiv_title_or_no_arxiv_doi_is_fine():
 
 
 def seed_candidate(paper_id, citations, title="A Language Model Paper", **changes):
-    return make_paper(id=paper_id, title=title, cited_by_count=citations, type="preprint", **changes)
+    return make_paper(id=paper_id, title=title, cited_by_count=citations, type="preprint",
+                      primary_location=ARXIV, **changes)
 
 
 def test_select_seed_papers_filters_sorts_and_caps():
@@ -316,3 +345,53 @@ def test_select_seed_papers_filters_sorts_and_caps():
     ]
     selected = select_seed_papers(papers, SETTINGS, ["language model"], ARXIV_TITLES, max_papers=2)
     assert [paper["id"] for paper in selected] == ["W2", "W6"]
+
+
+# weekly refresh: author_names, is_known and select_top
+
+
+def test_author_names_in_author_order():
+    paper = make_paper(authorships=[{"author": {"display_name": "Ada"}}, {"author": {"display_name": "Bob"}}])
+    assert author_names(paper) == ["Ada", "Bob"]
+
+
+def test_author_names_without_authorships():
+    assert author_names(make_paper()) == []
+    assert author_names(make_paper(authorships=None)) == []
+
+
+KNOWN_IDS = {"W1"}
+KNOWN_TITLES = {"random forests"}
+
+
+def test_is_known_by_short_id():
+    assert is_known(make_paper(id="https://openalex.org/W1", title="Something New"), KNOWN_IDS, KNOWN_TITLES)
+
+
+def test_is_known_by_normalised_title():
+    # A different OpenAlex record of a paper we already have, e.g. a new preprint version
+    assert is_known(make_paper(id="https://openalex.org/W2", title="Random Forests!"), KNOWN_IDS, KNOWN_TITLES)
+
+
+def test_new_paper_is_not_known():
+    assert not is_known(make_paper(id="https://openalex.org/W2", title="Random Fields"), KNOWN_IDS, KNOWN_TITLES)
+
+
+def test_empty_title_is_never_a_match():
+    paper = make_paper(id="https://openalex.org/W2", title="!!!")
+    assert not is_known(paper, KNOWN_IDS, KNOWN_TITLES | {""})
+
+
+def test_select_top_applies_threshold_and_cap():
+    ranked = [("a", 0.9), ("b", 0.8), ("c", 0.76), ("d", 0.7)]
+    assert select_top(ranked, min_score=0.75, max_papers=2) == [("a", 0.9), ("b", 0.8)]
+    assert select_top(ranked, min_score=0.75, max_papers=20) == [("a", 0.9), ("b", 0.8), ("c", 0.76)]
+
+
+def test_select_top_threshold_is_inclusive():
+    assert select_top([("a", 0.75)], min_score=0.75, max_papers=20) == [("a", 0.75)]
+
+
+def test_select_top_nothing_good_enough():
+    assert select_top([("a", 0.6)], min_score=0.75, max_papers=20) == []
+    assert select_top([], min_score=0.75, max_papers=20) == []

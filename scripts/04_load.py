@@ -47,6 +47,15 @@ for area_name, area in config["areas"].items():
     records += [(paper, topic_id) for paper in selected]
     print(f"{area_name}: {len({p['id'] for p in papers})} candidates from seed papers, {len(selected)} selected")
 
+# Papers added by the weekly refresh (paper_tutor.refresh), saved as {"topic_id", "paper"} entries.
+# They come after the topic and seed areas, so a paper that is already there keeps its area.
+recent = []
+for recent_file in sorted((raw_dir / "recent").glob("*.json")):
+    recent += [(entry["paper"], entry["topic_id"]) for entry in json.loads(recent_file.read_text())
+               if entry["topic_id"] in topics and passes_rules(entry["paper"], settings)]
+records += recent
+print(f"recent: {len(recent)} papers from weekly refreshes")
+
 # 2. Keep the best record per paper (same title, within the year window)
 best, merged = deduplicate(records, settings["dedup_year_window"])
 cross_year = [(kept, dropped) for kept, dropped in merged

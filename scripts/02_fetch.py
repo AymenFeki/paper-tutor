@@ -85,6 +85,13 @@ def fetch_arxiv_titles(ids):
     return titles
 
 
+def raw_papers():
+    """Every paper in data/raw; files in recent/ (from the weekly refresh) hold {"topic_id", "paper"} entries."""
+    for raw_file in Path("data/raw").glob("*/*.json"):
+        data = json.loads(raw_file.read_text())
+        yield from (entry["paper"] for entry in data) if raw_file.parent.name == "recent" else data
+
+
 def fetch_authors(paper_ids):
     """Author names in author order, for up to 100 papers in one request."""
     papers = Works().filter_or(openalex_id=paper_ids).select(["id", "authorships"]).get(per_page=len(paper_ids))
@@ -126,9 +133,7 @@ for area_name, area in config["areas"].items():
 # Authors were not in the original field list, so they are cached separately for every downloaded paper
 authors_file = Path("data/raw/authors.json")
 authors = json.loads(authors_file.read_text()) if authors_file.exists() else {}
-paper_ids = set()
-for raw_file in Path("data/raw").glob("*/*.json"):
-    paper_ids.update(paper["id"] for paper in json.loads(raw_file.read_text()))
+paper_ids = {paper["id"] for paper in raw_papers()}
 missing = sorted(paper_ids - authors.keys())
 print(f"authors: {len(paper_ids)} papers, {len(missing)} without cached authors")
 for start in range(0, len(missing), 100):
@@ -142,9 +147,7 @@ for start in range(0, len(missing), 100):
 # arXiv's own titles for papers with an arXiv DOI, to catch OpenAlex records with wrong metadata
 titles_file = Path("data/raw/arxiv_titles.json")
 arxiv_titles = json.loads(titles_file.read_text()) if titles_file.exists() else {}
-ids = set()
-for raw_file in Path("data/raw").glob("*/*.json"):
-    ids.update(arxiv_id(paper["doi"]) for paper in json.loads(raw_file.read_text()))
+ids = {arxiv_id(paper["doi"]) for paper in raw_papers()}
 missing = sorted(ids - arxiv_titles.keys() - {None})
 print(f"arXiv titles: {len(ids - {None})} papers with an arXiv DOI, {len(missing)} not cached")
 for start in range(0, len(missing), 100):

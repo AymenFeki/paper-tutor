@@ -35,7 +35,7 @@ df = pd.DataFrame(rows)
 print("papers, columns:", df.shape)
 print("duplicate ids:", df["id"].duplicated().sum())
 
-rule_cols = ["bad_type", "no_abstract", "short_abstract", "not_english", "retracted", "not_listed"]
+rule_cols = ["bad_type", "no_abstract", "short_abstract", "not_english", "retracted", "not_listed", "untrusted_preprint"]
 df["kept"] = ~df[rule_cols].any(axis=1)
 
 print("\nShare of papers breaking each rule, per area:")

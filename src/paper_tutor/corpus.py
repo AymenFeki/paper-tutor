@@ -47,6 +47,8 @@ def check_rules(paper, settings):
         "not_english": paper["language"] != settings["language"],
         "retracted": bool(paper["is_retracted"]),
         "not_listed": paper["type"] not in settings["venue_exempt_types"] and not on_list,
+        "untrusted_preprint": paper["type"] == "preprint"
+                              and get_source(paper).get("display_name") not in settings["preprint_servers"],
     }
 
 
@@ -143,6 +145,23 @@ def select_seed_papers(papers, settings, keywords, arxiv_titles, max_papers):
     ]
     selected.sort(key=lambda paper: paper["cited_by_count"], reverse=True)
     return selected[:max_papers]
+
+
+def author_names(paper):
+    """Author names in author order, from a record fetched with the "authorships" field."""
+    return [authorship["author"]["display_name"] for authorship in paper.get("authorships") or []]
+
+
+def is_known(paper, known_ids, known_titles):
+    """True if the database already has this paper: same OpenAlex id (short form, "W123") or
+    same normalised title. An empty title never counts as a match."""
+    title = normalize_title(paper["title"])
+    return paper["id"].split("/")[-1] in known_ids or (title != "" and title in known_titles)
+
+
+def select_top(ranked, min_score, max_papers):
+    """From (record, score) pairs sorted best first, keep those scoring at least min_score, at most max_papers."""
+    return [(record, score) for record, score in ranked if score >= min_score][:max_papers]
 
 
 def paper_row(paper, topic_id, authors, settings):

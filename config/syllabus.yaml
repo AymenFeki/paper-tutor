@@ -10,6 +10,12 @@ settings:
   min_abstract_words: 30         # shorter "abstracts" are mostly citation strings; 0 turns the rule off
   venue_lists: [cwts-core]       # peer-reviewed papers must come from a listed journal
   venue_exempt_types: [preprint, conference-paper]   # no journal-list requirement for these types
+  preprint_servers:              # preprints must come from one of these; open repositories such as Zenodo
+                                 # are full of auto-generated spam (589 of 1,716 recent candidates)
+    - arXiv (Cornell University)
+    - "RePEc: Research Papers in Economics"
+    - SSRN Electronic Journal
+    - HAL (Le Centre pour la Communication Scientifique Directe)
   dedup_year_window: 3           # same title within 3 years = one paper (0 = same year only, the old rule)
   authors_per_paper: 5           # author names stored per paper
   check_arxiv_titles: true       # drop records whose title differs from arXiv's (corrupted OpenAlex metadata)
@@ -182,3 +188,9 @@ llm:
   reasoning: false
   top_k: 5
   prompt: strict        # basic or strict (every sentence must be backed by a cited source); strict was slightly better, see README
+
+refresh:
+  days: 14                # look back this many days (OpenAlex indexes with a delay, so overlap is fine)
+  max_papers: 20          # add at most this many papers per refresh
+  min_similarity: 0.75    # cosine similarity to the closest learn query; top papers score ~0.82-0.85,
+                          # spam and off-topic ~0.55-0.71 (1,108 candidates above 0.70, 328 above 0.75)

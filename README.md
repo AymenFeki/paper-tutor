@@ -10,8 +10,9 @@ stores them in Postgres with vector embeddings, and answers questions with a loc
 that must cite the papers it used, or say that the database has nothing relevant. It is built the way a company would build an internal
 AI system over its own documents: a data pipeline, a database, an HTTP API, a chat UI,
 a tool for an AI assistant, and an evaluation of retrieval quality. The current corpus
-has 7,226 papers in statistics, econometrics, machine learning, deep learning, LLMs and
-agents, economics, finance and cloud infrastructure.
+has 7,183 papers in statistics, econometrics, machine learning, deep learning, LLMs and
+agents, economics, finance and cloud infrastructure: 7,163 from the initial download and
+20 added by the first weekly refresh.
 
 **Stack:** Python · PostgreSQL + pgvector · FastAPI · LangChain · LangGraph · MCP · Ollama · Streamlit · Docker · GitHub Actions
 
@@ -30,10 +31,14 @@ flowchart LR
         SEARCH["/search"]
         ASK["/ask (RAG chain)"]
         CHAT["/chat (LangGraph tutor:<br/>clarify? → rewrite → retrieve → answer or refuse)"]
+        REFRESH["/refresh (weekly):<br/>recent papers → rules → top 20 by syllabus similarity"]
         RET --> SEARCH
         RET --> ASK
         RET --> CHAT
     end
+
+    OA -->|papers from the last 14 days| REFRESH
+    REFRESH -->|new papers, embedded| DB
 
     DB --> API
     API <--> LLM["Ollama<br/>qwen3:8b"]
@@ -61,20 +66,38 @@ can be compared. The defaults are the best settings measured (see [eval/README.m
   are exempt); the abstract must have at least 30 words. Below 30 words the "abstracts"
   in OpenAlex are mostly citation strings ("Technometrics, Vol. 31, No. 2, pp. 270-271"),
   publisher boilerplate or a single word; this rule removed about 200 papers.
+- **Trusted preprint servers** (`preprint_servers` in the config): a preprint must come from
+  arXiv, RePEc, SSRN or HAL. Open repositories are full of auto-generated spam: 589 of
+  1,716 recent candidates were Zenodo "preprints" such as "LAB #2710 ... LEDGER BENCH".
+  The rule removed 74 papers from the corpus (26 Zenodo, 18 without a source, 13 bioRxiv,
+  7 Research Square, 6 Preprints.org, 4 others). None of them was a test question's
+  paper, and the retrieval metrics did not change (see [eval/README.md](eval/README.md)).
 - **Deduplication**: papers with the same normalised title published within 3 years of
   each other are one paper, e.g. an arXiv preprint and its conference version, or a
   conference paper and its later journal version. The published version is kept, then
-  the one with a DOI, a venue and the longer abstract. 78 duplicates are merged, 34 of
+  the one with a DOI, a venue and the longer abstract. 75 duplicates are merged, 31 of
   them across years.
 - **LLMs and agents area** ([#9](https://github.com/AymenFeki/paper-tutor/issues/9)): built around five seed papers (RAG, ReAct, Toolformer,
   Chain-of-Thought, GPT-3) instead of OpenAlex topics. Candidates are the 200 most-cited
   papers citing each seed plus the papers the seeds cite (999 papers). They go through the
-  same credibility rules (833 pass; conference papers and preprints are exempt from the
+  same credibility rules (802 pass; conference papers and preprints are exempt from the
   venue list, which matters because ML is published on arXiv and at conferences), must
-  mention an LLM keyword in title or abstract (597; without this filter the most-cited
+  mention an LLM keyword in title or abstract (573; without this filter the most-cited
   candidates were LSTM, GloVe, word2vec and Vision Transformers, which cite or are cited by
   GPT-3), and must not have a corrupted arXiv record (see below). The 300 most-cited are
-  kept; 293 are new to the corpus, the others were already in another area.
+  kept; 294 are new to the corpus, the others were already in another area.
+- **Weekly refresh** (`refresh.py`, `refresh` in the config): `POST /refresh` (or
+  `make refresh`) fetches the papers published in the last 14 days for every topic,
+  applies the credibility rules, removes duplicates, and scores each paper by its highest
+  cosine similarity to any learn query of the syllabus. The top 20 papers of the window
+  with a similarity of at least 0.75 are added if they are not in the database yet (same
+  OpenAlex id or same normalised title). 0.75 comes from the measured scores: the best
+  papers score about 0.82-0.85, spam and off-topic papers 0.55-0.71. Because the top 20 is
+  chosen before known papers are skipped, running it again adds nothing, and the next
+  week only adds what has entered the top 20. New papers are written to
+  `data/raw/recent/<date>.json` (and their authors to `data/raw/authors.json`) before they
+  are saved and embedded, so the raw files stay the source of truth and `make load` keeps
+  them. The first run had 1,124 candidates and added 20 papers; it takes about 45 seconds.
 - **Corrupted OpenAlex records**: some records keep the DOI and citation count of a famous
   arXiv paper but show an unrelated title, abstract and references. The arXiv DOIs of RAG,
   ReAct and Chain-of-Thought point to records titled "Affordance-Compiled Intelligence",
@@ -100,6 +123,8 @@ can be compared. The defaults are the best settings measured (see [eval/README.m
   - `POST /search`: up to k relevant papers with authors, no LLM.
   - `POST /ask`: a single cited answer from the top papers (no memory).
   - `POST /chat`: the tutor with memory per `thread_id`.
+  - `POST /refresh`: the weekly refresh; returns the number of papers added, their titles
+    and scores, and the number of candidates.
 - **LangGraph tutor** (`tutor.py`):
   - A first question that points at something it doesn't name ("When does it fail?") is
     answered with a clarifying question instead of a search (conditional edge, rule-based
@@ -171,11 +196,12 @@ make ui               # in a second terminal: start the chat UI
 ```
 
 Other targets: `make test` (unit tests), `make lint` (ruff), the single steps
-`make db-up`, `make schema`, `make fetch`, `make load`, `make embed`, the evaluations
+`make db-up`, `make schema`, `make fetch`, `make load`, `make embed`, `make refresh`, the evaluations
 `make evaluate`, `make threshold`, `make keyword-queries` and `make faithfulness`, and
 `make data-checks` and `make judge`. Fetching skips topics, seed areas, authors and arXiv
 titles that are already downloaded to `data/raw/`. Loading removes papers from the
-database that no longer pass the rules, together with their embeddings.
+database that no longer pass the rules or are not in `data/raw/` (including the refreshed
+papers in `data/raw/recent/`), together with their embeddings.
 
 Try the API directly:
 
@@ -230,10 +256,26 @@ The MCP server calls the API at `http://127.0.0.1:8000`; set `PAPER_TUTOR_API` i
   has more authors.
 - **The clarification check is a simple word rule.** It catches "When does it fail?" but
   not every vague question.
+- **The weekly refresh never covers the LLMs and agents area.** It is built from seed
+  papers, not OpenAlex topics, and the refresh only queries topics.
+- **The refresh takes one top 20 across all areas**, so busy areas win: the first run
+  added 7 finance, 7 statistics, 3 deep learning, 2 economics and 1 machine learning
+  paper, none for cloud infrastructure. A quota per area would balance it.
+- **Syllabus similarity measures topic, not quality.** The weakest refreshed papers are
+  applied studies from broad journals (an India VIX-RSI market-efficiency study in
+  F1000Research, a buzzword-heavy causal-inference framework in *Electronics*); they pass
+  because the journals are on the CWTS list.
+- **The trusted-server rule only checks preprints.** A Zenodo record typed as a conference
+  paper still passes (one such paper is in the corpus), because conference papers are
+  exempt from the venue list.
+- **Refreshed papers are only embedded with the active model** (bge-small), as are the 11
+  agents papers that moved into the top 300 after the preprint rule. Run
+  `uv run python scripts/05_embed.py qwen3-0.6b` before comparing against Qwen3 again.
 
 ## Roadmap
 
-- n8n workflows: a daily quiz via Telegram and a weekly fetch of new papers
-  ([#14](https://github.com/AymenFeki/paper-tutor/issues/14)).
+- n8n: a weekly workflow that calls `POST /refresh` every Sunday and sends the summary to
+  Telegram ([#14](https://github.com/AymenFeki/paper-tutor/issues/14)); the endpoint and the
+  daily quiz workflow (`n8n/daily_quiz.json`) are done.
 - Optional cloud deployment
   ([#18](https://github.com/AymenFeki/paper-tutor/issues/18)).

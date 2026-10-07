@@ -102,16 +102,18 @@ def passes_threshold(paper, short_query, settings):
     return paper["similarity"] >= settings["min_similarity"]
 
 
-def build_retriever(config):
+def build_retriever(config, embed_model=None):
     """Load the models once and return a function question, k -> list of paper dictionaries.
 
     The steps are switched on and off in the `retrieval` section of the config:
     vector search, optionally fused with full-text search, optionally reranked by a
-    cross-encoder, optionally cut off by a minimum score.
+    cross-encoder, optionally cut off by a minimum score. Pass embed_model to share an
+    already loaded embedding model (it must be the active one) instead of loading it again.
     """
     settings = config["retrieval"]
     model_key, model_cfg = active_model(config)
-    embed_model = load_model(model_cfg)
+    if embed_model is None:
+        embed_model = load_model(model_cfg)
     short_query_threshold = settings["threshold"] and settings["short_query_words"] > 0
     reranker = load_reranker(settings["reranker_model"]) if settings["rerank"] or short_query_threshold else None
 

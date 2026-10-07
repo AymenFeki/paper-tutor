@@ -1,32 +1,8 @@
 import json
 from pathlib import Path
 
-from paper_tutor.corpus import (
-    deduplicate,
-    get_source,
-    load_config,
-    passes_rules,
-    rebuild_abstract,
-    select_seed_papers,
-    venue_lists,
-)
-from paper_tutor.db import connect
-
-UPSERT_TOPIC = """
-    INSERT INTO topics (id, name, area)
-    VALUES (%s, %s, %s)
-    ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, area = EXCLUDED.area
-"""
-
-UPSERT_PAPER = """
-    INSERT INTO papers (id, doi, title, abstract, year, type, language, venue,
-                        venue_lists, is_retracted, fwci, oa_url, topic_id, authors)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    ON CONFLICT (id) DO UPDATE SET
-        title = EXCLUDED.title, abstract = EXCLUDED.abstract, fwci = EXCLUDED.fwci,
-        venue_lists = EXCLUDED.venue_lists, oa_url = EXCLUDED.oa_url,
-        authors = EXCLUDED.authors, loaded_at = now()
-"""
+from paper_tutor.corpus import deduplicate, load_config, passes_rules, select_seed_papers
+from paper_tutor.db import connect, save_papers
 
 # Papers that no longer pass the rules or were merged as duplicates (embeddings first: they point to papers)
 DELETE_EMBEDDINGS = "DELETE FROM embeddings WHERE NOT (paper_id = ANY(%s))"
@@ -83,28 +59,7 @@ for kept, dropped in cross_year[:10]:
 
 # 3. Write: topics first, then the unique papers, then remove papers that are no longer kept
 with connect() as conn, conn.cursor() as cur:
-    for topic_id, (name, area) in topics.items():
-        cur.execute(UPSERT_TOPIC, (topic_id, name, area))
-
-    for paper, topic_id in best:
-        source = get_source(paper)
-        oa = paper.get("best_oa_location") or {}
-        cur.execute(UPSERT_PAPER, (
-            paper["id"].split("/")[-1],
-            paper["doi"],
-            paper["title"],
-            rebuild_abstract(paper["abstract_inverted_index"]),
-            paper["publication_year"],
-            paper["type"],
-            paper["language"],
-            source.get("display_name"),
-            venue_lists(paper),
-            paper["is_retracted"],
-            paper["fwci"],
-            oa.get("pdf_url") or oa.get("landing_page_url"),
-            topic_id,
-            authors.get(paper["id"], [])[:settings["authors_per_paper"]],
-        ))
+    save_papers(cur, topics, best, authors, settings)
 
     kept_ids = [paper["id"].split("/")[-1] for paper, _ in best]
     cur.execute(DELETE_EMBEDDINGS, (kept_ids,))

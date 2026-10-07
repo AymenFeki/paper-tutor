@@ -143,3 +143,25 @@ def select_seed_papers(papers, settings, keywords, arxiv_titles, max_papers):
     ]
     selected.sort(key=lambda paper: paper["cited_by_count"], reverse=True)
     return selected[:max_papers]
+
+
+def paper_row(paper, topic_id, authors, settings):
+    """One raw OpenAlex record as the values for UPSERT_PAPER, in column order."""
+    source = get_source(paper)
+    oa = paper.get("best_oa_location") or {}
+    return (
+        paper["id"].split("/")[-1],
+        paper["doi"],
+        paper["title"],
+        rebuild_abstract(paper["abstract_inverted_index"]),
+        paper["publication_year"],
+        paper["type"],
+        paper["language"],
+        source.get("display_name"),
+        venue_lists(paper),
+        paper["is_retracted"],
+        paper["fwci"],
+        oa.get("pdf_url") or oa.get("landing_page_url"),
+        topic_id,
+        authors[:settings["authors_per_paper"]],
+    )

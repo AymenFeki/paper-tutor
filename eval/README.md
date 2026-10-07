@@ -119,23 +119,77 @@ queries of at most 5 words and the similarity for longer ones ([#22](https://git
 The similarity threshold 0.62 was chosen with `scripts/12_threshold.py`: every in-scope
 question has a best similarity of at least 0.653 and every longer out-of-scope question at
 most 0.577; 0.62 is in the middle of that gap. The thresholds were chosen on the same
-queries they are reported on; there is no held-out set.
+queries they are reported on; the held-out queries below test them on new ones.
+
+### Held-out queries
+
+`eval/holdout_queries.yaml` has 30 new queries, written and labelled after the thresholds
+were chosen: 10 in scope with 5–6 words (five of 5 words, judged by the reranker, and five
+of 6 words, judged by the similarity), 10 longer in-scope questions, and 10 off topic
+(five of 5–6 words, five longer). They were scored with the same rules as
+`scripts/14_keyword_queries.py`.
+
+| Threshold rule | in scope, 5–6 words: answered | in scope, long: answered | off topic: refused |
+|---|---|---|---|
+| similarity ≥ 0.62 for all queries (before) | 10/10 | 10/10 | 10/10 |
+| reranker ≥ 0.5 for all queries | 9/10 | 5/10 | 10/10 |
+| **≤ 5 words: reranker ≥ 0.5, longer: similarity ≥ 0.62 (default)** | **10/10** | **10/10** | **10/10** |
+
+**The default rule answered or refused all 30 correctly.** For 5-word queries the
+reranker margin is wide: in scope at least 0.972, off topic at most 0.103. For 6 words
+and longer, the in-scope similarity is at least 0.661 and the off-topic similarity at most
+0.570, both about 0.05 from the 0.62 threshold. This matches the calibration gap
+(0.577 vs 0.653), so it is confirmed, not widened. Limits:
+
+- **Small sample:** 10/10 per group still has a 95% Wilson interval of [0.72, 1.00].
+- **The off-topic queries are easier than the existing ones:** even the old rule
+  (similarity for all queries) refuses all 10. Their best similarity is at most 0.591,
+  against up to 0.660 for bare nouns like "Harry Potter". So this set does not separate the
+  old rule from the new one.
+- **The 5/6-word boundary matters:** "serverless computing cold start latency problems"
+  (6 words) is answered on similarity (0.702), but its best reranker score is 0.34, and its
+  top papers are not about serverless cold starts. Only 2 papers in the database mention
+  serverless. With `short_query_words: 6` it would have been refused, arguably the more
+  useful answer. The threshold judges whether a query is on topic, not whether the corpus
+  covers it well.
 
 ## Citation faithfulness
 
-`scripts/11_faithfulness.py` asks the tutor 10 eval questions (every third one), splits
-each answer into sentences, and for every citation asks the LLM whether the cited
-paper's title and abstract support the sentence. Results are in `eval/faithfulness/`.
+`scripts/11_faithfulness.py` asks the tutor 10 eval questions (every third one, the first
+10), splits each answer into sentences, and for every citation asks the LLM whether the
+cited paper's title and abstract support the sentence. All runs are in
+`eval/faithfulness/`. The before runs (`basic.json`, `strict.json`) were measured on the
+older corpus, before the agents area and the reranker were added. The script writes to
+`eval/faithfulness/<prompt>.json`, so the newer runs were saved under the names below.
 
-| Answer prompt | supported citations | 95% Wilson CI | sentences with a citation |
-|---|---|---|---|
-| basic (before) | 23/29 (0.79) | [0.62, 0.90] | 28/55 (0.51) |
-| **strict (default)** | **24/30 (0.80)** | **[0.63, 0.90]** | **30/53 (0.57)** |
+| Run | Answer prompt | retrieval | supported citations | 95% Wilson CI | sentences with a citation | file |
+|---|---|---|---|---|---|---|
+| before | basic | vector search, older corpus | 23/29 (0.79) | [0.62, 0.90] | 28/55 (0.51) | `basic.json` |
+| before | strict | vector search, older corpus | 24/30 (0.80) | [0.63, 0.90] | 30/53 (0.57) | `strict.json` |
+| reranker off | strict | vector search | 22/30 (0.73) | [0.56, 0.86] | 30/52 (0.58) | `strict_norerank.json` |
+| | basic | + reranker | 25/28 (0.89) | [0.73, 0.96] | 28/56 (0.50) | `basic_rerank.json` |
+| **default** | **strict** | **+ reranker** | **31/34 (0.91)** | **[0.77, 0.97]** | **34/49 (0.69)** | `strict_rerank.json` |
+| repeat of the default | strict | + reranker | 32/35 (0.91) | [0.78, 0.97] | 35/47 (0.74) | `strict_rerank_repeat.json` |
 
-The strict prompt ("every sentence must be supported by a cited source, no outside
-knowledge") made almost no difference: qwen3:8b still writes uncited sentences, some with
-outside knowledge (e.g. listing image augmentations that are not in the abstract), and
-still cites a source for general textbook statements. **The judge is the same 8B model
-and is itself unreliable**, so these numbers are a rough signal; a sample should be
-checked by hand. (Measured before the agents area was added, on 10 of the then 30
-questions.)
+The tutor and the judge run at temperature 0. **The reranker explains almost all of the
+change:** with it off, 9 of 10 answers are identical to the before run; the tenth
+retrieved different papers from the newer corpus (24/30 → 22/30). Generation is not
+perfectly deterministic: a repeat of the default run changed one answer (31/34 → 32/35),
+so expect about ±1 citation of noise per run, much less than the 22/30 → 31/34 gain from
+the reranker. With the reranker, the strict prompt ("every sentence must be supported by
+a cited source, no outside knowledge") cites in 69% of sentences against 50% for basic,
+with about the same supported share (0.91 vs 0.89); before, the two prompts were
+indistinguishable. The confidence intervals still overlap: 10 questions and about 30
+citations are a signal, not proof.
+
+**The 8B judge is too lenient.** A hand check of the 8 citations in two answers against
+the cited abstracts agreed on all 3 in the medical-images answer, but in the data science
+projects answer the judge accepted 4 of 5 while only 1–2 are supported: *MLOps as Enabler
+of Trustworthy AI* is cited for specific roles and tools (MLOps engineers, CI/CD
+pipelines, model registries) that its abstract does not mention. So on this sample the
+judge overstates support by 2–3 of 8 citations, and the 0.91 is probably optimistic.
+Other limits: qwen3:8b still writes uncited sentences, some with outside knowledge, which
+the metric does not see, so fewer unsupported citations can just mean fewer citations;
+the judge only sees abstracts, so a claim that is true in the paper body counts as
+unsupported. The sample is the same 10 questions as before: `[::3][:10]` stops at
+index 27, so the 4 agent questions and the two prior questions are not included.

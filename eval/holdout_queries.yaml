@@ -1,0 +1,40 @@
+# Held-out queries for the relevance threshold: written after the thresholds in
+# config/syllabus.yaml were chosen, and not used to choose them. All differ from the queries
+# in eval/questions.yaml, eval/out_of_scope.yaml and eval/keyword_queries.yaml.
+# in_scope_short: 5-6 words, the range no other test set covers; the first five have
+#   5 words (judged by the reranker), the last five 6 words (judged by the similarity).
+# in_scope_long: longer questions on syllabus topics.
+# off_topic: the database has nothing on these; five of 5-6 words, five longer questions.
+in_scope_short:
+  - generalized additive models with splines
+  - hamiltonian monte carlo step size
+  - synthetic control method for policy
+  - regression discontinuity design bandwidth choice
+  - asset pricing factor model anomalies
+  - how does a random forest work
+  - vector autoregression for macroeconomic shock analysis
+  - how word2vec learns word vector representations
+  - serverless computing cold start latency problems
+  - multi agent systems with language models
+in_scope_long:
+  - How do I test whether a time series has a unit root before I fit a forecasting model, and what goes wrong if I skip that step?
+  - How does stochastic gradient descent with momentum differ from plain gradient descent, and why does the learning rate matter so much when training deep networks?
+  - Which statistical models can find groups of people who are more connected to each other than to the rest of a friendship network?
+  - How should an investor split money between stocks and bonds when they care about both the expected return and the risk of the portfolio?
+  - How does a central bank's decision to raise interest rates affect the exchange rate of its currency in the following months?
+  - How can I split a large application into small independent services, and what problems appear when those services have to talk to each other over a network?
+  - How can I fine-tune a large language model so that it follows written instructions from users better, and how much labelled data does that need?
+  - How do recurrent networks and temporal convolutional networks compare for forecasting a long sequence of sensor readings?
+  - How can a computer tell whether the tone of financial news is positive or negative, and does that tone help predict stock returns?
+  - Why does the volatility implied by option prices differ across strike prices, and which pricing models try to explain this pattern?
+off_topic:
+  - how to renew my passport
+  - install python packages on windows
+  - how to grow tomatoes indoors
+  - cheap flights from Berlin to Rome
+  - how to season cast iron pan
+  - What should I pack for a two-week trip to Japan in autumn, and do I need cash or are cards accepted everywhere?
+  - How do I get rid of the white spots that appear on my glass shower door after it dries?
+  - Which house plants are safe to keep in an apartment with cats, and which ones are poisonous to them?
+  - How do I write a good cover letter for my first job after university?
+  - Why does my car battery die so quickly in winter, and how can I make it last longer?

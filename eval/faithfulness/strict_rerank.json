@@ -1,0 +1,264 @@
+{
+  "prompt": "strict",
+  "judge": "qwen3:8b",
+  "supported_citations": 31,
+  "citations": 34,
+  "supported_wilson_95": [
+    0.7704,
+    0.9695
+  ],
+  "cited_sentences": 34,
+  "sentences": 49,
+  "results": [
+    {
+      "question": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
+      "answer": "Yes, you can approximate your Bayesian posterior more efficiently by transforming the problem into an optimization task, particularly if your posterior is complex or high-dimensional. Optimization-based samplers such as randomize-then-optimize (RTO) provide an efficient and parallellizable approach to solving large-scale Bayesian inverse problems by solving randomly perturbed optimization problems to draw samples from an approximate posterior distribution [2]. This method can significantly reduce the computational burden compared to traditional sampling methods like Markov chain Monte Carlo (MCMC), especially when dealing with high-dimensional parameters [2]. \n\nAdditionally, if your model involves intractable likelihoods, you might consider using Bayesian optimization for likelihood-free inference, which combines Gaussian process regression of the discrepancy to build a surrogate surface with Bayesian optimization to actively acquire training data [1]. This approach can reduce the number of required simulations and provide more accurate posterior approximations. However, it is important to note that these methods are most effective when the posterior has certain structural properties, such as low-rank or function space characteristics, which can be exploited for efficient sampling [2].",
+      "n_sentences": 6,
+      "n_cited_sentences": 4,
+      "checks": [
+        {
+          "sentence": "Optimization-based samplers such as randomize-then-optimize (RTO) provide an efficient and parallellizable approach to solving large-scale Bayesian inverse problems by solving randomly perturbed optimization problems to draw samples from an approximate posterior distribution [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "This method can significantly reduce the computational burden compared to traditional sampling methods like Markov chain Monte Carlo (MCMC), especially when dealing with high-dimensional parameters [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, if your model involves intractable likelihoods, you might consider using Bayesian optimization for likelihood-free inference, which combines Gaussian process regression of the discrepancy to build a surrogate surface with Bayesian optimization to actively acquire training data [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "However, it is important to note that these methods are most effective when the posterior has certain structural properties, such as low-rank or function space characteristics, which can be exploited for efficient sampling [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?",
+      "answer": "When deciding which predictors to keep in your regression model, you should consider both statistical significance and clinical relevance. A purposeful selection of variables, as described in the literature, allows for an analyst to make informed decisions at each step of the modeling process, which can help retain important confounding variables [1]. Additionally, it is recommended to guide your selection based on accepted theory, previous empirical investigations, clinical considerations, and univariate statistical analyses, while acknowledging potential confounding variables [2]. \n\nFor models with a large number of candidate variables, automated variable selection methods such as stepwise, forward, or backward selection can be considered, although they have limitations in terms of retaining confounding variables and ensuring model stability [1]. Penalized regression methods may also be useful, especially when the number of events is low relative to the number of predictors, as they can improve the accuracy of risk prediction by reducing overfitting [5]. It is also important to assess the model's internal and external validity and to report goodness-of-fit measures and diagnostic statistics to ensure the model's adequacy [2].",
+      "n_sentences": 6,
+      "n_cited_sentences": 5,
+      "checks": [
+        {
+          "sentence": "A purposeful selection of variables, as described in the literature, allows for an analyst to make informed decisions at each step of the modeling process, which can help retain important confounding variables [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, it is recommended to guide your selection based on accepted theory, previous empirical investigations, clinical considerations, and univariate statistical analyses, while acknowledging potential confounding variables [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "For models with a large number of candidate variables, automated variable selection methods such as stepwise, forward, or backward selection can be considered, although they have limitations in terms of retaining confounding variables and ensuring model stability [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Penalized regression methods may also be useful, especially when the number of events is low relative to the number of predictors, as they can improve the accuracy of risk prediction by reducing overfitting [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "It is also important to assess the model's internal and external validity and to report goodness-of-fit measures and diagnostic statistics to ensure the model's adequacy [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?",
+      "answer": "When your data involves pupils grouped in schools, choosing between giving each school its own dummy intercept or modeling school differences as draws from a distribution depends on the assumptions and goals of your analysis. Giving each school its own dummy intercept, also known as a fixed-effects model, allows you to estimate the specific effect of each school while controlling for other variables [5]. This approach is appropriate if you are interested in the unique effect of each school and have a small number of schools. On the other hand, modeling school differences as draws from a distribution, also known as a random-effects model, assumes that the school-specific effects are randomly drawn from a distribution and are not of primary interest [5]. This approach is suitable if you are interested in estimating the average effect across schools and have a large number of schools. Both approaches can be used to account for within-school and between-school variability, but the choice between them depends on the research question and the characteristics of the data.",
+      "n_sentences": 6,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "Giving each school its own dummy intercept, also known as a fixed-effects model, allows you to estimate the specific effect of each school while controlling for other variables [5].",
+          "source": 5,
+          "supported": false
+        },
+        {
+          "sentence": "On the other hand, modeling school differences as draws from a distribution, also known as a random-effects model, assumes that the school-specific effects are randomly drawn from a distribution and are not of primary interest [5].",
+          "source": 5,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?",
+      "answer": "Combining many classifiers, such as through ensemble methods, can help address the issue where a classifier ignores the rare class due to class imbalance. Ensemble methods are known to increase the accuracy of single classifiers by combining several of them, and they can be specifically designed to handle class imbalance [2]. The paper suggests that ensemble-based algorithms outperform the mere use of preprocessing techniques before learning the classifier, which justifies the increase in complexity by means of a significant enhancement of the results [2]. Additionally, the positive synergy between sampling techniques and bagging has stood out, indicating that combining random undersampling techniques with bag, or boosting ensembles can be effective [2].",
+      "n_sentences": 4,
+      "n_cited_sentences": 3,
+      "checks": [
+        {
+          "sentence": "Ensemble methods are known to increase the accuracy of single classifiers by combining several of them, and they can be specifically designed to handle class imbalance [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "The paper suggests that ensemble-based algorithms outperform the mere use of preprocessing techniques before learning the classifier, which justifies the increase in complexity by means of a significant enhancement of the results [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, the positive synergy between sampling techniques and bagging has stood out, indicating that combining random undersampling techniques with bag, or boosting ensembles can be effective [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?",
+      "answer": "To artificially create more training examples from a few hundred medical pictures, you can utilize a hallucinator, which generates additional training examples by visualizing or imagining novel instances of new concepts, similar to how humans learn [1]. This approach can be combined with a meta-learner to optimize both models jointly, potentially improving classification accuracy even with a limited number of examples. Additionally, if your dataset is imbalanced, you might consider using techniques like progressive sampling to select training examples based on class distribution, which can lead to better classifier performance [3]. However, if you are working with medical images and face class imbalance, you could also explore models specifically designed for such scenarios, like PRECISe, which is built to handle imbalanced and scarce data while maintaining explainability [4].",
+      "n_sentences": 4,
+      "n_cited_sentences": 3,
+      "checks": [
+        {
+          "sentence": "To artificially create more training examples from a few hundred medical pictures, you can utilize a hallucinator, which generates additional training examples by visualizing or imagining novel instances of new concepts, similar to how humans learn [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, if your dataset is imbalanced, you might consider using techniques like progressive sampling to select training examples based on class distribution, which can lead to better classifier performance [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "However, if you are working with medical images and face class imbalance, you could also explore models specifically designed for such scenarios, like PRECISe, which is built to handle imbalanced and scarce data while maintaining explainability [4].",
+          "source": 4,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?",
+      "answer": "To obtain a trustworthy measure of a classifier's confidence, one can use methods that explicitly model prediction uncertainty, such as evidential deep learning. This approach treats predictions as subjective opinions and learns the function that collects the evidence leading to these opinions by a deterministic neural net from data [3]. By placing a Dirichlet distribution on the class probabilities, the model quantifies uncertainty in a more reliable manner, which helps in detecting out-of-distribution queries and improving robustness against adversarial perturbations [3].",
+      "n_sentences": 3,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "This approach treats predictions as subjective opinions and learns the function that collects the evidence leading to these opinions by a deterministic neural net from data [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "By placing a Dirichlet distribution on the class probabilities, the model quantifies uncertainty in a more reliable manner, which helps in detecting out-of-distribution queries and improving robustness against adversarial perturbations [3].",
+          "source": 3,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?",
+      "answer": "Problems at a country's lenders and a collapse of its currency often happen together because issues in the banking sector typically precede a currency crisis, and the currency crisis deepens the banking crisis, creating a vicious spiral [1]. This relationship is further supported by the observation that financial liberalization often precedes banking crises, which can then lead to currency instability [1]. The collapse of a country's currency usually follows problems at its lenders, as the banking crisis activates the currency crisis [1].",
+      "n_sentences": 3,
+      "n_cited_sentences": 3,
+      "checks": [
+        {
+          "sentence": "Problems at a country's lenders and a collapse of its currency often happen together because issues in the banking sector typically precede a currency crisis, and the currency crisis deepens the banking crisis, creating a vicious spiral [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "This relationship is further supported by the observation that financial liberalization often precedes banking crises, which can then lead to currency instability [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "The collapse of a country's currency usually follows problems at its lenders, as the banking crisis activates the currency crisis [1].",
+          "source": 1,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?",
+      "answer": "To model the joint behaviour of two variables with non-normal distributions, you can use a bivariate distribution that accounts for their specific marginal distributions and captures their dependence structure. One approach is to construct a one-parameter class of bivariate distributions from given margins, which allows for flexibility in modeling the dependence between the variables while maintaining their individual distributions [2]. This method is particularly useful when you are interested in understanding how the variables move together, as it provides a way to incorporate both the marginal and joint behavior of the variables. \n\nAdditionally, you can leverage the concept of copulas, which are functions that link an $n$-dimensional distribution function to its one-dimensional margins [5]. Copulas are invariant under a.s. strictly increasing transformations of the variables, making them ideal for capturing the dependence structure without assuming a specific form for the marginal distributions. By using copulas, you can define nonparametric measures of dependence that are suitable for modeling how the two variables move together, even when their individual distributions are non-normal.",
+      "n_sentences": 6,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "One approach is to construct a one-parameter class of bivariate distributions from given margins, which allows for flexibility in modeling the dependence between the variables while maintaining their individual distributions [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, you can leverage the concept of copulas, which are functions that link an $n$-dimensional distribution function to its one-dimensional margins [5].",
+          "source": 5,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?",
+      "answer": "Many data science projects fail to transition into real products due to challenges in deployment, maintenance, and integration with existing systems. These challenges often stem from a lack of structured practices, unclear roles, and insufficient tools to support the full lifecycle of model development and operation [1]. The transition from a research prototype to a production-ready system requires robust processes for model validation, monitoring, and updates, which are not always addressed in early-stage projects [4].\n\nPractices such as MLOps provide a framework for automating the deployment and maintenance of trained models by integrating development, operations, and monitoring into a cohesive workflow [1]. Roles like MLOps engineers, data engineers, and DevOps specialists are essential for managing the infrastructure, ensuring model reliability, and facilitating continuous integration and delivery [1]. Tools such as CI/CD pipelines, model registry systems, and monitoring platforms help automate these processes, enabling teams to maintain and scale their models effectively [1].",
+      "n_sentences": 6,
+      "n_cited_sentences": 5,
+      "checks": [
+        {
+          "sentence": "These challenges often stem from a lack of structured practices, unclear roles, and insufficient tools to support the full lifecycle of model development and operation [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "The transition from a research prototype to a production-ready system requires robust processes for model validation, monitoring, and updates, which are not always addressed in early-stage projects [4].",
+          "source": 4,
+          "supported": false
+        },
+        {
+          "sentence": "Practices such as MLOps provide a framework for automating the deployment and maintenance of trained models by integrating development, operations, and monitoring into a cohesive workflow [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Roles like MLOps engineers, data engineers, and DevOps specialists are essential for managing the infrastructure, ensuring model reliability, and facilitating continuous integration and delivery [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Tools such as CI/CD pipelines, model registry systems, and monitoring platforms help automate these processes, enabling teams to maintain and scale their models effectively [1].",
+          "source": 1,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?",
+      "answer": "Traditional relational databases face challenges in handling the high volume, velocity, and variety of data generated by large social networks and search engines [1]. These systems require high-performance read and write operations, which relational databases struggle to provide in large-scale and high-concurrency environments [1]. To address these challenges, NoSQL databases were developed, offering scalability and flexibility that relational databases lack [1]. When selecting an alternative, consider the CAP theorem, which classifies NoSQL databases based on their ability to provide consistency, availability, and partition tolerance [1]. Additionally, evaluate the specific needs of your application, such as data model, scalability requirements, and operational complexity, to choose the most suitable NoSQL database [1].",
+      "n_sentences": 5,
+      "n_cited_sentences": 5,
+      "checks": [
+        {
+          "sentence": "Traditional relational databases face challenges in handling the high volume, velocity, and variety of data generated by large social networks and search engines [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "These systems require high-performance read and write operations, which relational databases struggle to provide in large-scale and high-concurrency environments [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "To address these challenges, NoSQL databases were developed, offering scalability and flexibility that relational databases lack [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "When selecting an alternative, consider the CAP theorem, which classifies NoSQL databases based on their ability to provide consistency, availability, and partition tolerance [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, evaluate the specific needs of your application, such as data model, scalability requirements, and operational complexity, to choose the most suitable NoSQL database [1].",
+          "source": 1,
+          "supported": false
+        }
+      ]
+    }
+  ]
+}

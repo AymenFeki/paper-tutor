@@ -130,8 +130,8 @@ keyword queries. Full method, all tables and caveats: [eval/README.md](eval/READ
 |---|---|
 | Retrieval: relevant paper in the top 5 (pooled judgments) | 30/34 with the reranker (25/34 without) |
 | Retrieval: MRR (pooled judgments) | 0.76 with the reranker (0.64 without) |
-| In-scope queries answered, off-topic queries refused | 84/84 |
-| Citations supported by the cited abstract (8B judge) | 24/30, strict prompt |
+| In-scope queries answered, off-topic queries refused | 84/84 (30/30 on held-out queries) |
+| Citations supported by the cited abstract (8B judge) | 31/34 with the reranker (22/30 without; 24/30 before), strict prompt; a hand check finds the judge too lenient |
 
 ## Data checks
 
@@ -211,9 +211,11 @@ The MCP server calls the API at `http://127.0.0.1:8000`; set `PAPER_TUTOR_API` i
 
 - **Most relevance judgments come from an LLM.** 75 of 444 are human; a hand-checked
   sample agreed 19/20 with the LLM labels, but the set is still small (34 questions).
-- **The thresholds were chosen on the queries they are tested on.** The reranker margin
-  for short queries is wide (0.09 vs 0.98), the similarity margin for long questions is
-  small (0.577 vs 0.653), and queries of 5 to 6 words are not in any test set.
+- **The thresholds were chosen on the queries they are tested on.** 30 new held-out
+  queries (including 5–6 words) are also all answered or refused correctly. But the
+  similarity margin for longer queries is small (0.03–0.05 from the threshold on both
+  sets), and a 6-word query with only 2 matching papers in the database is still
+  answered (see eval/README.md).
 - **Citations from the 8B model are not always faithful**, even with the strict prompt,
   and the faithfulness check uses the same 8B model as judge
   ([#7](https://github.com/AymenFeki/paper-tutor/issues/7)).

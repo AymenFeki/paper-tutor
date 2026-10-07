@@ -1,0 +1,234 @@
+{
+  "prompt": "basic",
+  "judge": "qwen3:8b",
+  "supported_citations": 25,
+  "citations": 28,
+  "supported_wilson_95": [
+    0.728,
+    0.9629
+  ],
+  "cited_sentences": 28,
+  "sentences": 56,
+  "results": [
+    {
+      "question": "My Bayesian model's posterior takes far too long to compute with sampling. Is there a faster way to approximate it by turning the problem into an optimisation?",
+      "answer": "Yes, you can approximate your Bayesian posterior more efficiently by transforming the problem into an optimization task. One approach is to use optimization-based sampling methods, such as randomize-then-optimize (RTO), which solve randomly perturbed optimization problems to draw samples from an approximate posterior distribution [2]. This method is particularly effective for large-scale Bayesian inverse problems and can be scaled to high- or infinite-dimensional parameters by employing a subspace strategy, which reduces computational complexity [2]. \n\nAdditionally, if your model involves intractable likelihoods, you might consider Bayesian optimization for likelihood-free inference, which combines Gaussian process regression with Bayesian optimization to actively acquire training data and reduce the number of required simulations [1]. This approach is especially useful when the data-generating process is expensive to evaluate. Both methods offer ways to approximate the posterior without the computational burden of traditional sampling techniques.",
+      "n_sentences": 6,
+      "n_cited_sentences": 3,
+      "checks": [
+        {
+          "sentence": "One approach is to use optimization-based sampling methods, such as randomize-then-optimize (RTO), which solve randomly perturbed optimization problems to draw samples from an approximate posterior distribution [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "This method is particularly effective for large-scale Bayesian inverse problems and can be scaled to high- or infinite-dimensional parameters by employing a subspace strategy, which reduces computational complexity [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, if your model involves intractable likelihoods, you might consider Bayesian optimization for likelihood-free inference, which combines Gaussian process regression with Bayesian optimization to actively acquire training data and reduce the number of required simulations [1].",
+          "source": 1,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "I have about 20 candidate predictors for a medical outcome. How do I decide which ones to keep in my regression model?",
+      "answer": "When deciding which predictors to keep in your regression model with about 20 candidate variables, you should consider both theoretical and statistical approaches. Theoretical considerations include using accepted theory, previous empirical investigations, clinical considerations, and univariate statistical analyses, while also acknowledging potential confounding variables [2]. Statistically, you can use methods such as purposeful selection, which allows for retaining significant covariates as well as important confounding variables, resulting in a potentially richer model [1]. Alternatively, you might consider penalized regression methods, especially if the number of events is low relative to the number of predictors, as these can improve the accuracy of risk prediction by reducing overfitting [5]. It is also recommended to evaluate the model's internal and external validity and to use goodness-of-fit measures to assess how well the model fits the sample data [2].",
+      "n_sentences": 5,
+      "n_cited_sentences": 4,
+      "checks": [
+        {
+          "sentence": "Theoretical considerations include using accepted theory, previous empirical investigations, clinical considerations, and univariate statistical analyses, while also acknowledging potential confounding variables [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "Statistically, you can use methods such as purposeful selection, which allows for retaining significant covariates as well as important confounding variables, resulting in a potentially richer model [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Alternatively, you might consider penalized regression methods, especially if the number of events is low relative to the number of predictors, as these can improve the accuracy of risk prediction by reducing overfitting [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "It is also recommended to evaluate the model's internal and external validity and to use goodness-of-fit measures to assess how well the model fits the sample data [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "My data has pupils grouped in schools. How do I choose between giving each school its own dummy intercept and modelling school differences as draws from a distribution?",
+      "answer": "When your data involves pupils grouped in schools, choosing between a fixed-effects model (using school dummies) and a random-effects model (modelling school differences as draws from a distribution) depends on the nature of the school-level variation and your research goals. Fixed effects models, which include dummy variables for each school, control for all time-invariant characteristics of schools [5]. This approach is appropriate if you are interested in within-school variation and assume that school-specific effects are fixed and not randomly distributed. On the other hand, random-effects models treat school-level effects as random variables drawn from a distribution, allowing for generalization beyond the observed schools [1]. This is suitable if you believe school-level effects are a random sample from a larger population of schools and you want to make inferences about the population. The choice should be guided by the research question, the nature of the data, and the assumptions about the variability across schools.",
+      "n_sentences": 6,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "Fixed effects models, which include dummy variables for each school, control for all time-invariant characteristics of schools [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "On the other hand, random-effects models treat school-level effects as random variables drawn from a distribution, allowing for generalization beyond the observed schools [1].",
+          "source": 1,
+          "supported": false
+        }
+      ]
+    },
+    {
+      "question": "My classifier ignores the rare class because 99% of the examples belong to the other class. Can combining many classifiers help with that?",
+      "answer": "Combining many classifiers, such as through ensemble methods, can help address the issue where the rare class is ignored due to class imbalance. Ensemble techniques, like bagging or boosting, can improve the performance of classifiers on imbalanced data by reducing the bias towards the majority class [2]. Specifically, combining random undersampling techniques with bagging or boosting ensembles has shown promising results in handling class imbalance [2]. Additionally, methods such as EasyEnsemble and BalanceCascade, which are designed for class-imbalance learning, also use multiple classifiers to improve the detection of the rare class [5]. These approaches can enhance the overall performance by leveraging the strengths of multiple models.",
+      "n_sentences": 5,
+      "n_cited_sentences": 3,
+      "checks": [
+        {
+          "sentence": "Ensemble techniques, like bagging or boosting, can improve the performance of classifiers on imbalanced data by reducing the bias towards the majority class [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "Specifically, combining random undersampling techniques with bagging or boosting ensembles has shown promising results in handling class imbalance [2].",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, methods such as EasyEnsemble and BalanceCascade, which are designed for class-imbalance learning, also use multiple classifiers to improve the detection of the rare class [5].",
+          "source": 5,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "I only have a few hundred medical pictures to train a classifier. How can I artificially create more training examples so the network doesn't overfit?",
+      "answer": "To artificially create more training examples from a small dataset of medical images, you can leverage techniques inspired by low-shot learning and hallucination methods. One approach is to use a \"hallucinator\" that generates additional training examples, which can be combined with a meta-learner to improve performance on few-shot tasks [1]. This method allows the model to learn from a limited number of examples by simulating new instances of the same class, thereby reducing overfitting. Additionally, you could consider semi-supervised learning techniques, where unlabeled examples are used to refine the model's understanding of the data distribution, similar to how Prototypical Networks have been extended for semi-supervised few-shot classification [2]. These methods can help improve generalization when training data is scarce.",
+      "n_sentences": 5,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "One approach is to use a \"hallucinator\" that generates additional training examples, which can be combined with a meta-learner to improve performance on few-shot tasks [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, you could consider semi-supervised learning techniques, where unlabeled examples are used to refine the model's understanding of the data distribution, similar to how Prototypical Networks have been extended for semi-supervised few-shot classification [2].",
+          "source": 2,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "How can I get a trustworthy measure of how sure a classifier is about each prediction, given that its predicted probabilities are often overconfident?",
+      "answer": "To obtain a trustworthy measure of a classifier's confidence, you can consider methods that explicitly model prediction uncertainty. One approach is **evidential deep learning**, which treats predictions as subjective opinions and learns the function that collects the evidence leading to these opinions using the theory of subjective logic. This method places a Dirichlet distribution on the class probabilities, allowing the model to output a distribution over class probabilities rather than a single point estimate. The resultant predictor for a multi-class classification problem is another Dirichlet distribution whose parameters are set by the continuous output of a neural net, providing a more nuanced measure of uncertainty [3].\n\nAdditionally, you can assess the impact of **class cardinality** on prediction uncertainty, as higher class cardinality can reduce posterior confidence and increase entropy and log-loss. This suggests that class cardinality significantly influences probabilistic confidence and prediction uncertainty. Therefore, when evaluating classifiers, it is important to consider class cardinality alongside class imbalance and probabilistic metrics to ensure a more accurate and reliable measure of confidence [4].",
+      "n_sentences": 7,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "The resultant predictor for a multi-class classification problem is another Dirichlet distribution whose parameters are set by the continuous output of a neural net, providing a more nuanced measure of uncertainty [3].",
+          "source": 3,
+          "supported": true
+        },
+        {
+          "sentence": "Therefore, when evaluating classifiers, it is important to consider class cardinality alongside class imbalance and probabilistic metrics to ensure a more accurate and reliable measure of confidence [4].",
+          "source": 4,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do problems at a country's lenders and a collapse of its currency often happen together, and which one usually comes first?",
+      "answer": "Problems at a country's lenders and a collapse of its currency often happen together because they are interconnected through financial and economic mechanisms. According to Reinhart and Rogoff [2], external debt surges can precede banking crises, which in turn can predict sovereign debt crises. This suggests that issues within the financial system, such as excessive borrowing and lending, can lead to instability that affects both the banking sector and the currency. Additionally, Kaminsky and Reinhart [1] note that banking sector problems typically precede a currency crisis, as the former deepens the latter, creating a vicious spiral. Therefore, banking sector issues usually come first, setting the stage for a currency collapse.",
+      "n_sentences": 5,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "According to Reinhart and Rogoff [2], external debt surges can precede banking crises, which in turn can predict sovereign debt crises.",
+          "source": 2,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, Kaminsky and Reinhart [1] note that banking sector problems typically precede a currency crisis, as the former deepens the latter, creating a vicious spiral.",
+          "source": 1,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "How can I model the joint behaviour of two variables when each has its own non-normal distribution and I want to capture how they move together?",
+      "answer": "To model the joint behaviour of two variables with non-normal distributions, you can use a bivariate distribution that accounts for their specific marginal distributions and their dependence structure. One approach is to use a copula, which links the marginal distributions to the joint distribution while allowing for flexible modeling of dependence [5]. Copulas are particularly useful because they are invariant under strictly increasing transformations of the variables, making them suitable for capturing how variables move together regardless of their specific distributions. Additionally, if you are interested in modeling the joint distribution of (X,N), where N is a counting variable and X is the sum of N independent gamma random variables, you might consider a stochastic model that incorporates such dependencies, as described in [3]. This approach allows for the modeling of complex relationships between variables while accommodating non-normal marginal distributions.",
+      "n_sentences": 5,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "One approach is to use a copula, which links the marginal distributions to the joint distribution while allowing for flexible modeling of dependence [5].",
+          "source": 5,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, if you are interested in modeling the joint distribution of (X,N), where N is a counting variable and X is the sum of N independent gamma random variables, you might consider a stochastic model that incorporates such dependencies, as described in [3].",
+          "source": 3,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do so many data science projects never make it into a real product, and what practices, roles and tools help automate deploying and maintaining trained models?",
+      "answer": "Many data science projects fail to transition into real products due to challenges in deployment, maintenance, and integration with existing systems. These challenges often stem from a lack of structured processes, insufficient collaboration between data scientists and operations teams, and the complexity of scaling models in production environments [1]. Practices such as adopting MLOps, which integrates machine learning development with DevOps, can help automate the deployment and maintenance of trained models by providing a framework for managing the entire lifecycle of AI systems [1]. MLOps emphasizes automation, version control, and continuous integration/continuous deployment (CI/CD) to ensure models are reliable, scalable, and maintainable.\n\nRoles such as MLOps engineers, data engineers, and DevOps specialists are critical in this process, as they bridge the gap between data science and software engineering [1]. Tools like MLflow, Kubeflow, and TensorFlow Extended (TFX) support these practices by enabling model tracking, deployment, and monitoring [1]. Additionally, the use of pre-trained models and foundation models can reduce the complexity of deployment, as these models are often more robust and easier to integrate into production systems [2]. However, the successful deployment of models also requires careful consideration of trustworthiness, including fairness, reliability, and explainability, which are central to the concept of trustworthy AI [1].",
+      "n_sentences": 8,
+      "n_cited_sentences": 6,
+      "checks": [
+        {
+          "sentence": "These challenges often stem from a lack of structured processes, insufficient collaboration between data scientists and operations teams, and the complexity of scaling models in production environments [1].",
+          "source": 1,
+          "supported": false
+        },
+        {
+          "sentence": "Practices such as adopting MLOps, which integrates machine learning development with DevOps, can help automate the deployment and maintenance of trained models by providing a framework for managing the entire lifecycle of AI systems [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Roles such as MLOps engineers, data engineers, and DevOps specialists are critical in this process, as they bridge the gap between data science and software engineering [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Tools like MLflow, Kubeflow, and TensorFlow Extended (TFX) support these practices by enabling model tracking, deployment, and monitoring [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "Additionally, the use of pre-trained models and foundation models can reduce the complexity of deployment, as these models are often more robust and easier to integrate into production systems [2].",
+          "source": 2,
+          "supported": false
+        },
+        {
+          "sentence": "However, the successful deployment of models also requires careful consideration of trustworthiness, including fairness, reliability, and explainability, which are central to the concept of trustworthy AI [1].",
+          "source": 1,
+          "supported": true
+        }
+      ]
+    },
+    {
+      "question": "Why do large social networks and search engines stop using traditional relational databases for user data, and how do I pick an alternative?",
+      "answer": "Large social networks and search engines often stop using traditional relational databases for user data due to the challenges posed by big data, such as scalability, high concurrency, and the need for high-performance read/write operations [1]. Relational databases are not well-suited for handling the massive scale and distributed nature of data in these applications. To pick an alternative, you can consider NoSQL databases, which are designed for scalability and flexibility. NoSQL databases are classified based on the CAP theorem, and the choice depends on your specific requirements, such as consistency, availability, or partition tolerance [1].",
+      "n_sentences": 4,
+      "n_cited_sentences": 2,
+      "checks": [
+        {
+          "sentence": "Large social networks and search engines often stop using traditional relational databases for user data due to the challenges posed by big data, such as scalability, high concurrency, and the need for high-performance read/write operations [1].",
+          "source": 1,
+          "supported": true
+        },
+        {
+          "sentence": "NoSQL databases are classified based on the CAP theorem, and the choice depends on your specific requirements, such as consistency, availability, or partition tolerance [1].",
+          "source": 1,
+          "supported": true
+        }
+      ]
+    }
+  ]
+}

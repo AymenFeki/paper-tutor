@@ -82,8 +82,9 @@ for key, res in results.items():
 print("\nPooled numbers are a lower bound: unjudged papers count as not relevant.")
 print("A fair comparison of new variants needs new judgments for their unjudged top-5 papers.")
 
-# Original papers that the judgment did not mark as relevant
+# Original papers that a judgment explicitly marked as not relevant
 for q in yaml.safe_load(Path("eval/questions.yaml").read_text()):
+    judgments_for_q = judged.get(q["question"], {})
     for pid in q["relevant"]:
-        if q["question"] in judged and not judged[q["question"]].get(pid, False):
+        if pid in judgments_for_q and judgments_for_q[pid] is False:
             print(f"\nNote: original paper {pid} judged not relevant for: {q['question']}")

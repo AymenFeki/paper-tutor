@@ -183,7 +183,9 @@ tutor:
   clarify_vague: true           # ask what the user means when a first question is too vague to search
 
 llm:
+  provider: groq
   model: qwen3:8b
+  groq_model: qwen/qwen3.8-27b
   temperature: 0        # 0 = always pick the most likely word
   reasoning: false
   top_k: 5

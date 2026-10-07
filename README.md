@@ -14,7 +14,7 @@ has 7,183 papers in statistics, econometrics, machine learning, deep learning, L
 agents, economics, finance and cloud infrastructure: 7,163 from the initial download and
 20 added by the first weekly refresh.
 
-**Stack:** Python · PostgreSQL + pgvector · FastAPI · LangChain · LangGraph · MCP · Ollama · Streamlit · Docker · GitHub Actions
+**Stack:** Python · PostgreSQL + pgvector · FastAPI · LangChain · LangGraph · MCP · Ollama · Groq · Streamlit · Docker · GitHub Actions
 
 ## Architecture
 
@@ -41,7 +41,7 @@ flowchart LR
     REFRESH -->|new papers, embedded| DB
 
     DB --> API
-    API <--> LLM["Ollama<br/>qwen3:8b"]
+    API <--> LLM["LLM (config switch)<br/>Ollama qwen3:8b locally<br/>or Groq API qwen3.8-27b"]
     API --> UI["Streamlit chat UI"]
     API --> MCP["MCP server"]
     MCP --> CD["Claude Desktop"]
@@ -134,6 +134,13 @@ can be compared. The defaults are the best settings measured (see [eval/README.m
   - `POST /chat`: the tutor with memory per `thread_id`.
   - `POST /refresh`: the weekly refresh; returns the number of papers added, their titles
     and scores, and the number of candidates.
+- **LLM provider** (`llm.provider` in the config, `llm.py`): `ollama` runs qwen3:8b locally;
+  `groq` calls the Groq API (`qwen/qwen3.8-27b`, free tier, needs `GROQ_API_KEY`), which
+  answers in seconds instead of about 20 s and is needed for a cloud deployment without a
+  GPU. Every chat model (answers, tutor, quiz) is built by one function, `build_llm`, so
+  switching is one line in the config. The evaluation numbers were measured with qwen3:8b.
+  With Groq, the quiz limits are enforced while generating (text is cut at the limit), so
+  the prompt asks for shorter options and explanations than the hard limits.
 - **LangGraph tutor** (`tutor.py`):
   - A first question that points at something it doesn't name ("When does it fail?") is
     answered with a clarifying question instead of a search (conditional edge, rule-based
@@ -189,11 +196,14 @@ Coming soon.
 
 - [uv](https://docs.astral.sh/uv/) (Python 3.12 is installed by uv if needed)
 - [Docker](https://www.docker.com/) with Docker Compose
-- [Ollama](https://ollama.com) with the model pulled: `ollama pull qwen3:8b`
+- An LLM, chosen with `llm.provider` in the config: a free [Groq](https://console.groq.com)
+  API key (`groq`), or [Ollama](https://ollama.com) with the model pulled:
+  `ollama pull qwen3:8b` (`ollama`)
 - An [OpenAlex API key](https://openalex.org)
-- A `.env` file in the project root with two variables:
+- A `.env` file in the project root with these variables:
   - `OPENALEX_API_KEY`: your OpenAlex key
   - `POSTGRES_PASSWORD`: any password; Docker Compose uses it to create the database
+  - `GROQ_API_KEY`: needed when `llm.provider` is `groq`
   - optional, for the n8n automations: `TELEGRAM_BOT_TOKEN` (from @BotFather) and
     `TELEGRAM_CHAT_ID`
 
@@ -291,8 +301,8 @@ The MCP server calls the API at `http://127.0.0.1:8000`; set `PAPER_TUTOR_API` i
   `uv run python scripts/05_embed.py qwen3-0.6b` before comparing against Qwen3 again.
 - **The automations only run while the Mac is awake** and Docker and the API are running;
   a missed schedule is not repeated later. A cloud deployment would fix this (#18).
-- **Quiz answer keys are not verified.** qwen3:8b sometimes marks the wrong option as
-  correct; a second LLM call that answers the question without the key could catch it.
+- **Quiz answer keys are not verified.** The LLM sometimes marks the wrong option as correct
+  (seen with qwen3:8b); a second LLM call that answers the question without the key could catch it.
 
 ## Roadmap
 

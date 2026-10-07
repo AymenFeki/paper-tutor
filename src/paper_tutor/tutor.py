@@ -6,11 +6,11 @@ from typing import Annotated, TypedDict
 from langchain_core.messages import AIMessage, AnyMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_ollama import ChatOllama
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 
+from paper_tutor.llm import build_llm
 from paper_tutor.rag import NO_PAPERS_MESSAGE, format_context
 
 
@@ -87,11 +87,7 @@ def route_papers(state):
 def build_tutor(config, retrieve):
     """retrieve is the function returned by rag.build_retriever."""
     llm_cfg = config["llm"]
-    llm = ChatOllama(
-        model=llm_cfg["model"],
-        temperature=llm_cfg["temperature"],
-        reasoning=llm_cfg["reasoning"],
-    )
+    llm = build_llm(llm_cfg)
     answer_prompt = ChatPromptTemplate.from_messages([
         ("system", ANSWER_PROMPTS[llm_cfg["prompt"]]),
         MessagesPlaceholder("messages"),

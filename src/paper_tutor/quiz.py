@@ -5,8 +5,9 @@ from typing import Annotated
 
 from langchain_core.exceptions import OutputParserException
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_ollama import ChatOllama
 from pydantic import BaseModel, Field, ValidationError, field_validator
+
+from paper_tutor.llm import build_llm
 
 
 class QuizQuestion(BaseModel):
@@ -64,8 +65,9 @@ SYSTEM = (
     "Bad: 'What is the main contribution of the paper?'\n"
     "Good: 'Why can copula models price CDO tranches without Monte Carlo simulation?'\n\n"
     "Give exactly four options. Exactly one may be correct; the others must be clearly wrong for "
-    "a student who knows the topic, but still plausible. Keep the question under 300 characters, "
-    "each option under 100 and the explanation under 200. Write in English only."
+    "a student who knows the topic, but still plausible. Keep the question under 200 characters, "
+    "each option under 70 characters (one short phrase) and the explanation under 150 characters "
+    "(one or two short sentences). Write in English only."
 )
 
 PROMPT = ChatPromptTemplate.from_messages(
@@ -75,7 +77,7 @@ PROMPT = ChatPromptTemplate.from_messages(
 
 def make_quiz(paper, llm_cfg, attempts=3):
     """Ask the LLM for a QuizQuestion about the paper, retrying on invalid output, then shuffle the options."""
-    llm = ChatOllama(model=llm_cfg["model"], temperature=0.7, reasoning=llm_cfg["reasoning"])
+    llm = build_llm(llm_cfg, temperature=0.7)
     chain = PROMPT | llm.with_structured_output(QuizQuestion)
 
     for attempt in range(attempts):

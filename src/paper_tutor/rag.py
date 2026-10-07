@@ -4,11 +4,11 @@ from collections import defaultdict
 
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_ollama import ChatOllama
 from pgvector.psycopg import register_vector
 
 from paper_tutor.db import connect
 from paper_tutor.embed import active_model, encode_query, load_model, load_reranker
+from paper_tutor.llm import build_llm
 
 VECTOR_SEARCH = """
     SELECT paper_id
@@ -176,9 +176,5 @@ def build_chain(llm_cfg):
     """Prompt -> local LLM -> plain text."""
     system = SYSTEM_PROMPTS[llm_cfg["prompt"]]
     prompt = ChatPromptTemplate.from_messages([("system", system), ("human", HUMAN)])
-    llm = ChatOllama(
-        model=llm_cfg["model"],
-        temperature=llm_cfg["temperature"],
-        reasoning=llm_cfg["reasoning"],
-    )
+    llm = build_llm(llm_cfg)
     return prompt | llm | StrOutputParser()

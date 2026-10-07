@@ -98,6 +98,15 @@ can be compared. The defaults are the best settings measured (see [eval/README.m
   `data/raw/recent/<date>.json` (and their authors to `data/raw/authors.json`) before they
   are saved and embedded, so the raw files stay the source of truth and `make load` keeps
   them. The first run had 1,124 candidates and added 20 papers; it takes about 45 seconds.
+- **Automations** (n8n, `n8n/`, [#14](https://github.com/AymenFeki/paper-tutor/issues/14)): two
+  workflows run in the n8n container and call the API.
+  - *Daily quiz* (every day at 8:00): `POST /quiz` picks a random learn item from the
+    syllabus, retrieves a matching paper and asks the LLM for one multiple-choice question
+    (Pydantic model with Telegram's length limits; questions that mention "the paper" or
+    contain Chinese characters are rejected and regenerated; options are shuffled). n8n
+    sends it as a Telegram quiz poll, followed by the topic and the source paper.
+  - *Weekly refresh* (Sundays at 20:00): `POST /refresh`, then a Telegram message listing
+    the papers added and their scores.
 - **Corrupted OpenAlex records**: some records keep the DOI and citation count of a famous
   arXiv paper but show an unrelated title, abstract and references. The arXiv DOIs of RAG,
   ReAct and Chain-of-Thought point to records titled "Affordance-Compiled Intelligence",
@@ -185,6 +194,8 @@ Coming soon.
 - A `.env` file in the project root with two variables:
   - `OPENALEX_API_KEY`: your OpenAlex key
   - `POSTGRES_PASSWORD`: any password; Docker Compose uses it to create the database
+  - optional, for the n8n automations: `TELEGRAM_BOT_TOKEN` (from @BotFather) and
+    `TELEGRAM_CHAT_ID`
 
 ### Build the database and start the app
 
@@ -233,6 +244,14 @@ restart Claude Desktop. Replace the paths with your own (`which uv` shows the pa
 The MCP server calls the API at `http://127.0.0.1:8000`; set `PAPER_TUTOR_API` in an
 `"env"` block to change it.
 
+### Automations with n8n and Telegram
+
+1. `docker compose up -d` also starts n8n on http://localhost:5678. It reads
+   `TELEGRAM_BOT_TOKEN` from `.env`, so the token never appears in a workflow.
+2. In n8n, import `n8n/daily_quiz.json` and `n8n/weekly_refresh.json`, add a Telegram
+   credential, set your chat id, and publish both workflows.
+3. Keep the API running (`make api`); n8n reaches it at `http://host.docker.internal:8000`.
+
 ## Known limitations
 
 - **Most relevance judgments come from an LLM.** 75 of 444 are human; a hand-checked
@@ -271,11 +290,12 @@ The MCP server calls the API at `http://127.0.0.1:8000`; set `PAPER_TUTOR_API` i
 - **Refreshed papers are only embedded with the active model** (bge-small), as are the 11
   agents papers that moved into the top 300 after the preprint rule. Run
   `uv run python scripts/05_embed.py qwen3-0.6b` before comparing against Qwen3 again.
+- **The automations only run while the Mac is awake** and Docker and the API are running;
+  a missed schedule is not repeated later. A cloud deployment would fix this (#18).
+- **Quiz answer keys are not verified.** qwen3:8b sometimes marks the wrong option as
+  correct; a second LLM call that answers the question without the key could catch it.
 
 ## Roadmap
 
-- n8n: a weekly workflow that calls `POST /refresh` every Sunday and sends the summary to
-  Telegram ([#14](https://github.com/AymenFeki/paper-tutor/issues/14)); the endpoint and the
-  daily quiz workflow (`n8n/daily_quiz.json`) are done.
 - Optional cloud deployment
   ([#18](https://github.com/AymenFeki/paper-tutor/issues/18)).

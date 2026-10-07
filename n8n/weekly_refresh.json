@@ -1,0 +1,102 @@
+{
+  "name": "weekly_refresh",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtHour": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "15fcc281-7152-475f-ac34-5e85b6777aa3",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/refresh",
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "8d38aa1d-581e-4c9a-921a-09c8abe673e2",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "chatId": "8904025300",
+        "text": "=Weekly refresh: {{ $json.added }} new papers\n{{ $json.papers.map(p => '• ' + p.title + ' (' + p.score.toFixed(2) + ')').join('\\n') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "33f9d2fe-bb6b-4d1e-8499-284781ac63b1",
+      "name": "Send a text message",
+      "webhookId": "6c92e88d-f3f2-4589-b6f0-0efb2cdfc0cb",
+      "credentials": {
+        "telegramApi": {
+          "id": "ITDQZw8RaCQSUiVe",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "3269fd0b-fc54-46dc-ba55-c25ba76b3051",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9bae04b454f62abf31f2cfdad4de5c60988b70ee61c36b6c93027739aa1b06ab"
+  },
+  "nodeGroups": [],
+  "id": "eIbWW7CVzIeeWDyN",
+  "tags": []
+}

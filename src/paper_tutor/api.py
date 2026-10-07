@@ -1,8 +1,11 @@
 """HTTP API for the paper tutor: semantic search, cited answers, a tutor with memory and the weekly refresh."""
 
+import os
+import secrets
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI, HTTPException, Security
+from fastapi.security import APIKeyHeader
 from pydantic import BaseModel
 
 from paper_tutor.corpus import load_config
@@ -46,20 +49,29 @@ class ChatRequest(BaseModel):
     thread_id: str
 
 
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
+
+
+def require_api_key(key: str | None = Security(api_key_header)):
+    """Reject requests without the right key; if API_KEY is not set (local use), everything is allowed."""
+    expected = os.getenv("API_KEY")
+    if expected and not secrets.compare_digest(key or "", expected):
+        raise HTTPException(status_code=401, detail="Invalid or missing API key")
+
 @app.get("/health")
 def health():
     """Check that the server is up and show which embedding model and retrieval settings are active."""
     return {"status": "ok", "embedding_model": state["model_key"], "retrieval": state["config"]["retrieval"]}
 
 
-@app.post("/search")
+@app.post("/search", dependencies=[Depends(require_api_key)])
 def search(req: SearchRequest):
     """Return up to k relevant papers, without generating an answer (none if nothing is relevant enough)."""
     papers = state["retrieve"](req.question, k=req.k)
     return {"question": req.question, "papers": papers}
 
 
-@app.post("/ask")
+@app.post("/ask", dependencies=[Depends(require_api_key)])
 def ask(req: AskRequest):
     """Answer a single question from retrieved papers, with no conversation memory."""
     papers = state["retrieve"](req.question, k=state["config"]["llm"]["top_k"])
@@ -69,7 +81,7 @@ def ask(req: AskRequest):
     return {"question": req.question, "answer": answer, "papers": papers}
 
 
-@app.post("/chat")
+@app.post("/chat", dependencies=[Depends(require_api_key)])
 def chat(req: ChatRequest):
     """Answer a question in the context of a conversation thread, with memory per thread_id."""
     result = state["tutor"].invoke(
@@ -84,14 +96,14 @@ def chat(req: ChatRequest):
     }
 
 
-@app.post("/quiz")
+@app.post("/quiz", dependencies=[Depends(require_api_key)])
 def quiz():
     """A multiple-choice question about a paper for a random learn item from the syllabus."""
     topic, paper = syllabus_paper(state["config"], state["retrieve"])
     return {"topic": topic, **make_quiz(paper, state["config"]["llm"])}
 
 
-@app.post("/refresh")
+@app.post("/refresh", dependencies=[Depends(require_api_key)])
 def refresh():
     """Add the best recently published papers that pass the rules and match the syllabus (n8n calls it weekly)."""
     return refresh_papers(state["config"], state["embed_model"], state["model_cfg"])

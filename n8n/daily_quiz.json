@@ -1,0 +1,130 @@
+{
+  "name": "daily_quiz",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/quiz",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        192,
+        0
+      ],
+      "id": "e44205b4-7bd5-44e8-a128-79081bfd9f59",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=  https://api.telegram.org/bot{{ $env.TELEGRAM_BOT_TOKEN}}/sendPoll",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ {\n  \"chat_id\": 8904025300,\n  \"question\": $json.question,\n  \"options\": $json.options.map(o => ({ text: o })),\n  \"type\": \"quiz\",\n  \"correct_option_id\": $json.correct_index,\n  \"explanation\": $json.explanation,\n  \"is_anonymous\": false\n} }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        416,
+        0
+      ],
+      "id": "3b31575e-7536-4fd1-b2b9-df9891243dca",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -32,
+        0
+      ],
+      "id": "22bc7610-b32d-44fa-b88c-677f946ef7ec",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "8904025300",
+        "text": "=   Today's topic: {{ $('HTTP Request').item.json.topic }}\n   Source: {{ $('HTTP Request').item.json.paper.title }} ({{ $('HTTP Request').item.json.paper.year }})\n   https://openalex.org/{{ $('HTTP Request').item.json.paper.id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        0
+      ],
+      "id": "bca1f02d-6fd8-43c7-8390-6e49f113fac0",
+      "name": "Send a text message",
+      "webhookId": "c2a47c99-49cd-4bc6-8de8-aa7b53e7735a",
+      "credentials": {
+        "telegramApi": {
+          "id": "ITDQZw8RaCQSUiVe",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "1f3acf53-dae5-465d-8cb3-7aa672889df4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9bae04b454f62abf31f2cfdad4de5c60988b70ee61c36b6c93027739aa1b06ab"
+  },
+  "nodeGroups": [],
+  "id": "YIbwFg0Mix7LQ87X",
+  "tags": []
+}

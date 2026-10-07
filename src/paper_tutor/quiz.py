@@ -31,8 +31,16 @@ class QuizQuestion(BaseModel):
     @classmethod
     def no_reference_to_paper(cls, value):
         """Reject questions that can only be answered by someone who read this specific paper."""
-        if any(word in value.lower() for word in ("paper", "study", "authors", "this article")):
+        if any(word in value.lower() for word in ("paper", "study", "authors", "this article", "proposed", "this method", "this approach", "presented")):
             raise ValueError("the question must not refer to the paper")
+        return value
+    
+    @field_validator("question", "explanation")
+    @classmethod
+    def english_only(cls, value):
+        """Reject text with Chinese characters, which qwen3 sometimes drifts into."""
+        if any("\u4e00" <= char <= "\u9fff" for char in value):
+            raise ValueError("the text must be in English")
         return value
 
 
@@ -51,11 +59,13 @@ SYSTEM = (
     "You write one multiple-choice quiz question for a statistics and data science student. "
     "Use the paper's title and abstract below only as inspiration: the question must test a concept "
     "or method that the paper uses, and must be answerable by a student who knows that topic "
-    "without having read this paper. Never refer to the paper, the study or the authors.\n\n"
+    "without having read this paper. Never refer to the paper, the study or the authors. "
+    "The question must be self-contained: name the model or setting it is about.\n\n"
     "Bad: 'What is the main contribution of the paper?'\n"
     "Good: 'Why can copula models price CDO tranches without Monte Carlo simulation?'\n\n"
-    "Give exactly four options, exactly one correct, with plausible wrong options. Keep the "
-    "question under 300 characters, each option under 100 and the explanation under 200."
+    "Give exactly four options. Exactly one may be correct; the others must be clearly wrong for "
+    "a student who knows the topic, but still plausible. Keep the question under 300 characters, "
+    "each option under 100 and the explanation under 200. Write in English only."
 )
 
 PROMPT = ChatPromptTemplate.from_messages(

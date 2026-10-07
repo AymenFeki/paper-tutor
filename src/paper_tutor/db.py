@@ -27,13 +27,15 @@ PAPER_TITLES = "SELECT id, title FROM papers"
 
 
 def connect():
+    """Connection settings come from the environment; the defaults are the local Docker database."""
     load_dotenv()
     return psycopg.connect(
-        host="localhost",
-        port=5432,
-        dbname="paper_tutor",
-        user="tutor",
+        host=os.getenv("POSTGRES_HOST", "localhost"),
+        port=int(os.getenv("POSTGRES_PORT", "5432")),
+        dbname=os.getenv("POSTGRES_DB", "paper_tutor"),
+        user=os.getenv("POSTGRES_USER", "tutor"),
         password=os.getenv("POSTGRES_PASSWORD"),
+        sslmode=os.getenv("POSTGRES_SSLMODE", "prefer"),
     )
 
 

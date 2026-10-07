@@ -23,6 +23,7 @@ dependencies = [
     "pyyaml>=6.0.3",
     "sentence-transformers>=6.1.0",
     "streamlit>=1.65.0",
+    "torch>=2.14.1",
     "uvicorn>=0.54.0",
 ]
 
@@ -45,3 +46,11 @@ line-length = 120
 [tool.ruff.lint]
 # Ruff's default rules plus import sorting ("I")
 extend-select = ["I"]
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

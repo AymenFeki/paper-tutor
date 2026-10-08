@@ -1,20 +1,22 @@
 # paper-tutor
 
 ![CI](https://github.com/AymenFeki/paper-tutor/actions/workflows/ci.yml/badge.svg)
+![Docker image](https://github.com/AymenFeki/paper-tutor/actions/workflows/docker.yml/badge.svg)
 
 paper-tutor is a study assistant that answers questions from a curated database of
 research papers instead of from the open web. It downloads papers from
 [OpenAlex](https://openalex.org), keeps only those that pass a set of credibility rules
 (peer-reviewed venue list, a real abstract, not retracted, English), removes duplicates,
-stores them in Postgres with vector embeddings, and answers questions with a local LLM
+stores them in Postgres with vector embeddings, and answers questions with an LLM
 that must cite the papers it used, or say that the database has nothing relevant. It is built the way a company would build an internal
 AI system over its own documents: a data pipeline, a database, an HTTP API, a chat UI,
-a tool for an AI assistant, and an evaluation of retrieval quality. The current corpus
+a tool for an AI assistant, an evaluation of retrieval quality, and a cloud deployment
+on Azure. The current corpus
 has 7,183 papers in statistics, econometrics, machine learning, deep learning, LLMs and
 agents, economics, finance and cloud infrastructure: 7,163 from the initial download and
 20 added by the first weekly refresh.
 
-**Stack:** Python · PostgreSQL + pgvector · FastAPI · LangChain · LangGraph · MCP · Ollama · Groq · Streamlit · Docker · GitHub Actions
+**Stack:** Python · PostgreSQL + pgvector · FastAPI · LangChain · LangGraph · MCP · Ollama · Groq · Streamlit · n8n · Docker · GitHub Actions · Azure Container Apps · Azure Database for PostgreSQL
 
 ## Architecture
 
@@ -31,10 +33,12 @@ flowchart LR
         SEARCH["/search"]
         ASK["/ask (RAG chain)"]
         CHAT["/chat (LangGraph tutor:<br/>clarify? → rewrite → retrieve → answer or refuse)"]
+        QUIZ["/quiz (daily quiz question)"]
         REFRESH["/refresh (weekly):<br/>recent papers → rules → top 20 by syllabus similarity"]
         RET --> SEARCH
         RET --> ASK
         RET --> CHAT
+        RET --> QUIZ
     end
 
     OA -->|papers from the last 14 days| REFRESH
@@ -45,6 +49,8 @@ flowchart LR
     API --> UI["Streamlit chat UI"]
     API --> MCP["MCP server"]
     MCP --> CD["Claude Desktop"]
+    N8N["n8n<br/>daily quiz, weekly refresh"] --> API
+    N8N --> TG["Telegram"]
 ```
 
 - **Pipeline** (`scripts/`): numbered scripts that fetch, explore, load, embed, search,
@@ -53,7 +59,10 @@ flowchart LR
   (one row per paper and embedding model, so models can be compared side by side).
 - **API** (`src/paper_tutor/api.py`): loads the retriever (embedding model and reranker),
   the LLM chain and the tutor once at startup.
-- **Clients**: the Streamlit app and the MCP server both talk to the API over HTTP.
+- **Clients**: the Streamlit app, the MCP server and the n8n workflows all talk to the API
+  over HTTP.
+- **Deployment**: locally with Docker Compose, in the cloud on Azure (see
+  [Cloud deployment](#cloud-deployment)).
 
 ## Features
 
@@ -132,8 +141,13 @@ can be compared. The defaults are the best settings measured (see [eval/README.m
   - `POST /search`: up to k relevant papers with authors, no LLM.
   - `POST /ask`: a single cited answer from the top papers (no memory).
   - `POST /chat`: the tutor with memory per `thread_id`.
+  - `POST /quiz`: one multiple-choice question about a paper for a random syllabus item.
   - `POST /refresh`: the weekly refresh; returns the number of papers added, their titles
     and scores, and the number of candidates.
+- **API key** (`api.py`): when the environment variable `API_KEY` is set, every endpoint
+  except `/health` requires it in the `X-API-Key` header and answers `401` otherwise. The
+  key is compared in constant time (`secrets.compare_digest`). Locally `API_KEY` is not
+  set, so the API stays open for the UI, the MCP server and n8n.
 - **LLM provider** (`llm.provider` in the config, `llm.py`): `ollama` runs qwen3:8b locally;
   `groq` calls the Groq API (`qwen/qwen3.8-27b`, free tier, needs `GROQ_API_KEY`), which
   answers in seconds instead of about 20 s and is needed for a cloud deployment without a
@@ -186,6 +200,66 @@ Nothing is deleted.
 | Closer to another area's centroid than to their own ([#21](https://github.com/AymenFeki/paper-tutor/issues/21)) | 1,471 papers (20.4%); 656 with a margin above 0.02, 25 above 0.08 | Do not relabel now: areas overlap by nature (statistics/econometrics, finance/economics) and the area is only used for reporting, not for retrieval. The 25 large-margin cases are clear mislabels, e.g. Granger's "Investigating Causal Relations by Econometric Models" filed under deep learning. |
 | OpenAlex title differs from arXiv's title | 1 of 846 arXiv papers (W2900470550) | Turn the arXiv check on for all areas, not only seed areas; it costs one request per 100 papers. |
 
+## Cloud deployment
+
+The API runs on Azure ([#18](https://github.com/AymenFeki/paper-tutor/issues/18)). Every
+push to `main` that changes the code builds a new image automatically:
+
+```mermaid
+flowchart LR
+    GIT["git push to main"] --> GHA["GitHub Actions<br/>.github/workflows/docker.yml<br/>build for linux/amd64"]
+    GHA --> GHCR["GitHub Container Registry<br/>ghcr.io/aymenfeki/paper-tutor<br/>tags: latest, sha-&lt;commit&gt;"]
+    GHCR --> ACA["Azure Container Apps<br/>Sweden Central<br/>1 vCPU / 2 GiB, scale 0–1<br/>X-API-Key auth"]
+    ACA --> PG[("Azure Database for PostgreSQL<br/>Flexible Server B1ms, PG 17<br/>pgvector")]
+    ACA <--> GROQ["Groq API<br/>qwen/qwen3.8-27b"]
+```
+
+| Part | Service | Notes |
+|---|---|---|
+| API container | Azure Container Apps | 1 vCPU / 2 GiB, scales to zero when idle, at most 1 replica |
+| Database | Azure Database for PostgreSQL Flexible Server (B1ms, PostgreSQL 17) | pgvector enabled; filled from the local database with `pg_dump`/`pg_restore` (7,183 papers) |
+| LLM | Groq (`qwen/qwen3.8-27b`) | `provider: groq` in `config/syllabus.yaml` |
+| Image registry | GitHub Container Registry | built by `.github/workflows/docker.yml`, tagged `latest` and `sha-<commit>` |
+
+- **Image** (`Dockerfile`): Python 3.12 slim with uv. A CPU-only PyTorch build
+  (`[tool.uv.sources]` in `pyproject.toml`, Linux only) keeps the image at about 1.6 GB
+  compressed instead of 20+ GB with the CUDA libraries. The embedding model and the
+  reranker are downloaded at build time, so a cold start does not download them, and
+  `HF_HUB_OFFLINE=1` keeps the container from contacting Hugging Face. Dependencies are
+  installed before the code is copied, so a code change rebuilds in seconds.
+- **Secrets**: the Groq key, the database password and the API key are Container Apps
+  secrets, passed to the container as environment variables. They are never in the image
+  or the repository (`.env` is excluded by `.dockerignore` and `.gitignore`).
+- **Configuration** (environment variables; the defaults are the local Docker database):
+
+  | Variable | Default (local) | Cloud |
+  |---|---|---|
+  | `POSTGRES_HOST` | `localhost` | Azure server hostname |
+  | `POSTGRES_PORT`, `POSTGRES_DB`, `POSTGRES_USER` | `5432`, `paper_tutor`, `tutor` | same |
+  | `POSTGRES_PASSWORD` | from `.env` | secret |
+  | `POSTGRES_SSLMODE` | `prefer` | `require` |
+  | `GROQ_API_KEY` | from `.env` | secret |
+  | `API_KEY` | not set (no auth) | secret |
+
+- **Cost**: inside the Azure for Students free tier. B1ms with 32 GB storage is free for
+  12 months (750 hours a month), and scale-to-zero keeps the container within the monthly
+  free grant of Container Apps.
+
+Health check of the live API (the other endpoints need the key):
+
+```bash
+curl https://paper-tutor-api.blackpebble-a7183b5c.swedencentral.azurecontainerapps.io/health
+```
+
+A question to the live API:
+
+```bash
+curl -X POST https://paper-tutor-api.blackpebble-a7183b5c.swedencentral.azurecontainerapps.io/ask \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: $CLOUD_API_KEY" \
+  -d '{"question": "What is the lasso?"}'
+```
+
 ## Screenshots
 
 Coming soon.
@@ -200,7 +274,8 @@ Coming soon.
   API key (`groq`), or [Ollama](https://ollama.com) with the model pulled:
   `ollama pull qwen3:8b` (`ollama`)
 - An [OpenAlex API key](https://openalex.org)
-- A `.env` file in the project root with these variables:
+- A `.env` file in the project root with these variables (`NAME=value`, no spaces around
+  `=`, so Docker can read it too):
   - `OPENALEX_API_KEY`: your OpenAlex key
   - `POSTGRES_PASSWORD`: any password; Docker Compose uses it to create the database
   - `GROQ_API_KEY`: needed when `llm.provider` is `groq`
@@ -230,6 +305,16 @@ Try the API directly:
 curl -X POST http://127.0.0.1:8000/search \
   -H "Content-Type: application/json" \
   -d '{"question": "What is the lasso?", "k": 3}'
+```
+
+### Run the API in Docker
+
+The same image that runs on Azure, against the local database (port 8001, so it does not
+clash with `make api`):
+
+```bash
+docker build -t paper-tutor-api .
+docker run --rm -p 8001:8000 --env-file .env -e POSTGRES_HOST=host.docker.internal paper-tutor-api
 ```
 
 ### Use it from Claude Desktop (MCP)
@@ -299,12 +384,26 @@ The MCP server calls the API at `http://127.0.0.1:8000`; set `PAPER_TUTOR_API` i
   exempt from the venue list.
 - **Refreshed papers are only embedded with the active model** (bge-small). Run
   `uv run python scripts/05_embed.py qwen3-0.6b` before comparing against Qwen3 again.
-- **The automations only run while the Mac is awake** and Docker and the API are running;
-  a missed schedule is not repeated later. A cloud deployment would fix this (#18).
+- **The automations still run locally**: n8n calls the local API, so they only run while
+  the Mac is awake and Docker and the API are running; a missed schedule is not repeated
+  later ([#18](https://github.com/AymenFeki/paper-tutor/issues/18)).
+- **The cloud database is a copy.** It was filled once from the local database, and the
+  weekly refresh still writes to the local one, so the cloud corpus does not update by
+  itself yet. Running `/refresh` in the cloud would add papers to the cloud database, but
+  the raw files it writes to `data/raw/` are lost when the container restarts.
+- **Cold start**: after a period without traffic, the first request to the cloud API
+  takes about a minute (container start and model loading). That is the cost of scaling
+  to zero.
+- **Deploying a new version is half manual**: GitHub Actions builds and pushes the image,
+  but the Container App is switched to the new `sha-<commit>` tag by hand.
+- **Conversation memory is in process**: `/chat` threads are lost when the container
+  restarts or scales to zero.
 - **Quiz answer keys are not verified.** The LLM sometimes marks the wrong option as correct
   (seen with qwen3:8b); a second LLM call that answers the question without the key could catch it.
 
 ## Roadmap
 
-- Optional cloud deployment
+- [x] Cloud deployment: API on Azure Container Apps, PostgreSQL + pgvector on Azure
   ([#18](https://github.com/AymenFeki/paper-tutor/issues/18)).
+- [ ] Run the n8n automations (quiz, refresh) against the cloud stack, with the refresh
+  keeping its raw files ([#18](https://github.com/AymenFeki/paper-tutor/issues/18)).

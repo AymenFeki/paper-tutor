@@ -1,4 +1,7 @@
-"""Daily quiz: a multiple-choice question about a paper for a random learn item from the syllabus."""
+"""Daily quiz: a multiple-choice question about a paper for a random learn item from the syllabus.
+
+The answer key is checked by a second LLM call that answers the question without seeing the key (#24).
+"""
 
 import random
 from typing import Annotated
@@ -35,7 +38,7 @@ class QuizQuestion(BaseModel):
         if any(word in value.lower() for word in ("paper", "study", "authors", "this article", "proposed", "this method", "this approach", "presented")):
             raise ValueError("the question must not refer to the paper")
         return value
-    
+
     @field_validator("question", "explanation")
     @classmethod
     def english_only(cls, value):
@@ -43,6 +46,20 @@ class QuizQuestion(BaseModel):
         if any("\u4e00" <= char <= "\u9fff" for char in value):
             raise ValueError("the text must be in English")
         return value
+
+
+class Answer(BaseModel):
+    """The checker's own answer to a quiz question, given without the answer key."""
+
+    correct_index: int = Field(
+        ge=-1,
+        le=3,
+        description="Position of the only correct option (0 to 3), or -1 if no option or more than one is correct",
+    )
+
+
+class QuizError(Exception):
+    """No valid quiz question with a confirmed answer key after all attempts."""
 
 
 def syllabus_paper(config, retrieve):
@@ -75,18 +92,55 @@ PROMPT = ChatPromptTemplate.from_messages(
 )
 
 
-def make_quiz(paper, llm_cfg, attempts=3):
-    """Ask the LLM for a QuizQuestion about the paper, retrying on invalid output, then shuffle the options."""
-    llm = build_llm(llm_cfg, temperature=0.7)
-    chain = PROMPT | llm.with_structured_output(QuizQuestion)
+CHECK_SYSTEM = (
+    "You check a multiple-choice quiz question for a statistics and data science student. "
+    "Answer the question yourself, using the abstract below and your own knowledge. "
+    "Give the position (0 to 3) of the only correct option. If no option is correct, or if more "
+    "than one option could be correct, answer -1."
+)
 
-    for attempt in range(attempts):
+CHECK_PROMPT = ChatPromptTemplate.from_messages(
+    [("system", CHECK_SYSTEM), ("human", "Abstract: {abstract}\n\nQuestion: {question}\n\nOptions:\n{options}")]
+)
+
+
+def key_is_confirmed(checker, quiz, paper):
+    """True if the checker, answering without the key, picks the same option as the quiz's answer key."""
+    options = "\n".join(f"{i}: {option}" for i, option in enumerate(quiz.options))
+    answer = checker.invoke({"abstract": paper["abstract"], "question": quiz.question, "options": options})
+    return answer.correct_index == quiz.correct_index
+
+
+def first_confirmed(generate, confirm, attempts):
+    """Generate quiz questions until one is valid and confirmed; returns it and the number of attempts used.
+
+    Invalid LLM output (too long, mentions the paper, not JSON) counts as a failed attempt, like a
+    question whose answer key the checker does not confirm.
+    """
+    for attempt in range(1, attempts + 1):
         try:
-            quiz = chain.invoke({"title": paper["title"], "abstract": paper["abstract"]})
-            break
+            quiz = generate()
+            if confirm(quiz):
+                return quiz, attempt
         except (ValidationError, OutputParserException):
-            if attempt == attempts - 1:
-                raise
+            continue
+    raise QuizError(f"no quiz question with a confirmed answer key after {attempts} attempts")
+
+
+def make_quiz(paper, llm_cfg, attempts=3):
+    """Ask the LLM for a QuizQuestion about the paper, keep the first one whose answer key a second call confirms.
+
+    The question is written at temperature 0.7 (variety); the check runs at the config temperature (0)
+    and never sees the answer key. Then the options are shuffled.
+    """
+    writer = PROMPT | build_llm(llm_cfg, temperature=0.7).with_structured_output(QuizQuestion)
+    checker = CHECK_PROMPT | build_llm(llm_cfg).with_structured_output(Answer)
+
+    quiz, used = first_confirmed(
+        lambda: writer.invoke({"title": paper["title"], "abstract": paper["abstract"]}),
+        lambda quiz: key_is_confirmed(checker, quiz, paper),
+        attempts,
+    )
 
     correct = quiz.options[quiz.correct_index]
     options = list(quiz.options)
@@ -97,4 +151,5 @@ def make_quiz(paper, llm_cfg, attempts=3):
         "correct_index": options.index(correct),
         "explanation": quiz.explanation,
         "paper": {"id": paper["id"], "title": paper["title"], "year": paper["year"]},
+        "attempts": used,
     }

@@ -119,8 +119,12 @@ can be compared. The defaults are the best settings measured (see [eval/README.m
   - *Daily quiz* (every day at 10:00): `POST /quiz` picks a random learn item from the
     syllabus, retrieves a matching paper and asks the LLM for one multiple-choice question
     (Pydantic model with Telegram's length limits; questions that mention "the paper" or
-    contain Chinese characters are rejected and regenerated; options are shuffled). It is
-    sent as a Telegram quiz poll, followed by the topic and the source paper.
+    contain Chinese characters are rejected and regenerated). A second LLM call at
+    temperature 0 then answers the question from the abstract without seeing the answer key;
+    if it picks a different option, or finds no single correct one, the question is thrown
+    away and a new one is written (at most 3 attempts,
+    [#24](https://github.com/AymenFeki/paper-tutor/issues/24)). The options are shuffled and
+    the question is sent as a Telegram quiz poll, followed by the topic and the source paper.
   - *Weekly refresh* (Sundays at 20:00): `POST /refresh`, then a Telegram message listing
     the papers added and their scores.
 - **Corrupted OpenAlex records**: some records keep the DOI and citation count of a famous
@@ -414,7 +418,8 @@ To run them locally instead:
   database; `make pull-refreshed`, `make load` and `make embed` bring the new papers to the
   local one.
 - **The cloud refresh must finish within Azure's request timeout** (about 4 minutes per
-  HTTP request). The first cloud run took about 4 minutes in total with the cold start.
+  HTTP request). The first cloud run had 1,022 candidates and added 3 papers well within
+  it, but a week with many more candidates could get closer.
 - **Cold start**: after a period without traffic, the first request to the cloud API
   takes about a minute (container start and model loading). That is the cost of scaling
   to zero.
@@ -422,12 +427,13 @@ To run them locally instead:
   but the Container App is switched to the new `sha-<commit>` tag by hand.
 - **Conversation memory is in process**: `/chat` threads are lost when the container
   restarts or scales to zero.
-- **Quiz answer keys are not verified.** The LLM sometimes marks the wrong option as correct
-  (seen with qwen3:8b); a second LLM call that answers the question without the key could catch it.
+- **The quiz's answer-key check uses the same model as the writer.** It catches keys the model
+  disagrees with when it answers the question fresh (before the check, a question marked "KL
+  divergence is a squared Euclidean distance" as correct), but a misconception the model holds
+  both times still passes.
 
 ## Roadmap
 
-- Verify quiz answer keys with a second LLM call ([#24](https://github.com/AymenFeki/paper-tutor/issues/24)).
 - Add new LLM and agent papers in the weekly refresh ([#25](https://github.com/AymenFeki/paper-tutor/issues/25)).
 - A quota per area in the refresh instead of one global top 20 ([#26](https://github.com/AymenFeki/paper-tutor/issues/26)).
 - Check untrusted repositories for all paper types, not only preprints ([#27](https://github.com/AymenFeki/paper-tutor/issues/27)).

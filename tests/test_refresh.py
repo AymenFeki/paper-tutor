@@ -2,7 +2,7 @@
 
 import json
 
-from paper_tutor.refresh import save_raw
+from paper_tutor.refresh import add_recent, save_raw
 
 
 def paper(paper_id, *names):
@@ -29,3 +29,12 @@ def test_save_raw_twice_on_one_day_keeps_both(tmp_path):
     [recent_file] = (tmp_path / "recent").glob("*.json")
     assert [entry["paper"]["id"] for entry in json.loads(recent_file.read_text())] == [
         "https://openalex.org/W1", "https://openalex.org/W2"]
+
+
+def test_add_recent_skips_papers_already_in_the_file(tmp_path):
+    entries = [{"topic_id": "T1", "paper": paper("W1", "Ada")}]
+    assert add_recent(entries, "2026-10-04", raw_dir=tmp_path)[0] == 1
+    assert add_recent(entries, "2026-10-04", raw_dir=tmp_path)[0] == 0
+
+    saved = json.loads((tmp_path / "recent" / "2026-10-04.json").read_text())
+    assert [entry["paper"]["id"] for entry in saved] == ["https://openalex.org/W1"]

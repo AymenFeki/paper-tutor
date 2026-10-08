@@ -1,7 +1,7 @@
 # One-command setup for paper-tutor. Run `make rebuild` to build the database from scratch.
 # Needs: uv, Docker, Ollama with qwen3:8b, and a .env file with OPENALEX_API_KEY and POSTGRES_PASSWORD.
 
-.PHONY: db-up schema fetch load embed rebuild refresh evaluate threshold keyword-queries faithfulness data-checks judge api ui test lint
+.PHONY: db-up schema fetch load embed rebuild refresh pull-refreshed evaluate threshold keyword-queries faithfulness data-checks judge api ui test lint
 
 # Start Postgres + pgvector in Docker and wait until it accepts connections
 db-up:
@@ -27,9 +27,13 @@ embed:
 # Everything above, in order
 rebuild: db-up schema fetch load embed
 
-# Add the best recently published papers that match the syllabus (same as POST /refresh, which n8n calls weekly)
+# Add the best recently published papers that match the syllabus (same as POST /refresh, called weekly by GitHub Actions)
 refresh:
 	uv run python scripts/15_refresh.py
+
+# Copy the papers that cloud refreshes stored in the database into data/raw/recent/ (needs the cloud POSTGRES_* variables)
+pull-refreshed:
+	uv run python scripts/16_pull_refreshed.py
 
 # Retrieval evaluation with the settings in config/syllabus.yaml, then the pooled judgments
 evaluate:

@@ -4,6 +4,7 @@ import os
 
 import psycopg
 from dotenv import load_dotenv
+from psycopg.types.json import Jsonb
 
 from paper_tutor.corpus import normalize_title, paper_row
 
@@ -24,6 +25,13 @@ UPSERT_PAPER = """
 """
 
 PAPER_TITLES = "SELECT id, title FROM papers"
+
+INSERT_REFRESHED = """
+    INSERT INTO refreshed_raw (paper_id, topic_id, paper) VALUES (%s, %s, %s)
+    ON CONFLICT (paper_id) DO NOTHING
+"""
+
+REFRESHED = "SELECT refreshed_on, topic_id, paper FROM refreshed_raw ORDER BY refreshed_on, paper_id"
 
 
 def connect():
@@ -52,3 +60,9 @@ def known_papers(cur):
     cur.execute(PAPER_TITLES)
     rows = cur.fetchall()
     return {paper_id for paper_id, _ in rows}, {normalize_title(title) for _, title in rows} - {""}
+
+
+def save_refreshed_raw(cur, records):
+    """Keep the raw OpenAlex record of every refreshed paper in the database (data/raw/ is lost in the cloud)."""
+    for paper, topic_id in records:
+        cur.execute(INSERT_REFRESHED, (paper["id"], topic_id, Jsonb(paper)))

@@ -45,3 +45,13 @@ ALTER TABLE papers ADD COLUMN IF NOT EXISTS search_text tsvector GENERATED ALWAY
     setweight(to_tsvector('english', coalesce(abstract, '')), 'B')
 ) STORED;
 CREATE INDEX IF NOT EXISTS papers_search_text_idx ON papers USING GIN (search_text);
+
+-- Raw OpenAlex record of every paper added by the weekly refresh (#29). In the cloud, data/raw/ is
+-- lost when the container restarts, so the database keeps them; scripts/16_pull_refreshed.py
+-- copies them to data/raw/recent/, where 04_load.py expects them.
+CREATE TABLE IF NOT EXISTS refreshed_raw (
+    paper_id      TEXT PRIMARY KEY,            -- full OpenAlex URL, as in the raw files
+    topic_id      TEXT NOT NULL,
+    paper         JSONB NOT NULL,
+    refreshed_on  DATE NOT NULL DEFAULT CURRENT_DATE
+);

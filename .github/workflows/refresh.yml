@@ -1,0 +1,37 @@
+# Weekly refresh (#29): the cloud API adds the best recent papers to the cloud database,
+# then the result is sent to Telegram. Secrets: Settings → Secrets and variables → Actions.
+name: Weekly refresh
+
+on:
+  schedule:
+    - cron: "0 18 * * 0" # Sundays 18:00 UTC = 20:00 in Munich in summer, 19:00 in winter
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API: ${{ secrets.CLOUD_API_URL }}
+      KEY: ${{ secrets.CLOUD_API_KEY }}
+      BOT: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - name: Wake up the API (it scales to zero, the first request can take a minute)
+        run: curl -sS --fail-with-body --retry 5 --retry-delay 20 --retry-all-errors --max-time 180 "$API/health"
+
+      - name: Run the refresh
+        # Safe to retry: a second run adds nothing (the top 20 is chosen before known papers are skipped)
+        run: >
+          curl -sS --fail-with-body --retry 1 --retry-delay 30 --retry-all-errors --max-time 300
+          -X POST "$API/refresh" -H "X-API-Key: $KEY" -o refresh.json
+
+      - name: Send the result
+        run: |
+          jq --arg chat "$CHAT" '{
+            chat_id: $chat,
+            text: ("Weekly refresh: \(.added) new papers (\(.candidates) candidates)\n"
+                   + ([.papers[] | "• \(.title) (\(.score))"] | join("\n")))
+          }' refresh.json > message.json
+          curl -sS --fail-with-body -o /dev/null -X POST "https://api.telegram.org/bot$BOT/sendMessage" \
+            -H "Content-Type: application/json" -d @message.json

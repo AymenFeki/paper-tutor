@@ -1,0 +1,44 @@
+# Daily quiz (#29): ask the cloud API for a quiz question and send it to Telegram as a quiz poll.
+# Runs on GitHub's servers, so it does not need the Mac. Secrets: Settings → Secrets and variables → Actions.
+name: Daily quiz
+
+on:
+  schedule:
+    - cron: "0 8 * * *" # 08:00 UTC = 10:00 in Munich in summer, 9:00 in winter; GitHub may start it a few minutes late
+  workflow_dispatch:
+
+jobs:
+  quiz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      API: ${{ secrets.CLOUD_API_URL }}
+      KEY: ${{ secrets.CLOUD_API_KEY }}
+      BOT: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - name: Wake up the API (it scales to zero, the first request can take a minute)
+        run: curl -sS --fail-with-body --retry 5 --retry-delay 20 --retry-all-errors --max-time 180 "$API/health"
+
+      - name: Get a quiz question
+        run: >
+          curl -sS --fail-with-body --retry 2 --retry-delay 10 --retry-all-errors --max-time 180
+          -X POST "$API/quiz" -H "X-API-Key: $KEY" -o quiz.json
+
+      - name: Send the quiz poll
+        run: |
+          jq --arg chat "$CHAT" '{
+            chat_id: $chat, question, type: "quiz", is_anonymous: false,
+            options: [.options[] | {text: .}], correct_option_id: .correct_index, explanation
+          }' quiz.json > poll.json
+          curl -sS --fail-with-body -o /dev/null -X POST "https://api.telegram.org/bot$BOT/sendPoll" \
+            -H "Content-Type: application/json" -d @poll.json
+
+      - name: Send the topic and the source paper
+        run: |
+          jq --arg chat "$CHAT" '{
+            chat_id: $chat,
+            text: "Topic of the day: \(.topic)\nSource: \(.paper.title) (\(.paper.year))\nhttps://openalex.org/\(.paper.id)"
+          }' quiz.json > message.json
+          curl -sS --fail-with-body -o /dev/null -X POST "https://api.telegram.org/bot$BOT/sendMessage" \
+            -H "Content-Type: application/json" -d @message.json

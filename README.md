@@ -18,6 +18,35 @@ initial download, 20 added by the first weekly refresh and 3 by the first cloud 
 
 **Stack:** Python · PostgreSQL + pgvector · FastAPI · LangChain · LangGraph · MCP · Ollama · Groq · Streamlit · n8n · Docker · GitHub Actions · Azure Container Apps · Azure Database for PostgreSQL
 
+## Screenshots
+
+| Answering with cited papers | The cited papers |
+|---|---|
+| <img src="docs/screenshots/chat-answer.png" alt="Chat answer with citations" width="460"> | <img src="docs/screenshots/chat-sources.png" alt="The cited papers" width="460"> |
+
+<details>
+<summary><b>More screenshots</b>: refusal, MCP in Claude Desktop, API, Telegram quiz</summary>
+
+<br>
+
+**Refusing when the database has nothing relevant**
+
+<img src="docs/screenshots/chat-refusal.png" alt="Chat refusing an off-topic question" width="600">
+
+**Claude Desktop searching the database through MCP**
+
+<img src="docs/screenshots/claude-desktop-mcp.png" alt="Claude Desktop using the MCP tool" width="600">
+
+**API (FastAPI)**
+
+<img src="docs/screenshots/api-docs.png" alt="FastAPI docs page" width="600">
+
+**Daily quiz in Telegram**
+
+<img src="docs/screenshots/telegram-quiz.png" alt="Telegram quiz poll" width="300">
+
+</details>
+
 ## Documentation
 
 This README is the overview. The details are in these files:
@@ -159,10 +188,6 @@ The most important ones; the full list is in [docs/limitations.md](docs/limitati
   OpenAlex topics.
 - **Cold start**: after a period without traffic, the first request to the cloud API takes
   about a minute. That is the cost of scaling to zero.
-
-## Screenshots
-
-Coming soon.
 
 ## Roadmap
 

@@ -8,13 +8,10 @@ research papers instead of from the open web. It downloads papers from
 [OpenAlex](https://openalex.org), keeps only those that pass a set of credibility rules
 (peer-reviewed venue list, a real abstract, not retracted, English), removes duplicates,
 stores them in Postgres with vector embeddings, and answers questions with an LLM
-that must cite the papers it used, or say that the database has nothing relevant. It is built the way a company would build an internal
-AI system over its own documents: a data pipeline, a database, an HTTP API, a chat UI,
-a tool for an AI assistant, an evaluation of retrieval quality, and a cloud deployment
-on Azure. The current corpus
-has 7,183 papers in statistics, econometrics, machine learning, deep learning, LLMs and
-agents, economics, finance and cloud infrastructure: 7,163 from the initial download and
-20 added by the first weekly refresh.
+that must cite the papers it used, or say that the database has nothing relevant. It is built the way a company would build an internal AI system over its own documents: a data pipeline, a database, an HTTP API, a chat UI,
+a tool for an AI assistant, an evaluation of retrieval quality, and a cloud deployment on Azure. 
+The current corpus has 7,186 papers in statistics, econometrics, machine learning, deep learning, LLMs and
+agents, economics, finance and cloud infrastructure: 7,163 from the initial download, 20 added by the first weekly refresh and 3 by the first cloud refresh.
 
 **Stack:** Python · PostgreSQL + pgvector · FastAPI · LangChain · LangGraph · MCP · Ollama · Groq · Streamlit · n8n · Docker · GitHub Actions · Azure Container Apps · Azure Database for PostgreSQL
 
@@ -57,6 +54,7 @@ flowchart LR
   evaluate and ask. Shared logic lives in `src/paper_tutor/`.
 - **Database** (`sql/schema.sql`): three tables, `topics`, `papers` and `embeddings`
   (one row per paper and embedding model, so models can be compared side by side).
+- **Analytics** (`sql/analytics/`): SQL queries for corpus statistics, data-quality checks and trends.
 - **API** (`src/paper_tutor/api.py`): loads the retriever (embedding model and reranker),
   the LLM chain and the tutor once at startup.
 - **Clients**: the Streamlit app, the MCP server and the scheduled jobs (GitHub Actions in
@@ -210,6 +208,53 @@ Nothing is deleted.
 | Title-abstract mismatch: lowest 1% similarity between title and abstract embedding ([#20](https://github.com/AymenFeki/paper-tutor/issues/20)) | 72 papers below 0.608 (median 0.866); the example W2040503026 is 67th lowest | Do not act automatically: about half (37) are just short titles such as system names ("ZOO", "Quincy", "Omega"). The rest are worth a manual look; a few have publisher boilerplate as abstract. |
 | Closer to another area's centroid than to their own ([#21](https://github.com/AymenFeki/paper-tutor/issues/21)) | 1,471 papers (20.4%); 656 with a margin above 0.02, 25 above 0.08 | Do not relabel now: areas overlap by nature (statistics/econometrics, finance/economics) and the area is only used for reporting, not for retrieval. The 25 large-margin cases are clear mislabels, e.g. Granger's "Investigating Causal Relations by Econometric Models" filed under deep learning. |
 | OpenAlex title differs from arXiv's title | 1 of 846 arXiv papers (W2900470550) | Turn the arXiv check on for all areas, not only seed areas; it costs one request per 100 papers. |
+
+## Corpus analytics (SQL)
+
+`sql/analytics/` holds plain SQL queries over the database, grouped by theme: corpus overview,
+areas and topics, data quality, trends and performance. Run a file against the local
+database with:
+
+```
+docker compose exec -T db psql -U tutor -d paper_tutor < sql/analytics/01_corpus_overview.sql
+```
+
+Findings on the local database (7,186 papers, October 2026):
+
+- **Composition**: 4,439 articles, 1,713 conference papers, 1,014 preprints and 20 reviews.
+  arXiv is the largest venue (878 papers), followed by the Journal of Finance (190) and JASA (143).
+- **Areas**: statistics 2,133, deep learning 1,701, finance 1,162, cloud infrastructure 699,
+  machine learning 596, economics 419, agents 294, econometrics 182. Every topic has at least
+  35 papers.
+- **FWCI is right-skewed in every area** (deep learning: mean 69.2, median 24.5), so the median
+  is the better summary. Agents has the highest median (38.7), because that area was built
+  from the most-cited papers around five seed papers; statistics has the lowest (7.5).
+- **FWCI is unreliable for recent papers.** Ranked by FWCI without a year limit, the top papers
+  in machine learning and statistics were little-known 2024–2025 papers with FWCI above 1,000:
+  for a new paper the expected citation count is tiny, so a few citations inflate the ratio.
+  Limited to papers up to 2023, the top three are landmark papers (ImageNet, ResNet,
+  Faster R-CNN in deep learning; lmerTest, Stan in statistics).
+- **Some top-ranked records are mislabeled or not papers**, which a year limit does not fix:
+  "Interactive Tree Of Life (iTOL)" (a biology tool) and "Lecture Notes in Computer Science
+  1205" (a book-series record) rank in the top three of cloud infrastructure, and the top
+  agents paper is about protein structure prediction.
+- **Missing values**: 3.5% of papers have no DOI and 48.8% have no open-access link, so for
+  about half of the corpus only the abstract is available. 4 papers have no year and 17 have
+  no authors.
+- **Embeddings**: all 7,186 papers have a `bge-small` embedding; 3 papers have no
+  `qwen3-0.6b` embedding. All three were loaded on 2026-10-08, the first cloud refresh, which
+  only embeds with the active model.
+- **Growth**: the agents area jumps to 90 papers in 2023 and has none from 2026, because the
+  weekly refresh does not cover that area.
+- **Most frequent authors**: Michael I. Jordan (23), Donald B. Rubin (20), Mark E. J. Newman
+  (19), Robert F. Engle (18). These are lower bounds, because only the first five authors of
+  each paper are stored.
+- **Performance** (`EXPLAIN ANALYZE`, local database): full-text search for "lasso
+  regression" takes 0.09 ms with the GIN index on the stored `search_text` column, 8 ms
+  without the index (sequential scan) and 493 ms when the text vector is computed on the
+  fly, so the stored column and the index together make it about 5,000× faster. An index
+  on `topic_id` speeds up counting the papers of one topic from 1.5 ms to 0.03 ms (index-only
+  scan), but it is not added, because no query in the app filters by topic.
 
 ## Cloud deployment
 
@@ -431,6 +476,7 @@ To run them locally instead:
   disagrees with when it answers the question fresh (before the check, a question marked "KL
   divergence is a squared Euclidean distance" as correct), but a misconception the model holds
   both times still passes.
+- **17 papers have no authors and 4 have no year** in OpenAlex; some records that pass the rules are not papers.
 
 ## Roadmap
 

@@ -44,3 +44,9 @@ FROM papers p
 LEFT JOIN embeddings e
     ON e.paper_id = p.id AND e.model = 'qwen3-0.6b'
 WHERE e.paper_id IS NULL;
+
+-- Q13: How many papers have no authors stored? --
+
+SELECT COUNT(*) AS n_no_authors
+FROM papers
+WHERE authors = '{}' OR authors IS NULL;

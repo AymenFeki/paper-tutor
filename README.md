@@ -54,7 +54,7 @@ flowchart LR
   evaluate and ask. Shared logic lives in `src/paper_tutor/`.
 - **Database** (`sql/schema.sql`): three tables, `topics`, `papers` and `embeddings`
   (one row per paper and embedding model, so models can be compared side by side).
-- **Analytics** (`sql/analytics/`): SQL queries for corpus statistics, data-quality checks and trends.
+- **Analytics** (`sql/analytics/`): SQL queries for corpus statistics, data-quality checks, trends and query performance.
 - **API** (`src/paper_tutor/api.py`): loads the retriever (embedding model and reranker),
   the LLM chain and the tutor once at startup.
 - **Clients**: the Streamlit app, the MCP server and the scheduled jobs (GitHub Actions in
@@ -252,7 +252,7 @@ Findings on the local database (7,186 papers, October 2026):
 - **Performance** (`EXPLAIN ANALYZE`, local database): full-text search for "lasso
   regression" takes 0.09 ms with the GIN index on the stored `search_text` column, 8 ms
   without the index (sequential scan) and 493 ms when the text vector is computed on the
-  fly, so the stored column and the index together make it about 5,000× faster. An index
+  fly, so the stored column and the index together make it more than 5,000× faster. An index
   on `topic_id` speeds up counting the papers of one topic from 1.5 ms to 0.03 ms (index-only
   scan), but it is not added, because no query in the app filters by topic.
 
@@ -476,7 +476,8 @@ To run them locally instead:
   disagrees with when it answers the question fresh (before the check, a question marked "KL
   divergence is a squared Euclidean distance" as correct), but a misconception the model holds
   both times still passes.
-- **17 papers have no authors and 4 have no year** in OpenAlex; some records that pass the rules are not papers.
+- **17 papers have no authors and 4 have no year** in OpenAlex; some records that pass the
+  rules are not papers (e.g. "Lecture Notes in Computer Science 1205").
 
 ## Roadmap
 

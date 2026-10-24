@@ -49,6 +49,7 @@ def check_rules(paper, settings):
         "not_listed": paper["type"] not in settings["venue_exempt_types"] and not on_list,
         "untrusted_preprint": paper["type"] == "preprint"
                               and get_source(paper).get("display_name") not in settings["preprint_servers"],
+        "untrusted_repository": get_source(paper).get("display_name") in settings["untrusted_repositories"],
     }
 
 

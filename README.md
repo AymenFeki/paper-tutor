@@ -114,7 +114,7 @@ Every behaviour can be switched in `config/syllabus.yaml`; the defaults are the 
 settings measured. Full details: [docs/features.md](docs/features.md).
 
 - **Credibility rules**: peer-reviewed venues (CWTS core list), trusted preprint servers
-  only, real abstracts (30+ words), English, no retracted papers.
+  only, no open-upload repositories such as Zenodo, real abstracts (30+ words), English, no retracted papers.
 - **Deduplication**: preprint and published versions of the same paper are merged
   (75 duplicates).
 - **LLMs and agents area**: built from the citation network of five seed papers (RAG,
@@ -222,6 +222,5 @@ The most important ones; the full list is in [docs/limitations.md](docs/limitati
 
 - Add new LLM and agent papers in the weekly refresh ([#25](https://github.com/AymenFeki/paper-tutor/issues/25)).
 - A quota per area in the refresh instead of one global top 20 ([#26](https://github.com/AymenFeki/paper-tutor/issues/26)).
-- Check untrusted repositories for all paper types, not only preprints ([#27](https://github.com/AymenFeki/paper-tutor/issues/27)).
 - Fix papers assigned to the wrong area ([#21](https://github.com/AymenFeki/paper-tutor/issues/21)).
 - More data sources and better coverage for all areas ([#8](https://github.com/AymenFeki/paper-tutor/issues/8)).

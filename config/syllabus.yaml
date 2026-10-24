@@ -16,6 +16,14 @@ settings:
     - "RePEc: Research Papers in Economics"
     - SSRN Electronic Journal
     - HAL (Le Centre pour la Communication Scientifique Directe)
+  untrusted_repositories:        # no paper of any type may come from these open-upload repositories (#27);
+                                 # conference papers skip the venue list, so a Zenodo "conference paper" passed
+    - Zenodo (CERN European Organization for Nuclear Research)
+    - Figshare
+    - OSF Preprints (OSF Preprints)
+    - Preprints.org
+    - Research Square
+    - viXra
   dedup_year_window: 3           # same title within 3 years = one paper (0 = same year only, the old rule)
   authors_per_paper: 5           # author names stored per paper
   check_arxiv_titles: true       # drop records whose title differs from arXiv's (corrupted OpenAlex metadata)

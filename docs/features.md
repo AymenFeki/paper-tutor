@@ -20,6 +20,16 @@ can be compared. The defaults are the best settings measured (see
   The rule removed 74 papers from the corpus (26 Zenodo, 18 without a source, 13 bioRxiv,
   7 Research Square, 6 Preprints.org, 4 others). None of them was a test question's
   paper, and the retrieval metrics did not change (see [eval/README.md](../eval/README.md)).
+- **Untrusted repositories** (`untrusted_repositories` in the config,
+  [#27](https://github.com/AymenFeki/paper-tutor/issues/27)): no paper of any type may come
+  from an open-upload repository (Zenodo, Figshare, OSF Preprints, Preprints.org, Research
+  Square, viXra). Conference papers skip the venue list, so a Zenodo "conference paper"
+  (W7162214106) used to pass. This is a block list, not an allow list like the preprint
+  servers: 34 of the 35 conference papers in the corpus hosted in a repository other than
+  arXiv or HAL are real papers kept in university repositories (PILCO, BinaryConnect,
+  Evidential Deep Learning), and only the Zenodo one is spam. The rule removed that one
+  paper; in a 14-day refresh window it blocked 7 Zenodo conference papers. Preprints are
+  unchanged, and the retrieval results are identical for all 34 test questions.
 - **Deduplication**: papers with the same normalised title published within 3 years of
   each other are one paper, e.g. an arXiv preprint and its conference version, or a
   conference paper and its later journal version. The published version is kept, then

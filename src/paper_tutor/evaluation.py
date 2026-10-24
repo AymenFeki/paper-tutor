@@ -25,6 +25,17 @@ def metrics(ranks):
     return result
 
 
+def pooled_relevant(question, judgments):
+    """Relevant paper ids for one item of eval/questions.yaml, with the pooled judgments (a list).
+
+    The papers judged relevant for its question, plus the paper the question was written for
+    unless a judgment says it is not relevant (the same rule as scripts/08_pooled_evaluate.py).
+    """
+    judged = {j["paper_id"]: j["relevant"] for j in judgments if j["question"] == question["question"]}
+    relevant = {paper_id for paper_id, is_relevant in judged.items() if is_relevant}
+    return relevant | {paper_id for paper_id in question["relevant"] if judged.get(paper_id, True)}
+
+
 def wilson_interval(successes, n, z=1.96):
     """95% Wilson score interval for a binomial proportion."""
     p = successes / n

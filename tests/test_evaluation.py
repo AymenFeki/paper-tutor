@@ -8,6 +8,7 @@ from paper_tutor.evaluation import (
     first_relevant_rank,
     judgment_yaml,
     metrics,
+    pooled_relevant,
     split_sentences,
     strip_citations,
     threshold_effect,
@@ -30,6 +31,25 @@ def test_first_relevant_rank_returns_first_of_several():
 def test_first_relevant_rank_none_when_missing():
     assert first_relevant_rank(["a", "b"], {"x"}) is None
     assert first_relevant_rank([], {"x"}) is None
+
+
+# pooled_relevant
+
+
+def test_pooled_relevant_adds_papers_judged_relevant():
+    question = {"question": "q", "relevant": ["a"]}
+    judgments = [
+        {"question": "q", "paper_id": "b", "relevant": True},
+        {"question": "q", "paper_id": "c", "relevant": False},
+        {"question": "other", "paper_id": "d", "relevant": True},
+    ]
+    assert pooled_relevant(question, judgments) == {"a", "b"}
+
+
+def test_pooled_relevant_drops_original_paper_judged_not_relevant():
+    question = {"question": "q", "relevant": ["a"]}
+    judgments = [{"question": "q", "paper_id": "a", "relevant": False}]
+    assert pooled_relevant(question, judgments) == set()
 
 
 # metrics

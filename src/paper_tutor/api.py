@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, HTTPException, Security
 from fastapi.security import APIKeyHeader
+from langsmith import configure, traceable
 from pydantic import BaseModel
 
 from paper_tutor.corpus import load_config
@@ -13,6 +14,7 @@ from paper_tutor.embed import active_model, load_model
 from paper_tutor.quiz import make_quiz, syllabus_paper
 from paper_tutor.rag import NO_PAPERS_MESSAGE, build_chain, build_retriever, format_context
 from paper_tutor.refresh import refresh as refresh_papers
+from paper_tutor.tracing import trace_metadata
 from paper_tutor.tutor import build_tutor
 
 state = {}
@@ -23,10 +25,12 @@ async def lifespan(app: FastAPI):
     """Load the config, the models (embedding, reranker if on), LLM chain and tutor once, when the server starts."""
     config = load_config()
     state["config"] = config
+    # metadata for the traces of /ask and /quiz; the retriever, chain and tutor attach it themselves
+    configure(metadata=trace_metadata(config))
     state["model_key"], state["model_cfg"] = active_model(config)
     state["embed_model"] = load_model(state["model_cfg"])  # shared by the retriever and /refresh
     state["retrieve"] = build_retriever(config, state["embed_model"])
-    state["chain"] = build_chain(config["llm"])
+    state["chain"] = build_chain(config["llm"], trace_metadata(config))
     state["tutor"] = build_tutor(config, state["retrieve"])
     yield
     state.clear()
@@ -72,6 +76,7 @@ def search(req: SearchRequest):
 
 
 @app.post("/ask", dependencies=[Depends(require_api_key)])
+@traceable(run_type="chain", name="ask")  # one trace for the retrieval and the answer
 def ask(req: AskRequest):
     """Answer a single question from retrieved papers, with no conversation memory."""
     papers = state["retrieve"](req.question, k=state["config"]["llm"]["top_k"])
@@ -97,6 +102,7 @@ def chat(req: ChatRequest):
 
 
 @app.post("/quiz", dependencies=[Depends(require_api_key)])
+@traceable(run_type="chain", name="quiz")  # one trace for the retrieval and all LLM attempts
 def quiz():
     """A multiple-choice question about a paper for a random learn item from the syllabus."""
     topic, paper = syllabus_paper(state["config"], state["retrieve"])

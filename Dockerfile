@@ -16,5 +16,9 @@ RUN --mount=type=cache,target=/root/.cache/uv uv sync --locked --no-dev
 RUN uv run --no-sync python -c "from sentence_transformers import SentenceTransformer, CrossEncoder; SentenceTransformer('BAAI/bge-small-en-v1.5'); CrossEncoder('BAAI/bge-reranker-base')"
 ENV HF_HUB_OFFLINE=1
 
+# 4. The commit, so traces in LangSmith show which code produced them (tracing.git_sha)
+ARG GIT_SHA=unknown
+ENV GIT_SHA=$GIT_SHA
+
 EXPOSE 8000
 CMD ["uv", "run", "--no-sync", "uvicorn", "paper_tutor.api:app", "--host", "0.0.0.0", "--port", "8000"]

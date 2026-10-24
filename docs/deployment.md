@@ -19,6 +19,8 @@
   - `GROQ_API_KEY`: needed when `llm.provider` is `groq`
   - optional, for the n8n automations: `TELEGRAM_BOT_TOKEN` (from @BotFather) and
     `TELEGRAM_CHAT_ID`
+  - optional, for tracing in [LangSmith](https://smith.langchain.com): `LANGSMITH_API_KEY`,
+    `LANGSMITH_TRACING=true` and `LANGSMITH_PROJECT` (e.g. `paper-tutor`); without them nothing is traced
 
 ### Build the database and start the app
 
@@ -128,6 +130,9 @@ flowchart LR
   | `POSTGRES_SSLMODE` | `prefer` | `require` |
   | `GROQ_API_KEY` | from `.env` | secret |
   | `API_KEY` | not set (no auth) | secret |
+  | `LANGSMITH_API_KEY` | from `.env` | secret |
+  | `LANGSMITH_TRACING` | `true` in `.env` | `true` |
+  | `LANGSMITH_PROJECT` | `paper-tutor` | `paper-tutor-prod` |
 
 - **Cost**: inside the Azure for Students free tier. B1ms with 32 GB storage is free for
   12 months (750 hours a month), and scale-to-zero keeps the container within the monthly
@@ -144,6 +149,44 @@ flowchart LR
   POSTGRES_HOST=<azure host> POSTGRES_PASSWORD=<azure password> POSTGRES_SSLMODE=require make pull-refreshed
   make load && make embed
   ```
+
+### Monitoring in LangSmith
+
+Production traces go to the LangSmith project `paper-tutor-prod`, local ones to `paper-tutor`.
+A tutor trace (`/chat`) has the question in `input.messages`, the answer as the last item of
+`output.messages` and the retrieved papers (title, abstract, scores) in `output.papers`; the
+numbers the answer cites, [1] to [5], are positions in that list.
+
+An online LLM-as-judge evaluator checks about 20% of the tutor traces for groundedness. It is
+set up in the LangSmith UI (the SDK cannot yet create sampling rules): on the project
+`paper-tutor-prod`, add an LLM-as-judge evaluator with a filter on root runs named `tutor`
+(`LangGraph` for images built before tracing was added), sampling rate 0.2, the Groq model
+`qwen/qwen3.8-27b` (needs `GROQ_API_KEY` as a LangSmith workspace secret), this prompt and a
+boolean feedback key `is_grounded`:
+
+```text
+You check whether a study tutor's answer is grounded in its sources.
+
+Question: {{question}}
+
+Sources (a JSON list of papers; the answer's citation [n] is the n-th paper):
+{{context}}
+
+Conversation (the last message is the answer to check):
+{{answer}}
+
+Is every claim in the answer supported by the sources it cites?
+- A claim is supported only if a cited paper's title or abstract states it or it follows directly from it.
+- A claim that is true but comes from outside knowledge, not from the cited papers, is NOT supported.
+- A claim without a citation is NOT supported, unless it only restates the question or says that
+  the sources do not cover something.
+- Citing a source number that does not exist is NOT supported.
+- If the answer only says that no relevant papers were found, it is grounded.
+```
+
+Variable mapping: `question` → `input.messages`, `context` → `output.papers`,
+`answer` → `output.messages`. The offline version of this judge is
+`scripts/17_langsmith_eval.py answers`.
 
 Health check of the live API (the other endpoints need the key):
 

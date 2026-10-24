@@ -19,6 +19,8 @@
   - `GROQ_API_KEY`: needed when `llm.provider` is `groq`
   - optional, for the n8n automations: `TELEGRAM_BOT_TOKEN` (from @BotFather) and
     `TELEGRAM_CHAT_ID`
+  - optional, for tracing in [LangSmith](https://smith.langchain.com): `LANGSMITH_API_KEY`,
+    `LANGSMITH_TRACING=true` and `LANGSMITH_PROJECT` (e.g. `paper-tutor`); without them nothing is traced
 
 ### Build the database and start the app
 

@@ -140,6 +140,34 @@ keyword queries. Full method, all tables and caveats: [eval/README.md](eval/READ
 | In-scope queries answered, off-topic queries refused | 84/84 (30/30 on held-out queries) |
 | Citations supported by the cited abstract (8B judge) | 31/34 with the reranker (22/30 without; 24/30 before), strict prompt; a hand check finds the judge too lenient |
 
+### LangSmith experiments and tracing
+
+The same evaluation also runs as [LangSmith](https://smith.langchain.com) experiments, so runs
+can be compared side by side and every question's retrieval can be inspected as a trace
+(`LANGSMITH_*` variables in `.env`, see [docs/deployment.md](docs/deployment.md)):
+
+```bash
+uv run python scripts/17_langsmith_eval.py retrieval   # dataset paper-tutor-retrieval, rerank on and off
+uv run python scripts/17_langsmith_eval.py answers     # full tutor on 10 questions, groundedness judge
+```
+
+The dataset is synced from `eval/questions.yaml` and the pooled judgments on every run
+(idempotent). The retrieval experiments run only the retriever and score its top 5:
+
+| Experiment | hit@5 (pooled) | MRR@5 |
+|---|---|---|
+| `rerank-on` (default) | 30/34 | 0.76 |
+| `rerank-off` | 25/34 | 0.62 |
+
+The hits match `scripts/08_pooled_evaluate.py`; its MRR (0.76 and 0.64) counts the top 10.
+The answer experiment asks the Groq model whether every claim in an answer is supported by
+the cited papers: 10/10 answers grounded. The judge is the model that wrote the answers and
+judges whole answers, so it is more lenient than the per-citation check above.
+
+With tracing on, every request is one trace with separate runs for vector search, reranking
+and the LLM call (tokens, and cost at Groq's list price), tagged with the model, git commit
+and retrieval settings.
+
 ## Corpus analytics (SQL)
 
 Highlights from the SQL queries in `sql/analytics/`. All findings:

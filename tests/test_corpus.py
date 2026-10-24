@@ -28,10 +28,13 @@ SETTINGS = {
     "venue_exempt_types": ["preprint", "conference-paper"],
     "min_abstract_words": 30,
     "preprint_servers": ["arXiv (Cornell University)", "SSRN Electronic Journal"],
+    "untrusted_repositories": ["Zenodo (CERN European Organization for Nuclear Research)"],
 }
 
 LONG_ABSTRACT = {f"word{i}": [i] for i in range(40)}  # 40 different words
 ARXIV = {"source": {"display_name": "arXiv (Cornell University)"}}  # a trusted preprint server
+ZENODO = {"source": {"display_name": "Zenodo (CERN European Organization for Nuclear Research)",
+                     "type": "repository"}}  # an open-upload repository
 
 
 def make_paper(**changes):
@@ -153,8 +156,7 @@ def test_preprint_from_trusted_server_passes():
 
 
 def test_preprint_from_untrusted_server_fails():
-    zenodo = {"source": {"display_name": "Zenodo (CERN European Organization for Nuclear Research)"}}
-    paper = make_paper(type="preprint", primary_location=zenodo)
+    paper = make_paper(type="preprint", primary_location=ZENODO)
     assert check_rules(paper, SETTINGS)["untrusted_preprint"]
     assert not passes_rules(paper, SETTINGS)
 
@@ -167,6 +169,34 @@ def test_untrusted_preprint_rule_ignores_other_types():
     # Articles are checked against the venue list instead, whatever their source is called
     paper = make_paper(primary_location={"source": {"display_name": "Zenodo", "listed_in": ["cwts-core"]}})
     assert not check_rules(paper, SETTINGS)["untrusted_preprint"]
+
+
+@pytest.mark.parametrize("paper_type", ["article", "review", "preprint", "conference-paper"])
+def test_untrusted_repository_fails_for_every_type(paper_type):
+    # A Zenodo "conference paper" (W7162214106) used to pass: conference papers skip the venue list
+    paper = make_paper(type=paper_type, primary_location=ZENODO)
+    assert check_rules(paper, SETTINGS)["untrusted_repository"]
+    assert not passes_rules(paper, SETTINGS)
+
+
+def test_untrusted_repository_fails_even_on_a_listed_venue():
+    zenodo_listed = {"source": {**ZENODO["source"], "listed_in": ["cwts-core"]}}
+    assert not passes_rules(make_paper(primary_location=zenodo_listed), SETTINGS)
+
+
+def test_conference_paper_in_institutional_repository_passes():
+    # Many real conference papers (e.g. PILCO, BinaryConnect) are hosted in university repositories
+    cambridge = {"source": {"display_name": "Apollo (University of Cambridge)", "type": "repository"}}
+    paper = make_paper(type="conference-paper", primary_location=cambridge)
+    assert not check_rules(paper, SETTINGS)["untrusted_repository"]
+    assert passes_rules(paper, SETTINGS)
+
+
+@pytest.mark.parametrize("location", [ARXIV, None])
+def test_untrusted_repository_rule_does_not_change_preprints(location):
+    # Preprints are still judged by the preprint_servers list alone
+    paper = make_paper(type="preprint", primary_location=location)
+    assert not check_rules(paper, SETTINGS)["untrusted_repository"]
 
 
 # normalize_title

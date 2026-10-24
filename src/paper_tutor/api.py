@@ -110,6 +110,7 @@ def quiz():
 
 
 @app.post("/refresh", dependencies=[Depends(require_api_key)])
-def refresh():
-    """Add the best recently published papers that pass the rules and match the syllabus (n8n calls it weekly)."""
-    return refresh_papers(state["config"], state["embed_model"], state["model_cfg"])
+def refresh(dry_run: bool = False):
+    """Add the best recently published papers that pass the rules and match the syllabus (n8n calls it weekly).
+    With ?dry_run=true nothing is written: the result shows what would be added."""
+    return refresh_papers(state["config"], state["embed_model"], state["model_cfg"], dry_run=dry_run)

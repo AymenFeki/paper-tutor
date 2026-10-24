@@ -160,6 +160,7 @@ The dataset is synced from `eval/questions.yaml` and the pooled judgments on eve
 | `rerank-off` | 25/34 | 0.62 |
 
 The hits match `scripts/08_pooled_evaluate.py`; its MRR (0.76 and 0.64) counts the top 10.
+Per-question results of both runs: [public LangSmith comparison](https://smith.langchain.com/public/aa3364a7-4317-4d2f-8e36-da216e628ed5/d/compare?selectedSessions=c11bfd89-8bcb-4010-8605-708c0a4fc8f5,d8bf79e5-dfd8-4063-aef8-54e26d2595fd).
 The answer experiment asks the Groq model whether every claim in an answer is supported by
 the cited papers: 10/10 answers grounded. The judge is the model that wrote the answers and
 judges whole answers, so it is more lenient than the per-citation check above.

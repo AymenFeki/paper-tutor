@@ -4,11 +4,13 @@ from collections import defaultdict
 
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
+from langsmith import traceable
 from pgvector.psycopg import register_vector
 
 from paper_tutor.db import connect
 from paper_tutor.embed import active_model, encode_query, load_model, load_reranker
 from paper_tutor.llm import build_llm
+from paper_tutor.tracing import trace_metadata
 
 VECTOR_SEARCH = """
     SELECT paper_id
@@ -85,6 +87,18 @@ def document_text(paper):
     return ". ".join(part for part in (paper["title"], paper["abstract"]) if part)
 
 
+def as_documents(papers):
+    """Papers as LangSmith shows retrieved documents: the text that was ranked, the rest as metadata.
+
+    Copies the values, so later steps (reranking) don't change what an earlier run recorded.
+    """
+    return {"documents": [
+        {"type": "Document", "page_content": document_text(p),
+         "metadata": {key: value for key, value in p.items() if key != "abstract"}}
+        for p in papers
+    ]}
+
+
 def is_short_query(question, max_words):
     """True for keyword-style queries such as "Jeffreys prior": at most max_words words."""
     return len(question.split()) <= max_words
@@ -117,12 +131,10 @@ def build_retriever(config, embed_model=None):
     short_query_threshold = settings["threshold"] and settings["short_query_words"] > 0
     reranker = load_reranker(settings["reranker_model"]) if settings["rerank"] or short_query_threshold else None
 
-    def retrieve(question, k=5):
+    @traceable(run_type="retriever", name="vector_search", process_outputs=as_documents)
+    def search(question, n):
+        """The n best papers by vector search (fused with full-text search if hybrid is on), best first."""
         query_vector = encode_query(embed_model, model_cfg, question)
-        short_query = short_query_threshold and is_short_query(question, settings["short_query_words"])
-        use_reranker = settings["rerank"] or short_query
-        n = max(k, settings["candidates"]) if settings["hybrid"] or use_reranker else k
-
         with connect() as conn:
             register_vector(conn)
             with conn.cursor() as cur:
@@ -140,12 +152,26 @@ def build_retriever(config, embed_model=None):
                   "abstract": abstract, "area": area, "similarity": float(similarity)}
             for pid, title, year, venue, authors, abstract, area, similarity in rows
         }
-        papers = [found[pid] for pid in ids if pid in found]  # keep the search order
+        return [found[pid] for pid in ids if pid in found]  # keep the search order
 
+    @traceable(run_type="retriever", name="rerank", process_outputs=as_documents)
+    def add_rerank_scores(question, papers):
+        """Score every paper against the question with the cross-encoder (adds "rerank_score")."""
+        scores = reranker.predict([(question, document_text(p)) for p in papers])
+        for paper, score in zip(papers, scores):
+            paper["rerank_score"] = float(score)
+        return papers
+
+    @traceable(run_type="chain", name="paper_retriever", metadata=trace_metadata(config),
+               process_outputs=as_documents)
+    def retrieve(question, k=5):
+        short_query = short_query_threshold and is_short_query(question, settings["short_query_words"])
+        use_reranker = settings["rerank"] or short_query
+        n = max(k, settings["candidates"]) if settings["hybrid"] or use_reranker else k
+
+        papers = search(question, n)
         if use_reranker:
-            scores = reranker.predict([(question, document_text(p)) for p in papers])
-            for paper, score in zip(papers, scores):
-                paper["rerank_score"] = float(score)
+            papers = add_rerank_scores(question, papers)
 
         # score = what the papers are ranked by; without the reranker the search order stays
         for paper in papers:
@@ -172,9 +198,9 @@ def format_context(papers):
     return "\n\n".join(blocks)
 
 
-def build_chain(llm_cfg):
-    """Prompt -> local LLM -> plain text."""
+def build_chain(llm_cfg, metadata=None):
+    """Prompt -> local LLM -> plain text. metadata (tracing.trace_metadata) is attached to its traces."""
     system = SYSTEM_PROMPTS[llm_cfg["prompt"]]
     prompt = ChatPromptTemplate.from_messages([("system", system), ("human", HUMAN)])
     llm = build_llm(llm_cfg)
-    return prompt | llm | StrOutputParser()
+    return (prompt | llm | StrOutputParser()).with_config(run_name="answer", metadata=metadata or {})

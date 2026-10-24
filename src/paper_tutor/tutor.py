@@ -12,6 +12,7 @@ from langgraph.graph.message import add_messages
 
 from paper_tutor.llm import build_llm
 from paper_tutor.rag import NO_PAPERS_MESSAGE, format_context
+from paper_tutor.tracing import trace_metadata
 
 
 class TutorState(TypedDict):
@@ -132,4 +133,5 @@ def build_tutor(config, retrieve):
     graph.add_edge("no_papers", END)
     graph.add_edge("answer", END)
 
-    return graph.compile(checkpointer=InMemorySaver())
+    tutor = graph.compile(checkpointer=InMemorySaver())
+    return tutor.with_config(run_name="tutor", metadata=trace_metadata(config))

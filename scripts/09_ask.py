@@ -2,6 +2,7 @@ import sys
 
 from paper_tutor.corpus import load_config
 from paper_tutor.rag import NO_PAPERS_MESSAGE, build_chain, build_retriever, format_context
+from paper_tutor.tracing import trace_metadata
 
 question = " ".join(sys.argv[1:])
 if not question:
@@ -13,7 +14,7 @@ llm_cfg = config["llm"]
 retrieve = build_retriever(config)
 papers = retrieve(question, k=llm_cfg["top_k"])
 
-chain = build_chain(llm_cfg)
+chain = build_chain(llm_cfg, trace_metadata(config))
 if papers:
     answer = chain.invoke({"context": format_context(papers), "question": question})
 else:

@@ -1,7 +1,14 @@
 import json
 from pathlib import Path
 
-from paper_tutor.corpus import deduplicate, load_config, passes_rules, select_seed_papers
+from paper_tutor.corpus import (
+    deduplicate,
+    load_config,
+    passes_rules,
+    refresh_topic_areas,
+    refresh_topic_rows,
+    select_seed_papers,
+)
 from paper_tutor.db import connect, save_papers
 
 # Papers that no longer pass the rules or were merged as duplicates (embeddings first: they point to papers)
@@ -49,10 +56,14 @@ for area_name, area in config["areas"].items():
 
 # Papers added by the weekly refresh (paper_tutor.refresh), saved as {"topic_id", "paper"} entries.
 # They come after the topic and seed areas, so a paper that is already there keeps its area.
+# Papers from refresh_topics (topics that only the refresh queries) belong to that topic's area.
+refresh_areas = refresh_topic_areas(config)
 recent = []
 for recent_file in sorted((raw_dir / "recent").glob("*.json")):
-    recent += [(entry["paper"], entry["topic_id"]) for entry in json.loads(recent_file.read_text())
-               if entry["topic_id"] in topics and passes_rules(entry["paper"], settings)]
+    entries = [(entry["paper"], entry["topic_id"]) for entry in json.loads(recent_file.read_text())]
+    topics.update(refresh_topic_rows(entries, refresh_areas))
+    recent += [(paper, topic_id) for paper, topic_id in entries
+               if topic_id in topics and passes_rules(paper, settings)]
 records += recent
 print(f"recent: {len(recent)} papers from weekly refreshes")
 

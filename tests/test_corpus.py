@@ -10,11 +10,14 @@ from paper_tutor.corpus import (
     deduplicate,
     has_wrong_arxiv_title,
     is_known,
+    matches_area_keywords,
     mentions_keywords,
     normalize_title,
     passes_rules,
     rebuild_abstract,
     record_quality,
+    refresh_topic_areas,
+    refresh_topic_rows,
     select_seed_papers,
     select_top,
     split_by_year_window,
@@ -425,3 +428,35 @@ def test_select_top_threshold_is_inclusive():
 def test_select_top_nothing_good_enough():
     assert select_top([("a", 0.6)], min_score=0.75, max_papers=20) == []
     assert select_top([], min_score=0.75, max_papers=20) == []
+
+
+# refresh topics (#25)
+
+REFRESH_CONFIG = {"areas": {
+    "statistics": {"active": True, "topics": ["T1"]},
+    "agents": {"active": True, "topics": [], "refresh_topics": ["T9"], "keywords": ["language model"]},
+    "old": {"active": False, "topics": [], "refresh_topics": ["T8"]},
+}}
+
+
+def test_refresh_topic_areas_only_active_areas():
+    assert refresh_topic_areas(REFRESH_CONFIG) == {"T9": "agents"}
+
+
+def test_refresh_topic_paper_needs_an_area_keyword():
+    areas = refresh_topic_areas(REFRESH_CONFIG)
+    llm = make_paper(title="A large language model for tables")
+    topic_modeling = make_paper(title="Latent Dirichlet allocation for short texts")
+    assert matches_area_keywords((llm, "T9"), REFRESH_CONFIG, areas)
+    assert not matches_area_keywords((topic_modeling, "T9"), REFRESH_CONFIG, areas)
+
+
+def test_regular_topic_paper_needs_no_keyword():
+    areas = refresh_topic_areas(REFRESH_CONFIG)
+    assert matches_area_keywords((make_paper(title="Lasso"), "T1"), REFRESH_CONFIG, areas)
+
+
+def test_refresh_topic_rows_name_and_area():
+    areas = refresh_topic_areas(REFRESH_CONFIG)
+    paper = make_paper(primary_topic={"id": "https://openalex.org/T9", "display_name": "Topic Modeling"})
+    assert refresh_topic_rows([(paper, "T9"), (make_paper(), "T1")], areas) == {"T9": ("Topic Modeling", "agents")}

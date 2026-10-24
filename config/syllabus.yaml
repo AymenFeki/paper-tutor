@@ -130,6 +130,9 @@ areas:
   agents:
     active: true
     topics: []                   # collected around seed papers instead of OpenAlex topics (#9)
+    refresh_topics: [T10028, T10181, T11636]   # only the weekly refresh queries these (#25); papers must also
+                                 # mention a keyword. T10028 "Topic Modeling" is where OpenAlex puts most LLM
+                                 # papers (162 of the 294 seed-area papers), then T11636 (22) and T10181 (8)
     seeds:                       # landmark papers; we collect papers that cite them and papers they cite
       - {title: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks", doi: 10.48550/arxiv.2005.11401}
       - {title: "ReAct: Synergizing Reasoning and Acting in Language Models", doi: 10.48550/arxiv.2210.03629}

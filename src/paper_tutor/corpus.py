@@ -160,6 +160,30 @@ def is_known(paper, known_ids, known_titles):
     return paper["id"].split("/")[-1] in known_ids or (title != "" and title in known_titles)
 
 
+def refresh_topic_areas(config):
+    """topic_id -> area name for the refresh_topics of the active areas: OpenAlex topics that only
+    the weekly refresh queries, for areas built another way (the agents area is built from seed papers)."""
+    return {topic_id: name for name, area in config["areas"].items() if area["active"]
+            for topic_id in area.get("refresh_topics", [])}
+
+
+def matches_area_keywords(record, config, refresh_areas):
+    """True unless the (paper, topic_id) record comes from a refresh topic whose area has keywords
+    and the paper mentions none of them. Refresh topics are broad (T10028 "Topic Modeling" holds most
+    LLM papers, but also classic NLP), so their papers need the same keywords as the seed papers."""
+    paper, topic_id = record
+    area = refresh_areas.get(topic_id)
+    keywords = config["areas"][area].get("keywords") if area else None
+    return not keywords or mentions_keywords(paper, keywords)
+
+
+def refresh_topic_rows(records, refresh_areas):
+    """topic_id -> (name, area) for the refresh topics among (paper, topic_id) records, as save_papers expects.
+    The name is the paper's primary topic, which is the topic it was fetched by."""
+    return {topic_id: (paper["primary_topic"]["display_name"], refresh_areas[topic_id])
+            for paper, topic_id in records if topic_id in refresh_areas}
+
+
 def select_top(ranked, min_score, max_papers):
     """From (record, score) pairs sorted best first, keep those scoring at least min_score, at most max_papers."""
     return [(record, score) for record, score in ranked if score >= min_score][:max_papers]

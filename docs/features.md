@@ -71,6 +71,21 @@ can be compared. The defaults are the best settings measured (see
   container `data/raw/` is lost on every restart; `make pull-refreshed` copies them from the
   cloud database into `data/raw/recent/` ([#29](https://github.com/AymenFeki/paper-tutor/issues/29)).
   The first run had 1,124 candidates and added 20 papers; it takes about 45 seconds.
+  `make refresh` with `--dry-run` (`uv run python scripts/15_refresh.py --dry-run`, or
+  `POST /refresh?dry_run=true`) shows what would be added without writing anything.
+- **LLM and agent papers in the refresh** ([#25](https://github.com/AymenFeki/paper-tutor/issues/25)):
+  the agents area has no OpenAlex topics, so the refresh never added agent papers. Its
+  `refresh_topics` are queried only by the refresh: T10028 "Topic Modeling", where OpenAlex
+  puts most LLM papers (162 of the 294 seed-area papers), T11636 "Artificial Intelligence in
+  Healthcare and Education" (22) and T10181 "Natural Language Processing Techniques" (8).
+  These topics are broad (classic NLP, ChatGPT in education), so their papers must also
+  mention one of the area's keywords, as the seed papers do, before the usual rules and
+  ranking. In the 14 days up to 2026-10-24 they had 666 candidates: 406 passed the rules,
+  230 also mentioned a keyword, 38 scored at least 0.75 (32 of them from T10028) and 1
+  made the top 20 ("From knowledge retrieval to generation: a comprehensive study of RAG's
+  architectures ..."). The topics the issue suggested first, T10181 and T11636, gave only
+  6 papers at 0.75 or more. The refreshed papers keep their topic, which
+  is stored as a topic of the agents area.
 - **Automations** ([#14](https://github.com/AymenFeki/paper-tutor/issues/14),
   [#29](https://github.com/AymenFeki/paper-tutor/issues/29)): two scheduled jobs call the API
   and send the result to a Telegram bot. In the cloud they are GitHub Actions workflows

@@ -213,14 +213,14 @@ The most important ones; the full list is in [docs/limitations.md](docs/limitati
   ([#7](https://github.com/AymenFeki/paper-tutor/issues/7)).
 - **Area labels are noisy**: 20% of papers are closer to another area, mostly at natural
   borders ([#21](https://github.com/AymenFeki/paper-tutor/issues/21)).
-- **The weekly refresh never covers the LLMs and agents area**, because it only queries
-  OpenAlex topics.
+- **Few LLM and agent papers reach the weekly refresh's top 20**: the area now has its
+  own refresh topics, but busy areas take most of the 20 slots (1 agent paper in a test
+  window with 38 good candidates; [#26](https://github.com/AymenFeki/paper-tutor/issues/26)).
 - **Cold start**: after a period without traffic, the first request to the cloud API takes
   about a minute. That is the cost of scaling to zero.
 
 ## Roadmap
 
-- Add new LLM and agent papers in the weekly refresh ([#25](https://github.com/AymenFeki/paper-tutor/issues/25)).
 - A quota per area in the refresh instead of one global top 20 ([#26](https://github.com/AymenFeki/paper-tutor/issues/26)).
 - Fix papers assigned to the wrong area ([#21](https://github.com/AymenFeki/paper-tutor/issues/21)).
 - More data sources and better coverage for all areas ([#8](https://github.com/AymenFeki/paper-tutor/issues/8)).

@@ -40,8 +40,10 @@
 
 ## Weekly refresh
 
-- **The weekly refresh never covers the LLMs and agents area.** It is built from seed
-  papers, not OpenAlex topics, and the refresh only queries topics.
+- **Few LLM and agent papers make the top 20.** The agents area has refresh topics
+  since [#25](https://github.com/AymenFeki/paper-tutor/issues/25), but in the 14 days up to
+  2026-10-24 only 1 of its 38 candidates at 0.75 or more made the top 20 (the next one
+  missed it by 0.001); the other areas' papers score slightly higher.
 - **The refresh takes one top 20 across all areas**, so busy areas win: the first run
   added 7 finance, 7 statistics, 3 deep learning, 2 economics and 1 machine learning
   paper, none for cloud infrastructure. A quota per area would balance it.

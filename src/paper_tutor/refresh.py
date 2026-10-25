@@ -10,7 +10,17 @@ import pyalex
 from dotenv import load_dotenv
 from pyalex import Works
 
-from paper_tutor.corpus import author_names, deduplicate, is_known, passes_rules, rebuild_abstract, select_top
+from paper_tutor.corpus import (
+    author_names,
+    deduplicate,
+    is_known,
+    matches_area_keywords,
+    passes_rules,
+    rebuild_abstract,
+    refresh_topic_areas,
+    refresh_topic_rows,
+    select_top,
+)
 from paper_tutor.db import connect, known_papers, save_papers, save_refreshed_raw
 from paper_tutor.embed import embed_missing, embedding_text, encode_query
 
@@ -28,7 +38,8 @@ RAW_DIR = Path("data/raw")
 
 
 def fetch_recent(config, days=14):
-    """Papers published in the last `days` days for every active topic area, as (paper, topic_id) pairs.
+    """Papers published in the last `days` days for the topics and refresh_topics of every active area,
+    as (paper, topic_id) pairs.
 
     OpenAlex already filters out what the credibility rules would drop anyway (no abstract, not
     English, wrong type, retracted), and every page is fetched, so no topic is cut off.
@@ -39,7 +50,7 @@ def fetch_recent(config, days=14):
     for area in config["areas"].values():
         if not area["active"]:
             continue
-        for topic_id in area["topics"]:
+        for topic_id in area["topics"] + area.get("refresh_topics", []):
             query = (
                 Works()
                 .filter(
@@ -105,17 +116,21 @@ def save_raw(records, raw_dir=RAW_DIR):
     return authors
 
 
-def refresh(config, model, model_cfg):
+def refresh(config, model, model_cfg, dry_run=False):
     """Add the recently published papers that pass the rules and match the syllabus best.
 
-    Fetch the last `days` days, apply the credibility rules, drop duplicates within the batch, take
+    Fetch the last `days` days, apply the credibility rules (and the area keywords for papers from
+    refresh topics), drop duplicates within the batch, take
     the papers scoring at least min_similarity (at most max_papers) and add those that are not in
     the database yet: write them to the raw files, save them to Postgres and embed them.
     The top papers are chosen before known papers are skipped, so running it again adds nothing
     and the next refresh only adds what has entered the top of the window.
+    With dry_run, nothing is written: the result shows what would be added.
     """
     settings, refresh_cfg = config["settings"], config["refresh"]
-    records = [record for record in fetch_recent(config, refresh_cfg["days"]) if passes_rules(record[0], settings)]
+    refresh_areas = refresh_topic_areas(config)
+    records = [record for record in fetch_recent(config, refresh_cfg["days"])
+               if passes_rules(record[0], settings) and matches_area_keywords(record, config, refresh_areas)]
     records, _ = deduplicate(records, settings["dedup_year_window"])
 
     ranked = rank_by_syllabus(records, config, model, model_cfg) if records else []
@@ -125,15 +140,16 @@ def refresh(config, model, model_cfg):
     selected = [(record, score) for record, score in top if not is_known(record[0], known_ids, known_titles)]
 
     kept = [record for record, _ in selected]
-    if kept:
+    if kept and not dry_run:
         authors = save_raw(kept)
         with connect() as conn, conn.cursor() as cur:
             save_refreshed_raw(cur, kept)
-            save_papers(cur, {}, kept, authors, settings)
+            save_papers(cur, refresh_topic_rows(kept, refresh_areas), kept, authors, settings)
         embed_missing(config)
 
     return {
-        "added": len(kept),
+        "added": 0 if dry_run else len(kept),
+        "dry_run": dry_run,
         "papers": [
             {"id": paper["id"].split("/")[-1], "title": paper["title"], "year": paper["publication_year"],
              "score": round(score, 3), "topic_id": topic_id}

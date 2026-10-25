@@ -197,8 +197,12 @@ flowchart LR
   | `OPENALEX_API_KEY` | `secretref:openalex-api-key` |
   | `TELEGRAM_BOT_TOKEN` | `secretref:telegram-bot-token` |
   | `TELEGRAM_CHAT_ID` | `secretref:telegram-chat-id` |
+  | `OMP_NUM_THREADS` | `1` |
 
   The job needs no Groq key, API key or LangSmith key: the refresh calls no LLM.
+  `OMP_NUM_THREADS=1` keeps PyTorch from starting one thread per core of the host when the
+  container only has 1 vCPU: in a local test limited to 1 CPU (`docker run --cpus=1`), the dry run
+  took 1,064 s with the default threads and 304 s with one thread.
 - **Start by hand** (both jobs can be started at any time; the scheduled one then runs a real
   refresh):
 

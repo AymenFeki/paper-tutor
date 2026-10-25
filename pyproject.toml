@@ -31,6 +31,7 @@ dependencies = [
 
 [project.scripts]
 paper-tutor = "paper_tutor:main"
+paper-tutor-refresh = "paper_tutor.refresh_job:cli"
 
 [build-system]
 requires = ["uv_build>=0.12.13,<0.13.0"]

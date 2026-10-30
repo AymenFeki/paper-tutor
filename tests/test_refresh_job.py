@@ -6,7 +6,8 @@ import httpx
 import pytest
 
 from paper_tutor import refresh_job
-from paper_tutor.refresh_job import failure_message, main, message
+from paper_tutor.refresh_job import main
+from paper_tutor.refresh_report import failure_message, message
 
 PAPERS = [{"id": "W1", "title": "Lasso paths", "year": 2026, "score": 0.822, "topic_id": "T1"},
           {"id": "W2", "title": "Deep sets", "year": 2026, "score": 0.81, "topic_id": "T2"}]

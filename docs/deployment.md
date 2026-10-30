@@ -141,10 +141,10 @@ flowchart LR
   daily quiz at 08:00 UTC and the weekly refresh on Sundays at 18:00 UTC. They need four
   repository secrets: `CLOUD_API_URL`, `CLOUD_API_KEY`, `TELEGRAM_BOT_TOKEN` and
   `TELEGRAM_CHAT_ID`. The cloud refresh needs `OPENALEX_API_KEY` as a Container Apps secret.
-  Both can also be started by hand from the Actions tab (*Run workflow*). The weekly refresh is
-  moving to a Container Apps job, because it no longer fits in one HTTP request
+  Both can also be started by hand from the Actions tab (*Run workflow*). The weekly refresh
+  runs in the background of the API, because it no longer fits in one HTTP request
   ([#37](https://github.com/AymenFeki/paper-tutor/issues/37)); see
-  [Weekly refresh job](#weekly-refresh-job).
+  [Weekly refresh](#weekly-refresh).
 - **Keeping the local copy in sync**: the cloud database is the one that grows. To bring
   refreshed papers to the local database:
 
@@ -153,90 +153,58 @@ flowchart LR
   make load && make embed
   ```
 
-### Weekly refresh job
+### Weekly refresh
 
 Container Apps ends HTTP requests after about 4 minutes, and `POST /refresh` already took
 220–252 s in production before the agent refresh topics (#25) added about 20% more candidates
-([#37](https://github.com/AymenFeki/paper-tutor/issues/37)). The refresh therefore runs as a
-Container Apps job in the same environment (`paper-tutor-env`), from the same image, with no HTTP
-request around it:
+([#37](https://github.com/AymenFeki/paper-tutor/issues/37)). The refresh therefore runs in a
+background thread of the API, and the workflow asks for the result every 30 seconds:
 
 ```mermaid
-flowchart LR
-    CRON["Container Apps job<br/>paper-tutor-refresh<br/>cron 0 18 * * 0 (UTC)"] --> JOB["paper-tutor-refresh<br/>(python -m paper_tutor.refresh_job)"]
-    JOB --> OA["OpenAlex"]
-    JOB --> PG[("Azure PostgreSQL")]
-    JOB --> TG["Telegram<br/>result or [refresh failed]"]
+sequenceDiagram
+    participant GH as refresh.yml (GitHub Actions)
+    participant API as paper-tutor-api
+    participant TG as Telegram
+    GH->>API: GET /health (wake up)
+    GH->>API: POST /refresh
+    API-->>GH: 202 {run_id, state: running}
+    Note over API: refresh() in a background thread:<br/>OpenAlex → rank → Postgres
+    loop every 30 s, at most 30 minutes
+        GH->>API: GET /refresh/status
+        API-->>GH: {run_id, state, result, message}
+    end
+    GH->>TG: message (result or [refresh failed])
 ```
 
-- **Command**: `/app/.venv/bin/paper-tutor-refresh` (installed by `[project.scripts]`; the same as
-  `python -m paper_tutor.refresh_job`), with `--dry-run` to write nothing. It logs the result as
-  JSON and the duration, and sends the same Telegram message as `refresh.yml`, with `[dry run]` in
-  front for a dry run. Any error sends `[refresh failed] <error type>: <message>` (no stack trace,
-  secret values replaced by `***`) and exits with 1; a failed Telegram call also exits with 1.
-  Without `TELEGRAM_BOT_TOKEN` or `TELEGRAM_CHAT_ID` the message is only logged.
-- **Two jobs** with the same image and settings:
-
-  | Job | Trigger | Arguments | Use |
-  |---|---|---|---|
-  | `paper-tutor-refresh` | Schedule, `0 18 * * 0` (UTC) | none | the weekly refresh |
-  | `paper-tutor-refresh-dry-run` | Manual | `--dry-run` | check what the next refresh would add, and how long it takes, without writing |
-
-- **Settings**: 1 vCPU / 2 GiB like the API, replica timeout 1,800 s, no retries (a second run
-  would add nothing, but a failure should be seen, not hidden), one replica per execution.
-- **Secrets** (each job has its own; a job does not see the app's secrets): `postgres-password`
-  and `openalex-api-key` (the same values as the app's), `telegram-bot-token` and
-  `telegram-chat-id` (the same values as the GitHub secrets).
-- **Environment variables**:
-
-  | Variable | Value |
-  |---|---|
-  | `POSTGRES_HOST` | Azure server hostname (same as the app) |
-  | `POSTGRES_SSLMODE` | `require` |
-  | `POSTGRES_PASSWORD` | `secretref:postgres-password` |
-  | `OPENALEX_API_KEY` | `secretref:openalex-api-key` |
-  | `TELEGRAM_BOT_TOKEN` | `secretref:telegram-bot-token` |
-  | `TELEGRAM_CHAT_ID` | `secretref:telegram-chat-id` |
-  | `OMP_NUM_THREADS` | `1` |
-
-  The job needs no Groq key, API key or LangSmith key: the refresh calls no LLM.
-  `OMP_NUM_THREADS=1` keeps PyTorch from starting one thread per core of the host when the
-  container only has 1 vCPU: in a local test limited to 1 CPU (`docker run --cpus=1`), the dry run
-  took 1,064 s with the default threads and 304 s with one thread.
-- **Start by hand** (both jobs can be started at any time; the scheduled one then runs a real
-  refresh):
+- **`POST /refresh`** (`?dry_run=true` to write nothing) answers at once with `202` and the run
+  (`run_id`, `state: running`), or with `409` and the current run if a refresh is already
+  running. Only one refresh runs at a time.
+- **`GET /refresh/status`** returns the last run: `state` is `running`, `done` (with `result`)
+  or `failed` (with `error`), plus `duration_s` and `message`, the Telegram text (the same
+  format as before; secret values in errors are replaced by `***`). `404` if there was no
+  refresh since the server started.
+- **The polling keeps the API awake**: it scales to zero after 300 s without requests, and the
+  background thread does not count as traffic.
+- **Limits**: the status lives in memory, so this needs a single replica (`maxReplicas` is 1;
+  with more, a poll could reach a replica that knows nothing about the run). A restart during
+  the refresh loses the status; the workflow then sees `404` or another `run_id` and sends
+  `[refresh failed] status lost`. Papers written before the restart stay, and a new run adds
+  the rest.
+- **By hand**: Actions tab → *Weekly refresh* → *Run workflow*, with *dry run* to write nothing.
+- **Why not a Container Apps job**: a job would run the refresh outside any HTTP request
+  (`paper-tutor-refresh`, PR [#38](https://github.com/AymenFeki/paper-tutor/pull/38)), but the
+  Azure for Students subscription rejects jobs (`ExpressEnvironmentResourceNotSupported`),
+  also in a new workload-profiles environment. The command still runs locally, against the
+  local database (`TELEGRAM_BOT_TOKEN=` keeps it from sending to Telegram):
 
   ```bash
-  az containerapp job start -n paper-tutor-refresh-dry-run -g paper-tutor-rg
-  ```
-
-- **Check an execution**: status and duration (from start to end, including the image pull and
-  loading the model):
-
-  ```bash
-  az containerapp job execution list -n paper-tutor-refresh-dry-run -g paper-tutor-rg \
-    --query "[].{name:name, status:properties.status, start:properties.startTime, end:properties.endTime}" -o table
-  ```
-
-  The log (the JSON result) is in the portal under the job → *Execution history* → *Logs*, or with
-  the `log-analytics` CLI extension (`az extension add --name log-analytics`):
-
-  ```bash
-  az monitor log-analytics query -w 9c6d6a27-a247-4b19-885b-d30154132ff6 --analytics-query \
-    "ContainerAppConsoleLogs_CL | where ContainerJobName_s == 'paper-tutor-refresh-dry-run' | order by TimeGenerated asc | project TimeGenerated, Log_s" -o tsv
-  ```
-
-- **Run it locally** against the local database, in the image (`TELEGRAM_BOT_TOKEN=` keeps it from
-  sending to Telegram):
-
-  ```bash
-  docker run --rm --env-file .env -e POSTGRES_HOST=host.docker.internal -e TELEGRAM_BOT_TOKEN= paper-tutor-api /app/.venv/bin/paper-tutor-refresh --dry-run
+  TELEGRAM_BOT_TOKEN= uv run paper-tutor-refresh --dry-run
   ```
 
 ### Release checklist
 
-Neither the API nor the jobs pick up a new image by themselves. After a push to `main` has built
-the image (*Docker image* workflow in the Actions tab), deploy the same commit to all three:
+The API does not pick up a new image by itself. After a push to `main` has built the image
+(*Docker image* workflow in the Actions tab), deploy that commit:
 
 ```bash
 TAG=sha-$(git rev-parse origin/main | cut -c1-7)
@@ -249,21 +217,7 @@ az containerapp update -n paper-tutor-api -g paper-tutor-rg --image "$IMAGE"
 ```
 
 ```bash
-az containerapp job update -n paper-tutor-refresh -g paper-tutor-rg --image "$IMAGE"
-```
-
-```bash
-az containerapp job update -n paper-tutor-refresh-dry-run -g paper-tutor-rg --image "$IMAGE"
-```
-
-Check that all three run the same image:
-
-```bash
 az containerapp show -n paper-tutor-api -g paper-tutor-rg --query "properties.template.containers[0].image" -o tsv
-```
-
-```bash
-az containerapp job list -g paper-tutor-rg --query "[].{job:name, image:properties.template.containers[0].image}" -o table
 ```
 
 ### Monitoring in LangSmith

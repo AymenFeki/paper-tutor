@@ -1,37 +1,67 @@
 # Weekly refresh (#29): the cloud API adds the best recent papers to the cloud database,
 # then the result is sent to Telegram. Secrets: Settings → Secrets and variables → Actions.
+# The refresh takes longer than one HTTP request may (about 240 s, #37), so the API runs it in the
+# background and this workflow polls GET /refresh/status until it is done.
 name: Weekly refresh
 
 on:
   schedule:
     - cron: "0 18 * * 0" # Sundays 18:00 UTC = 20:00 in Munich in summer, 19:00 in winter
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only show what would be added, write nothing"
+        type: boolean
+        default: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 40
     env:
       API: ${{ secrets.CLOUD_API_URL }}
       KEY: ${{ secrets.CLOUD_API_KEY }}
       BOT: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+      DRY_RUN: ${{ inputs.dry_run || false }}
     steps:
       - name: Wake up the API (it scales to zero, the first request can take a minute)
         run: curl -sS --fail-with-body --retry 5 --retry-delay 20 --retry-all-errors --max-time 180 "$API/health"
 
-      - name: Run the refresh
-        # Safe to retry: a second run adds nothing (the top 20 is chosen before known papers are skipped)
-        run: >
-          curl -sS --fail-with-body --retry 1 --retry-delay 30 --retry-all-errors --max-time 300
-          -X POST "$API/refresh" -H "X-API-Key: $KEY" -o refresh.json
+      - name: Start the refresh
+        # No retry: a second POST would only get 409 (a refresh is already running)
+        run: |
+          curl -sS --fail-with-body --max-time 60 -X POST "$API/refresh?dry_run=$DRY_RUN" \
+            -H "X-API-Key: $KEY" -o start.json
+          echo "RUN_ID=$(jq -r .run_id start.json)" >> "$GITHUB_ENV"
+
+      - name: Wait for the result
+        # A request every 30 s also keeps the API awake: it scales to zero after 300 s without requests,
+        # and the background refresh does not count as traffic. At most 60 polls (30 minutes).
+        run: |
+          for i in $(seq 60); do
+            sleep 30
+            code=$(curl -sS --max-time 60 --retry 3 --retry-delay 10 --retry-connrefused -o status.json \
+              -w '%{http_code}' "$API/refresh/status" -H "X-API-Key: $KEY") || code=000
+            if [ "$code" != 200 ] || [ "$(jq -r .run_id status.json)" != "$RUN_ID" ]; then
+              printf '[refresh failed] status lost (HTTP %s): the API restarted or could not be reached' "$code" > message.txt
+              exit 1
+            fi
+            state=$(jq -r .state status.json)
+            if [ "$state" != running ]; then
+              jq -j .message status.json > message.txt
+              jq '{state, duration_s, result, error}' status.json
+              [ "$state" = done ]
+              exit
+            fi
+          done
+          printf '[refresh failed] no result after 30 minutes' > message.txt
+          exit 1
 
       - name: Send the result
+        if: always()
         run: |
-          jq --arg chat "$CHAT" '{
-            chat_id: $chat,
-            text: ("Weekly refresh: \(.added) new papers (\(.candidates) candidates)\n"
-                   + ([.papers[] | "• \(.title) (\(.score))"] | join("\n")))
-          }' refresh.json > message.json
+          [ -s message.txt ] || printf '[refresh failed] the workflow stopped before the result, see the Actions log' > message.txt
+          jq -n --arg chat "$CHAT" --rawfile text message.txt '{chat_id: $chat, text: $text[:4096]}' > message.json
           curl -sS --fail-with-body -o /dev/null -X POST "https://api.telegram.org/bot$BOT/sendMessage" \
             -H "Content-Type: application/json" -d @message.json

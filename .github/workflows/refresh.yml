@@ -48,6 +48,7 @@ jobs:
               exit 1
             fi
             state=$(jq -r .state status.json)
+            echo "poll $i: $state after $((i * 30)) s"
             if [ "$state" != running ]; then
               jq -j .message status.json > message.txt
               jq '{state, duration_s, result, error}' status.json

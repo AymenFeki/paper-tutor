@@ -182,7 +182,12 @@ sequenceDiagram
 - **`GET /refresh/status`** returns the last run: `state` is `running`, `done` (with `result`)
   or `failed` (with `error`), plus `duration_s` and `message`, the Telegram text (the same
   format as before; secret values in errors are replaced by `***`). `404` if there was no
-  refresh since the server started.
+  refresh since the server started. The result also has `fetched` (papers from OpenAlex,
+  before the rules) and `timings_s`, the seconds per phase (`fetch`, `rank`, `save`); the
+  workflow prints the final status and one line per poll.
+- **Duration**: the first production dry run (30 Oct 2026) took 718 s for 3,464 candidates,
+  about 0.2 s per candidate on 1 vCPU. The duration grows with the number of candidates
+  (OpenAlex returned about 1,200 a week earlier); the workflow allows 30 minutes.
 - **The polling keeps the API awake**: it scales to zero after 300 s without requests, and the
   background thread does not count as traffic.
 - **Limits**: the status lives in memory, so this needs a single replica (`maxReplicas` is 1;

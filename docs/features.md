@@ -72,7 +72,9 @@ can be compared. The defaults are the best settings measured (see
   cloud database into `data/raw/recent/` ([#29](https://github.com/AymenFeki/paper-tutor/issues/29)).
   The first run had 1,124 candidates and added 20 papers; it takes about 45 seconds.
   `make refresh` with `--dry-run` (`uv run python scripts/15_refresh.py --dry-run`, or
-  `POST /refresh?dry_run=true`) shows what would be added without writing anything.
+  `POST /refresh?dry_run=true`) shows what would be added without writing anything. In the
+  API the refresh runs in the background, because it takes longer than Container Apps lets
+  an HTTP request run ([#37](https://github.com/AymenFeki/paper-tutor/issues/37)).
 - **LLM and agent papers in the refresh** ([#25](https://github.com/AymenFeki/paper-tutor/issues/25)):
   the agents area has no OpenAlex topics, so the refresh never added agent papers. Its
   `refresh_topics` are queried only by the refresh: T10028 "Topic Modeling", where OpenAlex
@@ -101,8 +103,9 @@ can be compared. The defaults are the best settings measured (see
     away and a new one is written (at most 3 attempts,
     [#24](https://github.com/AymenFeki/paper-tutor/issues/24)). The options are shuffled and
     the question is sent as a Telegram quiz poll, followed by the topic and the source paper.
-  - *Weekly refresh* (Sundays at 20:00): `POST /refresh`, then a Telegram message listing
-    the papers added and their scores.
+  - *Weekly refresh* (Sundays at 20:00): `POST /refresh`, then `GET /refresh/status` every
+    30 seconds until it is done, then a Telegram message listing the papers added and their
+    scores.
 
 ## Search and answers
 
@@ -144,8 +147,9 @@ can be compared. The defaults are the best settings measured (see
   - `POST /ask`: a single cited answer from the top papers (no memory).
   - `POST /chat`: the tutor with memory per `thread_id`.
   - `POST /quiz`: one multiple-choice question about a paper for a random syllabus item.
-  - `POST /refresh`: the weekly refresh; returns the number of papers added, their titles
-    and scores, and the number of candidates.
+  - `POST /refresh`: starts the weekly refresh in the background (`202`, or `409` if one is
+    running); `GET /refresh/status` returns its state and, when done, the number of papers
+    added, their titles and scores, and the number of candidates.
 - **API key** (`api.py`): when the environment variable `API_KEY` is set, every endpoint
   except `/health` requires it in the `X-API-Key` header and answers `401` otherwise. The
   key is compared in constant time (`secrets.compare_digest`). Locally `API_KEY` is not

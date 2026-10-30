@@ -87,6 +87,8 @@ def test_refresh_topic_papers_need_a_keyword_and_get_a_topic_row(monkeypatch):
     result = refresh(REFRESH_CONFIG, None, None)
 
     assert [p["id"] for p in result["papers"]] == ["W1", "W2"]
+    assert result["fetched"] == 3 and result["candidates"] == 2  # W3 has no agents keyword
+    assert set(result["timings_s"]) == {"fetch", "rank", "save"}
     topics, kept = save_papers.call_args.args[1:3]
     assert topics == {"T9": ("Topic T9", "agents")}
     assert [paper["title"] for paper, _ in kept] == ["Lasso paths", "A large language model"]

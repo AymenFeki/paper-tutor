@@ -2,6 +2,7 @@
 
 import json
 import os
+import time
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
@@ -125,16 +126,29 @@ def refresh(config, model, model_cfg, dry_run=False):
     the database yet: write them to the raw files, save them to Postgres and embed them.
     The top papers are chosen before known papers are skipped, so running it again adds nothing
     and the next refresh only adds what has entered the top of the window.
-    With dry_run, nothing is written: the result shows what would be added.
+    With dry_run, nothing is written: the result shows what would be added. timings_s has the seconds
+    per phase (fetch from OpenAlex; rules, deduplication and ranking; database check and saving).
     """
     settings, refresh_cfg = config["settings"], config["refresh"]
     refresh_areas = refresh_topic_areas(config)
-    records = [record for record in fetch_recent(config, refresh_cfg["days"])
+    timings, start = {}, time.perf_counter()
+
+    def phase_done(name):
+        """Store the seconds since the last phase under name, and log them (the refresh runs for minutes)."""
+        nonlocal start
+        timings[name] = round(time.perf_counter() - start, 1)
+        start = time.perf_counter()
+        print(f"refresh: {name} took {timings[name]} s", flush=True)
+
+    fetched = fetch_recent(config, refresh_cfg["days"])
+    phase_done("fetch")
+    records = [record for record in fetched
                if passes_rules(record[0], settings) and matches_area_keywords(record, config, refresh_areas)]
     records, _ = deduplicate(records, settings["dedup_year_window"])
 
     ranked = rank_by_syllabus(records, config, model, model_cfg) if records else []
     top = select_top(ranked, refresh_cfg["min_similarity"], refresh_cfg["max_papers"])
+    phase_done("rank")
     with connect() as conn, conn.cursor() as cur:
         known_ids, known_titles = known_papers(cur)
     selected = [(record, score) for record, score in top if not is_known(record[0], known_ids, known_titles)]
@@ -146,6 +160,7 @@ def refresh(config, model, model_cfg, dry_run=False):
             save_refreshed_raw(cur, kept)
             save_papers(cur, refresh_topic_rows(kept, refresh_areas), kept, authors, settings)
         embed_missing(config)
+    phase_done("save")
 
     return {
         "added": 0 if dry_run else len(kept),
@@ -155,6 +170,8 @@ def refresh(config, model, model_cfg, dry_run=False):
              "score": round(score, 3), "topic_id": topic_id}
             for (paper, topic_id), score in selected
         ],
+        "fetched": len(fetched),
         "candidates": len(records),
         "already_known": len(top) - len(kept),
+        "timings_s": timings,
     }

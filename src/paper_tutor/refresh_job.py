@@ -1,11 +1,13 @@
-"""Weekly refresh as an Azure Container Apps job (#37): runs refresh() outside an HTTP request, so the
-request timeout of Container Apps (about 4 minutes) no longer applies, and sends the result to Telegram.
+"""Weekly refresh as a command: runs refresh() outside an HTTP request and sends the result to Telegram.
+
+Written for an Azure Container Apps job (#37), which the Azure for Students subscription does not allow, so in
+production the refresh runs in the background of the API (see api.py); this command is for local runs.
 
     python -m paper_tutor.refresh_job             # add the papers and send the result
     python -m paper_tutor.refresh_job --dry-run   # only show what would be added ("[dry run]" message)
 
-In the image the same command is installed as paper-tutor-refresh (see [project.scripts]): the Container Apps
-job runs that, because az reads arguments that start with "-" (like "-m") as its own options.
+The same command is installed as paper-tutor-refresh (see [project.scripts]), which a Container Apps job
+would run, because az reads arguments that start with "-" (like "-m") as its own options.
 
 Without TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID the message is only logged. Any error sends
 "[refresh failed] <error type>: <message>" instead and exits with 1; so does a failed Telegram call.
@@ -23,43 +25,14 @@ import httpx
 from paper_tutor.corpus import load_config
 from paper_tutor.embed import active_model, load_model
 from paper_tutor.refresh import refresh
+from paper_tutor.refresh_report import describe, failure_message, message, redact
 from paper_tutor.tracing import git_sha
 
-# Values of these variables are replaced by *** in everything the job logs or sends
-SECRET_VARS = ["TELEGRAM_BOT_TOKEN", "OPENALEX_API_KEY", "POSTGRES_PASSWORD", "GROQ_API_KEY", "API_KEY",
-               "LANGSMITH_API_KEY"]
 TELEGRAM_LIMIT = 4096  # characters per message
 
 
 def log(text):
     print(text, flush=True)  # flush, so the Container Apps log shows each line as it happens
-
-
-def redact(text):
-    """Replace the values of the secret environment variables in text (an error can carry a URL with a key)."""
-    for name in SECRET_VARS:
-        value = os.getenv(name)
-        if value and len(value) >= 4:
-            text = text.replace(value, "***")
-    return text
-
-
-def message(result):
-    """The Telegram text for a refresh result, the same as .github/workflows/refresh.yml sends."""
-    lines = [f"Weekly refresh: {result['added']} new papers ({result['candidates']} candidates)"]
-    lines += [f"• {paper['title']} ({paper['score']})" for paper in result["papers"]]
-    text = "\n".join(lines)
-    return f"[dry run] {text}" if result["dry_run"] else text
-
-
-def describe(error):
-    """"<error type>: <message>", without the stack trace or secrets."""
-    detail = redact(str(error)).strip()
-    return type(error).__name__ + (f": {detail}" if detail else "")
-
-
-def failure_message(error):
-    return f"[refresh failed] {describe(error)}"
 
 
 def notify(text):

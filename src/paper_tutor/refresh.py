@@ -132,7 +132,7 @@ def refresh(config, model, model_cfg, dry_run=False):
     per phase (fetch from OpenAlex; rules, deduplication and ranking; database check and saving).
     """
     settings, refresh_cfg = config["settings"], config["refresh"]
-    refresh_areas = refresh_topic_areas(config)
+    refresh_areas, areas = refresh_topic_areas(config), topic_areas(config)
     timings, start = {}, time.perf_counter()
 
     def phase_done(name):
@@ -149,7 +149,7 @@ def refresh(config, model, model_cfg, dry_run=False):
     records, _ = deduplicate(records, settings["dedup_year_window"])
 
     ranked = rank_by_syllabus(records, config, model, model_cfg) if records else []
-    ranked = cap_per_area(ranked, topic_areas(config), refresh_cfg["per_area"])
+    ranked = cap_per_area(ranked, areas, refresh_cfg["per_area"])
     top = select_top(ranked, refresh_cfg["min_similarity"], refresh_cfg["max_papers"])
     phase_done("rank")
     with connect() as conn, conn.cursor() as cur:
@@ -170,7 +170,7 @@ def refresh(config, model, model_cfg, dry_run=False):
         "dry_run": dry_run,
         "papers": [
             {"id": paper["id"].split("/")[-1], "title": paper["title"], "year": paper["publication_year"],
-             "score": round(score, 3), "topic_id": topic_id}
+             "score": round(score, 3), "topic_id": topic_id, "area": areas[topic_id]}
             for (paper, topic_id), score in selected
         ],
         "fetched": len(fetched),

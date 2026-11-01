@@ -107,7 +107,7 @@ can be compared. The defaults are the best settings measured (see
     the question is sent as a Telegram quiz poll, followed by the topic and the source paper.
   - *Weekly refresh* (Sundays at 17:17 UTC): `POST /refresh`, then `GET /refresh/status` every
     30 seconds until it is done, then a Telegram message listing the papers added and their
-    scores.
+    scores, grouped by area with the count per area.
 
 ## Search and answers
 

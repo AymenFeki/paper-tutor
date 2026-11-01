@@ -9,8 +9,9 @@ from paper_tutor import refresh_job
 from paper_tutor.refresh_job import main
 from paper_tutor.refresh_report import failure_message, message
 
-PAPERS = [{"id": "W1", "title": "Lasso paths", "year": 2026, "score": 0.822, "topic_id": "T1"},
-          {"id": "W2", "title": "Deep sets", "year": 2026, "score": 0.81, "topic_id": "T2"}]
+PAPERS = [{"id": "W1", "title": "Lasso paths", "year": 2026, "score": 0.822, "topic_id": "T1", "area": "statistics"},
+          {"id": "W2", "title": "Deep sets", "year": 2026, "score": 0.81, "topic_id": "T2", "area": "deep_learning"},
+          {"id": "W3", "title": "Ridge paths", "year": 2026, "score": 0.8, "topic_id": "T1", "area": "statistics"}]
 
 
 def result(papers=(), dry_run=False):
@@ -41,9 +42,11 @@ def test_message_without_papers():
     assert message(result()) == "Weekly refresh: 0 new papers (1187 candidates)"
 
 
-def test_message_lists_every_paper_with_its_score():
+def test_message_groups_the_papers_by_area_with_their_scores():
     assert message(result(PAPERS)) == (
-        "Weekly refresh: 2 new papers (1187 candidates)\n• Lasso paths (0.822)\n• Deep sets (0.81)"
+        "Weekly refresh: 3 new papers (1187 candidates)\n"
+        "statistics (2)\n• Lasso paths (0.822)\n• Ridge paths (0.8)\n"
+        "deep_learning (1)\n• Deep sets (0.81)"
     )
 
 

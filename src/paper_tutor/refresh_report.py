@@ -1,6 +1,7 @@
 """The Telegram text for a refresh result or failure, shared by the API (/refresh/status) and the CLI (refresh_job)."""
 
 import os
+from collections import defaultdict
 
 # Values of these variables are replaced by *** in everything that is logged or sent
 SECRET_VARS = ["TELEGRAM_BOT_TOKEN", "OPENALEX_API_KEY", "POSTGRES_PASSWORD", "GROQ_API_KEY", "API_KEY",
@@ -17,9 +18,15 @@ def redact(text):
 
 
 def message(result):
-    """The Telegram text for a refresh result: one line with the counts, then one line per paper."""
+    """The Telegram text for a refresh result: one line with the counts, then the papers grouped by area
+    (a line with the area and its count, then one line per paper), so the quota per area can be checked."""
     lines = [f"Weekly refresh: {result['added']} new papers ({result['candidates']} candidates)"]
-    lines += [f"• {paper['title']} ({paper['score']})" for paper in result["papers"]]
+    by_area = defaultdict(list)  # keeps the order of first appearance: areas sorted by their best paper
+    for paper in result["papers"]:
+        by_area[paper["area"]].append(paper)
+    for area, papers in by_area.items():
+        lines.append(f"{area} ({len(papers)})")
+        lines += [f"• {paper['title']} ({paper['score']})" for paper in papers]
     text = "\n".join(lines)
     return f"[dry run] {text}" if result["dry_run"] else text
 

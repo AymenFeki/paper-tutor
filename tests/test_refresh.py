@@ -102,6 +102,7 @@ def test_refresh_takes_at_most_per_area_from_each_area(monkeypatch):
     result = refresh(REFRESH_CONFIG, None, None)
 
     assert [p["id"] for p in result["papers"]] == ["W0", "W1", "W2", "W3", "W9"]  # statistics capped at 4
+    assert [p["area"] for p in result["papers"]] == ["statistics"] * 4 + ["agents"]
     assert len(save_papers.call_args.args[2]) == 5
 
 

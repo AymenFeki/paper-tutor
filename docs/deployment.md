@@ -138,8 +138,8 @@ flowchart LR
   12 months (750 hours a month), and scale-to-zero keeps the container within the monthly
   free grant of Container Apps.
 - **Scheduled jobs**: GitHub Actions calls the cloud API on a schedule (cron in UTC): the
-  daily quiz at 08:00 UTC and the weekly refresh on Sundays at 18:00 UTC. They need four
-  repository secrets: `CLOUD_API_URL`, `CLOUD_API_KEY`, `TELEGRAM_BOT_TOKEN` and
+  daily quiz at 08:00 UTC and the weekly refresh on Sundays at 17:17 UTC (off the full hour,
+  where GitHub delays scheduled runs most). They need four repository secrets: `CLOUD_API_URL`, `CLOUD_API_KEY`, `TELEGRAM_BOT_TOKEN` and
   `TELEGRAM_CHAT_ID`. The cloud refresh needs `OPENALEX_API_KEY` as a Container Apps secret.
   Both can also be started by hand from the Actions tab (*Run workflow*). The weekly refresh
   runs in the background of the API, because it no longer fits in one HTTP request

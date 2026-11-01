@@ -6,7 +6,9 @@ name: Weekly refresh
 
 on:
   schedule:
-    - cron: "0 18 * * 0" # Sundays 18:00 UTC = 20:00 in Munich in summer, 19:00 in winter
+    # Sundays 17:17 UTC = 19:17 in Munich in summer, 18:17 in winter. Not on the hour: scheduled runs
+    # start when GitHub has capacity, and the full hour is the busiest (the 18:00 run of 1 Nov started at 21:53).
+    - cron: "17 17 * * 0"
   workflow_dispatch:
     inputs:
       dry_run:

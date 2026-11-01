@@ -184,6 +184,26 @@ def refresh_topic_rows(records, refresh_areas):
             for paper, topic_id in records if topic_id in refresh_areas}
 
 
+def topic_areas(config):
+    """topic_id -> area name for every topic of the active areas, topics and refresh_topics."""
+    return {topic_id: name for name, area in config["areas"].items() if area["active"]
+            for topic_id in area["topics"] + area.get("refresh_topics", [])}
+
+
+def cap_per_area(ranked, areas, per_area):
+    """From ((paper, topic_id), score) pairs sorted best first, keep at most per_area per area, in order.
+    A paper's area is the area of the topic it was fetched by (areas: topic_id -> area). Slots an area
+    does not fill stay empty, they don't go to other areas (#26)."""
+    counts = defaultdict(int)
+    kept = []
+    for record, score in ranked:
+        area = areas[record[1]]
+        if counts[area] < per_area:
+            counts[area] += 1
+            kept.append((record, score))
+    return kept
+
+
 def select_top(ranked, min_score, max_papers):
     """From (record, score) pairs sorted best first, keep those scoring at least min_score, at most max_papers."""
     return [(record, score) for record, score in ranked if score >= min_score][:max_papers]

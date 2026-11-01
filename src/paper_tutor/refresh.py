@@ -13,6 +13,7 @@ from pyalex import Works
 
 from paper_tutor.corpus import (
     author_names,
+    cap_per_area,
     deduplicate,
     is_known,
     matches_area_keywords,
@@ -21,6 +22,7 @@ from paper_tutor.corpus import (
     refresh_topic_areas,
     refresh_topic_rows,
     select_top,
+    topic_areas,
 )
 from paper_tutor.db import connect, known_papers, save_papers, save_refreshed_raw
 from paper_tutor.embed import embed_missing, embedding_text, encode_query
@@ -121,9 +123,9 @@ def refresh(config, model, model_cfg, dry_run=False):
     """Add the recently published papers that pass the rules and match the syllabus best.
 
     Fetch the last `days` days, apply the credibility rules (and the area keywords for papers from
-    refresh topics), drop duplicates within the batch, take
-    the papers scoring at least min_similarity (at most max_papers) and add those that are not in
-    the database yet: write them to the raw files, save them to Postgres and embed them.
+    refresh topics), drop duplicates within the batch, take the best papers of each area (at most
+    per_area, so dense areas can't take every slot, #26) that score at least min_similarity (at most
+    max_papers in all) and add those that are not in the database yet: write them to the raw files, save them to Postgres and embed them.
     The top papers are chosen before known papers are skipped, so running it again adds nothing
     and the next refresh only adds what has entered the top of the window.
     With dry_run, nothing is written: the result shows what would be added. timings_s has the seconds
@@ -147,6 +149,7 @@ def refresh(config, model, model_cfg, dry_run=False):
     records, _ = deduplicate(records, settings["dedup_year_window"])
 
     ranked = rank_by_syllabus(records, config, model, model_cfg) if records else []
+    ranked = cap_per_area(ranked, topic_areas(config), refresh_cfg["per_area"])
     top = select_top(ranked, refresh_cfg["min_similarity"], refresh_cfg["max_papers"])
     phase_done("rank")
     with connect() as conn, conn.cursor() as cur:

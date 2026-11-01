@@ -40,13 +40,16 @@
 
 ## Weekly refresh
 
-- **Few LLM and agent papers make the top 20.** The agents area has refresh topics
-  since [#25](https://github.com/AymenFeki/paper-tutor/issues/25), but in the 14 days up to
-  2026-10-24 only 1 of its 38 candidates at 0.75 or more made the top 20 (the next one
-  missed it by 0.001); the other areas' papers score slightly higher.
-- **The refresh takes one top 20 across all areas**, so busy areas win: the first run
-  added 7 finance, 7 statistics, 3 deep learning, 2 economics and 1 machine learning
-  paper, none for cloud infrastructure. A quota per area would balance it.
+- **The quota per area is fixed, not proportional.** Before
+  [#26](https://github.com/AymenFeki/paper-tutor/issues/26) one global top 20 let busy areas
+  win (the first run added 7 finance, 7 statistics, 3 deep learning, 2 economics, 1 machine
+  learning and no cloud or agents paper). Now every area gets at most 4, so in a week with few
+  good papers for an area its slots stay empty, and a busy area can't add its fifth-best paper
+  even when it scores higher than another area's best.
+- **An area is the topic a paper was fetched by, not its closest learn query.** Some
+  language-model papers fetched for the agents area are closest to a deep-learning query
+  (for example "word embeddings"), so they count toward agents
+  ([#26](https://github.com/AymenFeki/paper-tutor/issues/26)).
 - **Syllabus similarity measures topic, not quality.** The weakest refreshed papers are
   applied studies from broad journals (an India VIX-RSI market-efficiency study in
   F1000Research, a buzzword-heavy causal-inference framework in *Electronics*); they pass

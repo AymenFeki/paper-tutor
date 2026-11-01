@@ -59,12 +59,14 @@ can be compared. The defaults are the best settings measured (see
 - **Weekly refresh** (`refresh.py`, `refresh` in the config): `POST /refresh` (or
   `make refresh`) fetches the papers published in the last 14 days for every topic,
   applies the credibility rules, removes duplicates, and scores each paper by its highest
-  cosine similarity to any learn query of the syllabus. The top 20 papers of the window
-  with a similarity of at least 0.75 are added if they are not in the database yet (same
-  OpenAlex id or same normalised title). 0.75 comes from the measured scores: the best
-  papers score about 0.82-0.85, spam and off-topic papers 0.55-0.71. Because the top 20 is
-  chosen before known papers are skipped, running it again adds nothing, and the next
-  week only adds what has entered the top 20. New papers are written to
+  cosine similarity to any learn query of the syllabus. The best 4 papers of each area
+  (`per_area`, at most 32 in all) with a similarity of at least 0.75 are added if they are
+  not in the database yet (same OpenAlex id or same normalised title). A paper's area is the
+  area of the topic it was fetched by. The quota keeps dense areas from taking every slot, and
+  slots an area does not fill stay empty ([#26](https://github.com/AymenFeki/paper-tutor/issues/26)).
+  0.75 comes from the measured scores: the best papers score about 0.82-0.85, spam and
+  off-topic papers 0.55-0.71. Because the selection is made before known papers are skipped,
+  running it again adds nothing, and the next week only adds what has entered the selection. New papers are written to
   `data/raw/recent/<date>.json` (and their authors to `data/raw/authors.json`) before they
   are saved and embedded, so the raw files stay the source of truth and `make load` keeps
   them. The raw records are also stored in the `refreshed_raw` table, because in the cloud

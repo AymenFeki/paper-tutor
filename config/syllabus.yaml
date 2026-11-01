@@ -204,6 +204,8 @@ llm:
 
 refresh:
   days: 14                # look back this many days (OpenAlex indexes with a delay, so overlap is fine)
-  max_papers: 20          # add at most this many papers per refresh
+  per_area: 4             # at most this many per area, so dense areas can't take every slot (#26);
+                          # slots an area does not fill stay empty
+  max_papers: 32          # and at most this many in all (8 active areas x 4)
   min_similarity: 0.75    # cosine similarity to the closest learn query; top papers score ~0.82-0.85,
                           # spam and off-topic ~0.55-0.71 (1,108 candidates above 0.70, 328 above 0.75)

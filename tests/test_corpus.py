@@ -6,6 +6,7 @@ from paper_tutor.corpus import (
     abstract_word_count,
     arxiv_id,
     author_names,
+    cap_per_area,
     check_rules,
     deduplicate,
     has_wrong_arxiv_title,
@@ -21,6 +22,7 @@ from paper_tutor.corpus import (
     select_seed_papers,
     select_top,
     split_by_year_window,
+    topic_areas,
 )
 
 # Same shape as the settings block in config/syllabus.yaml
@@ -460,3 +462,25 @@ def test_refresh_topic_rows_name_and_area():
     areas = refresh_topic_areas(REFRESH_CONFIG)
     paper = make_paper(primary_topic={"id": "https://openalex.org/T9", "display_name": "Topic Modeling"})
     assert refresh_topic_rows([(paper, "T9"), (make_paper(), "T1")], areas) == {"T9": ("Topic Modeling", "agents")}
+
+
+# quota per area in the refresh (#26)
+
+
+def test_topic_areas_has_topics_and_refresh_topics_of_active_areas():
+    assert topic_areas(REFRESH_CONFIG) == {"T1": "statistics", "T9": "agents"}
+
+
+def test_cap_per_area_keeps_the_best_of_each_area():
+    areas = {"T1": "statistics", "T2": "statistics", "T9": "agents"}
+    ranked = [(("a", "T1"), 0.9), (("b", "T2"), 0.88), (("c", "T1"), 0.85), (("d", "T9"), 0.8), (("e", "T9"), 0.78)]
+    # statistics is counted across its topics: its third paper is dropped although it beats both agents papers
+    assert cap_per_area(ranked, areas, per_area=2) == [
+        (("a", "T1"), 0.9), (("b", "T2"), 0.88), (("d", "T9"), 0.8), (("e", "T9"), 0.78)]
+
+
+def test_cap_per_area_does_not_refill_unused_slots():
+    ranked = [(("a", "T1"), 0.9), (("b", "T1"), 0.85), (("c", "T9"), 0.8)]
+    # agents has one paper, its second slot stays empty instead of going to statistics
+    assert cap_per_area(ranked, {"T1": "statistics", "T9": "agents"}, per_area=1) == [
+        (("a", "T1"), 0.9), (("c", "T9"), 0.8)]

@@ -76,7 +76,7 @@ flowchart LR
         ASK["/ask (RAG chain)"]
         CHAT["/chat (LangGraph tutor:<br/>clarify? → rewrite → retrieve → answer or refuse)"]
         QUIZ["/quiz (daily quiz question)"]
-        REFRESH["/refresh (weekly):<br/>recent papers → rules → top 20 by syllabus similarity"]
+        REFRESH["/refresh (weekly):<br/>recent papers → rules → best 4 per area by syllabus similarity"]
         RET --> SEARCH
         RET --> ASK
         RET --> CHAT
@@ -213,14 +213,13 @@ The most important ones; the full list is in [docs/limitations.md](docs/limitati
   ([#7](https://github.com/AymenFeki/paper-tutor/issues/7)).
 - **Area labels are noisy**: 20% of papers are closer to another area, mostly at natural
   borders ([#21](https://github.com/AymenFeki/paper-tutor/issues/21)).
-- **Few LLM and agent papers reach the weekly refresh's top 20**: the area now has its
-  own refresh topics, but busy areas take most of the 20 slots (1 agent paper in a test
-  window with 38 good candidates; [#26](https://github.com/AymenFeki/paper-tutor/issues/26)).
+- **The weekly refresh has a fixed quota of 4 papers per area**: busy areas no longer
+  take every slot, but slots an area does not fill stay empty
+  ([#26](https://github.com/AymenFeki/paper-tutor/issues/26)).
 - **Cold start**: after a period without traffic, the first request to the cloud API takes
   about a minute. That is the cost of scaling to zero.
 
 ## Roadmap
 
-- A quota per area in the refresh instead of one global top 20 ([#26](https://github.com/AymenFeki/paper-tutor/issues/26)).
 - Fix papers assigned to the wrong area ([#21](https://github.com/AymenFeki/paper-tutor/issues/21)).
 - More data sources and better coverage for all areas ([#8](https://github.com/AymenFeki/paper-tutor/issues/8)).

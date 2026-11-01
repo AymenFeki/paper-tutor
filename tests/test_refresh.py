@@ -57,7 +57,7 @@ REFRESH_CONFIG = {
     "settings": {"language": "en", "keep_types": ["article"], "venue_lists": ["cwts-core"],
                  "venue_exempt_types": [], "min_abstract_words": 30, "preprint_servers": [], "untrusted_repositories": [],
                  "dedup_year_window": 3, "authors_per_paper": 5},
-    "refresh": {"days": 14, "max_papers": 20, "min_similarity": 0.75},
+    "refresh": {"days": 14, "per_area": 4, "max_papers": 32, "min_similarity": 0.75},
     "areas": {
         "statistics": {"active": True, "topics": ["T1"]},
         "agents": {"active": True, "topics": [], "refresh_topics": ["T9"], "keywords": ["language model"]},
@@ -92,6 +92,18 @@ def test_refresh_topic_papers_need_a_keyword_and_get_a_topic_row(monkeypatch):
     topics, kept = save_papers.call_args.args[1:3]
     assert topics == {"T9": ("Topic T9", "agents")}
     assert [paper["title"] for paper, _ in kept] == ["Lasso paths", "A large language model"]
+
+
+def test_refresh_takes_at_most_per_area_from_each_area(monkeypatch):
+    records = [candidate(f"W{i}", f"Lasso paper {i}", "T1") for i in range(6)]
+    records.append(candidate("W9", "A large language model", "T9"))
+    save_papers = fake_refresh(monkeypatch, records)
+
+    result = refresh(REFRESH_CONFIG, None, None)
+
+    assert [p["id"] for p in result["papers"]] == ["W0", "W1", "W2", "W3", "W9"]  # statistics capped at 4
+    assert [p["area"] for p in result["papers"]] == ["statistics"] * 4 + ["agents"]
+    assert len(save_papers.call_args.args[2]) == 5
 
 
 def test_refresh_dry_run_writes_nothing(monkeypatch):

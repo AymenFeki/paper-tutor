@@ -29,7 +29,8 @@ def test_right_key_passes(monkeypatch):
 
 
 RESULT = {"added": 1, "dry_run": False, "candidates": 1187, "already_known": 0,
-          "papers": [{"id": "W1", "title": "Lasso paths", "year": 2026, "score": 0.822, "topic_id": "T1"}]}
+          "papers": [{"id": "W1", "title": "Lasso paths", "year": 2026, "score": 0.822, "topic_id": "T1",
+                     "area": "statistics"}]}
 
 
 @pytest.fixture

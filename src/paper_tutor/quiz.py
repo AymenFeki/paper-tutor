@@ -12,6 +12,12 @@ from pydantic import BaseModel, Field, ValidationError, field_validator
 
 from paper_tutor.llm import build_llm
 
+# Groq's free tier allows 1,000 output tokens per minute. Without max_tokens it estimates the output of a
+# request, sometimes above that limit, and rejects the request with a 429 before running it. A question
+# is at most 900 characters (the limits in QuizQuestion), about 300 tokens; an Answer is one small number.
+WRITER_MAX_TOKENS = 500
+CHECKER_MAX_TOKENS = 100
+
 
 class QuizQuestion(BaseModel):
     """One multiple-choice question; the limits are Telegram's limits for quiz polls."""
@@ -133,8 +139,9 @@ def make_quiz(paper, llm_cfg, attempts=3):
     The question is written at temperature 0.7 (variety); the check runs at the config temperature (0)
     and never sees the answer key. Then the options are shuffled.
     """
-    writer = PROMPT | build_llm(llm_cfg, temperature=0.7).with_structured_output(QuizQuestion)
-    checker = CHECK_PROMPT | build_llm(llm_cfg).with_structured_output(Answer)
+    writer_llm = build_llm(llm_cfg, temperature=0.7, max_tokens=WRITER_MAX_TOKENS)
+    writer = PROMPT | writer_llm.with_structured_output(QuizQuestion)
+    checker = CHECK_PROMPT | build_llm(llm_cfg, max_tokens=CHECKER_MAX_TOKENS).with_structured_output(Answer)
 
     quiz, used = first_confirmed(
         lambda: writer.invoke({"title": paper["title"], "abstract": paper["abstract"]}),
